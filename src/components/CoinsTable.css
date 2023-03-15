@@ -1,0 +1,20 @@
+.tablestyle{
+    color:aqua;
+}
+
+.tablerow{
+    color: red;
+    cursor:zoom-in;
+}
+
+.tablerow:hover{
+    background-color: gold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* .pagination{
+    padding: 20px;
+    width: "60%";
+    display: "flex";
+    justify-content: "center";
+} */
