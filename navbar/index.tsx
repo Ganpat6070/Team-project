@@ -45,13 +45,7 @@ function MyNavbar() {
           <Navbar.Brand href="#home">Register/Login</Navbar.Brand>
         </Container>
       </Navbar>
-      <div
-        style={{
-          backgroundImage: "url('../../image/HomePage_Default.png')",
-        }}
-      >
-        <h1>Dream it... Believe it... Make it happen!</h1>
-      </div>
+      
     </>
   );
 }
