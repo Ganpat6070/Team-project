@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
-const RegForm = () => {
+const ProfileForm = () => {
   return (
     <div className="container-sm bg-light rounded-4 lg w-100 p-3">
       <form>
@@ -366,4 +366,4 @@ const RegForm = () => {
   );
 };
 
-export default RegForm;
+export default ProfileForm;
