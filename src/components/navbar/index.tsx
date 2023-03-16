@@ -6,7 +6,7 @@ function MyNavbar() {
   return (
     <>
       <Navbar
-        className="justify-content-center bg-transparent text-white"
+        className="justify-content-center p-3 bg-transparent text-white"
         expand="lg"
         style={{
           backgroundImage: `url("./image/Maskgroup.png")`,
@@ -42,10 +42,14 @@ function MyNavbar() {
             </Nav>
           </Navbar.Collapse>
 
-          <Navbar.Brand href="#home">Register/Login</Navbar.Brand>
+          <Navbar.Brand href="#home" className="p-2 rounded bg-white">
+            Register/Login
+          </Navbar.Brand>
         </Container>
       </Navbar>
-      
+      {/* <div>
+        <h1>Dream it... Believe it... Make it happen!</h1>
+      </div> */}
     </>
   );
 }
