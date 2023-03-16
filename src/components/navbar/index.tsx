@@ -14,7 +14,7 @@ function MyNavbar() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <Container>
+        <Container className="justify-content-center" >
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -39,12 +39,11 @@ function MyNavbar() {
               <Nav.Link href="/contact" className="text-white">
                 Contact Us
               </Nav.Link>
+              <Nav.Link href="/contact" className=" p-2 rounded bg-white">
+              Register/Login
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-
-          <Navbar.Brand href="#home" className="p-2 rounded bg-white">
-            Register/Login
-          </Navbar.Brand>
         </Container>
       </Navbar>
       {/* <div>
