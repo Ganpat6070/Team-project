@@ -5,61 +5,43 @@ const RegForm = () => {
 
 return(
 <form action="">
-{/* <!-- Navbar--> */}
-<header className="header">
-    <nav className="navbar navbar-expand-lg navbar-light py-3">
-        <div className="container">
-            
-            {/* <a href="#" className="navbar-brand">
-                <img src="https://bootstrapious.com/i/snippets/sn-registeration/logo.svg" alt="logo" width="150"/>
-            </a> */}
-        </div>
-    </nav>
-</header>
-
-
-<div className="container-xxl contain-reg">
-    <div className="row py-5 mt-4 align-items-center">
+<div className="container  contain-reg">
+    <div className="row py-5 mt-4 align-items-center cgl2">
         {/* <!-- For Demo Purpose --> */}
-        <div className="col-md-5 pr-lg-5 mb-5 mb-md-0">
-            <img src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg" alt="" className="img-fluid mb-3 d-none d-md-block"/>
+        <div className=" imgside">
+            <img src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg" alt="" className="firstimg"/>
         </div>
 
         {/* <!-- Registeration Form --> */}
-        <div className="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
-                <div className="row">
+        <div className="regside">
+            <form action="#" className="fnal">
+                {/* <div className=""> */}
 
                     {/* <!-- First Name --> */}
-                    <div className="input-group col-lg-6 mb-4">
-                        <div className="input-group-prepend">
-                            {/* <span className="input-group-text bg-white px-4 border-md border-right-0">
-                                <i className="fa fa-user text-muted"></i>
-                            </span> */}
-                        </div>
+                    <div className="">
+                      
                         <label htmlFor="fullname">Your Fullname*</label><br />
-                        <input id="fullName" type="text" name="fullname" placeholder="Full Name" className="form-control bg-white border-left-0 border-md"/>
+                        <input id="fullName" type="text" name="fullname" placeholder="Full Name" className="bg-white"/>
                     </div>
 
                     {/* <!-- Email Address --> */}
-                    <div className="input-group col-lg-12 mb-4">
-                        {/* <div className="input-group-prepend">
-                        </div> */}
+                    <div className="">
+                        
                         <label htmlFor="email">Your Email*</label><br />
-                        <input id="email" type="email" name="email" placeholder="Email Address" className="form-control bg-white border-left-0 border-md"/>
+                        <input id="email" type="email" name="email" placeholder="Email Address" className=" "/>
                     </div>
 
                     {/* <!-- Phone Number --> */}
-                    <div className="input-group col-lg-12 mb-4">
-                        <div className="input-group-prepend">
+                    <div className="">
+                        <div className="">
                         </div>
-                        <select id="countryCode" name="countryCode" style={{width: "80px"}} className="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                        <select id="countryCode" name="countryCode" style={{width: "80px"}} className="">
                             <option value="">+12</option>
                             <option value="">+10</option>
                             <option value="">+15</option>
                             <option value="">+18</option>
                         </select>
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" className="form-control bg-white border-md border-left-0 pl-3"/>
+                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" className=""/>
                     </div>
 
 
@@ -101,7 +83,7 @@ return(
                         <p className="text-muted font-weight-bold">Already Registered? <a href="#" className="text-primary ml-2">Login</a></p>
                     </div>
 
-                </div>
+                {/* </div> */}
             </form>
         </div>
     </div>
