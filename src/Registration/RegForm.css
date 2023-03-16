@@ -116,6 +116,9 @@ select.form-control {
     background-color: aquamarine;
 }
 
+.imgdiv{
+  width: 20px;
+}
 .register-photo {
     background:#f1f7fc;
     padding:80px 0;
@@ -123,9 +126,9 @@ select.form-control {
   
   .register-photo .image-holder {
     display:table-cell;
-    width:auto;
-    background:url(../../public/images/chirag/quick-reg.slideA.jpg);
-    background-size:cover;
+    /* width:auto; */
+    /* background:url(../../public/images/chirag/quick-reg.slideA.jpg); */
+    /* background-size:cover; */
   }
   
   .register-photo .form-container {
@@ -209,7 +212,12 @@ select.form-control {
     text-decoration:none;
   }
   
-
+.imgset{
+  width: 449px;
+  height: 125px;
+  /* margin: 0px; */
+  /* padding-bottom: 100px; */
+}
   /* ================================ */
   /* .intl-tel-input {
     display: table-cell;
