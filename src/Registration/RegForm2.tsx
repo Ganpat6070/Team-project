@@ -8,8 +8,23 @@ const RegForm2 = () => {
   return (
     <div className="register-photo">
       <div className="form-container imgdiv">
-         <div className="image-hold">
+        <div className="image-hold">
           <Carousel className="imgset">
+            <Carousel.Item>
+              <img
+                className="d-block w-0  "
+                src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>
+                  Easily accessible customer care centres and a committed and
+                  professional service team ensure that help is just a call or
+                  click away.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-0  "
@@ -57,8 +72,11 @@ const RegForm2 = () => {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
-          </div>
-          <form method="post">
+          {/* <Carousel className="imgset">
+         
+          </Carousel> */}
+        </div>
+        <form method="post">
           <h2 className="text-center">
             <strong>Registration</strong>
           </h2>
@@ -82,19 +100,21 @@ const RegForm2 = () => {
           </div>
           <div className="form-group">
             <label htmlFor="number">Phone Number*</label>
-            <br />
-            <select className="custom-select">
-              <option value="1">+971</option>
-              <option value="1">+972</option>
-              <option value="2">+198</option>
-              <option value="3">+701</option>
-            </select>
-            <input
-              className="form-control"
-              type="tel"
-              name="number"
-              placeholder="1234567890"
-            />
+            <div className="form-number">
+              <br />
+              <select className="form-control" style={{width: "90px", background: "0", border: "0"}}>
+                <option value="1">+971</option>
+                <option value="1">+972</option>
+                <option value="2">+198</option>
+                <option value="3">+701</option>
+              </select>
+              <input style={{margin:  "0",background: "0", border: "0"}}
+                className="form-control"
+                type="tel"
+                name="number"
+                placeholder="1234567890"
+              />
+            </div>
           </div>
 
           {/* '''''''''''''''''' */}
@@ -120,10 +140,15 @@ const RegForm2 = () => {
             <div className="border-bottom w-100 mr-5"></div>
           </div>
           <div className="form-group text-center">
-
-            <button className="btn btn-white btn-block border-dark " type="submit">
-              <img style={{height:"18px" , width:"18px"}} src="../../images/chirag/google-logo.png " /> Registration
-              Using Google
+            <button
+              className="btn btn-white btn-block border-dark "
+              type="submit"
+            >
+              <img
+                style={{ height: "18px", width: "18px" }}
+                src="../../images/chirag/google-logo.png "
+              />{" "}
+              Registration Using Google
             </button>
           </div>
         </form>
