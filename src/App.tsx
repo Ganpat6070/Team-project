@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "./components/login";
 import MyNavbar from "./components/navbar";
+// import RegForm2 from "./components/register";
 // import Stories from "./components/stories";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <MyNavbar />
       {/* <Stories /> */}
       <Login /> 
+      {/* <RegForm2/> */}
     </div>
   );
 }

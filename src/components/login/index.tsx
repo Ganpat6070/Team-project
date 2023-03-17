@@ -17,7 +17,7 @@ function Login() {
                     src="../../image/login.jpg"
                     alt="First slide"
                   />
-                  <Carousel.Caption className="bg-white">
+                  <Carousel.Caption className="bg-white w-100 ">
                     <h3 className="text-black">
                       Join the First Choice Site for Marriage
                     </h3>
