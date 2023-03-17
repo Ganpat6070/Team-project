@@ -2,7 +2,7 @@
 
 > PerfectMatch.com, Trusted Matrimonial Bureau in India, was founded by Miss. Purvangi Shukla with a simple objective to help those people who are seeking for best matrimonial bureau service, we have lot's of verified brides and grooms profile which will helps you to find your real soulmate. we are not just a matrimonial service provider but the best specialising in matchmaking.
 
-<img src='https://github.com/Ganpat6070/Team-project/blob/main/image/Landing-Page.png'>
+<img src='https://github.com/Ganpat6070/Team-project/blob/main/public/image/Landing-Page.png'>
 
 ## Getting Started with Create React App
 
