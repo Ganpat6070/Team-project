@@ -205,7 +205,7 @@ const Home = () => {
         </Button>
       </div>
 
-      <div className="pt-xxl-5 mt-5">
+      <div id="sucessStories" className="pt-xxl-5 mt-5">
         <div className="text-center">
           <p className="text-lg-center fs-3">Success Stories</p>
         </div>
@@ -256,9 +256,22 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="box"></div>
+      <div id="membership" className="box">
+        <Button
+          
+          style={{
+            backgroundColor: "#ec5274",
+            width: "12%",
+            height: '13%',
+            margin: '19% 55%',
+            padding: "10px, 16px, 10px, 16px",
+          }}
+        >
+          Get Membership &nbsp; &nbsp; &gt;
+        </Button>
+      </div>
       <div>
-        <p className="text-lg-center fs-1 pt-xxl-5 mt-5">
+        <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
           Connect with people you know but haven’t met yet
         </p>
         <div className="d-flex justify-content-center">
@@ -417,7 +430,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <div id="contactFooter">
+        <Footer />
+      </div>
     </>
   );
 };

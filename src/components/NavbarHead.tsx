@@ -18,12 +18,12 @@ const NavbarHead = () => {
         <Container>
         <Nav className="justify-content-around flex-grow-1">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/successstories">Success Stories</Nav.Link>
-            <Nav.Link href="/membership">Membership</Nav.Link>
-            <Nav.Link href="/gallery">Gallery</Nav.Link>
+            <Nav.Link href="#sucessStories">Success Stories</Nav.Link>
+            <Nav.Link href="#membership">Membership</Nav.Link>
+            <Nav.Link href="#gallery">Gallery</Nav.Link>
             <Nav.Link href="/faqs">FAQS</Nav.Link>
             <Nav.Link href="/aboutus">Aboutus</Nav.Link>
-            <Nav.Link href="/contactus">Contact</Nav.Link>
+            <Nav.Link href="#contactFooter">Contact</Nav.Link>
             <Nav.Link href="/loginregister" className="p-2 rounded bg-white">LoginRegister</Nav.Link>
           </Nav>
           

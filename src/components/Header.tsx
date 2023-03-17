@@ -5,6 +5,8 @@ import Contactus from '../pages/Contactus';
 import Faqs from '../pages/Faqs';
 import Gallery from '../pages/Gallery';
 import Home from '../pages/Home';
+import LoginRegister from '../pages/LoginRegister';
+import SuccessStories from '../pages/SuccessStories';
 import Navbar from './NavbarHead';
 
 const Header = () => {
@@ -13,11 +15,12 @@ const Header = () => {
     <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/sucessStories" element={<SuccessStories />} />
       <Route path="/contactus" element={<Contactus />} /> 
       <Route path="/aboutus" element={<Aboutus />} />
       <Route path="/faqs" element={<Faqs />} />
       <Route path="/gallery" element={<Gallery />} />
-      {/* <Route path="/aboutus" element={<Log />} /> */}
+      <Route path="/loginregister" element={<LoginRegister />} />
      
 
     </Routes>
