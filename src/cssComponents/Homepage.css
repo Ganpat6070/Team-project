@@ -3,7 +3,8 @@
   background-image: url("../../public/image/Maskgroup.jpg");
   height: 710px;
   padding-bottom: 20px;
-  background-repeat: round;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
 }
 
@@ -88,43 +89,105 @@
   left: 0px;
 }
 .pngImg2::before {
-    content: url("../../public/image/png/2ec25afb3eac0345eda926a51fd7b07b1.png");
-    position: relative;
-    top: 70px;
-    left: 0px;
-  }
-  .pngImg3::before {
-    content: url("../../public/image/png/07b4470d3499caf06279ef3d5e5493c01.png");
-    position: relative;
-    top: 70px;
-    left: 0px;
-  }
-  .pngImg4::before {
-    content: url("../../public/image/png/75f8dad337c20c4e36ced09bd3cbbe721.png");
-    position: relative;
-    top: 70px;
-    left: 0px;
-  }
-  .pngImg5::before {
-    content: url("../../public/image/png/c400f1f0d97dff20e63beb35d1ef72ec1.png");
-    position: relative;
-    top: 70px;
-    left: 0px;
-  }
-  .pngImg6::before {
-    content: url("../../public/image/png/e0208051df5dac534647a81429611bdd1.png");
-    position: relative;
-    top: 70px;
-    left: 0px;
-  }
-          
-.symbolText{
-    margin-left: 100px;
+  content: url("../../public/image/png/2ec25afb3eac0345eda926a51fd7b07b1.png");
+  position: relative;
+  top: 70px;
+  left: 0px;
+}
+.pngImg3::before {
+  content: url("../../public/image/png/07b4470d3499caf06279ef3d5e5493c01.png");
+  position: relative;
+  top: 70px;
+  left: 0px;
+}
+.pngImg4::before {
+  content: url("../../public/image/png/75f8dad337c20c4e36ced09bd3cbbe721.png");
+  position: relative;
+  top: 70px;
+  left: 0px;
+}
+.pngImg5::before {
+  content: url("../../public/image/png/c400f1f0d97dff20e63beb35d1ef72ec1.png");
+  position: relative;
+  top: 70px;
+  left: 0px;
+}
+.pngImg6::before {
+  content: url("../../public/image/png/e0208051df5dac534647a81429611bdd1.png");
+  position: relative;
+  top: 70px;
+  left: 0px;
 }
 
-.setmargin{
-    margin-top: 100px;
-    background-color: #FA5847;
-    color: white;
-    padding-bottom: 120px;
+.symbolText {
+  margin-left: 100px;
+}
+
+.setmargin {
+  margin-top: 100px;
+  background-color: #fa5847;
+  color: white;
+  padding-bottom: 120px;
+}
+
+.cardshadow {
+  filter: drop-shadow(1px 1px 35px rgba(0, 0, 0, 0.5));
+}
+
+.customImage1 {
+  position: absolute;
+  width: 1440.5px;
+  height: 358.78px;
+  left: -0.5px;
+  top: 3018px;
+
+  /* Secondary Color - Matrimony */
+  background: #27c2d3;
+}
+
+.box {
+  background-image: url("../../public/image/png/Group.png");
+  height: 450px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 10%;
+}
+
+.clickableCard {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  gap: 25px;
+  margin: 30px;
+  width: 360px;
+  height: 613px;
+  border: 1px solid #000000;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.testimonials {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+  
+}
+
+.textmanage {
+  width: 275px;
+  height: 333px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+  letter-spacing: 0.0015em;
+}
+
+.testtext{
+  color: #7E7E7E;
 }

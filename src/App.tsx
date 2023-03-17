@@ -11,30 +11,29 @@ import Membership from "./pages/Membership";
 import SuccessStories from "./pages/SuccessStories";
 import NavbarHead from "./components/NavbarHead";
 
-
 function App() {
   return (
-   <>    <div>
-      <BrowserRouter>
-        <div>
-          <NavbarHead/>
+    <>
+      <div>
+        <BrowserRouter>
           <div>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/aboutus" element={<Aboutus />} />
-              <Route path="/contactus" element={<Contactus />} />
-              <Route path="/faqs" element={<Faqs />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/loginregister" element={<LoginRegister />} />
-              <Route path="/membership" element={<Membership />} />
-              <Route path="/successstories" element={<SuccessStories />} />
-            </Routes>
+            <NavbarHead />
+            <div>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/aboutus" element={<Aboutus />} />
+                <Route path="/contactus" element={<Contactus />} />
+                <Route path="/faqs" element={<Faqs />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/loginregister" element={<LoginRegister />} />
+                <Route path="/membership" element={<Membership />} />
+                <Route path="/successstories" element={<SuccessStories />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
-    </div>
+        </BrowserRouter>
+      </div>
     </>
-
   );
 }
 
