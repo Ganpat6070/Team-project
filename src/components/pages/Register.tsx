@@ -107,7 +107,7 @@ const RegForm = () => {
           </div>
           <div className="form-group text-center">
             <button className="btn btn-primary btn-block" type="submit">
-              Registration
+              Register
             </button>
           </div>
           {/* <hr />  */}

@@ -89,13 +89,17 @@ const RegForm2 = () => {
             <label htmlFor="number">Phone Number*</label>
             <div className="form-number">
               <br />
-              <select className="form-control" style={{width: "90px", background: "0", border: "0"}}>
+              <select
+                className="form-control"
+                style={{ width: "90px", background: "0", border: "0" }}
+              >
                 <option value="1">+971</option>
                 <option value="1">+972</option>
                 <option value="2">+198</option>
                 <option value="3">+701</option>
               </select>
-              <input style={{margin:  "0",background: "0", border: "0"}}
+              <input
+                style={{ margin: "0", background: "0", border: "0" }}
                 className="form-control"
                 type="tel"
                 name="number"
@@ -115,7 +119,7 @@ const RegForm2 = () => {
           </div>
           <div className="form-group text-center">
             <button className="btn btn-primary btn-block" type="submit">
-              <Link to='/otp' >Registration</Link>
+              <Link to="/otp"> Register</Link>
             </button>
           </div>
           {/* <hr />  */}
