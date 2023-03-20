@@ -14,8 +14,6 @@ const NavbarHead = () => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         position: "sticky",
-        top: 0,
-        zIndex: 1,
         width: "100%",
         height: "60px",
       }}
@@ -27,16 +25,8 @@ const NavbarHead = () => {
               Home
             </Link>
           </Nav.Link>
-          <Nav.Link href="#sucessStories" className="text-white">
-            Success Stories
-          </Nav.Link>
-          <Nav.Link href="#membership" className="text-white">
-            Membership
-          </Nav.Link>
-          <Nav.Link href="#gallery" className="text-white">
-            Gallery
-          </Nav.Link>
           <Nav.Link>
+            {" "}
             <Link to="/faqs" className="text-white">
               FAQS
             </Link>
@@ -46,14 +36,10 @@ const NavbarHead = () => {
               Aboutus
             </Link>
           </Nav.Link>
-          <Nav.Link href="#contactFooter" className="text-white">
-            Contact
-          </Nav.Link>
-          <Nav.Link
-            className="p-2 rounded bg-white"
-            style={{ color: "#FA4C55" }}
-          >
-            <Link to="/login">Login/Register</Link>
+          <Nav.Link className="p-2 rounded bg-white">
+            <Link to="/" className="text-primary">
+              Logout
+            </Link>
           </Nav.Link>
         </Nav>
       </Container>

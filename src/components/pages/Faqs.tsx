@@ -1,8 +1,9 @@
 import React from 'react'
+import NavbarHead from '../navbar'
 
 const Faqs = () => {
   return (
-    <div>Faqs</div>
+    <NavbarHead/>
   )
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
+import NavbarHead from "../navbar";
 
 function Aboutus() {
-  return <div className="">Aboutus</div>;
+  return <NavbarHead />;
 }
 
 export default Aboutus;
