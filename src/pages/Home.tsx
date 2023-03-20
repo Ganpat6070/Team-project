@@ -5,13 +5,17 @@ import {
   Row,
   Col,
   Container,
-  Image,
   Card,
 } from "react-bootstrap";
 import "../cssComponents/Homepage.css";
 import Footer from "../components/Footer";
 
 const Home = () => {
+
+  const profileSearch = () => {
+     
+  }
+
   return (
     <>
       <div className="background_img">
@@ -73,6 +77,7 @@ const Home = () => {
                 <Button
                   size="sm"
                   style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                  onClick={profileSearch}
                 >
                   Let's Find
                 </Button>
@@ -218,7 +223,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex justify-content-center">
-          <Card className="mx-4 cardshadow">
+          <Card className="mx-4 cardshadow"> 
             <Card.Img
               width="328.52px"
               height="390px"

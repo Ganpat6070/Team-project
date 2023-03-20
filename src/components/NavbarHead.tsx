@@ -13,18 +13,20 @@ const NavbarHead = () => {
           backgroundImage: `url("../../image/Background1.png")`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          width: "100%",
+          height: '60px',
         }}
       >
         <Container>
         <Nav className="justify-content-around flex-grow-1">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#sucessStories">Success Stories</Nav.Link>
-            <Nav.Link href="#membership">Membership</Nav.Link>
-            <Nav.Link href="#gallery">Gallery</Nav.Link>
-            <Nav.Link href="/faqs">FAQS</Nav.Link>
-            <Nav.Link href="/aboutus">Aboutus</Nav.Link>
-            <Nav.Link href="#contactFooter">Contact</Nav.Link>
-            <Nav.Link href="/loginregister" className="p-2 rounded bg-white">LoginRegister</Nav.Link>
+            <Nav.Link href="/" style={{color: "white"}}>Home</Nav.Link>
+            <Nav.Link href="#sucessStories" style={{color: "white"}}>Success Stories</Nav.Link>
+            <Nav.Link href="#membership" style={{color: "white"}}>Membership</Nav.Link>
+            <Nav.Link href="#gallery" style={{color: "white"}}>Gallery</Nav.Link>
+            <Nav.Link href="/faqs" style={{color: "white"}}>FAQS</Nav.Link>
+            <Nav.Link href="/aboutus" style={{color: "white"}}>Aboutus</Nav.Link>
+            <Nav.Link href="#contactFooter" style={{color: "white"}}>Contact</Nav.Link>
+            <Nav.Link href="/loginregister" className="p-2 rounded bg-white" style={{color: "#FA4C55"}}>Login/Register</Nav.Link>
           </Nav>
           
         </Container>
