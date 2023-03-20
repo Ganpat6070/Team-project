@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "@fortawesome/fontawesome-svg-core";
 import "./RegForm.css";
 import { Carousel } from "react-bootstrap";
+// import { useRef, useEffect } from "react";
 
 const RegForm2 = () => {
   // const [value, setValue] = useState()
+  const fnref = useRef<HTMLInputElement>(null!)
+
+  useEffect(()=>{
+      fnref.current?.focus()
+  },[])
+
+
   return (
     <div className="register-photo">
       <div className="form-container imgdiv">
@@ -87,6 +95,7 @@ const RegForm2 = () => {
               type="text"
               name="fullname"
               placeholder="Shyam Dadhani"
+              ref={fnref}
             />
           </div>
           <div className="form-group">

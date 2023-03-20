@@ -1,0 +1,53 @@
+/* 
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    border-color: #6E6E6E;
+    border-bottom:#6E6E6E;
+    border-radius: 3px;
+} */
+.compalsory{
+    color: red;
+}
+    /* .background_img {
+        color: red;
+        background-image: url("../../public/image/Maskgroup.jpg");
+        height: 710px;
+        padding-bottom: 20px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+      }
+       */
+label{
+    color: #6E6E6E;
+    /* margin-top: 20px; */
+}
+
+input{
+    color: rgb(32, 159, 116);
+    height: 50%;
+
+}
+
+.spolang{
+    width: 100%;
+    /* height: 20%; */
+    border-radius: dark solid  10px;
+    border-color: aquamarine;
+}
+
+select{
+    height: 50%;
+}
+.mobiledrop{
+    width: 50%;
+    height: 50%;
+    padding-top: 5px;
+}
+
+.twothree{
+    height: 35%;
+}

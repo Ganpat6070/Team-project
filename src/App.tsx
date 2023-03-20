@@ -6,6 +6,7 @@ import Otp from "./Registration/Otp/Otp"
 import Pass from "./Registration/Pass/Pass";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
+import BasicInfo from "./Profile/BasicInfo";
 
 function App() {
   return (
@@ -19,10 +20,12 @@ function App() {
       <h1 className="d-flex justify-content-center p-2">Matrimony Site</h1>
       {/* <RegForm2/> */}
       {/* <Otp/> */}
-      <Pass/>
+      {/* <Pass/> */}
+<BasicInfo/>
       {/* <Login /> */}
     </div>
   );
 }
+// import BasicInfo from "./Profile/BasicInfo";
 
 export default App;
