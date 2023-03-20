@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 // import "@fortawesome/fontawesome-svg-core";
-import "./index.css";
+import "./RegForm.css";
 import { Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const RegForm2 = () => {
   // const [value, setValue] = useState()
@@ -25,6 +26,7 @@ const RegForm2 = () => {
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
+
             <Carousel.Item>
               <img
                 className="d-block w-0"
@@ -57,6 +59,9 @@ const RegForm2 = () => {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+          {/* <Carousel className="imgset">
+         
+          </Carousel> */}
         </div>
         <form method="post">
           <h2 className="text-center">
@@ -82,19 +87,21 @@ const RegForm2 = () => {
           </div>
           <div className="form-group">
             <label htmlFor="number">Phone Number*</label>
-            <br />
-            <select className="custom-select">
-              <option value="1">+971</option>
-              <option value="1">+972</option>
-              <option value="2">+198</option>
-              <option value="3">+701</option>
-            </select>
-            <input
-              className="form-control"
-              type="tel"
-              name="number"
-              placeholder="1234567890"
-            />
+            <div className="form-number">
+              <br />
+              <select className="form-control" style={{width: "90px", background: "0", border: "0"}}>
+                <option value="1">+971</option>
+                <option value="1">+972</option>
+                <option value="2">+198</option>
+                <option value="3">+701</option>
+              </select>
+              <input style={{margin:  "0",background: "0", border: "0"}}
+                className="form-control"
+                type="tel"
+                name="number"
+                placeholder="1234567890"
+              />
+            </div>
           </div>
 
           {/* '''''''''''''''''' */}
@@ -108,7 +115,7 @@ const RegForm2 = () => {
           </div>
           <div className="form-group text-center">
             <button className="btn btn-primary btn-block" type="submit">
-              Registration
+              <Link to='/otp' >Registration</Link>
             </button>
           </div>
           {/* <hr />  */}
@@ -126,9 +133,9 @@ const RegForm2 = () => {
             >
               <img
                 style={{ height: "18px", width: "18px" }}
-                src="../../image/google-logo.png"
+                src="../../../image/google-logo.png "
               />{" "}
-              Register Using Google
+              Registration Using Google
             </button>
           </div>
         </form>

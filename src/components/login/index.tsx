@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Carousel from "react-bootstrap/Carousel";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -10,14 +11,14 @@ function Login() {
           <div className="row g-0">
             <div className="col-xl-6 d-none d-xl-block">
               {/* login Carousel */}
-              <Carousel>
+              <Carousel >
                 <Carousel.Item>
                   <img
                     className="d-block w-100"
                     src="../../image/login.jpg"
                     alt="First slide"
                   />
-                  <Carousel.Caption className="bg-white w-100 ">
+                  <Carousel.Caption className="bg-white">
                     <h3 className="text-black">
                       Join the First Choice Site for Marriage
                     </h3>
@@ -97,7 +98,7 @@ function Login() {
                   <br />
                   <p className="text-center text-light">Forgot Password ?</p>
                   <p className="text-white text-center formFieldLink">
-                    New to PerfectMatch.com ? Register Free
+                    New to PerfectMatch.com ? <Link to="/register">Register Free</Link>
                   </p>
                 </Form>
                 <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -109,10 +110,10 @@ function Login() {
                 </div>
                 <div className="form-group text-center col-lg-12 mx-auto">
                   <a
-                    className="btn btn-primary btn-lg btn-google btn-block btn-outline"
+                    className="btn btn-light btn-lg btn-google btn-block btn-outline"
                     href="/#"
                   >
-                    <img src="../../image/google-logo.png" alt="" />{" "}
+                    <img style={{ height: "18px", width: "18px" }} src="../../image/google-logo.png" alt="" />{" "}
                     Registration Using Google
                   </a>
                 </div>
