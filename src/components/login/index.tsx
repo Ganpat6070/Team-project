@@ -7,6 +7,10 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import NavbarHead from "../navbar";
+import { signInWithGoogle } from "../firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -23,11 +27,17 @@ function Login() {
         const user = userCredential.user;
         console.log(user);
         console.log("login successfully");
+        toast.success("Login Successful", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         navigate("/home");
       })
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
+        toast.error(errorMessage, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         setError(errorMessage);
       });
   };
@@ -101,7 +111,7 @@ function Login() {
                       className="mb-3 text-white"
                       controlId="formBasicEmail"
                     >
-                      <Form.Label>Email address</Form.Label>
+                      <Form.Label>Email ID</Form.Label>
                       <Form.Control
                         // ref={emailRef}
                         type="email"
@@ -142,6 +152,7 @@ function Login() {
                       {error && (
                         <span className="text-center text-danger">{error}</span>
                       )}
+                      <ToastContainer />
                     </div>
                     <br />
                     <p className="text-center text-light">Forgot Password ?</p>
@@ -167,7 +178,9 @@ function Login() {
                         src="../../image/google-logo.png"
                         alt=""
                       />{" "}
-                      Registration Using Google
+                      <span onClick={signInWithGoogle}>
+                        Registration Using Google
+                      </span>
                     </a>
                   </div>
                 </div>

@@ -95,6 +95,7 @@ const Otp = () => {
                     <img
                       className="securitylogo"
                       src="../../../image/security.png"
+                      alt=""
                     />{" "}
                     Your info is safely secured
                   </p>
