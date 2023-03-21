@@ -9,6 +9,9 @@ import RegForm2 from "./components/Register/RegForm";
 import Otp from "./components/Register/Otp/Otp";
 import Pass from "./components/Register/Pass/Pass";
 import NavLogIN from "./components/pages/login-nav";
+import ProfileSearch from "./components/pages/ProfileSearch";
+import ProfileDetail from "./components/pages/ProfileDetail";
+
 
 function App() {
   return (
@@ -17,7 +20,6 @@ function App() {
       <div>
         <BrowserRouter>
           <div>
-            
             <div>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -28,7 +30,9 @@ function App() {
                 <Route path="/pass" element={<Pass />} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
-                <Route path="/home" element={<NavLogIN/>} />
+                <Route path="/home" element={<NavLogIN />} />
+                <Route path="/profileSearch" element={<ProfileSearch />} />
+                <Route path="/profileDetails" element={<ProfileDetail />} />
               </Routes>
             </div>
           </div>

@@ -1,25 +1,62 @@
-import React from "react";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Container,
-  Card,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
+import { dummyData } from "../dummy";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const profileSearch = () => {};
+  const [gender, setGender] = useState<String>("");
+  const [lessAge, setLessAge] = useState<String>("");
+  const [greatAge, setGreatAge] = useState<String>("");
+  const [religion, setReligion] = useState<string>("any");
 
-  const profileSearch = () => {
-     
-  }
+  // console.log(dummyData);
+
+  const selectChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setGender(event.target.value);
+  };
+
+  const selectChangeLessAge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setLessAge(event.target.value);
+  };
+
+  const selectChangeGreatAge = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    event.preventDefault();
+    setGreatAge(event.target.value);
+  };
+
+  const selectChangeReligion = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    event.preventDefault();
+    setReligion(event.target.value);
+  };
+
+  // console.log(gender, lessAge, greatAge, religion);
+
+  const filteredData = dummyData.filter((data) => {
+    return (
+      data.gender === gender.toLowerCase() &&
+      data.born_year >= lessAge &&
+      data.born_year <= greatAge &&
+      (religion === "any"
+        ? data.religion
+        : data.religion === religion.toLowerCase())
+    );
+  });
+
+  // console.log(filteredData);
 
   return (
     <>
-    <NavbarHead />
+      <NavbarHead />
       <div className="background_img">
         <div className="frontText">
           <p>Dream it... Believe it... Make it happen!</p>
@@ -75,14 +112,15 @@ const Home = () => {
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
-
-                <Button
-                  size="sm"
-                  style={{ backgroundColor: "#FE8A4D", width: "120px" }}
-                  onClick={profileSearch}
-                >
-                  Let's Find
-                </Button>
+                <Link to="/profileSearch">
+                  <Button
+                    size="sm"
+                    style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                    onClick={profileSearch}
+                  >
+                    Let's Find
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Form>
@@ -225,7 +263,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex justify-content-center">
-          <Card className="mx-4 cardshadow"> 
+          <Card className="mx-4 cardshadow">
             <Card.Img
               width="328.52px"
               height="390px"
@@ -265,12 +303,11 @@ const Home = () => {
 
       <div id="membership" className="box">
         <Button
-          
           style={{
             backgroundColor: "#ec5274",
             width: "12%",
-            height: '13%',
-            margin: '19% 55%',
+            height: "13%",
+            margin: "19% 55%",
             padding: "10px, 16px, 10px, 16px",
           }}
         >
