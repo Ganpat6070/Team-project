@@ -1,0 +1,10 @@
+.profilePage{
+    color: green;
+}
+
+.profileCard{
+    align-items: center;
+    margin: 80px;
+    border-radius: 5px;
+    
+}

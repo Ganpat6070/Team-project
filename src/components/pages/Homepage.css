@@ -1,10 +1,12 @@
+body{
+  overflow-x: hidden;
+}
 .background_img {
   color: red;
-  background-image: url("../../public/image/Maskgroup.jpg");
+  background-image: url("../../../public/image/Maskgroup.jpg");
   height: 710px;
   padding-bottom: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: round;
   width: 100%;
 }
 
@@ -83,51 +85,51 @@
 }
 
 .pngImg1::before {
-  content: url("../../public/image/png/1a9dd5ed42f7e1f30b2ff7e10f8678d31.png");
+  content: url("../../../public/image/png/1a9dd5ed42f7e1f30b2ff7e10f8678d31.png");
   position: relative;
   top: 70px;
   left: 0px;
 }
 .pngImg2::before {
-  content: url("../../public/image/png/2ec25afb3eac0345eda926a51fd7b07b1.png");
-  position: relative;
-  top: 70px;
-  left: 0px;
-}
-.pngImg3::before {
-  content: url("../../public/image/png/07b4470d3499caf06279ef3d5e5493c01.png");
-  position: relative;
-  top: 70px;
-  left: 0px;
-}
-.pngImg4::before {
-  content: url("../../public/image/png/75f8dad337c20c4e36ced09bd3cbbe721.png");
-  position: relative;
-  top: 70px;
-  left: 0px;
-}
-.pngImg5::before {
-  content: url("../../public/image/png/c400f1f0d97dff20e63beb35d1ef72ec1.png");
-  position: relative;
-  top: 70px;
-  left: 0px;
-}
-.pngImg6::before {
-  content: url("../../public/image/png/e0208051df5dac534647a81429611bdd1.png");
-  position: relative;
-  top: 70px;
-  left: 0px;
+    content: url("../../../public/image/png/2ec25afb3eac0345eda926a51fd7b07b1.png");
+    position: relative;
+    top: 70px;
+    left: 0px;
+  }
+  .pngImg3::before {
+    content: url("../../../public/image/png/07b4470d3499caf06279ef3d5e5493c01.png");
+    position: relative;
+    top: 70px;
+    left: 0px;
+  }
+  .pngImg4::before {
+    content: url("../../../public/image/png/75f8dad337c20c4e36ced09bd3cbbe721.png");
+    position: relative;
+    top: 70px;
+    left: 0px;
+  }
+  .pngImg5::before {
+    content: url("../../../public/image/png/c400f1f0d97dff20e63beb35d1ef72ec1.png");
+    position: relative;
+    top: 70px;
+    left: 0px;
+  }
+  .pngImg6::before {
+    content: url("../../../public/image/png/e0208051df5dac534647a81429611bdd1.png");
+    position: relative;
+    top: 70px;
+    left: 0px;
+  }
+          
+.symbolText{
+    margin-left: 100px;
 }
 
-.symbolText {
-  margin-left: 100px;
-}
-
-.setmargin {
-  margin-top: 100px;
-  background-color: #fa5847;
-  color: white;
-  padding-bottom: 120px;
+.setmargin{
+    margin-top: 100px;
+    background-color: #FA5847;
+    color: white;
+    padding-bottom: 120px;
 }
 
 .cardshadow {
@@ -140,18 +142,17 @@
   height: 358.78px;
   left: -0.5px;
   top: 3018px;
-
-  /* Secondary Color - Matrimony */
   background: #27c2d3;
 }
 
 .box {
-  background-image: url("../../public/image/png/Group.png");
-  height: 450px;
+  background-image: url("../../../public/image/png/Group.png");
+  height: 550px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   margin-top: 10%;
+  /* z-index: -1 */
 }
 
 .clickableCard {

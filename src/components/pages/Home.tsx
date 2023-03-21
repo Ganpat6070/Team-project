@@ -1,20 +1,75 @@
-import React from "react";
+import "./Homepage.css";
+import { useState } from "react";
 import {
   Form,
   Button,
   Row,
   Col,
   Container,
+  // Image,
   Card,
 } from "react-bootstrap";
-import "../cssComponents/Homepage.css";
-import Footer from "../components/Footer";
-
+import Footer from "./footer";
+import { Link, useNavigate } from "react-router-dom";
+import { dummyData } from "../dummy";
+// import { FormEvent } from "react";
+// import ProfileSearch from "./ProfileSearch";
 const Home = () => {
+  const [gender, setGender] = useState<String>("");
+  const [lessAge, setLessAge] = useState<String>("");
+  const [greatAge, setGreatAge] = useState<String>("");
+  const [religion, setReligion] = useState<string>("any");
 
-  const profileSearch = () => {
-     
-  }
+  const Navigate = useNavigate();
+  console.log(dummyData);
+
+  const selectChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setGender(event.target.value);
+  };
+
+  const selectChangeLessAge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.preventDefault();
+    setLessAge(event.target.value);
+  };
+
+  const selectChangeGreatAge = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    event.preventDefault();
+    setGreatAge(event.target.value);
+  };
+
+  const selectChangeReligion = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    event.preventDefault();
+    setReligion(event.target.value);
+  };
+
+  // type searchedData = {
+  //   gender: string;
+  //   lessAge: string;
+  //   greatAge: string;
+  //   religion: string;
+  // };
+
+  // const myData = searchData;
+
+  // console.log({myData}: searchData);
+
+  console.log(gender, lessAge, greatAge, religion);
+
+  const filteredData = dummyData.filter((data) => {
+    return (
+      data.gender === gender.toLowerCase() &&
+      data.born_year >= lessAge &&
+      data.born_year <= greatAge &&
+      (religion === "any" ? data.religion : data.religion === religion.toLowerCase())
+    );
+  });
+
+  console.log(filteredData);
 
   return (
     <>
@@ -22,22 +77,21 @@ const Home = () => {
         <div className="frontText">
           <p>Dream it... Believe it... Make it happen!</p>
         </div>
-        <div className="selectData col-6">
+        <div className="selectData col-8">
           <Form className="float-left">
             <Row className="inputLabel">
               <Col>
                 <Form.Group controlId="formGridState">
-                  <Form.Label>I'm lookig for</Form.Label>
-                  <Form.Select size="sm">
+                  <Form.Label>I'm looking for</Form.Label>
+                  <Form.Select size="sm" onChange={selectChangeGender}>
                     <option>Bride</option>
-                    <option>Fair</option>
-                    <option>Dark</option>
+                    <option>Groom</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
               <Col>
                 <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeLessAge}>
                   <option>1950</option>
                   <option>1980</option>
                   <option>2000</option>
@@ -55,7 +109,7 @@ const Home = () => {
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeGreatAge}>
                   <option>1960</option>
                   <option>1990</option>
                   <option>2005</option>
@@ -64,9 +118,10 @@ const Home = () => {
               <Col>
                 {" "}
                 <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeReligion}>
                   <option>Any</option>
                   <option>Hindu</option>
+                  <option>Muslim</option>
                 </Form.Select>
               </Col>
               <Col>
@@ -74,13 +129,18 @@ const Home = () => {
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
 
-                <Button
-                  size="sm"
-                  style={{ backgroundColor: "#FE8A4D", width: "120px" }}
-                  onClick={profileSearch}
-                >
-                  Let's Find
-                </Button>
+                <Link to="/profileSearch" >
+                  <Button
+                    size="sm"
+                    style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                    onClick={() => {
+                        
+                    }}
+                  >
+                    {/* onClick={() => {localStorage.setItem("filteredData",JSON.stringify(filteredData)) */}
+                    Let's Find
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Form>
@@ -206,7 +266,10 @@ const Home = () => {
             padding: "10px, 16px, 10px, 16px",
           }}
         >
-          Register Free
+          <Link to="/register" className="text-white">
+            {" "}
+            Register Free
+          </Link>
         </Button>
       </div>
 
@@ -223,7 +286,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex justify-content-center">
-          <Card className="mx-4 cardshadow"> 
+          <Card className="mx-4 cardshadow">
             <Card.Img
               width="328.52px"
               height="390px"
@@ -263,12 +326,11 @@ const Home = () => {
 
       <div id="membership" className="box">
         <Button
-          
           style={{
             backgroundColor: "#ec5274",
             width: "12%",
-            height: '13%',
-            margin: '19% 55%',
+            height: "13%",
+            margin: "19% 55%",
             padding: "10px, 16px, 10px, 16px",
           }}
         >
@@ -435,7 +497,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div id="contactFooter">
+      <div id="contactus">
         <Footer />
       </div>
     </>
