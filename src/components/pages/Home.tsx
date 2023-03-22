@@ -239,15 +239,17 @@ const Home = () => {
 
       <div className="text-lg-center fs-3 setmargin">
         <p>Find Your Prefect Mate Today</p>
-        <Button
-          style={{
-            backgroundColor: "#27C2D3",
-            marginTop: "40px",
-            padding: "10px, 16px, 10px, 16px",
-          }}
-        >
-          Register Free
-        </Button>
+        <Link to="/register">
+          <Button
+            style={{
+              backgroundColor: "#27C2D3",
+              marginTop: "40px",
+              padding: "10px, 16px, 10px, 16px",
+            }}
+          >
+            Register Free
+          </Button>
+        </Link>
       </div>
 
       <div id="sucessStories" className="pt-xxl-5 mt-5">
@@ -302,17 +304,19 @@ const Home = () => {
       </div>
 
       <div id="membership" className="box">
-        <Button
-          style={{
-            backgroundColor: "#ec5274",
-            width: "12%",
-            height: "13%",
-            margin: "19% 55%",
-            padding: "10px, 16px, 10px, 16px",
-          }}
-        >
-          Get Membership &nbsp; &nbsp; &gt;
-        </Button>
+        <Link to="/membership">
+          <Button
+            style={{
+              backgroundColor: "#ec5274",
+              width: "12%",
+              height: "13%",
+              margin: "19% 55%",
+              padding: "10px, 16px, 10px, 16px",
+            }}
+          >
+            Get Membership &nbsp; &nbsp; &gt;
+          </Button>
+        </Link>
       </div>
       <div>
         <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
