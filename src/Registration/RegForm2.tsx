@@ -14,11 +14,13 @@ const RegForm2 = () => {
   const [fnamer, setFname] = useState("");
   const [emailr, setEmail] = useState("");
   const [numberr, setNumber] = useState("");
+  const [pass , setPass] = useState("");
 
   const a = {
     fnamer: fnamer,
     emailr: emailr,
     numberr: numberr,
+    pass:pass
   };
 
   console.log("RF", a);
@@ -29,16 +31,14 @@ const RegForm2 = () => {
   // const email = useRef<HTMLInputElement>(null!);
   // const number = useRef<HTMLInputElement>(null!);
   // const fname = useRef<HTMLInputElement>(null!)
-  const agree = useRef<HTMLInputElement>(null!);
+  // const agree = useRef<HTMLInputElement>(null!);
 
-  const submitHandler = async (e: any) => {
-    e.preventDefault();
+  // const submitHandler = async (e: any) => {
+  //   e.preventDefault();
 
-    const docRef = await addDoc(collection(db, "User"), {
-
-    });
-    console.log(docRef.id);
-  };
+  //   const docRef = await addDoc(collection(db, "User"), {});
+  //   console.log(docRef.id);
+  // };
 
   const regSubmitHandler = async (e: any) => {
     e.preventDefault();
@@ -62,11 +62,11 @@ const RegForm2 = () => {
     //   setNumber(number.current.value);
     // }
 
-    
     const docRef = await addDoc(collection(db, "User"), {
       fname: fnamer,
       email: emailr,
       number: numberr,
+      pass: pass
     });
     console.log(docRef.id);
     console.log(emailr);
@@ -192,7 +192,7 @@ const RegForm2 = () => {
                 <option value="3">+701</option>
               </select>
               <input
-              required
+                required
                 style={{ margin: "0", background: "0", border: "0" }}
                 className="form-control"
                 type="tel"
@@ -205,6 +205,36 @@ const RegForm2 = () => {
               />
             </div>
             {/* <span className="text-danger size-small pb-0">{numError}</span> */}
+          </div>
+          {/* <div className="form-control">
+            <label htmlFor="password">
+              Enter Your Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id=""
+              // aria-describedby="emailHelp"
+              placeholder="***"
+              onChange={(e) => {
+                setPass(e.target.value);
+              }}
+            />
+          </div> */}
+             <div className="form-group">
+            <label htmlFor="email">Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="password"
+              required
+              // placeholder="shyam.dadhani@gmail.com"
+              // ref={email}
+              onChange={(e) => {
+                setPass(e.target.value);
+              }}
+            />
+            {/* <span className="text-danger size-small">{emailError}</span> */}
           </div>
 
           {/* '''''''''''''''''' */}
