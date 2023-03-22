@@ -1,11 +1,11 @@
 import React from "react";
 
-const BasicInfo = () => {
+const BasicInfomation = () => {
   return (
     <div>
-      <div>Basic Information</div>
-      <div style={{display: 'flex', justifyContent: 'space-evenly', width: '30%'}}>
-        <div>
+      <div className="text-center">Basic Information</div><br/><br/>
+      <div className="d-flex justify-content-lg-evenly">
+        <div className="text-start ml-4 d-flex">
           <li style={{listStyle: 'none'}}>
             <ul>Age</ul>
             <ul>Gender</ul>
@@ -19,8 +19,8 @@ const BasicInfo = () => {
             <ul>Age</ul>
           </li>
         </div>
-        <div>
-          <li>
+        <div className="text-start">
+          <li style={{listStyle: 'none'}}>
             <ul>18</ul>
             <ul>Female</ul>
             <ul>Nov, 02, 2004</ul>
@@ -38,4 +38,4 @@ const BasicInfo = () => {
   );
 };
 
-export default BasicInfo;
+export default BasicInfomation;

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
-import BasicInfo from "../fullProfile/BasicInfo";
+import BasicInfomation from "../fullProfile/BasicInfo";
 import Contact from "../fullProfile/Contact";
 import Education from "../fullProfile/Education";
 import Interest from "../fullProfile/Interest";
 import MyFamily from "../fullProfile/MyFamily";
 import ReligiousInfo from "../fullProfile/ReligiousInfo";
-import Subscribe from "../fullProfile/Subscribe";
+import Subscribe from "../fullProfile/subscribe";
 import NavbarHead from "../navbar";
 
 type Props = {};
@@ -61,7 +61,7 @@ const ProfileDetail = (props: Props) => {
           </li>
         </div>
         <div style={{ width: "80%", marginLeft: "9%", padding: "2%" }}>
-          {dummy === 1 && <BasicInfo />}
+          {dummy === 1 && <BasicInfomation />}
           {dummy === 2 && <ReligiousInfo />}
           {dummy === 3 && <Education />}
           {dummy === 4 && <MyFamily />}

@@ -1,31 +1,27 @@
-import React from "react";
+import React from 'react'
 
-const Contact = () => {
+const Sister = () => {
   return (
     <div>
-      <div className="text-center">Contact Information</div>
+      <div className="text-center">Sister Information</div>
       <br />
       <br />
       <div className="d-flex justify-content-lg-evenly">
         <div className="text-start ml-4">
           <li style={{ listStyle: "none" }}>
-            <ul>Contact Name</ul>
-            <ul>Contact Number</ul>
-            <ul>Preferred Contact type</ul>
-            <ul>Convenient time to call</ul>
+            <ul>No. of Brother</ul>
+            <ul>Education</ul>
           </li>
         </div>
         <div className="text-start">
           <li style={{ listStyle: "none" }}>
             <ul>---</ul>
             <ul>---</ul>
-            <ul>---</ul>
-            <ul>---</ul>
           </li>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Sister
