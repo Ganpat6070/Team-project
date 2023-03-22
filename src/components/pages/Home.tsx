@@ -1,27 +1,19 @@
+import React, { useState } from "react";
+import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
-import { useState } from "react";
-import {
-  Form,
-  Button,
-  Row,
-  Col,
-  Container,
-  // Image,
-  Card,
-} from "react-bootstrap";
 import Footer from "./footer";
-import { Link, useNavigate } from "react-router-dom";
+import NavbarHead from "../navbar";
 import { dummyData } from "../dummy";
-// import { FormEvent } from "react";
-// import ProfileSearch from "./ProfileSearch";
+import { Link } from "react-router-dom";
+
 const Home = () => {
+  const profileSearch = () => {};
   const [gender, setGender] = useState<String>("");
   const [lessAge, setLessAge] = useState<String>("");
   const [greatAge, setGreatAge] = useState<String>("");
   const [religion, setReligion] = useState<string>("any");
 
-  const Navigate = useNavigate();
-  console.log(dummyData);
+  // console.log(dummyData);
 
   const selectChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
@@ -47,43 +39,36 @@ const Home = () => {
     setReligion(event.target.value);
   };
 
-  // type searchedData = {
-  //   gender: string;
-  //   lessAge: string;
-  //   greatAge: string;
-  //   religion: string;
-  // };
-
-  // const myData = searchData;
-
-  // console.log({myData}: searchData);
-
-  console.log(gender, lessAge, greatAge, religion);
+  // console.log(gender, lessAge, greatAge, religion);
 
   const filteredData = dummyData.filter((data) => {
     return (
       data.gender === gender.toLowerCase() &&
       data.born_year >= lessAge &&
       data.born_year <= greatAge &&
-      (religion === "any" ? data.religion : data.religion === religion.toLowerCase())
+      (religion === "any"
+        ? data.religion
+        : data.religion === religion.toLowerCase())
     );
   });
 
-  console.log(filteredData);
+  // console.log(filteredData);
 
   return (
     <>
+      <NavbarHead />
       <div className="background_img">
         <div className="frontText">
           <p>Dream it... Believe it... Make it happen!</p>
         </div>
-        <div className="selectData col-8">
+        <div className="selectData col-6">
           <Form className="float-left">
             <Row className="inputLabel">
               <Col>
                 <Form.Group controlId="formGridState">
-                  <Form.Label>I'm looking for</Form.Label>
-                  <Form.Select size="sm" onChange={selectChangeGender}>
+                  <Form.Label>I'm lookig for</Form.Label>
+                  <Form.Select size="sm">
+                    <option>Select</option>
                     <option>Bride</option>
                     <option>Groom</option>
                   </Form.Select>
@@ -91,7 +76,8 @@ const Home = () => {
               </Col>
               <Col>
                 <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm" onChange={selectChangeLessAge}>
+                <Form.Select size="sm">
+                  <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>
                   <option>2000</option>
@@ -109,7 +95,8 @@ const Home = () => {
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm" onChange={selectChangeGreatAge}>
+                <Form.Select size="sm">
+                  <option>Select</option>
                   <option>1960</option>
                   <option>1990</option>
                   <option>2005</option>
@@ -118,26 +105,22 @@ const Home = () => {
               <Col>
                 {" "}
                 <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm" onChange={selectChangeReligion}>
+                <Form.Select size="sm">
+                  <option>Select</option>
                   <option>Any</option>
                   <option>Hindu</option>
-                  <option>Muslim</option>
                 </Form.Select>
               </Col>
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
-
-                <Link to="/profileSearch" >
+                <Link to="/profileSearch">
                   <Button
                     size="sm"
                     style={{ backgroundColor: "#FE8A4D", width: "120px" }}
-                    onClick={() => {
-                        
-                    }}
+                    onClick={profileSearch}
                   >
-                    {/* onClick={() => {localStorage.setItem("filteredData",JSON.stringify(filteredData)) */}
                     Let's Find
                   </Button>
                 </Link>
@@ -259,18 +242,17 @@ const Home = () => {
 
       <div className="text-lg-center fs-3 setmargin">
         <p>Find Your Prefect Mate Today</p>
-        <Button
-          style={{
-            backgroundColor: "#27C2D3",
-            marginTop: "40px",
-            padding: "10px, 16px, 10px, 16px",
-          }}
-        >
-          <Link to="/register" className="text-white">
-            {" "}
+        <Link to="/register">
+          <Button
+            style={{
+              backgroundColor: "#27C2D3",
+              marginTop: "40px",
+              padding: "10px, 16px, 10px, 16px",
+            }}
+          >
             Register Free
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
 
       <div id="sucessStories" className="pt-xxl-5 mt-5">
@@ -325,17 +307,19 @@ const Home = () => {
       </div>
 
       <div id="membership" className="box">
-        <Button
-          style={{
-            backgroundColor: "#ec5274",
-            width: "12%",
-            height: "13%",
-            margin: "19% 55%",
-            padding: "10px, 16px, 10px, 16px",
-          }}
-        >
-          Get Membership &nbsp; &nbsp; &gt;
-        </Button>
+        <Link to="/membership">
+          <Button
+            style={{
+              backgroundColor: "#ec5274",
+              width: "12%",
+              height: "13%",
+              margin: "19% 55%",
+              padding: "10px, 16px, 10px, 16px",
+            }}
+          >
+            Get Membership &nbsp; &nbsp; &gt;
+          </Button>
+        </Link>
       </div>
       <div>
         <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
@@ -497,7 +481,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div id="contactus">
+      <div id="contactFooter">
         <Footer />
       </div>
     </>

@@ -7,8 +7,8 @@ function CardBox() {
   console.log(filteredData);
 
   return (
-    <Card style={{ width: "18rem", textAlign: "center" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+    <Card style={{ width: "18rem", textAlign: "center", }}>
+      <Card.Img variant="top" src="../../image/png/girl31.png" style={{ filter: 'blur(5px)'}}/>
       <Card.Body>
         <Card.Title>Bride</Card.Title>
         <Card.Text>19 Years, Business, Mumbai, India</Card.Text>

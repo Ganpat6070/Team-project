@@ -1,28 +1,24 @@
 import React from "react";
 
-const Education = () => {
+const Father = () => {
   return (
     <div>
-      <div className="text-center">Education Details</div>
+      <div className="text-center">Father Information</div>
       <br />
       <br />
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <div className="text-start ml-4">
           <li style={{ listStyle: "none" }}>
+            <ul>Father Name</ul>
+            <ul>Father Designation</ul>
             <ul>Education</ul>
-            <ul>Schools</ul>
-            <ul>Collages</ul>
-            <ul>Employment Details</ul>
-            <ul>career Details</ul>
           </li>
         </div>
         <div className="text-start">
           <li style={{ listStyle: "none" }}>
-            <ul>Chartered Accountant ( CA )</ul>
-            <ul>St. Xaviors</ul>
-            <ul>St. Xaviors</ul>
-            <ul>Accounts/Financial Professional</ul>
-            <ul>--</ul>
+            <ul>---</ul>
+            <ul>---</ul>
+            <ul>---</ul>
           </li>
         </div>
       </div>
@@ -30,4 +26,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default Father;  

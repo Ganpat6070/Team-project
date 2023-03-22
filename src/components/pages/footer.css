@@ -1,18 +1,16 @@
-
 .footer {
     background-image: url("../../../public/image/png/Background2.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 550px;
-    /* width: 100%; */
   }
   
   .countryText {
-    position: relative;
+    position: absolute;
     width: 1170px;
-    height:0px;
+    height: 420px;
     left: 141px;
-    top: 150px;
+    top: 5932px;
   
     font-family: "Poppins";
     font-style: normal;

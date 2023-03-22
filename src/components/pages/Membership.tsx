@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import NavbarHead from "../navbar";
 
 const Membership = () => {
   return (
-    <div>Membership</div>
-  )
-}
+    <>
+      <NavbarHead />
+      <h1 className="text-left m-4 p-3 font-weight-normal">Membership</h1>
+    </>
+  );
+};
 
-export default Membership
+export default Membership;
