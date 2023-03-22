@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NavbarHead = () => {
+  const [islogedin, setIsLogedin] = useState(false);
+  // eslint-disable-next-line
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+  const getlogin = localStorage.getItem("login");
+  const logoutHandler = () => {
+    localStorage.removeItem("login");
+    toast.error("You have logged out", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    forceUpdate();
+  };
+  useEffect(() => {
+    if (getlogin === "true") {
+      setIsLogedin(true);
+    } else setIsLogedin(false);
+  }, [setIsLogedin, getlogin]);
   return (
     <Navbar
       className="justify-content-center bg-transparent"
@@ -30,8 +48,10 @@ const NavbarHead = () => {
           <Nav.Link href="#sucessStories" className="text-white">
             Success Stories
           </Nav.Link>
-          <Nav.Link href="#membership" className="text-white">
-            Membership
+          <Nav.Link>
+            <Link to="/membership" className="text-white">
+              Membership
+            </Link>
           </Nav.Link>
           <Nav.Link href="#gallery" className="text-white">
             Gallery
@@ -49,12 +69,26 @@ const NavbarHead = () => {
           <Nav.Link href="#contactFooter" className="text-white">
             Contact
           </Nav.Link>
-          <Nav.Link
-            className="p-2 rounded bg-white"
-            style={{ color: "#FA4C55" }}
-          >
-            <Link to="/login">Login/Register</Link>
-          </Nav.Link>
+          <ToastContainer />  
+          {!islogedin && (
+            <Nav.Link
+              className="p-2 rounded bg-white"
+              style={{ color: "#FA4C55" }}
+            >
+              <Link to="/login">Login/Register</Link>
+            </Nav.Link>
+          )}
+
+          {islogedin && (
+            <Nav.Link
+              className="p-2 rounded bg-white"
+              style={{ color: "#FA4C55" }}
+            >
+              <Link to="/">
+                <span onClick={logoutHandler}>Logout</span>
+              </Link>
+            </Nav.Link>
+          )}
         </Nav>
       </Container>
     </Navbar>
