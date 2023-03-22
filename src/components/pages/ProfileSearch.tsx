@@ -4,6 +4,8 @@ import NavbarHead from "../navbar";
 import Footer from "./footer";
 import "./ProfileSearch.css";
 
+import { dummyData } from "../dummy";
+
 const ProfileSearch = () => {
   return (
     <div>
@@ -14,7 +16,9 @@ const ProfileSearch = () => {
       </div>
       {/* console.log(data); */}
       <div className="profileCard">
-        <CardBox />
+        {dummyData.map((profile) => (
+          <CardBox name={profile.name} description={profile.born_year + " " + profile.religion} image={profile.image} />
+        ))}
       </div>
       <Footer />
     </div>

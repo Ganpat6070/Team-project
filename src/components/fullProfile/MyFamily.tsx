@@ -16,7 +16,7 @@ const MyFamily = () => {
         <div className="text-center">About Family</div>
         <br />
         <br />
-        <li style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <li className="d-flex justify-content-lg-evenly">
           <ul
             onClick={() => {
               setGender(1);

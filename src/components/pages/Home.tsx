@@ -4,14 +4,19 @@ import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
 import { dummyData } from "../dummy";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ProfileSearch from "./ProfileSearch";
+// import ProfileSearch from "./ProfileSearch";
 
 const Home = () => {
+
   const profileSearch = () => {};
   const [gender, setGender] = useState<String>("");
   const [lessAge, setLessAge] = useState<String>("");
   const [greatAge, setGreatAge] = useState<String>("");
   const [religion, setReligion] = useState<string>("any");
+
+  const navigate = useNavigate();
 
   // console.log(dummyData);
 
@@ -39,7 +44,8 @@ const Home = () => {
     setReligion(event.target.value);
   };
 
-  // console.log(gender, lessAge, greatAge, religion);
+  console.log(gender, lessAge, greatAge, religion);
+
 
   const filteredData = dummyData.filter((data) => {
     return (
@@ -52,7 +58,12 @@ const Home = () => {
     );
   });
 
-  // console.log(filteredData);
+  console.log(filteredData);
+  // setFiltered(filteredData);
+
+  const viewProfile1 = () => {
+
+  }
 
   return (
     <>
@@ -67,7 +78,7 @@ const Home = () => {
               <Col>
                 <Form.Group controlId="formGridState">
                   <Form.Label>I'm lookig for</Form.Label>
-                  <Form.Select size="sm">
+                  <Form.Select size="sm" onChange={selectChangeGender}>
                     <option>Select</option>
                     <option>Bride</option>
                     <option>Groom</option>
@@ -76,7 +87,7 @@ const Home = () => {
               </Col>
               <Col>
                 <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeLessAge}>
                   <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>
@@ -95,7 +106,7 @@ const Home = () => {
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeGreatAge}>
                   <option>Select</option>
                   <option>1960</option>
                   <option>1990</option>
@@ -105,10 +116,11 @@ const Home = () => {
               <Col>
                 {" "}
                 <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeReligion}>
                   <option>Select</option>
                   <option>Any</option>
                   <option>Hindu</option>
+                  <option>Muslim</option>
                 </Form.Select>
               </Col>
               <Col>
@@ -338,9 +350,12 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Link to='/profileDetails'>
+           
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => {navigate('/profileDetails')}}>
                 View full Profile &nbsp; &nbsp; &gt;
-              </Button>
+              </Button></Link>
+             
             </Card.Body>
           </Card>
 
@@ -357,7 +372,7 @@ const Home = () => {
                 26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
                 US)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -375,7 +390,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -395,7 +410,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -414,7 +429,7 @@ const Home = () => {
                 26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
                 US)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -432,7 +447,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
+              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>

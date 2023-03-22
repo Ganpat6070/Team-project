@@ -6,7 +6,7 @@ const Brother = () => {
       <div className="text-center">Brother Information</div>
       <br />
       <br />
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div className='d-flex justify-content-evenly'>
         <div className="text-start ml-4">
           <li style={{ listStyle: "none" }}>
             <ul>No. of Brother</ul>

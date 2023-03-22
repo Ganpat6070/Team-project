@@ -3,8 +3,9 @@
 }
 
 .profileCard{
-    align-items: center;
+    display: inline-block;
+    align-items: start;
     margin: 80px;
     border-radius: 5px;
-    
+    margin-bottom: 20px;
 }

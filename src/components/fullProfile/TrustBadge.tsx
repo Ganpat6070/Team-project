@@ -2,7 +2,9 @@ import React from 'react'
 
 const TrustBadge = () => {
   return (
-    <div>TrustBadge</div>
+    <div>
+      
+    </div>
   )
 }
 

@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import BasicInfo from "../fullProfile/BasicInfo";
 import Contact from "../fullProfile/Contact";
 import Education from "../fullProfile/Education";
 import Interest from "../fullProfile/Interest";
 import MyFamily from "../fullProfile/MyFamily";
 import ReligiousInfo from "../fullProfile/ReligiousInfo";
-import Subscribe from "../fullProfile/Subscribe";
-// import Subscribe from "../fullProfile/Subscribe";
 import NavbarHead from "../navbar";
 
 type Props = {};
 
 const ProfileDetail = (props: Props) => {
   const [dummy, setDummy] = useState<Number>(1);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -56,8 +57,8 @@ const ProfileDetail = (props: Props) => {
             <ul onClick={() => setDummy(4)}>My Family</ul>
             <ul onClick={() => setDummy(5)}>My Interest and Hobbies</ul>
             <ul onClick={() => setDummy(6)}>My Contact Info</ul>
-            <ul onClick={() => setDummy(7)}>
-              Subscribe Now to contact this member
+            <ul onClick={() => navigate('/membership')}>
+              Subscribe Now <span style={{fontSize: '11px'}}>to contact this member</span>
             </ul>
           </li>
         </div>
@@ -68,7 +69,7 @@ const ProfileDetail = (props: Props) => {
           {dummy === 4 && <MyFamily />}
           {dummy === 5 && <Interest />}
           {dummy === 6 && <Contact />}
-          {dummy === 7 && <Subscribe />}
+          {/* {dummy === 7 && <Subscribe />} */}
         </div>
       </div>
     </>

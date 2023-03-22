@@ -4,8 +4,8 @@ const BasicInfo = () => {
   return (
     <div>
       <div className="text-center">Basic Information</div><br/><br/>
-      <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-        <div className="text-start ml-4">
+      <div className="d-flex justify-content-lg-evenly">
+        <div className="text-start ml-4 d-flex">
           <li style={{listStyle: 'none'}}>
             <ul>Age</ul>
             <ul>Gender</ul>

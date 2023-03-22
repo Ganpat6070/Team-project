@@ -6,7 +6,7 @@ const Mother = () => {
       <div className="text-center">Mother Information</div>
       <br />
       <br />
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div className="d-flex justify-content-lg-evenly">
         <div className="text-start ml-4">
           <li style={{ listStyle: "none" }}>
             <ul>Mother Name</ul>
