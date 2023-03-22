@@ -11,12 +11,12 @@ import { signInWithGoogle } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [logedin, setLogin] = useState<boolean>(false);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -30,7 +30,8 @@ function Login() {
         toast.success("Login Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate("/home");
+        setLogin(true);
+        navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
