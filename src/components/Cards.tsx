@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
-function CardBox() {
+function CardBox(props: string | any) {
   const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
   const getlogin = localStorage.getItem("login");
@@ -14,18 +14,15 @@ function CardBox() {
     } else {
       navigate("/login");
     }
-  };
+  };;
 
   return (
-    <Card style={{ width: "18rem", textAlign: "center" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+    <Card  className="d-flex justify-content-between" style={{ width: "18rem", textAlign: "center" }}>
+      <Card.Img variant="top" src={props.image} style={{ filter: 'blur(5px)'}}/>
       <Card.Body>
-        <Card.Title>Bride</Card.Title>
-        <Card.Text>19 Years, Business, Mumbai, India</Card.Text>
-
-        <Button onClick={handleDetails} variant="primary">
-          View Details
-        </Button>
+        <Card.Title>{props.name}</Card.Title>
+        <Card.Text>{props.description}</Card.Text>
+          <Button onClick={handleDetails} variant="primary">View Details</Button>
       </Card.Body>
     </Card>
   );

@@ -11,6 +11,8 @@ import Pass from "./components/Register/Pass/Pass";
 import NavLogIN from "./components/pages/login-nav";
 import ProfileSearch from "./components/pages/ProfileSearch";
 import ProfileDetail from "./components/pages/ProfileDetail";
+import PersonalInfo from "./components/Profile/PersonalInfo";
+import BasicInfo from "./components/Profile/BasicInfo";
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/home" element={<NavLogIN />} />
                 <Route path="/profileSearch" element={<ProfileSearch />} />
                 <Route path="/profileDetails" element={<ProfileDetail />} />
+                <Route path="/personal-info" element={<PersonalInfo/>} />
+                <Route path="/basic-info" element={<BasicInfo/>} />
               </Routes>
             </div>
           </div>
