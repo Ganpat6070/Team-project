@@ -10,6 +10,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 export const firebaseConfig = {
   apiKey: "AIzaSyBBJKj3ijy-Wpkr0btopAC_B2_sWNu2oBA",
   authDomain: "matrimony-react.firebaseapp.com",
+  databaseURL: "https://matrimony-react-default-rtdb.firebaseio.com",
   projectId: "matrimony-react",
   storageBucket: "matrimony-react.appspot.com",
   messagingSenderId: "49034311485",
@@ -18,7 +19,6 @@ export const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 
 // firebase auth export
 export const auth = getAuth(app);

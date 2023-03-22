@@ -1,10 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CardBox() {
+  const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
+  const getlogin = localStorage.getItem("login");
   console.log(filteredData);
+
+  const handleDetails = () => {
+    if (getlogin === "true") {
+      navigate("/profileDetails");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>
@@ -12,9 +22,10 @@ function CardBox() {
       <Card.Body>
         <Card.Title>Bride</Card.Title>
         <Card.Text>19 Years, Business, Mumbai, India</Card.Text>
-        <Link to="/profileDetails">
-          <Button variant="primary">View Details</Button>
-        </Link>
+
+        <Button onClick={handleDetails} variant="primary">
+          View Details
+        </Button>
       </Card.Body>
     </Card>
   );
