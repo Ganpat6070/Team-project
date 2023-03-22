@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router";
 import { BrowserRouter  } from "react-router-dom";
 import BasicInfo from "./Profile/BasicInfo";
 import PersonalInfo from "./Profile/PersonalInfo";
+import Card from "./Profile/Card1";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
+                <Route path="/Card" element={<Card/>} />
               </Routes>
             </div>
           </div>
