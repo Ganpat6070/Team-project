@@ -1,54 +1,39 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 // import {stepper} from "bootstrap"
+import "./ProgressBar.css";
+// import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+// import BasicInfo from "./BasicInfo";
 
 const ProgressBar = () => {
-
-
-    return(
-        // <li classNameName="stepper-step stepper-active">
-<> 
-<div className="row">
-  <div className="col-md-12">
-
-    {/* <!-- Stepers Wrapper --> */}
-    <ul className="stepper stepper-horizontal">
-
-      {/* <!-- First Step --> */}
-      <li className="completed">
-        <a href="#!">
-          <span className="circle">1</span>
-          <span className="label">First step</span>
-        </a>
-      </li>
-
-      {/* <!-- Second Step --> */}
-      <li className="active">
-        <a href="#!">
-          <span className="circle">2</span>
-          <span className="label">Second step</span>
-        </a>
-      </li>
-
-      {/* <!-- Third Step --> */}
-      <li className="warning">
-        <a href="#!">
-          <span className="circle"><i className="fas fa-exclamation"></i></span>
-          <span className="label">Third step</span>
-        </a>
-      </li>
-
-    </ul>
-    {/* <!-- /.Stepers Wrapper --> */}
-
-  </div>
-</div>
-{/* <!-- /.Horizontal Steppers --> */}
-</>
-      
-    );
-}
+  return (
+    <>
+      <div className="steps">
+        <div className="step-item mx-4">
+          <Link to="/basic-info">
+            <button className="px-2 btn-dark  mt-2 rounded-circle mb-1" type="button">
+              1
+            </button>
+          </Link>
+          <div className="step-title">Basic Information</div>
+        </div>
+        <div className="step-item mx-4">
+          <Link to="/personal-info">
+            <button className="px-2 btn-dark  mt-2 rounded-circle mb-1" type="button">
+              2
+            </button>
+          </Link>
+          <div className="step-title">Personal Information</div>
+        </div>
+        <div className="step-item mx-4">
+          <button className="px-2 btn-dark  mt-2 rounded-circle mb-1" type="button">
+            3
+          </button>
+          <div className="step-title">Finished</div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default ProgressBar;
-
-

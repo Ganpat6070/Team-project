@@ -2,8 +2,10 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./BasicInfo.css";
+import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect,useRef } from "react";
+import ProgressCard from "./ProgressCard";
 
 const BasicInfo = () => {
 
@@ -64,6 +66,7 @@ const BasicInfo = () => {
       }}
     >
       <ProgressBar/>
+      <ProgressCard/>
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -610,7 +613,9 @@ const BasicInfo = () => {
               />
             </div>
           </div>
+          <Link to="/personal-info">
           <button type="submit" onClick={submitHandler}>Next</button>
+          </Link>
         </form>
       </div>
     </div>
