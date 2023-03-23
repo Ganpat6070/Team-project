@@ -10,7 +10,7 @@ import BasicInfo from "./Profile/BasicInfo";
 import PersonalInfo from "./Profile/PersonalInfo";
 import Card from "./Profile/Card1";
 import Card3 from "./Profile/Card3";
-
+import PhotoCard from "./Profile/PhotoCard";
 function App() {
   return (
     <div>
@@ -27,6 +27,7 @@ function App() {
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
                 <Route path="/Card" element={<Card/>} />
+                <Route path="/"  element={<PhotoCard/>}/>
                 <Route path="/Card3" element={<Card3/>} />
               </Routes>
             </div>

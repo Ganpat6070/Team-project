@@ -1,0 +1,29 @@
+.inputimg{
+    margin: 0;
+    font-family: inherit; 
+    font-size: small;
+    line-height: inherit;
+}
+
+input[type="file"] {
+    /* display: none; */
+    width: 30px;
+    height: inherit;
+opacity: 0;
+}
+
+.insta{
+    position:relative;
+
+}
+
+.insta img{
+    position: absolute;
+    top: 0;
+}
+
+.insta input{
+    position:absolute;
+    top:0;
+
+}
