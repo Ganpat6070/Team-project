@@ -52,7 +52,7 @@ const Home = () => {
     );
   });
 
-  // console.log(filteredData);
+  console.log(filteredData);
 
   return (
     <>

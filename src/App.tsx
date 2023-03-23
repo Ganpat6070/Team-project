@@ -8,11 +8,12 @@ import Membership from "./components/pages/Membership";
 import RegForm2 from "./components/Register/RegForm";
 import Otp from "./components/Register/Otp/Otp";
 import Pass from "./components/Register/Pass/Pass";
-import NavLogIN from "./components/pages/login-nav";
 import ProfileSearch from "./components/pages/ProfileSearch";
 import ProfileDetail from "./components/pages/ProfileDetail";
 import PersonalInfo from "./components/Profile/PersonalInfo";
 import BasicInfo from "./components/Profile/BasicInfo";
+import ShowData from "./components/pages/showData";
+import AddData from "./components/pages/AddDetails";
 
 
 function App() {
@@ -32,11 +33,12 @@ function App() {
                 <Route path="/pass" element={<Pass />} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
-                <Route path="/home" element={<NavLogIN />} />
                 <Route path="/profileSearch" element={<ProfileSearch />} />
                 <Route path="/profileDetails" element={<ProfileDetail />} />
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
+                <Route path="/data-info" element={<ShowData/>} />
+                <Route path="/data-add" element={<AddData/>} />
               </Routes>
             </div>
           </div>
