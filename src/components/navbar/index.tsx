@@ -33,6 +33,7 @@ const NavbarHead = () => {
   useEffect(() => {
     if (getlogin === "true") {
       setUser(localStorage.getItem("uname"));
+      
       setIsLogedin(true);
     } else setIsLogedin(false);
   }, [setIsLogedin, getlogin]);

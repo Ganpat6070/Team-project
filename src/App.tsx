@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./components/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
@@ -17,6 +17,17 @@ import AddData from "./components/pages/AddDetails";
 
 
 function App() {
+  const [gender, setGender] = useState<string>("");
+  const [lessAge, setLessAge] = useState<string>("");
+  const [greatAge, setGreatAge] = useState<string>("");
+  const [religion, setReligion] = useState<string>("");
+
+  const pass = (gender:string, lessAge: string, greatAge: string, religion: string) => {
+      setGender(gender);
+      setLessAge(lessAge);
+      setGreatAge(greatAge);
+      setReligion(religion);
+  }
   return (
     <>
       {" "}
@@ -25,7 +36,7 @@ function App() {
           <div>
             <div>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home onPass={pass} />} />
                 <Route path="/aboutus" element={<Aboutus />} />
                 <Route path="/faqs" element={<Faqs />} />
                 <Route path="/login" element={<Login />} />
@@ -33,7 +44,7 @@ function App() {
                 <Route path="/pass" element={<Pass />} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
-                <Route path="/profileSearch" element={<ProfileSearch />} />
+                <Route path="/profileSearch" element={<ProfileSearch gender={gender} lessAge={lessAge} greatAge={greatAge} religion={religion} />}/>
                 <Route path="/profileDetails" element={<ProfileDetail />} />
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />

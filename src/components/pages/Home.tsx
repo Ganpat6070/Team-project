@@ -3,17 +3,25 @@ import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
-import { dummyData } from "../dummy";
-import { Link } from "react-router-dom";
+// import { dummyData } from "../dummy";
+import { Link, useNavigate } from "react-router-dom";
 
-const Home = () => {
-  const profileSearch = () => {};
-  const [gender, setGender] = useState<String>("");
-  const [lessAge, setLessAge] = useState<String>("");
-  const [greatAge, setGreatAge] = useState<String>("");
-  const [religion, setReligion] = useState<string>("any");
+type HomeProps = {
+  onPass: (
+    gender: string,
+    lessAge: string,
+    greatAge: string,
+    religion: string
+  ) => void;
+};
 
-  // console.log(dummyData);
+const Home = ({ onPass }: HomeProps) => {
+  const [gender, setGender] = useState<string>("");
+  const [lessAge, setLessAge] = useState<string>("");
+  const [greatAge, setGreatAge] = useState<string>("");
+  const [religion, setReligion] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const selectChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
@@ -26,34 +34,24 @@ const Home = () => {
   };
 
   const selectChangeGreatAge = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     event.preventDefault();
     setGreatAge(event.target.value);
   };
 
   const selectChangeReligion = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     event.preventDefault();
     setReligion(event.target.value);
   };
 
-  // console.log(gender, lessAge, greatAge, religion);
-
-  const filteredData = dummyData.filter((data) => {
-    return (
-      data.gender === gender.toLowerCase() &&
-      data.born_year >= lessAge &&
-      data.born_year <= greatAge &&
-      (religion === "any"
-        ? data.religion
-        : data.religion === religion.toLowerCase())
-    );
-  });
-
-  console.log(filteredData);
-
+  const profileSearch = () => {
+    onPass(gender, lessAge, greatAge, religion);
+    navigate("/profileSearch");
+  };
+  
   return (
     <>
       <NavbarHead />
@@ -66,7 +64,7 @@ const Home = () => {
             <Row className="inputLabel">
               <Col>
                 <Form.Group controlId="formGridState">
-                <Form.Label>I'm lookig for</Form.Label>
+                  <Form.Label>I'm lookig for</Form.Label>
                   <Form.Select size="sm" onChange={selectChangeGender}>
                     <option>Select</option>
                     <option>Bride</option>
@@ -76,7 +74,8 @@ const Home = () => {
               </Col>
               <Col>
                 <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeLessAge}>
+                  <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>
                   <option>2000</option>
@@ -94,7 +93,8 @@ const Home = () => {
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeGreatAge}>
+                  <option>Select</option>
                   <option>1960</option>
                   <option>1990</option>
                   <option>2005</option>
@@ -103,24 +103,24 @@ const Home = () => {
               <Col>
                 {" "}
                 <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm">
+                <Form.Select size="sm" onChange={selectChangeReligion}>
+                  <option>Select</option>
                   <option>Any</option>
                   <option>Hindu</option>
+                  <option>Muslim</option>
                 </Form.Select>
               </Col>
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
-                <Link to="/profileSearch">
-                  <Button
-                    size="sm"
-                    style={{ backgroundColor: "#FE8A4D", width: "120px" }}
-                    onClick={profileSearch}
-                  >
-                    Let's Find
-                  </Button>
-                </Link>
+                <Button
+                  size="sm"
+                  style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                  onClick={profileSearch}
+                >
+                  Let's Find
+                </Button>
               </Col>
             </Row>
           </Form>
