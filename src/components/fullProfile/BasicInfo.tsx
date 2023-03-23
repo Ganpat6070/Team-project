@@ -1,6 +1,6 @@
 import React from "react";
 
-const BasicInfo = () => {
+const BasicInfomation = () => {
   return (
     <div>
       <div className="text-center">Basic Information</div><br/><br/>
@@ -38,4 +38,4 @@ const BasicInfo = () => {
   );
 };
 
-export default BasicInfo;
+export default BasicInfomation;

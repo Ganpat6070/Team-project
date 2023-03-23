@@ -1,9 +1,8 @@
 import React from "react";
-import NavbarHead from "../navbar";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const Membership = () => {
+const Subscribe = () => {
   return (
     <div
       style={{
@@ -12,7 +11,6 @@ const Membership = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <NavbarHead />
       <h1 className="text-center text-white m-4 p-3 font-weight-normal">Membership</h1>
       <div className="d-flex justify-content-center">
         <Card className="m-3" style={{ width: "18rem" }}>
@@ -57,4 +55,4 @@ const Membership = () => {
   );
 };
 
-export default Membership;
+export default Subscribe;

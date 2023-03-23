@@ -16,7 +16,6 @@ function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [logedin, setLogin] = useState<boolean>(false);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -30,9 +29,8 @@ function Login() {
         toast.success("Login Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setLogin(true);
-        console.log(logedin);
-        localStorage.setItem("logedin", JSON.stringify(true));
+        
+        localStorage.setItem("login","true");
         navigate("/");
       })
       .catch((error) => {

@@ -3,22 +3,28 @@ import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
-import { dummyData } from "../dummy";
+// import { dummyData } from "../dummy";
 import { Link, useNavigate } from "react-router-dom";
-import ProfileSearch from "./ProfileSearch";
 // import ProfileSearch from "./ProfileSearch";
+// import MyContext from "../authContext";
+// import { doc, getDocFromCache } from "firebase/firestore";
 
-const Home = () => {
+type HomeProps = {
+  onPass: (
+    gender: string,
+    lessAge: string,
+    greatAge: string,
+    religion: string
+  ) => void;
+};
 
-  const profileSearch = () => {};
-  const [gender, setGender] = useState<String>("");
-  const [lessAge, setLessAge] = useState<String>("");
-  const [greatAge, setGreatAge] = useState<String>("");
-  const [religion, setReligion] = useState<string>("any");
+const Home = ({ onPass }: HomeProps) => {
+  const [gender, setGender] = useState<string>("");
+  const [lessAge, setLessAge] = useState<string>("");
+  const [greatAge, setGreatAge] = useState<string>("");
+  const [religion, setReligion] = useState<string>("");
 
   const navigate = useNavigate();
-
-  // console.log(dummyData);
 
   const selectChangeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
@@ -44,26 +50,25 @@ const Home = () => {
     setReligion(event.target.value);
   };
 
-  console.log(gender, lessAge, greatAge, religion);
+  // console.log(gender, lessAge, greatAge, religion);
 
+  // const filteredData = dummyData.filter((data) => {
+  //   return (
+  //     data.gender === gender.toLowerCase() &&
+  //     data.born_year >= lessAge &&
+  //     data.born_year <= greatAge &&
+  //     (religion === "any"
+  //       ? data.religion
+  //       : data.religion === religion.toLowerCase())
+  //   );
+  // });
 
-  const filteredData = dummyData.filter((data) => {
-    return (
-      data.gender === gender.toLowerCase() &&
-      data.born_year >= lessAge &&
-      data.born_year <= greatAge &&
-      (religion === "any"
-        ? data.religion
-        : data.religion === religion.toLowerCase())
-    );
-  });
+  // console.log(filteredData);
 
-  console.log(filteredData);
-  // setFiltered(filteredData);
-
-  const viewProfile1 = () => {
-
-  }
+  const profileSearch = () => {
+    onPass(gender, lessAge, greatAge, religion);
+    navigate("/profileSearch");
+  };
 
   return (
     <>
@@ -127,15 +132,13 @@ const Home = () => {
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label>&nbsp;</Form.Label>
-                <Link to="/profileSearch">
-                  <Button
-                    size="sm"
-                    style={{ backgroundColor: "#FE8A4D", width: "120px" }}
-                    onClick={profileSearch}
-                  >
-                    Let's Find
-                  </Button>
-                </Link>
+                <Button
+                  size="sm"
+                  style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                  onClick={profileSearch}
+                >
+                  Let's Find
+                </Button>
               </Col>
             </Row>
           </Form>
@@ -350,12 +353,9 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
               </Card.Text>
-              <Link to='/profileDetails'>
-           
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => {navigate('/profileDetails')}}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
-              </Button></Link>
-             
+              </Button>
             </Card.Body>
           </Card>
 
@@ -372,7 +372,7 @@ const Home = () => {
                 26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
                 US)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -390,7 +390,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -410,7 +410,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -429,7 +429,7 @@ const Home = () => {
                 26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
                 US)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>
@@ -447,7 +447,7 @@ const Home = () => {
               <Card.Text className="fs-4 text-start">
                 27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
               </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }} onClick={() => navigate("/profileDetails")}>
+              <Button style={{ backgroundColor: "#27C2D3" }}>
                 View full Profile &nbsp; &nbsp; &gt;
               </Button>
             </Card.Body>

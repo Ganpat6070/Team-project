@@ -23,7 +23,6 @@
     align-items: center;
     text-align: justify;
     letter-spacing: 0.05em;
-  
     color: #000000;
   }
   
@@ -51,7 +50,6 @@
     height: 55px;
     left: 0px;
     top: 250px;
-  
     background: #000000;
     opacity: 0.3;
   }

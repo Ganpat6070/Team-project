@@ -1,20 +1,28 @@
-// import "@fortawesome/fontawesome-svg-core";
+import React, { useState } from "react";
 import "./RegForm.css";
+import { collection, addDoc } from "firebase/firestore";
+import db from "../firebase";
 import { Carousel } from "react-bootstrap";
-// import { Link, useNavigate } from "react-router-dom";
-import NavbarHead from "../navbar";
-import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NavbarHead from "../navbar";
 
 const RegForm2 = () => {
-  // const [value, setValue] = useState()
-  // const navigate = useNavigate();
+  const [fnamer, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [numberr, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  // const a = {
+  //   fnamer: fnamer,
+  //   email: email,
+  //   numberr: numberr,
+  //   pass: password,
+  // };
+
   const onRegister = async (e: any) => {
     e.preventDefault();
 
@@ -34,6 +42,14 @@ const RegForm2 = () => {
         });
         setError(errorMessage);
       });
+    const docRef = await addDoc(collection(db, "User"), {
+      fname: fnamer,
+      email: email,
+      number: numberr,
+      pass: password,
+    });
+
+    console.log(docRef.id);
   };
 
   return (
@@ -58,7 +74,21 @@ const RegForm2 = () => {
                   </p>
                 </Carousel.Caption>
               </Carousel.Item>
-
+              <Carousel.Item>
+                <img
+                  className="d-block w-0  "
+                  src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>First slide label</h3>
+                  <p>
+                    Easily accessible customer care centres and a committed and
+                    professional service team ensure that help is just a call or
+                    click away.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
               <Carousel.Item>
                 <img
                   className="d-block w-0"
@@ -95,35 +125,43 @@ const RegForm2 = () => {
          
           </Carousel> */}
           </div>
-          <form onSubmit={onRegister} method="post">
+          <form onSubmit={onRegister}>
             <h2 className="text-center">
               <strong>Registration</strong>
             </h2>
             <div className="form-group">
-              <label htmlFor="email">Email ID</label>
+              <label htmlFor="fullname">Your Fullname</label>
+
+              <input
+                className="form-control"
+                type="text"
+                name="fullname"
+                required
+                placeholder="Shyam Dadhani"
+                // ref={fname}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+              />
+              {/* <span className="text-danger size-small">{firstError}</span> */}
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Your Email</label>
               <input
                 className="form-control"
                 type="email"
                 name="email"
-                placeholder="shyam.dadhani@gmail.com"
-                onChange={(e) => setEmail(e.target.value)}
                 required
+                placeholder="shyam.dadhani@gmail.com"
+                // ref={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 value={email}
               />
+              {/* <span className="text-danger size-small">{emailError}</span> */}
             </div>
             <div className="form-group">
-              <label htmlFor="fullname">Password</label>
-              <input
-                className="form-control"
-                type="password"
-                name="fullname"
-                placeholder="******"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                value={password}
-              />
-            </div>
-            {/* <div className="form-group">
               <label htmlFor="number">Phone Number*</label>
               <div className="form-number">
                 <br />
@@ -137,26 +175,55 @@ const RegForm2 = () => {
                   <option value="3">+701</option>
                 </select>
                 <input
+                  required
                   style={{ margin: "0", background: "0", border: "0" }}
                   className="form-control"
                   type="tel"
                   name="number"
                   placeholder="1234567890"
+                  // ref={number}
+                  onChange={(e) => {
+                    setNumber(e.target.value);
+                  }}
                 />
               </div>
-            </div> */}
+              {/* <span className="text-danger size-small pb-0">{numError}</span> */}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Password</label>
+              <input
+                className="form-control"
+                type="password"
+                name="password"
+                placeholder="******"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                value={password}
+              />
+              {/* <span className="text-danger size-small">{emailError}</span> */}
+            </div>
 
             {/* '''''''''''''''''' */}
             <div className="form-group">
               <div className="form-check">
                 <label className="form-check-label">
-                  <input className="form-check-input" type="checkbox" />I agree
-                  to the terms & conditions.
+                  <input
+                    required
+                    className="form-check-input"
+                    type="checkbox"
+                    // ref={agree}
+                  />
+                  I agree to the terms & conditions.
                 </label>
               </div>
             </div>
             <div className="form-group text-center">
-              <button className="btn btn-primary btn-block" type="submit">
+              <button
+                className="btn btn-primary btn-block"
+                type="submit"
+                disabled={false}
+              >
                 Register
               </button>
               {error && (
@@ -179,7 +246,7 @@ const RegForm2 = () => {
               >
                 <img
                   style={{ height: "18px", width: "18px" }}
-                  src="../../../image/google-logo.png "
+                  src="../../image/google-logo.png"
                   alt=""
                 />{" "}
                 Registration Using Google

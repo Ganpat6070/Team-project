@@ -1,11 +1,28 @@
-.profilePage{
-    color: green;
+
+
+.profilePage {
+  color: green;
 }
 
-.profileCard{
-    display: inline-block;
-    align-items: start;
-    margin: 80px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+.profileCard {
+  /* align-items: center; */
+  margin: 80px;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.card-img-top{
+    height: 15rem;
+}
+.card{
+    padding: 15px;
+    margin: 15px;
+    transition: .7s all;
+    border-radius: 15px;
+}
+.card:hover{
+    box-shadow: 0 0 10px 1px black;
 }

@@ -71,7 +71,7 @@
   width: 661px;
   left: 645px;
   top: 1197.0009765625px;
-  border-radius: nullpx;
+  border-radius: 0px;
 }
 .perfectpart {
   position: absolute;
@@ -124,7 +124,7 @@
 
 .setmargin{
     margin-top: 100px;
-    background-color: #FA5847;
+    /* background-color: #FA5847; */
     color: white;
     padding-bottom: 120px;
 }

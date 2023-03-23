@@ -1,10 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CardBox(props: string | any) {
+  const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
+  const getlogin = localStorage.getItem("login");
   console.log(filteredData);
+
+  const handleDetails = () => {
+    if (getlogin === "true") {
+      navigate("/profileDetails");
+    } else {
+      navigate("/login");
+    }
+  };;
 
   return (
     <Card  className="d-flex justify-content-between" style={{ width: "18rem", textAlign: "center" }}>
@@ -12,9 +22,7 @@ function CardBox(props: string | any) {
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.description}</Card.Text>
-        <Link to="/profileDetails">
-          <Button variant="primary">View Details</Button>
-        </Link>
+          <Button onClick={handleDetails} variant="primary">View Details</Button>
       </Card.Body>
     </Card>
   );
