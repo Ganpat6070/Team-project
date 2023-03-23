@@ -66,11 +66,11 @@ const Home = () => {
             <Row className="inputLabel">
               <Col>
                 <Form.Group controlId="formGridState">
-                  <Form.Label>I'm lookig for</Form.Label>
-                  <Form.Select size="sm">
+                <Form.Label>I'm lookig for</Form.Label>
+                  <Form.Select size="sm" onChange={selectChangeGender}>
+                    <option>Select</option>
                     <option>Bride</option>
-                    <option>Fair</option>
-                    <option>Dark</option>
+                    <option>Groom</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
