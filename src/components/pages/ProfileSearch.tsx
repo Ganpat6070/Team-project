@@ -34,11 +34,10 @@ const ProfileSearch = (props: ProfileSearchProps) => {
 
   const filteredData = myData.filter(
     (data: any) =>
-      data.religion.toLowerCase() === props.religion.toLowerCase() &&
+      (props.religion.toLowerCase() === 'any' ? data.religion.toLowerCase(): data.religion === props.religion.toLowerCase()) &&
       data.gender.toLowerCase() === props.gender.toLowerCase() &&
       data.born_year >= props.lessAge &&
-      data.born_year <= props.greatAge 
-      // props.religion === "any"
+      data.born_year <= props.greatAge
   );
 
   // return (
@@ -55,15 +54,15 @@ const ProfileSearch = (props: ProfileSearchProps) => {
   console.log(props.gender, props.lessAge, props.greatAge, props.religion);
 
   return (
-    <div >
+    <div>
       <NavbarHead />
       <div className="text-center profilePage">
         * The profiles which appears here are members that match your partner
         preferences
       </div>
       {/* console.log(data); */}
-     <div className="profileCard">
-        {filteredData.map((profile:any) => (
+      <div className="profileCard">
+        {filteredData.map((profile: any) => (
           <CardBox
             name={profile.name}
             description={profile.born_year + " " + profile.religion}
