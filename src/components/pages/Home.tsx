@@ -56,16 +56,16 @@ const Home = ({ onPass }: HomeProps) => {
     <>
       <NavbarHead />
       <div className="background_img">
-        <div className="frontText">
-          <p>Dream it... Believe it... Make it happen!</p>
+        <div>
+          <h1 className="text-white frontText">Dream it... Believe it... Make it happen!</h1>
         </div>
         <div className="selectData col-6">
           <Form className="float-left">
             <Row className="inputLabel">
               <Col>
                 <Form.Group controlId="formGridState">
-                  <Form.Label>I'm lookig for</Form.Label>
-                  <Form.Select size="sm" onChange={selectChangeGender}>
+                  <Form.Label className="text-white">I'm lookig for</Form.Label>
+                  <Form.Select size="sm" style={{width: "100px", height:"30px"}} onChange={selectChangeGender}>
                     <option>Select</option>
                     <option>Bride</option>
                     <option>Groom</option>
@@ -73,8 +73,8 @@ const Home = ({ onPass }: HomeProps) => {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm" onChange={selectChangeLessAge}>
+                <Form.Label className="text-white">Born Year </Form.Label>
+                <Form.Select size="sm" style={{width: "70px", height:"30px"}} onChange={selectChangeLessAge}>
                   <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>
@@ -88,12 +88,12 @@ const Home = ({ onPass }: HomeProps) => {
               <Col>
                 {" "}
                 <Form.Label>&nbsp;</Form.Label>
-                <div style={{ fontSize: "20px" }}>TO</div>
+                <Form.Label className="text-white" style={{ fontSize: "20px" }}>TO</Form.Label>
               </Col>
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm" onChange={selectChangeGreatAge}>
+                <Form.Select size="sm" style={{width: "70px", height:"30px"}} onChange={selectChangeGreatAge}>
                   <option>Select</option>
                   <option>1960</option>
                   <option>1990</option>
@@ -102,8 +102,8 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 {" "}
-                <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm" onChange={selectChangeReligion}>
+                <Form.Label className="text-white">Religion</Form.Label>
+                <Form.Select size="sm" style={{width: "100px", height:"30px"}} onChange={selectChangeReligion}>
                   <option>Select</option>
                   <option>Any</option>
                   <option>Hindu</option>
@@ -129,9 +129,9 @@ const Home = ({ onPass }: HomeProps) => {
 
       <div className="intro">
         <h3 className="fw-bold text-center mt-5">
-          PerfectMatch.com - Best Marriage Bureau in Ahmedabad{" "}
+          PerfectMatch.com - Best Marriage Bureau in Ahmedabad
         </h3>
-        <p className="textIntro text-start">
+        <p className="mt-5 textIntro text-start">
           PerfectMatch.com, No. 1 Trusted Matrimonial Bureau in India, was
           founded by Miss. Purvangi Shukla with a simple objective to help those
           people who are seeking for best matrimonial bureau service, we have
@@ -182,10 +182,10 @@ const Home = ({ onPass }: HomeProps) => {
       </div>
 
       <Container>
-        <div className="perfectpart">
-          <p className="text-lg-center fs-3">Why Choose Perfect Match?</p>
+        <div>
+          <p className="text-center mt-5 fs-3">Why Choose Perfect Match?</p>
         </div>
-        <Row className="mt-5">
+        <Row>
           <Col className="pt-xxl-5">
             <div className="">
               <div className="pngImg1"></div>
@@ -238,7 +238,7 @@ const Home = ({ onPass }: HomeProps) => {
       </Container>
 
       <div className="text-lg-center fs-3 setmargin">
-        <p>Find Your Prefect Mate Today</p>
+        <p className="mt-3">Find Your Prefect Mate Today</p>
         <Link to="/register">
           <Button
             style={{
