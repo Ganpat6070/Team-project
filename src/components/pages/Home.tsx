@@ -70,18 +70,25 @@ const Home = ({ onPass }: HomeProps) => {
     navigate("/profileSearch");
   };
 
+  // const [file, setFile] = useState();
+  // const handleChange = (e) => {
+  //   console.log(e.target.file)
+  // }
+
   return (
     <>
       <NavbarHead />
+      {/* <input type = 'file' onChange={handleChange}/> */}
+
       <div className="background_img">
         <div className="frontText">
           <p>Dream it... Believe it... Make it happen!</p>
         </div>
         <div className="selectData col-6">
-          <Form className="float-left">
+          <Form className="text-center">
             <Row className="inputLabel">
               <Col>
-                <Form.Group controlId="formGridState">
+                <Form.Group controlId="formGidState">
                   <Form.Label>I'm lookig for</Form.Label>
                   <Form.Select size="sm" onChange={selectChangeGender}>
                     <option>Select</option>
@@ -106,7 +113,7 @@ const Home = ({ onPass }: HomeProps) => {
               <Col>
                 {" "}
                 <Form.Label>&nbsp;</Form.Label>
-                <div style={{ fontSize: "20px" }}>TO</div>
+                <div style={{ fontSize: "20px", marginRight: '5rem' }}>TO</div>
               </Col>
 
               <Col>
@@ -144,6 +151,7 @@ const Home = ({ onPass }: HomeProps) => {
           </Form>
         </div>
       </div>
+
 
       <div className="intro">
         <h3 className="fw-bold text-center mt-5">

@@ -11,7 +11,8 @@
   color: white;
   font-weight: bolder;
   font-size: 36px;
-  position: absolute;
+  position: relative;
+  text-align: center;
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -21,13 +22,15 @@
   color: white;
   font-weight: bolder;
   font-size: 10px;
-  position: absolute;
-  top: 70%;
+  position: relative;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .inputLabel {
+  position: relative; 
+  
   font-size: 12px;
   padding: 2px 5px;
 }
@@ -124,7 +127,7 @@
 
 .setmargin{
     margin-top: 100px;
-    /* background-color: #FA5847; */
+    background-color: #FA5847;
     color: white;
     padding-bottom: 120px;
 }

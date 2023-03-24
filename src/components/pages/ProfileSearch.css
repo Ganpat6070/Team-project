@@ -11,18 +11,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap:20px;
 }
 
 
 .card-img-top{
     height: 15rem;
 }
-.card{
+/* .card{
     padding: 15px;
     margin: 15px;
     transition: .7s all;
     border-radius: 15px;
-}
+} */
 .card:hover{
     box-shadow: 0 0 10px 1px black;
 }

@@ -12,7 +12,7 @@ import NavbarHead from "../navbar";
 type Props = {};
 
 const ProfileDetail = (props: Props) => {
-  const [dummy, setDummy] = useState<Number>(1);
+  const [dummy, setDummy] = useState<number>(1);
 
   return (
     <>

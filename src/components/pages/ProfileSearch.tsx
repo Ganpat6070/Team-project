@@ -65,7 +65,8 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         {filteredData.map((profile: any) => (
           <CardBox
             name={profile.name}
-            description={profile.born_year + " " + profile.religion}
+            born_year={profile.born_year} 
+            religion = {profile.religion}
             image={profile.image}
           />
         ))}
