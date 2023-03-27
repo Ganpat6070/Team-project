@@ -27,13 +27,13 @@ const ProfileSearch = (props: ProfileSearchProps) => {
 
   console.log(myData);
 
+
   const filteredData = myData.filter(
     (data: any) =>
-      data.religion.toLowerCase() === props.religion.toLowerCase() &&
+      (props.religion.toLowerCase() === 'any' ? data.religion.toLowerCase(): data.religion === props.religion.toLowerCase()) &&
       data.gender.toLowerCase() === props.gender.toLowerCase() &&
       data.born_year >= props.lessAge &&
-      data.born_year <= props.greatAge,
-    // props.religion === "any"
+      data.born_year <= props.greatAge
   );
 
   console.log(filteredData);

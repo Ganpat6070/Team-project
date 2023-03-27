@@ -74,7 +74,7 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 <Form.Label className="text-white">Born Year </Form.Label>
-                <Form.Select size="sm" style={{width: "70px", height:"30px"}} onChange={selectChangeLessAge}>
+                <Form.Select   size="sm" style={{width: "70px", height:"30px"}} onChange={selectChangeLessAge}>
                   <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>

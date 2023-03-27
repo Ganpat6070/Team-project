@@ -4,7 +4,6 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("../../../public/image/Maskgroup.jpg");
   height: 710px;
-  z-index: -1;
   position: relative;
   padding-bottom: 20px;
   background-size: cover;
