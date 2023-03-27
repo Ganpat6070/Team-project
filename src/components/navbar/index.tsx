@@ -100,8 +100,14 @@ const NavbarHead = () => {
                     Aboutus
                   </Link>
                 </Nav.Link>
-                <Nav.Link href="#contactFooter" className="text-white">
-                  Contact
+                <Nav.Link className="text-white">
+                  <Link
+                    to="/contactus"
+                    className="text-white"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Contact
+                  </Link>
                 </Nav.Link>
                 <ToastContainer />
 
@@ -173,8 +179,14 @@ const NavbarHead = () => {
                     Aboutus
                   </Link>
                 </Nav.Link>
-                <Nav.Link href="#contactFooter" className="text-white pt-4">
-                  Contact
+                <Nav.Link className="text-white pt-4">
+                <Link
+                    to="/contactus"
+                    className="text-white"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Contact
+                  </Link>
                 </Nav.Link>
                 <ToastContainer />
 

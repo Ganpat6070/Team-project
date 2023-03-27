@@ -27,6 +27,17 @@ const RegForm2 = () => {
 
   const onRegister = async (e: any) => {
     e.preventDefault();
+    
+    // let response = await fetch("https://localhost:8000/register", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     name: "Shivani",
+    //     email: "shivani.makvana@technomark.io",
+    //     phoneNumber: 1234567890,
+    //     password: "shivani@1232",
+    //   }),
+    // });
+    // console.log(response)
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -36,7 +47,7 @@ const RegForm2 = () => {
         toast.success("Registered successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate('/login')
+        navigate("/login");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -53,7 +64,6 @@ const RegForm2 = () => {
     });
 
     console.log(docRef.id);
-
   };
 
   return (

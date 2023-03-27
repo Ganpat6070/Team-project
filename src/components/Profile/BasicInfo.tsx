@@ -65,8 +65,7 @@ const BasicInfo = () => {
       >
         <form className="mx-2 my-2">
           <p
-            className="fs-3 
- "
+            className="fs-3"
             style={{ color: "#6E6E6E" }}
           >
             Basic Information

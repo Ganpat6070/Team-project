@@ -14,6 +14,7 @@ import PersonalInfo from "./components/Profile/PersonalInfo";
 import BasicInfo from "./components/Profile/BasicInfo";
 import ShowData from "./components/pages/showData";
 import AddData from "./components/pages/AddDetails";
+import Contactus from "./components/pages/Contactus";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home onPass={pass} />} />
                 <Route path="/aboutus" element={<Aboutus />} />
+                <Route path="/contactus" element={<Contactus />} />
                 <Route path="/faqs" element={<Faqs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/otp" element={<Otp />} />
