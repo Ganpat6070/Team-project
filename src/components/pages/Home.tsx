@@ -333,13 +333,13 @@ const Home = ({ onPass }: HomeProps) => {
           <Button
             style={{
               backgroundColor: "#ec5274",
-              width: "12%",
+              width: "14%",
               height: "13%",
-              margin: "19% 55%",
+              margin: "20% 60%",
               padding: "10px, 16px, 10px, 16px",
             }}
           >
-            Get Membership &nbsp; &nbsp; &gt;
+            Get Membership &nbsp; &gt;
           </Button>
         </Link>
       </div>
