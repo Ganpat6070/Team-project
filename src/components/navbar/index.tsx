@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PopupMenu } from "react-simple-widgets";
+import "./index.css";
 import {
   BoxArrowInRight,
   Trash,
@@ -180,7 +181,7 @@ const NavbarHead = () => {
                   </Link>
                 </Nav.Link>
                 <Nav.Link className="text-white pt-4">
-                <Link
+                  <Link
                     to="/contactus"
                     className="text-white"
                     style={{ textDecoration: "none" }}

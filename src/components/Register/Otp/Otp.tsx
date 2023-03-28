@@ -1,8 +1,27 @@
+import { useState } from "react";
 import { Carousel } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Otp.css";
 
 const Otp = () => {
+  const navigate = useNavigate();
+  const [otp, setOtp] = useState<number>();
+
+  const verifyOtp = async (e: any) => {
+    e.preventDefault();
+
+    let response = await fetch("http://localhost:8000/otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        otp: otp,
+      }),
+    });
+
+    const res = await response.json();
+    console.log(res);
+    console.log(res.errorMessage);
+  };
   return (
     <section className="myform-area">
       <div className="container">
@@ -62,7 +81,7 @@ const Otp = () => {
               <div className="form-input">
                 <h2>Enter OTP</h2>
                 <p>OTP has been send to your Registered email address</p>
-                <form>
+                <form onSubmit={verifyOtp}>
                   {/* <div className="form-group">
                     <label>Enter Your OTP</label>
                     <input type="text" id="" name="name" required />
@@ -75,7 +94,9 @@ const Otp = () => {
                       type="number"
                       className="form-control"
                       id="otp"
-                      // aria-describedby="emailHelp"
+                      onChange={(e) => {
+                        setOtp(parseInt(e.target.value));
+                      }}
                       placeholder="000000"
                     />
                     <small id="otp" className="form-text text-muted">
@@ -87,8 +108,8 @@ const Otp = () => {
                                 <label>password</label>
                             </div> */}
                   <div className="myform-button">
-                    <button className="myform-btn">
-                      <Link to="/pass">Sign In</Link>
+                    <button type="submit" className="myform-btn">
+                      Submit
                     </button>
                   </div>
                   <p className="securitytext">

@@ -474,7 +474,7 @@ const Home = ({ onPass }: HomeProps) => {
             />
           </div>
           <div className="textmanage">
-            <h6 className="testtext">
+            <h6 className="testtext text-break">
               I am lucky to find this great organization, it’s impressive set-up
               and very friendly staff. They go deep to understand our
               preferences, hassles, limitations, etc. and then give very frank

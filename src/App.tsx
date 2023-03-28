@@ -15,6 +15,9 @@ import BasicInfo from "./components/Profile/BasicInfo";
 import ShowData from "./components/pages/showData";
 import AddData from "./components/pages/AddDetails";
 import Contactus from "./components/pages/Contactus";
+import Mypersonality from "./components/Profile/Mypersonality";
+import PrePart from "./components/Profile/PrePart";
+import AstroDetails from "./components/Profile/AestroDetails";
 
 
 function App() {
@@ -50,6 +53,9 @@ function App() {
                 <Route path="/profileDetails" element={<ProfileDetail />} />
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
+                <Route path="/mypersonality" element={<Mypersonality/>} />
+                <Route path="/prefpart"  element={<PrePart/>}/>
+                <Route path="/astrodata" element={<AstroDetails/>} />
                 <Route path="/data-info" element={<ShowData/>} />
                 <Route path="/data-add" element={<AddData/>} />
               </Routes>

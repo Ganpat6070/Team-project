@@ -14,7 +14,7 @@ const RegForm2 = () => {
   const navigate = useNavigate();
   const [fnamer, setFirstName] = useState("");
   const [email, setEmail] = useState("");
-  const [numberr, setNumber] = useState("");
+  const [numberr, setNumber] = useState<number>();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -27,43 +27,75 @@ const RegForm2 = () => {
 
   const onRegister = async (e: any) => {
     e.preventDefault();
-    
-    // let response = await fetch("https://localhost:8000/register", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     name: "Shivani",
-    //     email: "shivani.makvana@technomark.io",
-    //     phoneNumber: 1234567890,
-    //     password: "shivani@1232",
-    //   }),
-    // });
-    // console.log(response)
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        toast.success("Registered successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        navigate("/login");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        setError(errorMessage);
-      });
-    const docRef = await addDoc(collection(db, "User"), {
-      fname: fnamer,
-      email: email,
-      number: numberr,
-      pass: password,
+    let response = await fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: fnamer,
+        email: email,
+        phoneNumber: numberr,
+        password: password,
+      }),
     });
 
-    console.log(docRef.id);
+    const res = await response.json();
+    console.log(res);
+
+    if (res.msg) {
+      if(res.msg==="Already registered"){
+          setTimeout(() => {
+          navigate('/login')
+          }, 2000);
+      }
+      if(res.msg==="Suceess"){
+        setTimeout(() => {
+        navigate('/otp')
+        }, 2000);
+    }
+      toast.success(res.msg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error(res.errorMessage, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+
+    // console.log(res.msg);
+    if (res.status === 422) {
+      console.log(res.errorMessage);
+    }
+    // console.log(response.msg)
+    // if (response.message ==="Suceess"){
+    //   navigate('/otp')
+    // }
+
+    // await createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     toast.success("Registered successfully", {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //     });
+    //     navigate("/login");
+    //   })
+    //   .catch((error) => {
+    //     const errorMessage = error.message;
+    //     toast.error(errorMessage, {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //     });
+    //     setError(errorMessage);
+    //   });
+    // const docRef = await addDoc(collection(db, "User"), {
+    //   fname: fnamer,
+    //   email: email,
+    //   number: numberr,
+    //   pass: password,
+    // });
+
+    // console.log(docRef.id);
   };
 
   return (
@@ -76,7 +108,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0  "
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                  src="../../image/quick-reg.slideA.jpg"
                   alt="First slide"
                 />
                 <Carousel.Caption>
@@ -91,7 +123,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0  "
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                  src="../../image/quick-reg.slideC.jpg"
                   alt="First slide"
                 />
                 <Carousel.Caption>
@@ -106,7 +138,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0"
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideE.jpg"
+                  src="../../image/quick-reg.slideA.jpg"
                   alt="Second slide"
                 />
 
@@ -121,7 +153,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0"
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideC.jpg"
+                  src="../../image/regimage.jpg"
                   alt="Third slide"
                 />
 
@@ -199,7 +231,7 @@ const RegForm2 = () => {
                   maxLength={10}
                   // ref={number}
                   onChange={(e) => {
-                    setNumber(e.target.value);
+                    setNumber(parseInt(e.target.value));
                   }}
                 />
               </div>

@@ -25,12 +25,12 @@ label{
     color: #6E6E6E;
     /* margin-top: 20px; */
 }
-/* 
+
 input{
     color: rgb(32, 159, 116);
     height: 50%;
 
-} */
+}
 
 .spolang{
     width: 100%;
@@ -39,9 +39,12 @@ input{
     border-color: aquamarine;
 }
 
-/* select{
+select{
     height: 50%;
-} */
+    width: 10px;
+    border-color:#d9d9d9;
+   
+}
 .mobiledrop{
     width: 50%;
     height: 50%;
@@ -49,5 +52,18 @@ input{
 }
 
 .twothree{
+    height: 35%;
+}
+
+input{
+    border-color:#d9d9d9;
     height: 50%;
+}
+
+option{
+    color:#d9d9d9;
+}
+
+option::placeholder{
+   color: #d9d9d9;  
 }
