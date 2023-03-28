@@ -58,7 +58,7 @@ const BasicInfo = () => {
 
   return (
     <div
-      className="background_img"
+      // className="background_img"
       style={{
         backgroundImage: `url("../../images/BG.png")`,
         backgroundRepeat: "no-repeat",

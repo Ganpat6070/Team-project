@@ -33,7 +33,9 @@ function App() {
                 <Route path="/prepart"  element={<PrePart/>}/>
                 <Route path="/Card3" element={<Card3/>} />
                 <Route path="/mypersonality" element={<Mypersonality/>} />
-                <Route path="/" element={<AstroDetails/>} />
+                <Route path="/astro" element={<AstroDetails/>} />
+                <Route path="/photocard" element={<PhotoCard/>} />
+              
               </Routes>
             </div>
           </div>

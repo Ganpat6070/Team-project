@@ -62,14 +62,28 @@ const RegForm2 = () => {
     //   setNumber(number.current.value);
     // }
 
-    const docRef = await addDoc(collection(db, "User"), {
-      fname: fnamer,
-      email: emailr,
-      number: numberr,
-      pass: pass
-    });
-    console.log(docRef.id);
-    console.log(emailr);
+    // const docRef = await addDoc(collection(db, "User"), {
+    //   fname: fnamer,
+    //   email: emailr,
+    //   number: numberr,
+    //   pass: pass
+    // });
+    // console.log(docRef.id);
+    // console.log(emailr);
+
+    let response = await fetch("http://localhost:8000/register",{
+
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        name:fnamer,
+        email:emailr,
+        phoneNumber:1231231321,
+        password:pass,
+      }),
+    })
+    console.log(response)
+    // console.log(response.message)
   };
   
   return (
