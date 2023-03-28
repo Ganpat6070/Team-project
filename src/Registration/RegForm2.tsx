@@ -71,7 +71,7 @@ const RegForm2 = () => {
     console.log(docRef.id);
     console.log(emailr);
   };
-
+  
   return (
     <div className="register-photo">
       <div className="form-container imgdiv">

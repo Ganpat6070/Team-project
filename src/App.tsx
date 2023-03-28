@@ -11,6 +11,9 @@ import PersonalInfo from "./Profile/PersonalInfo";
 import Card from "./Profile/Card1";
 import Card3 from "./Profile/Card3";
 import PhotoCard from "./Profile/PhotoCard";
+import PrePart from "./Profile/PrePart";
+import Mypersonality from "./Profile/Mypersonality";
+import AstroDetails from "./Profile/AestroDetails";
 function App() {
   return (
     <div>
@@ -27,8 +30,10 @@ function App() {
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
                 <Route path="/Card" element={<Card/>} />
-                <Route path="/"  element={<PhotoCard/>}/>
+                <Route path="/prepart"  element={<PrePart/>}/>
                 <Route path="/Card3" element={<Card3/>} />
+                <Route path="/mypersonality" element={<Mypersonality/>} />
+                <Route path="/" element={<AstroDetails/>} />
               </Routes>
             </div>
           </div>
