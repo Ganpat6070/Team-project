@@ -5,6 +5,7 @@ import Footer from "./footer";
 import NavbarHead from "../navbar";
 // import { dummyData } from "../dummy";
 import { Link, useNavigate } from "react-router-dom";
+import { FileX } from "react-bootstrap-icons";
 
 type HomeProps = {
   onPass: (
