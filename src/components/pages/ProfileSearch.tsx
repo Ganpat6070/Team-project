@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CardBox from "../Cards";
 import NavbarHead from "../navbar";
 import Footer from "./footer";
 import "./ProfileSearch.css";
-
 import { dummyData } from "../dummy";
 
 import db from "../firebase";
@@ -17,10 +16,6 @@ type ProfileSearchProps = {
   religion: string;
 };
 
-// interface filteredDataProps extends ProfileSearchProps {
-//   born_year: string;
-// }
-
 const ProfileSearch = (props: ProfileSearchProps) => {
   const [myData, setMyData] = useState<any>([]);
 
@@ -32,6 +27,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
 
   console.log(myData);
 
+
   const filteredData = myData.filter(
     (data: any) =>
       (props.religion.toLowerCase() === 'any' ? data.religion.toLowerCase(): data.religion === props.religion.toLowerCase()) &&
@@ -40,19 +36,9 @@ const ProfileSearch = (props: ProfileSearchProps) => {
       data.born_year <= props.greatAge
   );
 
-  // return (
-  //   data.gender === props.gender.toLowerCase() &&
-  //   data.born_year >= props.lessAge &&
-  //   data.born_year <= props.greatAge &&
-  //   (props.religion === "any"
-  //     ? data.religion
-  //     : data.religion === props.religion.toLowerCase())
-  // );
-
   console.log(filteredData);
 
   console.log(props.gender, props.lessAge, props.greatAge, props.religion);
-
   return (
     <div>
       <NavbarHead />
@@ -62,11 +48,10 @@ const ProfileSearch = (props: ProfileSearchProps) => {
       </div>
       {/* console.log(data); */}
       <div className="profileCard">
-        {filteredData.map((profile: any) => (
+        {filteredData.map((profile:any) => (
           <CardBox
             name={profile.name}
-            born_year={profile.born_year} 
-            religion = {profile.religion}
+            description={profile.born_year + " " + profile.religion}
             image={profile.image}
           />
         ))}

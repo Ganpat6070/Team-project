@@ -24,13 +24,15 @@ function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
         console.log("login successfully");
         toast.success("Login Successful", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        
-        localStorage.setItem("login","true");
+        // console.log(user.email);
+        const uname = user.email;
+        // console.log(uname);
+        localStorage.setItem("uname", JSON.stringify(uname));
+        localStorage.setItem("login", "true");
         navigate("/");
       })
       .catch((error) => {
@@ -159,7 +161,7 @@ function Login() {
                     <p className="text-center text-light">Forgot Password ?</p>
                     <p className="text-white text-center formFieldLink">
                       New to PerfectMatch.com ?{" "}
-                      <Link to="/register">Register Free</Link>
+                      <Link to="/register" className="text-light" style={{textDecoration:"none"}}>Register Free</Link>
                     </p>
                   </Form>
                   <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">

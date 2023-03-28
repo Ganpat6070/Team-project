@@ -8,8 +8,10 @@ import { auth } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarHead from "../navbar";
+import { useNavigate } from "react-router-dom";
 
 const RegForm2 = () => {
+  const navigate = useNavigate();
   const [fnamer, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [numberr, setNumber] = useState("");
@@ -34,6 +36,7 @@ const RegForm2 = () => {
         toast.success("Registered successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
+        navigate('/login')
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -50,6 +53,7 @@ const RegForm2 = () => {
     });
 
     console.log(docRef.id);
+
   };
 
   return (
@@ -169,8 +173,8 @@ const RegForm2 = () => {
                   className="form-control"
                   style={{ width: "90px", background: "0", border: "0" }}
                 >
-                  <option value="1">+971</option>
-                  <option value="1">+972</option>
+                  <option value="1">+91</option>
+                  <option value="1">+92</option>
                   <option value="2">+198</option>
                   <option value="3">+701</option>
                 </select>
@@ -181,6 +185,8 @@ const RegForm2 = () => {
                   type="tel"
                   name="number"
                   placeholder="1234567890"
+                  minLength={10}
+                  maxLength={10}
                   // ref={number}
                   onChange={(e) => {
                     setNumber(e.target.value);

@@ -74,7 +74,7 @@ const Footer = () => {
           </p>
         </div>
         <div className="text-center fw-bold">
-          <div className="horizontalline"></div>
+          <div className="horline"></div>
           <p className="copyright">
             Copyright © 2019 Perfect Match | Maintained By TechnoMark Solutions
           </p>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Login from "./components/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
@@ -8,36 +8,40 @@ import Membership from "./components/pages/Membership";
 import RegForm2 from "./components/Register/RegForm";
 import Otp from "./components/Register/Otp/Otp";
 import Pass from "./components/Register/Pass/Pass";
-import NavLogIN from "./components/pages/login-nav";
 import ProfileSearch from "./components/pages/ProfileSearch";
 import ProfileDetail from "./components/pages/ProfileDetail";
 import PersonalInfo from "./components/Profile/PersonalInfo";
 import BasicInfo from "./components/Profile/BasicInfo";
-
-
+import ShowData from "./components/pages/showData";
+import AddData from "./components/pages/AddDetails";
+import EditProfile from "./components/pages/EditProfile";
 
 function App() {
-
   const [gender, setGender] = useState<string>("");
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
 
-  const pass = (gender:string, lessAge: string, greatAge: string, religion: string) => {
-      setGender(gender);
-      setLessAge(lessAge);
-      setGreatAge(greatAge);
-      setReligion(religion);
-  }
-
+  const pass = (
+    gender: string,
+    lessAge: string,
+    greatAge: string,
+    religion: string
+  ) => {
+    setGender(gender);
+    setLessAge(lessAge);
+    setGreatAge(greatAge);
+    setReligion(religion);
+  };
   return (
-
+    <>
+      {" "}
       <div>
         <BrowserRouter>
           <div>
             <div>
               <Routes>
-                <Route path="/" element={<Home onPass={pass}/>} />
+                <Route path="/" element={<Home onPass={pass} />} />
                 <Route path="/aboutus" element={<Aboutus />} />
                 <Route path="/faqs" element={<Faqs />} />
                 <Route path="/login" element={<Login />} />
@@ -45,18 +49,29 @@ function App() {
                 <Route path="/pass" element={<Pass />} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
-                <Route path="/home" element={<NavLogIN />} />
-                <Route path="/profileSearch" element={<ProfileSearch gender={gender} lessAge={lessAge} greatAge={greatAge} religion={religion}/>} />
+                <Route
+                  path="/profileSearch"
+                  element={
+                    <ProfileSearch
+                      gender={gender}
+                      lessAge={lessAge}
+                      greatAge={greatAge}
+                      religion={religion}
+                    />
+                  }
+                />
                 <Route path="/profileDetails" element={<ProfileDetail />} />
-                <Route path="/personal-info" element={<PersonalInfo/>} />
-                <Route path="/basic-info" element={<BasicInfo/>} />
+                <Route path="/personal-info" element={<PersonalInfo />} />
+                <Route path="/basic-info" element={<BasicInfo />} />
+                <Route path="/data-info" element={<ShowData />} />
+                <Route path="/data-add" element={<AddData />} />
+                <Route path="/editProfile" element={<EditProfile />} />
               </Routes>
             </div>
           </div>
         </BrowserRouter>
       </div>
-
-  
+    </>
   );
 }
 

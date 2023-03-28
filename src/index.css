@@ -12,9 +12,6 @@ code {
     monospace;
 }
 
-@media (min-width: 768px) {
-  .containerP{
-    display: none;
-    flex-wrap: wrap;
-  }
+body{
+  overflow-x: hidden;
 }

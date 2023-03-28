@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
 // import { dummyData } from "../dummy";
 import { Link, useNavigate } from "react-router-dom";
-// import ProfileSearch from "./ProfileSearch";
-// import MyContext from "../authContext";
-// import { doc, getDocFromCache } from "firebase/firestore";
 
 type HomeProps = {
   onPass: (
@@ -23,6 +20,26 @@ const Home = ({ onPass }: HomeProps) => {
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
+  const [mydata, setMyData] = useState<any>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "ganpat12",
+        email: "ganpatsisodiya642@gmail.com",
+        password: "1212@gsr",
+        phoneNumber: "1212121212",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      // .catch((error) => console.error(error));
+  }, []);
+  console.log(mydata);
 
   const navigate = useNavigate();
 
@@ -50,47 +67,31 @@ const Home = ({ onPass }: HomeProps) => {
     setReligion(event.target.value);
   };
 
-  // console.log(gender, lessAge, greatAge, religion);
-
-  // const filteredData = dummyData.filter((data) => {
-  //   return (
-  //     data.gender === gender.toLowerCase() &&
-  //     data.born_year >= lessAge &&
-  //     data.born_year <= greatAge &&
-  //     (religion === "any"
-  //       ? data.religion
-  //       : data.religion === religion.toLowerCase())
-  //   );
-  // });
-
-  // console.log(filteredData);
-
   const profileSearch = () => {
     onPass(gender, lessAge, greatAge, religion);
     navigate("/profileSearch");
   };
 
-  // const [file, setFile] = useState();
-  // const handleChange = (e) => {
-  //   console.log(e.target.file)
-  // }
-
   return (
     <>
       <NavbarHead />
-      {/* <input type = 'file' onChange={handleChange}/> */}
-
       <div className="background_img">
-        <div className="frontText">
-          <p>Dream it... Believe it... Make it happen!</p>
+        <div>
+          <h1 className="text-white frontText">
+            Dream it... Believe it... Make it happen!
+          </h1>
         </div>
         <div className="selectData col-6">
-          <Form className="text-center">
+          <Form className="float-left">
             <Row className="inputLabel">
               <Col>
-                <Form.Group controlId="formGidState">
-                  <Form.Label>I'm lookig for</Form.Label>
-                  <Form.Select size="sm" onChange={selectChangeGender}>
+                <Form.Group controlId="formGridState">
+                  <Form.Label className="text-white">I'm lookig for</Form.Label>
+                  <Form.Select
+                    size="sm"
+                    style={{ width: "100px", height: "30px" }}
+                    onChange={selectChangeGender}
+                  >
                     <option>Select</option>
                     <option>Bride</option>
                     <option>Groom</option>
@@ -98,8 +99,12 @@ const Home = ({ onPass }: HomeProps) => {
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Label>Born Year </Form.Label>
-                <Form.Select size="sm" onChange={selectChangeLessAge}>
+                <Form.Label className="text-white">Born Year </Form.Label>
+                <Form.Select
+                  size="sm"
+                  style={{ width: "70px", height: "30px" }}
+                  onChange={selectChangeLessAge}
+                >
                   <option>Select</option>
                   <option>1950</option>
                   <option>1980</option>
@@ -113,12 +118,18 @@ const Home = ({ onPass }: HomeProps) => {
               <Col>
                 {" "}
                 <Form.Label>&nbsp;</Form.Label>
-                <div style={{ fontSize: "20px", marginRight: '5rem' }}>TO</div>
+                <Form.Label className="text-white" style={{ fontSize: "20px" }}>
+                  TO
+                </Form.Label>
               </Col>
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
-                <Form.Select size="sm" onChange={selectChangeGreatAge}>
+                <Form.Select
+                  size="sm"
+                  style={{ width: "70px", height: "30px" }}
+                  onChange={selectChangeGreatAge}
+                >
                   <option>Select</option>
                   <option>1960</option>
                   <option>1990</option>
@@ -127,8 +138,12 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 {" "}
-                <Form.Label>Religion</Form.Label>
-                <Form.Select size="sm" onChange={selectChangeReligion}>
+                <Form.Label className="text-white">Religion</Form.Label>
+                <Form.Select
+                  size="sm"
+                  style={{ width: "100px", height: "30px" }}
+                  onChange={selectChangeReligion}
+                >
                   <option>Select</option>
                   <option>Any</option>
                   <option>Hindu</option>
@@ -152,12 +167,11 @@ const Home = ({ onPass }: HomeProps) => {
         </div>
       </div>
 
-
       <div className="intro">
         <h3 className="fw-bold text-center mt-5">
-          PerfectMatch.com - Best Marriage Bureau in Ahmedabad{" "}
+          PerfectMatch.com - Best Marriage Bureau in Ahmedabad
         </h3>
-        <p className="textIntro text-start">
+        <p className="mt-5 textIntro text-start">
           PerfectMatch.com, No. 1 Trusted Matrimonial Bureau in India, was
           founded by Miss. Purvangi Shukla with a simple objective to help those
           people who are seeking for best matrimonial bureau service, we have
@@ -208,10 +222,10 @@ const Home = ({ onPass }: HomeProps) => {
       </div>
 
       <Container>
-        <div className="perfectpart">
-          <p className="text-lg-center fs-3">Why Choose Perfect Match?</p>
+        <div>
+          <p className="text-center mt-5 fs-3">Why Choose Perfect Match?</p>
         </div>
-        <Row className="mt-5">
+        <Row>
           <Col className="pt-xxl-5">
             <div className="">
               <div className="pngImg1"></div>
@@ -264,7 +278,7 @@ const Home = ({ onPass }: HomeProps) => {
       </Container>
 
       <div className="text-lg-center fs-3 setmargin">
-        <p>Find Your Prefect Mate Today</p>
+        <p className="mt-3">Find Your Prefect Mate Today</p>
         <Link to="/register">
           <Button
             style={{
