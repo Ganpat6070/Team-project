@@ -23,21 +23,17 @@ const Home = ({ onPass }: HomeProps) => {
   const [mydata, setMyData] = useState<any>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/register", {
+    let response = fetch("http://localhost:8000/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers:{"Content-Type": "application/json" },
       body: JSON.stringify({
-        name: "ganpat12",
-        email: "ganpatsisodiya642@gmail.com",
-        password: "1212@gsr",
-        phoneNumber: "1212121212",
+        name: "Shivani",
+        email: "shivani.makvana@technomark.io",
+        phoneNumber: 1234567890,
+        password: "shivani@1232",
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      // .catch((error) => console.error(error));
+    });
+    console.log(response)
   }, []);
   console.log(mydata);
 

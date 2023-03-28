@@ -42,20 +42,24 @@ const ProfileSearch = (props: ProfileSearchProps) => {
   return (
     <div>
       <NavbarHead />
-      <div className="text-center profilePage">
+      <div className="text-center profilePage fs-5 mt-4" style={{color: '#ff874b'}}>
         * The profiles which appears here are members that match your partner
         preferences
       </div>
       {/* console.log(data); */}
       <div className="profileCard">
-        {filteredData.map((profile:any) => (
-          <CardBox
-            name={profile.name}
-            description={profile.born_year + " " + profile.religion}
-            image={profile.image}
-          />
-        ))}
-      </div>
+  {filteredData.length > 0 ? (
+    filteredData.map((profile:any) => (
+      <CardBox
+        name={profile.name}
+        description={profile.born_year + " " + profile.religion}
+        image={profile.image}
+      />
+    ))
+  ) : (
+    <h1 style={{color: 'red'}}>Sorry, No Data Available</h1>
+  )}
+</div>
       <Footer />
     </div>
   );

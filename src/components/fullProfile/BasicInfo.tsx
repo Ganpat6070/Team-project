@@ -3,10 +3,10 @@ import React from "react";
 const BasicInfomation = () => {
   return (
     <div>
-      <div className="text-center">Basic Information</div><br/><br/>
-      <div className="d-flex justify-content-lg-evenly">
+      <div className="text-center fw-bold" >Basic Information</div><br/><br/>
+      <div className="d-flex justify-content-around"  style={{backgroundColor: 'rgb(238, 234, 234)', padding: "2rem", borderRadius: '4%'}}>
         <div className="text-start ml-4 d-flex">
-          <li style={{listStyle: 'none'}}>
+          <li style={{listStyle: 'none', fontWeight: '300'}}>
             <ul>Age</ul>
             <ul>Gender</ul>
             <ul>Data of Birth</ul>
