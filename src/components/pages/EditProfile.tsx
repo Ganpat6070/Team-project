@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
+import InputText from "../editProfComponent/InputText";
 
 const EditProfile = () => {
   const [dob, setdob] = useState("");
@@ -68,6 +69,8 @@ const EditProfile = () => {
   const [currLoc, setcurrLoc] = useState("");
   const [resStatus, setresStatus] = useState("");
   const [native, setnative] = useState("");
+
+  const [age, setAge] = useState("");
 
   console.log({
     dob,
@@ -138,6 +141,17 @@ const EditProfile = () => {
     resStatus,
     native,
   });
+
+  const [userData, setUserData] = useState<any>({
+    mTongue1: "",
+    religion1: "hindu",
+  });
+
+  const changeHandle = (e: any) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  console.log(userData);
 
   return (
     <div>
@@ -221,11 +235,21 @@ const EditProfile = () => {
                   value={mTongue}
                   onChange={(e) => setmTongue(e.target.value)}
                 />
+                {/* <InputText
+                  name="mTongue1"
+                  value={userData.mTongue1}
+                  onChange={changeHandle}
+                /> */}
               </td>
             </tr>
             <tr>
               <td>Religion</td>
               <td>
+                {/* <InputText
+                  name="religion1"
+                  value={userData.religion1}
+                  onChange={changeHandle}
+                /> */}
                 <input
                   type="text"
                   value={religion}
@@ -933,6 +957,500 @@ const EditProfile = () => {
                   >
                     <option></option>
                   </select>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <div
+          style={{ width: "85%" }}
+          className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
+        >
+          <div
+            style={{ width: "80%" }}
+            className="container-sm my-2 bg-light rounded-5 border border-dark p-2"
+          >
+            <p className="fs-1 text-center" style={{ color: "#6E6E6E" }}>
+              Preferred Partner
+            </p>
+          </div>
+          <Table striped="columns" className="mt-5">
+            <thead>
+              <tr>
+                <th>Fields</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Age</td>
+                <td>
+                  <select
+                    name="Age"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>18</option>
+                    <option>22</option>
+                    <option>30</option>
+                  </select>
+                  <select
+                    name="Age"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>23</option>
+                    <option>28</option>
+                    <option>40</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Height</td>
+                <td>
+                  <select
+                    name="Height"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                  <select
+                    name="Height"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>5.5</option>
+                    <option>6.5</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Physical Status</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Type1</option>
+                    <option>Type2</option>
+                    <option>Type3</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Family Status</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>With Family</option>
+                    <option>Alone</option>
+                    {/* <option>Type3</option> */}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Currency</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>INR</option>
+                    <option>USD</option>
+                    <option>EURO</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Annual Income</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>1-3 L</option>
+                    <option>3-5 L</option>
+                    <option>5-7 L</option>
+                    <option>7+ L</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Mother Tongue</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Hindi</option>
+                    <option>Gujarati</option>
+                    <option>English</option>
+                    <option>Other</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Religion</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Any</option>
+                    <option>Hindu</option>
+                    <option>Muslim</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Caste / Denomination</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Any</option>
+                    <option>Hindu</option>
+                    <option>Muslim</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Diet</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Vegetarian</option>
+                    <option>Non-Vegetarian</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Education</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="education"
+                    name="eduOptions"
+                    value="Graduate"
+                  />
+                  <label htmlFor="education">Graduate</label>
+                  <input
+                    type="checkbox"
+                    id="education"
+                    name="eduOptions"
+                    value="Post-Graduate"
+                  />
+                  <label htmlFor="education">Post-Graduate</label>
+                  <input
+                    type="checkbox"
+                    id="education"
+                    name="eduOptions"
+                    value="PH.D"
+                  />
+                  <label htmlFor="education">PH.D</label>
+                  {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
+                  <input type='checkbox' id="education" name="eduOptions" value='B.A'/> */}
+                </td>
+              </tr>
+              <tr>
+                <td>Location</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>India</option>
+                    <option>USA</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Marital Status</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Married</option>
+                    <option>Un-Married</option>
+                    <option>Divorced</option>
+                    <option>Seperated</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Native Place</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Marital Status</td>
+                <td>
+                  <input
+                    type="text"
+                    value={motherOcc}
+                    onChange={(e) => setmotherOcc(e.target.value)}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+
+        <div
+          style={{ width: "85%" }}
+          className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
+        >
+          <div
+            style={{ width: "80%" }}
+            className="container-sm my-2 bg-light rounded-5 border border-dark p-2"
+          >
+            <p className="fs-1 text-center" style={{ color: "#6E6E6E" }}>
+              My Personality
+            </p>
+          </div>
+          <Table striped="columns" className="mt-5">
+            <thead>
+              <tr>
+                <th>Fields</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Diet</td>
+                <td>
+                  <select
+                    name="Age"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>Vegetarain</option>
+                    <option>Non-Vegetarian</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Smoke</td>
+                <td>
+                  <select
+                    name="Height"
+                    // value={ppAge}
+                    // onChange={(e) => setppAge(e.target.value)}
+                  >
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Drink</td>
+                <td>
+                  <select
+                    name="PhysicalStatus"
+                    value={resStatus}
+                    onChange={(e) => setresStatus(e.target.value)}
+                  >
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Hobbies</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="hobby"
+                    name="hobbies"
+                    value="Music"
+                  />
+                  <label htmlFor="Music">Music</label>
+                  <input
+                    type="checkbox"
+                    id="hobby"
+                    name="hobbies"
+                    value="Games"
+                  />
+                  <label htmlFor="Games">Games</label>
+                  <input
+                    type="checkbox"
+                    id="hobby"
+                    name="hobbies"
+                    value="Reading"
+                  />
+                  <label htmlFor="Reading">Reading</label>
+                  {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
+                  <input type='checkbox' id="education" name="eduOptions" value='B.A'/> */}
+                </td>
+              </tr>
+              <tr>
+                <td>Music</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="music"
+                    name="musics"
+                    value="Film Music"
+                  />
+                  <label htmlFor="Film Music">Film Music</label>
+                  <input
+                    type="checkbox"
+                    id="music"
+                    name="musics"
+                    value="Devotional"
+                  />
+                  <label htmlFor="Devotional">Devotional</label>
+                  <input
+                    type="checkbox"
+                    id="music"
+                    name="musics"
+                    value="Albums"
+                  />
+                  <label htmlFor="Albums">Albums</label>
+                  <input
+                    type="checkbox"
+                    id="music"
+                    name="musics"
+                    value="Hindi Song"
+                  />
+                  <label htmlFor="Hindi Song">Hindi Song</label>
+                  <input
+                    type="checkbox"
+                    id="music"
+                    name="musics"
+                    value="Western"
+                  />
+                  <label htmlFor="Western">Western</label>
+                </td>
+              </tr>
+              <tr>
+                <td>Reading</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="read"
+                    name="reading"
+                    value="Newspaper"
+                  />
+                  <label htmlFor="Newspaper">Newspaper</label>
+                  <input
+                    type="checkbox"
+                    id="read"
+                    name="reading"
+                    value="Biographies"
+                  />
+                  <label htmlFor="Biographies">Biographies</label>
+                  <input
+                    type="checkbox"
+                    id="read"
+                    name="reading"
+                    value="Any thing"
+                  />
+                  <label htmlFor="Any thing">Any thing</label>
+                </td>
+              </tr>
+              <tr>
+                <td>Sports</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="sport"
+                    name="sports"
+                    value="Cricket"
+                  />
+                  <label htmlFor="Cricket">Cricket</label>
+                  <input
+                    type="checkbox"
+                    id="sport"
+                    name="sports"
+                    value="Swimming"
+                  />
+                  <label htmlFor="Swimming">Swimming</label>
+                </td>
+              </tr>
+              <tr>
+                <td>Dress</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    id="dress"
+                    name="dresses"
+                    value="Indian"
+                  />
+                  <label htmlFor="Indian">Indian</label>
+                  <input
+                    type="checkbox"
+                    id="dress"
+                    name="dresses"
+                    value="Western"
+                  />
+                  <label htmlFor="Western">Western</label>
+                  <input
+                    type="checkbox"
+                    id="dress"
+                    name="dresses"
+                    value="Traditional"
+                  />
+                  <label htmlFor="Traditional">Traditional</label>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+
+
+        <div
+          style={{ width: "85%" }}
+          className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
+        >
+          <div
+            style={{ width: "80%" }}
+            className="container-sm my-2 bg-light rounded-5 border border-dark p-2"
+          >
+            <p className="fs-1 text-center" style={{ color: "#6E6E6E" }}>
+              Astro Details
+            </p>
+          </div>
+          <Table striped="columns" className="mt-5">
+            <thead>
+              <tr>
+                <th>Fields</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Date of Birth</td>
+                <td>
+                  <input type="date" name="" id="" value="" />
                 </td>
               </tr>
             </tbody>

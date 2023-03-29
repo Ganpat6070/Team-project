@@ -5,7 +5,7 @@ export const dummyData = [
     gender: "bride",
     image: "https://media.istockphoto.com/id/1349432308/photo/beautiful-muslim-indian-bridal.webp?s=1024x1024&w=is&k=20&c=KtQcMWjMktETB6mEJu1OnQu_zx6M9imamIjylEStje4=", 
     born_year: "1985",
-    religion: "hindu",
+    religion: "hindu",  
   },
   {
     id: 2,
