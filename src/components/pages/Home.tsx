@@ -168,8 +168,8 @@ const Home = ({ onPass }: HomeProps) => {
               src="../../image/joint.png"
               alt="weddingImage"
               style={{
-                width: "480px",
-                height: "446px",
+                // width: "480px",
+                // height: "446px",
                 top: "1064px",
                 left: "134px",
               }}
@@ -178,10 +178,10 @@ const Home = ({ onPass }: HomeProps) => {
           <div className="combine">
             <p
               style={{
-                height: "108px",
-                width: "540px",
-                left: "645px",
-                top: "1063.999755859375px",
+                // height: "108px",
+                // width: "540px",
+                // left: "645px",
+                // top: "1063.999755859375px",
                 fontSize: "36px",
               }}
             >
@@ -202,7 +202,7 @@ const Home = ({ onPass }: HomeProps) => {
           </div>
         </div>
       </Container>
-
+ 
       <Container>
         <div>
           <p className="text-center mt-5 fs-3">Why Choose Perfect Match?</p>
@@ -286,7 +286,7 @@ const Home = ({ onPass }: HomeProps) => {
           </p>
         </div>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex stories justify-content-center">
               <Card className="mx-4 cardshadow">
                 <Card.Img
                   width="30%"
@@ -348,7 +348,7 @@ const Home = ({ onPass }: HomeProps) => {
         <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
           Connect with people you know but haven’t met yet
         </p>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex gallery justify-content-center">
           <Card className="clickableCard text-center">
             <Card.Img
               alt="woman_29years"
@@ -405,7 +405,7 @@ const Home = ({ onPass }: HomeProps) => {
           </Card>
         </div>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex gallery justify-content-center">
           <Card className="clickableCard text-center">
             <Card.Img
               alt="man_29"
@@ -503,6 +503,7 @@ const Home = ({ onPass }: HomeProps) => {
             <h2 className="fs-6 fw-bold">Rushabh Kahar</h2>
           </div>
         </div>
+        
       </div>
       <div id="contactFooter">
         <Footer />
