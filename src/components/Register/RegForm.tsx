@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./RegForm.css";
-import { collection, addDoc } from "firebase/firestore";
-import db from "../firebase";
+// import { collection, addDoc } from "firebase/firestore";
+// import db from "../firebase";
 import { Carousel } from "react-bootstrap";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarHead from "../navbar";
@@ -43,16 +43,16 @@ const RegForm2 = () => {
     console.log(res);
 
     if (res.msg) {
-      if(res.msg==="Already registered"){
-          setTimeout(() => {
-          navigate('/login')
-          }, 2000);
-      }
-      if(res.msg==="Suceess"){
+      if (res.msg === "Already registered") {
         setTimeout(() => {
-        navigate('/otp')
+          navigate("/login");
         }, 2000);
-    }
+      }
+      if (res.msg === "Suceess") {
+        setTimeout(() => {
+          navigate("/otp");
+        }, 2000);
+      }
       toast.success(res.msg, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -213,7 +213,12 @@ const RegForm2 = () => {
                 <br />
                 <select
                   className="form-control"
-                  style={{ width: "90px", background: "0", border: "0" }}
+                  style={{
+                    width: "90px",
+                    background: "0",
+                    border: "0",
+                    marginBottom: "30px",
+                  }}
                 >
                   <option value="1">+91</option>
                   <option value="1">+92</option>

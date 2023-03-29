@@ -6,7 +6,7 @@ import Education from "../fullProfile/Education";
 import Interest from "../fullProfile/Interest";
 import MyFamily from "../fullProfile/MyFamily";
 import ReligiousInfo from "../fullProfile/ReligiousInfo";
-import Subscribe from "../fullProfile/subscribe";
+import Subscribe from "../fullProfile/Subscribe";
 import NavbarHead from "../navbar";
 
 type Props = {};

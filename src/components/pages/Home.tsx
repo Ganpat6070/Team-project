@@ -163,13 +163,13 @@ const Home = ({ onPass }: HomeProps) => {
 
       <Container fluid>
         <div className="textandimage">
-          <div>
+          <div className="perfectimg">
             <img
               src="../../image/joint.png"
               alt="weddingImage"
               style={{
-                // width: "480px",
-                // height: "446px",
+                width: "480px",
+                height: "446px",
                 top: "1064px",
                 left: "134px",
               }}
@@ -178,10 +178,10 @@ const Home = ({ onPass }: HomeProps) => {
           <div className="combine">
             <p
               style={{
-                // height: "108px",
-                // width: "540px",
-                // left: "645px",
-                // top: "1063.999755859375px",
+                height: "108px",
+                width: "540px",
+                left: "645px",
+                top: "1063.999755859375px",
                 fontSize: "36px",
               }}
             >
