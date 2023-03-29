@@ -81,6 +81,51 @@ const BasicInfo = () => {
             <option>Devorced</option>
           </select>
         </label> */}
+         <Row>
+            <Col className="mt-3">
+              <label htmlFor="">
+                Fisrt Name <span className="compalsory">*</span>
+                <br />
+              </label>
+              <input
+                ref={Cast}
+                type="text"
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">
+                Middle Name <span className="compalsory">*</span> <br />
+              </label>
+              {/* <input
+                type="text"
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              /> */}
+                {/* <select
+                // ref={Religion}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+              >
+                <option>Please Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option> */}
+                {/* <option>Female</option> */}
+                {/* <option>Christianity</option>
+                <option>Jainism</option> */}
+              {/* </select> */}
+              <input
+                type="text"
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">Last Name</label><span className="compalsory"> *</span> <br />
+              <input
+                type="text"
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+          </Row>
           <div className="row">
             <div className="col-lg-4">
               {/* <div className="form-group"> */}
@@ -200,12 +245,24 @@ const BasicInfo = () => {
             </Col>
             <Col className="mt-3">
               <label htmlFor="">
-                Sub Caste <br />
+                Gender <span className="compalsory">*</span> <br />
               </label>
-              <input
+              {/* <input
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
+              /> */}
+                <select
+                // ref={Religion}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+              >
+                <option>Please Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                {/* <option>Female</option> */}
+                {/* <option>Christianity</option>
+                <option>Jainism</option> */}
+              </select>
             </Col>
             <Col className="mt-3">
               <label htmlFor="">Physical Status</label>
@@ -228,7 +285,7 @@ const BasicInfo = () => {
               </label> */}
 
               <label htmlFor="" className="pt-1 ">
-                Education <span className="compalsory">*</span>
+                About Me <span className="compalsory">*</span>
                 <br />
               </label>
               <input

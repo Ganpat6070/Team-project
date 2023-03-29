@@ -27,3 +27,22 @@ opacity: 0;
     top:0;
 
 }
+
+.pcSocialMedia{
+    background-repeat: no-repeat; 
+    height:20; 
+    border: none;
+}
+
+.pcFacebook{
+    background: url('https://img.icons8.com/color/30/null/facebook-new.png'); 
+}
+
+.pcInstagram{
+    background: url('https://img.icons8.com/fluency/30/null/instagram-new.png'); 
+}
+
+.pcLocal{
+    background: url('https://img.icons8.com/emoji/30/null/file-folder-emoji.png'); 
+}
+

@@ -5,23 +5,56 @@ import "./Otp.css";
 
 const Otp = () => {
   const navigate = useNavigate();
-  const [otp, setOtp] = useState<number>();
+  const [otp, setOtp] = useState<any>('');
+  const [errorotp , setErrorotp] = useState<any>();
 
-  const verifyOtp = async (e: any) => {
-    e.preventDefault();
 
-    let response = await fetch("http://localhost:8000/otp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        otp: otp,
-      }),
-    });
+  const otpHandler:any = (e:React.ChangeEvent<HTMLInputElement>) => {
 
-    const res = await response.json();
-    console.log(res);
-    console.log(res.errorMessage);
-  };
+    if(e.target.value === "") {
+      // cosnt val = e.target.value;
+      // setErrorotp(true)
+      setErrorotp(true)
+      // setErrorotp(false)
+    }
+    else{
+      setOtp(e.target.value);
+    }
+  }
+  // const verifyOtp  =  (e: any) => {
+  //   e.preventDefault();
+
+  
+
+    const verifyOtp = async (e: any) => {
+      e.preventDefault();
+
+      if(otp === "") {
+        setErrorotp(true)
+      }
+      else{
+        setErrorotp(false)
+      }
+      if(otp > 4 || otp < 4 ) {
+        setErrorotp(true)
+      }
+      else{
+        setErrorotp(false)
+      }
+  
+  
+      let response = await fetch("http://localhost:8000/otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          otp: otp,
+        }),
+      });
+  
+      const res = await response.json();
+      console.log(res);
+      console.log(res.errorMessage);
+    };
   return (
     <section className="myform-area">
       <div className="container">
@@ -87,6 +120,7 @@ const Otp = () => {
                     <input type="text" id="" name="name" required />
                   </div> */}
                   <div className="form-group">
+                 
                     <label className="labelotp" htmlFor="otp">
                       Enter Your OTP
                     </label>
@@ -94,15 +128,17 @@ const Otp = () => {
                       type="number"
                       className="form-control"
                       id="otp"
-                      onChange={(e) => {
-                        setOtp(parseInt(e.target.value));
-                      }}
-                      placeholder="000000"
-                    />
+                      onWheel={e=>e.currentTarget.blur()}
+                      onChange={otpHandler}
+                      placeholder="0000"
+                      // max={4}
+                      // min={4}
+                      />
                     <small id="otp" className="form-text text-muted">
                       We'll never share your details with anyone else.
                     </small>
                   </div>
+                      { errorotp ? <small className="text-danger">Please Enter Your OTP</small> :  null} 
                   {/* <div className="form-group">
                                 <input type="password" id="" name="password" required/>
                                 <label>password</label>

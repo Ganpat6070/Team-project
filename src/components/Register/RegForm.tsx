@@ -48,7 +48,7 @@ const RegForm2 = () => {
           navigate("/login");
         }, 2000);
       }
-      if (res.msg === "Suceess") {
+      if (res.msg === "USER REGISTERED SUCCESSFULLY!") {
         setTimeout(() => {
           navigate("/otp");
         }, 2000);

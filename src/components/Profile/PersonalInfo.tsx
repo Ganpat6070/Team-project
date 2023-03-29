@@ -37,7 +37,7 @@ const PersonalInfo = () => {
     // let complexion: string = e.target.value;
     // console.log(complexion);
 
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setComplexion(e.target.value);
       // console.log("this error")
       // setComplexion(e.target.value);
@@ -318,7 +318,7 @@ const PersonalInfo = () => {
             </Col>
             <Col className="mt-3">
               <label>
-                Empolyed In <span className={classes.compalsory}>*</span>
+                Employed In <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -681,7 +681,7 @@ const PersonalInfo = () => {
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
               >
                 <option></option>
-                <option>ONGC</option>
+                <option>Privete</option>
                 <option>Goverment</option>
                 <option>UnEmployed</option>
               </select>
@@ -774,7 +774,7 @@ const PersonalInfo = () => {
               <br />
               <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
                 <option></option>
-                <option>ONGC</option>
+                <option>Private</option>
                 <option>Goverment</option>
                 <option>UnEmployed</option>
               </select>
@@ -827,7 +827,7 @@ const PersonalInfo = () => {
           <div className="row">
             <div className="row"></div>
             <div className="col mt-3">
-              <label htmlFor="">Countery Living In</label>
+              <label htmlFor="">Country Living In</label>
               <br />
               <select
                 style={{ height: "50%" }}
@@ -864,7 +864,7 @@ const PersonalInfo = () => {
           <hr />
           <div className="row">
             <div className="col mt-3">
-              <label htmlFor="">Countery Living In</label>
+              <label htmlFor="">Country Living In</label>
               <br />
               <select
                 style={{ height: "50%" }}

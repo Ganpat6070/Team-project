@@ -171,7 +171,7 @@ const Mypersonality = () => {
               <select
                 style={{ height: "50%" }}
                 ref={MStatus}
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+                className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
                 <option hidden>Please Select</option>
                 <option>Single</option>
@@ -222,7 +222,7 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
+                
                 className="slider"
                 id="myRange"
               />
@@ -304,7 +304,7 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
+                
                 className="slider"
                 id="myRange"
               />
@@ -417,7 +417,7 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
+                
                 className="slider"
                 id="myRange"
               />
@@ -472,7 +472,7 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
+                
                 className="slider"
                 id="myRange"
               />
@@ -517,7 +517,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -608,7 +607,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />

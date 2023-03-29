@@ -132,10 +132,9 @@ const PrePart = () => {
               >
                 <option hidden>From</option>
                 {/* <option></option> */}
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
+                <option>4f</option>
+                <option>5f</option>
+                <option>6f+</option>
               </select>
               {/* </div> */}
             </div>
@@ -151,10 +150,9 @@ const PrePart = () => {
               >
                 <option hidden>To</option>
                 {/* <option></option> */}
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
+                <option>4.5f</option>
+                <option>5.5f</option>
+                <option>6.5f+</option>
               </select>
               {/* </div> */}
             </div>
@@ -236,14 +234,22 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">M.E</label>
+                {/* <input type="checkbox" id="horns" name="horns" />
+                <label htmlFor="horns">Gujarati</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">B.E</label>
+                <label htmlFor="horns">English</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">Hindi</label> */}
+                    <select
+                style={{ height: "50%" , borderColor:"#d9d9d9"}}
+                className="form-control  mt-1 rounded-2 form-select"
+              >
+                  <option value="">Hindi</option>
+                  <option value="">Gujarati</option>
+                  <option value="">English</option>
+                </select>
               </div>
               {/* <input
                 type="text"
@@ -251,30 +257,33 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
-              </label>
-              <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">M.E</label>
-                <br />
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">B.E</label>
+                {/* <br /> */}
+              {/* </label> */}
+              {/* <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}> */}
+                {/* <input type="checkbox" id="horns" name="horns" />
+                <label htmlFor="horns"></label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
-              </div>
+                <label htmlFor="horns"></label>
+                <br />
+                <input type="checkbox" id="horns" name="horns" />
+                <label htmlFor="horns"></label> */}
+            
+              {/* </div> */}
             </Col>
           </Row>
         
           <Row>
-            <Col className="mt-3">
+            <Col className="pt-1 mb-1 ">
               {" "}
-              <label>
+              <label className="pt-1 mb-1 ">
                 Religion <span className={classes.compalsory}>*</span>
                 <br />
               </label>
+              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
+
               <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
                 <option hidden>Select Any One</option>
                 <option>Hindi</option>
@@ -282,6 +291,7 @@ const PrePart = () => {
                 <option>Christian</option>
                 <option>Other</option>
               </select>
+              </div>
             </Col>
       
             <Col className="mt-3">
@@ -304,14 +314,21 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
+                {/* <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">B.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">MCA</label> */}
+                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>X</option>
+                <option>Y</option>
+                <option>Z</option>
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -319,9 +336,9 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
+                {/* <br />
               </label>
               <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
@@ -332,7 +349,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="">
@@ -342,14 +359,21 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
+                {/* <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">B.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">MCA</label> */}
+                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>Veg</option>
+                <option>Non-Veg</option>
+                {/* <option>Christian</option> */}
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -357,11 +381,11 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
-              </label>
-              <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
+                {/* <br />
+              </label> */}
+              {/* <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
@@ -370,7 +394,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="">
@@ -418,14 +442,21 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
+                {/* <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">B.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">MCA</label> */}
+                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>Manager</option>
+                <option>First Class</option>
+                <option>Second Class</option>
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -433,9 +464,9 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
+                {/* <br />
               </label>
               <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
@@ -446,7 +477,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="">
@@ -456,14 +487,21 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
+                {/* <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">B.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">MCA</label> */}
+                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>India</option>
+                <option>NRI</option>
+                {/* <option>Christian</option> */}
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -471,9 +509,9 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
+                {/* <br />
               </label>
               <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
@@ -484,7 +522,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="">
@@ -493,7 +531,7 @@ const PrePart = () => {
                 Marital Status <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
+              {/* <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
@@ -502,6 +540,16 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
+              </div> */}
+              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
+
+               <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>Divorced</option>
+                <option>Unmarried</option>
+                {/* <option>Christian</option> */}
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -509,9 +557,9 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
+                {/* <br />
               </label>
               <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
@@ -522,7 +570,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="">
@@ -532,14 +580,21 @@ const PrePart = () => {
                 <br />
               </label>
               <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
+                {/* <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">M.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">B.E</label>
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <label htmlFor="horns">MCA</label> */}
+                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
+                <option hidden>Select Any One</option>
+                <option>India</option>
+                <option>Outofindia</option>
+                {/* <option>Christian</option> */}
+                <option>Other</option>
+              </select>
               </div>
               {/* <input
                 type="text"
@@ -547,9 +602,9 @@ const PrePart = () => {
               /> */}
             </Col>
             <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
+              {/* <label htmlFor="" className="pt-1 mb-1"> */}
                 {/* Mother Tongue <span className="compalsory">*</span> */}
-                <br />
+                {/* <br />
               </label>
               <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
                 <input type="checkbox" id="horns" name="horns" />
@@ -560,7 +615,7 @@ const PrePart = () => {
                 <br />
                 <input type="checkbox" id="horns" name="horns" />
                 <label htmlFor="horns">MCA</label>
-              </div>
+              </div> */}
             </Col>
           </Row>     
           <Row className="mb-0">

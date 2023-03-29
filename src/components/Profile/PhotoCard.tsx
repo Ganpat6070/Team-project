@@ -35,22 +35,20 @@ const PhotoCard = () => {
 <small className="text-secondary" style={{fontSize:"small" , marginLeft:"30px"}}>Uploads Photo From</small>
       <div className="row mt-2 mx-0">
         <div className="col-sm">
-          <button className="px-0 py-0 btn btn-sm btn-primary">
+          <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcLocal" >
             <input type="file" name="file" />
           </button>
         </div>
         <div className="col-sm">
-          <button className="px-0 py-0 btn btn-sm btn-primary">
+          <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcInstagram">
             <input type="file" name="file" />
           </button>
         </div>
         <div className="col-sm">
 
-          <button className="px-0 py-0 btn btn-sm btn-primary" >
-            {/* <img src="../../images/chirag/photocard.png" alt="" width={25}/> */}
-            {/* <Facebook color="white" size={20} style={{marginTop:"5px" , marginBottom:"0px"}}>
-            </Facebook> */}
-            <input type="file" name="file" accept="image/png, image/jpeg, image/gif" />
+          <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcFacebook" >
+          
+              <input type="file" name="file" accept="image/png, image/jpeg, image/gif" />
           </button>
         </div>
       </div>
