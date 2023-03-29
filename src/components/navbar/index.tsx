@@ -58,7 +58,7 @@ const NavbarHead = () => {
           <Container>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="justify-content-around flex-grow-1 me-auto">
+              <Nav className="justify-content-around navbar flex-grow-1 me-auto">
                 <Nav.Link>
                   <Link
                     to="/"

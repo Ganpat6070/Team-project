@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer">
-        <div className="d-flex justify-content-evenly mt-xxl-5">
+        <div className="d-flex footerdata justify-content-evenly mt-xxl-5">
           <div className="mt-5">
             <h4 className="fs-6 fw-bold">Explore</h4>
             <ul className="list-unstyled fw-normal">
@@ -51,11 +51,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-2 d-flex justify-content-evenly">
+        <div className="mt-2 appdata d-flex justify-content-evenly">
           <div className="fs-6 fw-medium">App available on</div>
           <div className="fs-6 fw-medium">
             <h6>Follow us on</h6>
-            <div className="d-flex justify-content-around">
+            <div className="d-flex icons justify-content-around">
               <FaFacebookSquare />
               <FaTwitterSquare />
               <FaInstagramSquare />

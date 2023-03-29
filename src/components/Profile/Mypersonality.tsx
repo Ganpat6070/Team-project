@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
 import NavbarHead from "../navbar";
+import PhotoCard from "./PhotoCard";
 
 const Mypersonality = () => {
   // Birthday Data
@@ -59,6 +60,7 @@ const Mypersonality = () => {
     >
       <NavbarHead />
       <ProgressBar />
+      <PhotoCard />
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -222,7 +224,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -304,7 +305,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -417,7 +417,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -472,7 +471,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -517,7 +515,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -608,7 +605,6 @@ const Mypersonality = () => {
                 type="range"
                 min="1"
                 max="100"
-                value="50"
                 className="slider"
                 id="myRange"
               />
@@ -679,9 +675,8 @@ const Mypersonality = () => {
                 Music
               </label>
             </div>
-            
           </div>
-          
+
           <Link to="/personal-info">
             <button
               className="btn btn-light text-white btn-xl mt-2"

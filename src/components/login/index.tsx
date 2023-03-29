@@ -32,7 +32,11 @@ function Login() {
     const res = await response.json();
     console.log(res);
     if (res.msg) {
-      if (res.msg === "You are not verified user!") {
+      if (
+        res.msg === "You are not verified user!" ||
+        res.msg === "Email id is not registered" ||
+        res.msg === "Password is incorrect!"
+      ) {
         toast.error(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -54,7 +58,6 @@ function Login() {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
-    
   };
   // const onSubmit = async (e: any) => {
   //   e.preventDefault();
@@ -200,7 +203,13 @@ function Login() {
                     <p className="text-center text-light">Forgot Password ?</p>
                     <p className="text-white text-center formFieldLink">
                       New to PerfectMatch.com ?{" "}
-                      <Link to="/register" className="text-light" style={{textDecoration:"none"}}>Register Free</Link>
+                      <Link
+                        to="/register"
+                        className="text-light"
+                        style={{ textDecoration: "none" }}
+                      >
+                        Register Free
+                      </Link>
                     </p>
                   </Form>
                   <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">

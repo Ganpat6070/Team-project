@@ -172,8 +172,13 @@
   flex-grow: 0;
 }
 
-
-
+.filterinput{
+  width: 90px;
+  height: 30px;
+}
+.findbtn{
+  width: 120px;
+}
 
 .testimonials {
   width: 100%;
@@ -232,4 +237,25 @@
   .perfectimg{
     width: 70%;
   }
+    .frontText {
+      font-weight: bolder;
+      font-size: 36px;
+      opacity: 1;
+      top: 20%;
+      left: 48%;
+      transform: translate(-50%, -50%);
+    }
+    .inputLabel{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .findbtn{
+      width: 120px;
+      margin-right: 40px;
+    }
+    .filterinput{
+      width: 120px;
+    }
 }

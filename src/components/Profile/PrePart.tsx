@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import "./PrePart.css";
 import NavbarHead from "../navbar";
+import PhotoCard from "./PhotoCard";
 
 const PrePart = () => {
   // Birthday Data
@@ -59,6 +60,7 @@ const PrePart = () => {
     >
       <NavbarHead />
       <ProgressBar />
+      <PhotoCard />
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
