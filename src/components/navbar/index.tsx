@@ -252,7 +252,13 @@ const NavbarHead = () => {
                             style={{ backgroundColor: "#f6837d" }}
                           >
                             <Person color="white" size={20} />{" "}
-                            <small>Edit My Profile</small>
+                            <small><Link
+                                to="/edit-profile"
+                                className="text-white"
+                                style={{ textDecoration: "none" }}
+                              >
+                               Edit My Profile
+                              </Link></small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"

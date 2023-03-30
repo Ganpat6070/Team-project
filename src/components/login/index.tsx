@@ -50,6 +50,14 @@ function Login() {
           navigate("/");
         }, 1500);
       }
+      if(res.msg === "please verify your email"){
+        toast.warning(res.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setTimeout(() => {
+          navigate("/otp");
+        }, 1500);
+      }
       // toast.success(res.msg, {
       //   position: toast.POSITION.TOP_RIGHT,
       // });

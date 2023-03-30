@@ -48,12 +48,15 @@ const RegForm2 = () => {
           navigate("/login");
         }, 2000);
       }
-      if (res.msg === "Suceess") {
+      if (res.message === "Registered") {
         setTimeout(() => {
           navigate("/otp");
         }, 2000);
       }
       toast.success(res.msg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      toast.success(res.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {

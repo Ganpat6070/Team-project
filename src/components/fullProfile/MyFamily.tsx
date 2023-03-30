@@ -12,10 +12,17 @@ const MyFamily = () => {
   return (
     <div>
       <div>
-        <div className="text-center">About Family</div>
+        <div className="text-center fw-bold">About Family</div>
         <br />
         <br />
-        <li className="d-flex justify-content-lg-evenly">
+        <li
+          className="d-flex justify-content-lg-evenly fw-normal"
+          style={{
+            backgroundColor: "rgb(238, 234, 234)",
+            padding: "2rem",
+            borderRadius: "4%",
+          }}
+        >
           <ul
             onClick={() => {
               setGender(1);
@@ -33,7 +40,7 @@ const MyFamily = () => {
             <br />
             <p>About My Mother</p>
           </ul>
-          <ul
+          {/* <ul
             onClick={() => {
               setGender(3);
             }}
@@ -46,13 +53,14 @@ const MyFamily = () => {
               setGender(4);
             }}
           >
-            <FaFemale style={{ width: "100px", height: "100px" }} /> <br /> <br />
+            <FaFemale style={{ width: "100px", height: "100px" }} /> <br />{" "}
+            <br />
             <p>About My Sister</p>
-          </ul>
+          </ul> */}
         </li>
       </div>
 
-      <div style={{backgroundColor: '#f94c505e', padding: '2%'}}>
+      <div style={{ padding: "2%" }}>
         {gender === 1 && <Father />}
         {gender === 2 && <Mother />}
         {gender === 3 && <Brother />}

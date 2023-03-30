@@ -18,6 +18,7 @@ import Contactus from "./components/pages/Contactus";
 import Mypersonality from "./components/Profile/Mypersonality";
 import PrePart from "./components/Profile/PrePart";
 import AstroDetails from "./components/Profile/AestroDetails";
+import EditProfile from "./components/pages/EditProfile";
 
 
 function App() {
@@ -58,6 +59,8 @@ function App() {
                 <Route path="/astrodata" element={<AstroDetails/>} />
                 <Route path="/data-info" element={<ShowData/>} />
                 <Route path="/data-add" element={<AddData/>} />
+                <Route path="/edit-profile" element={<EditProfile/>} />
+                
               </Routes>
             </div>
           </div>
