@@ -51,8 +51,9 @@ const BasicInfo = () => {
   const [cast, setcast] = useState("");
   const [gender, setGender] = useState("");
   const [phyStatus, setphyStatus] = useState("");
-  const [education, seteducation] = useState("");
+  const [aboutme, setAboutme] = useState("");
   const [spokenLanguage, setspokenLanguage] = useState<string[]>([]);
+  const [education, seteducation] = useState("");
   const [eduDetails, seteduDetails] = useState("");
   const [schoolName, setschoolName] = useState("");
   const [splace, setsplace] = useState("");
@@ -93,8 +94,9 @@ const basicinfo:any = {
   cast,
   gender,
   phyStatus,
-  education,
+  aboutme,
   spokenLanguage,
+  education,
   schoolName,
   splace,
   syos,
@@ -200,7 +202,7 @@ const basicinfo:any = {
     setErrorbi(false);
   };
   const aboutmeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!(e.target.value === "")) seteducation(e.target.value);
+    if (!(e.target.value === "")) setAboutme(e.target.value);
     // console.log(fname)
 
     setErrorbi(false);
@@ -396,8 +398,9 @@ const basicinfo:any = {
       cast ||
       gender ||
       phyStatus ||
-      education ||
+      aboutme || 
       spokenLanguage ||
+      education ||
       eduDetails ||
       schoolName ||
       splace ||
@@ -422,10 +425,12 @@ const basicinfo:any = {
       refcontact === ""
     ) {
       setErrorbi(true);
+
     }
   };
 
   return (
+    <>
     <div
       className="background_image"
       style={{
@@ -841,7 +846,7 @@ const basicinfo:any = {
               </select>
             </div>
             <div className="col mt-3">
-              <label htmlFor=""></label>
+              <label htmlFor="">Area Code</label>
               <input
               onChange={lareaHandler}
                 type="tel"
@@ -849,7 +854,7 @@ const basicinfo:any = {
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor=""></label>
+              <label htmlFor="">Number</label>
               <input
               onChange={lnumHandler}
                 type="number"
@@ -867,7 +872,7 @@ const basicinfo:any = {
                 id=""
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option value=""></option>
+                <option value="" hidden>+91</option>
                 <option value="">+91</option>
                 <option value="">+1</option>
                 <option value="">+59</option>
@@ -1069,6 +1074,8 @@ const basicinfo:any = {
         </form>
       </div>
     </div>
+    {/* <p>{basicinfo:any}</p> */}
+    </>
   );
 };
 
