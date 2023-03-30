@@ -29,6 +29,7 @@ const RegForm2 = () => {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/register", {
+      credentials : "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -27,16 +27,20 @@ const MyFamily = () => {
             onClick={() => {
               setGender(1);
             }}
+            style={{textAlign:"center"}}
           >
-            <FaMale style={{ width: "100px", height: "100px" }} /> <br /> <br />
-            <p>About My Father</p>
+            <img src="https://img.icons8.com/bubbles/200/null/business-man-with-beard.png"/>
+            {/* <FaMale style={{ width: "100px", height: "100px" }} /> <br /> <br /> */}
+            <p className="">About My Father</p>
           </ul>
           <ul
             onClick={() => {
               setGender(2);
             }}
+            style={{textAlign:"center"}}
           >
-            <FaFemale style={{ width: "100px", height: "100px" }} /> <br />{" "}
+            <img src="https://img.icons8.com/bubbles/200/null/brown-curly-hair-business-lady-with-bow.png"/> 
+            {/* <FaFemale style={{ width: "100px", height: "100px" }} /> <br />{" "} */}
             <br />
             <p>About My Mother</p>
           </ul>

@@ -27,12 +27,19 @@ const Otp = () => {
       toast.success(res.msg, {
         position: toast.POSITION.TOP_RIGHT,
       });
-      localStorage.setItem("login", "true");
       setTimeout(() => {
-        navigate("/");
+        navigate("/login");
       }, 1500);
     }
-    console.log(res.errorMessage);
+    if (res.msg === "You entered wrong otp") {
+      toast.error(res.msg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+    }
+    
+  
+    console.log(res.msg);
   };
   return (
     <>

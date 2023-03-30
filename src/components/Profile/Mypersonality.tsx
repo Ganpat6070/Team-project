@@ -1,52 +1,122 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Mypersonality.css";
 import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
-import { useEffect, useRef } from "react";
 import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
 
 const Mypersonality = () => {
-  // Birthday Data
-  const DOB = useRef<HTMLInputElement>(null);
-  const Height = useRef<HTMLSelectElement>(null);
-  const Weight = useRef<HTMLSelectElement>(null);
-  const MStatus = useRef<HTMLSelectElement>(null);
-  const MTongue = useRef<HTMLSelectElement>(null);
-  const Religion = useRef<HTMLSelectElement>(null);
-  const Cast = useRef<HTMLInputElement>(null);
-  const SubCast = useRef<HTMLInputElement>(null);
-  const PStatus = useRef<HTMLInputElement>(null);
-  const Education = useRef<HTMLInputElement>(null);
-  const SLang = useRef<HTMLSelectElement>(null);
-  const EducationDetails = useRef<HTMLInputElement>(null);
-  const SchoolName = useRef<HTMLInputElement>(null);
-  const SPlace = useRef<HTMLInputElement>(null);
-  const SYOS = useRef<HTMLSelectElement>(null);
-  const CollegeName = useRef<HTMLInputElement>(null);
-  const Course = useRef<HTMLInputElement>(null);
-  const CPlace = useRef<HTMLInputElement>(null);
-  const CYOS = useRef<HTMLSelectElement>(null);
-  const CompanyName = useRef<HTMLInputElement>(null);
-  const Designation = useRef<HTMLInputElement>(null);
-  const WLocation = useRef<HTMLInputElement>(null);
-  const LCode = useRef<HTMLSelectElement>(null);
-  const LArea = useRef<HTMLSelectElement>(null);
-  const LNumber = useRef<HTMLInputElement>(null);
+  const [diet, setDiet] = useState("");
+  const [smoke, setSmoke] = useState("");
+  const [drink, setDrink] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [music, setMusic] = useState<string[]>([]);
+  const [musicrange, setMusicrange] = useState<number>(0);
+  const [reading, setReading] = useState<string[]>([]);
+  const [readingrange, setReadingrange] = useState<number>(0);
+  const [movies, setMovies] = useState<string[]>([]);
+  const [movierange, setMovierange] = useState<number>(0);
+  const [sports, setSports] = useState<string[]>([]);
+  const [sportrange, setSportrange] = useState<number>(0);
+  const [foods, setFoods] = useState<string[]>([]);
+  const [foodrange, setFoodrange] = useState<number>(0);
+  const [dress, setDress] = useState<string[]>([]);
+  const [dressrange, setDressrange] = useState<number>(0);
+
+  const mypersonality: any = {
+    diet,
+    smoke,
+    drink,
+    hobby,
+    musicrange,
+    music,
+    readingrange,
+    reading,
+    movierange,
+    movies,
+    sportrange,
+    sports,
+    foodrange,
+    foods,
+    dressrange,
+    dress,
+  };
+  console.log(mypersonality);
+
+  const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setDiet(e.target.value);
+    // console.log(fname)
+  };
+  const smokeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setSmoke(e.target.value);
+    // console.log(fname)
+  };
+  const drinkHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setDrink(e.target.value);
+  };
+  const hobbyHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setHobby(e.target.value);
+  };
+
+  const musicHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setMusic([...music, value]);
+    } else {
+      setMusic(music.filter((box) => box !== value));
+    }
+  };
+  const readHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setReading([...reading, value]);
+    } else {
+      setReading(reading.filter((box) => box !== value));
+    }
+  };
+  const moviesHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setMovies([...movies, value]);
+    } else {
+      setMovies(movies.filter((box) => box !== value));
+    }
+  };
+  const sportsHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setSports([...sports, value]);
+    } else {
+      setSports(sports.filter((box) => box !== value));
+    }
+  };
+  const foodHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setFoods([...foods, value]);
+    } else {
+      setFoods(foods.filter((box) => box !== value));
+    }
+  };
+  const dressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setDress([...dress, value]);
+    } else {
+      setDress(dress.filter((box) => box !== value));
+    }
+  };
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    if (DOB.current) {
-      console.log(DOB.current.value);
-    }
-    if (Cast.current) {
-      console.log(Cast.current.value);
-    }
-    if (Height.current) {
-      console.log(Height.current.value);
-    }
   };
 
   return (
@@ -73,16 +143,7 @@ const Mypersonality = () => {
           >
             My Personality
           </p>
-          {/* 
-        <label>
-          Marital Status*
-          <select className="">
-            <option></option>
-            <option>Single</option>
-            <option>In-Relationship</option>
-            <option>Devorced</option>
-          </select>
-        </label> */}
+
           <div className="row">
             <div className="col">
               <label className="mb">
@@ -90,16 +151,14 @@ const Mypersonality = () => {
                 <br />
               </label>
               <select
+                onChange={dietHandler}
                 style={{ height: "50%" }}
-                ref={Height}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
                 <option hidden>Please Select</option>
-                <option>4ft</option>
-                <option>5ft</option>
-                <option>6ft</option>
-                <option>7ft</option>
-                <option>7ft +</option>
+                <option>Veg</option>
+                <option>Non-Veg</option>
+                <option>Other</option>
               </select>
             </div>
             {/* <div className="col-xl-">
@@ -113,16 +172,13 @@ const Mypersonality = () => {
                 <br />
               </label>
               <select
+                onChange={smokeHandler}
                 style={{ height: "50%" }}
-                ref={Height}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
                 <option hidden>Please Select</option>
-                <option>4ft</option>
-                <option>5ft</option>
-                <option>6ft</option>
-                <option>7ft</option>
-                <option>7ft +</option>
+                <option>Yes</option>
+                <option>No</option>
               </select>
             </div>
             <div className="col">
@@ -132,16 +188,13 @@ const Mypersonality = () => {
               </label>
               {/* <input type="number" className="form-control mt-1 rounded-2 border-secondary" /> */}
               <select
+                onChange={drinkHandler}
                 style={{ height: "50%" }}
-                ref={Weight}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
                 <option hidden>Please Select</option>
-                <option>40-50KG</option>
-                <option>50-60KG</option>
-                <option>60-70KG</option>
-                <option>70-80KG</option>
-                <option>80-90KG</option>
+                <option>Yes</option>
+                <option>No</option>
               </select>
             </div>
           </div>
@@ -171,42 +224,21 @@ const Mypersonality = () => {
               </span>
               <br />
               <select
-                style={{ height: "50%" }}
-                ref={MStatus}
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+                onChange={hobbyHandler}
+                style={{ height: "30%" }}
+                className="form-control text-dark mt-1 mb-1 rounded-2 border-secondary form-select"
               >
                 <option hidden>Please Select</option>
-                <option>Single</option>
-                <option>In-Relationship</option>
-                <option>Devorced</option>
+                <option>Cooking</option>
+                <option>Hiking</option>
+                <option>Gardening</option>
+                <option>Collecting Art</option>
+                <option>Learning a new language</option>
+                <option>Blogging</option>
+                <option>DIY and Crafts</option>
+                <option>Video Production</option>
               </select>
             </Col>
-            {/* <Col  className="mt-3">
-              <label>
-                Mother Tongue <span className="compalsory">*</span>
-                <br />
-              </label>
-              <select ref={MTongue} className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
-                <option></option>
-                <option>Hindi</option>
-                <option>Gujarati</option>
-                <option>English</option>
-              </select>
-            </Col> */}
-            {/* <Col  className="mt-3">
-              {" "}
-              <label>
-                Religion <span className="compalsory">*</span>
-                <br />
-              </label>
-              <select ref={Religion} className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
-                <option></option>
-                <option>Hinduism</option>
-                <option>Islam</option>
-                <option>Christianity</option>
-                <option>Jainism</option>
-              </select>
-            </Col> */}
           </Row>
           <Row>
             <div
@@ -223,69 +255,115 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
                 id="myRange"
+                step="20"
+                value={musicrange}
+                onChange={(e) => setMusicrange(parseInt(e.target.value))}
               />
             </div>
 
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                Caste / Denomination <span className="compalsory">*</span>
-                <br />
-              </label>
-              <input
-                ref={Cast}
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Film Music"
+                  checked={music.includes("Film Music")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Film Music
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Devotional"
+                  checked={music.includes("Devotional")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Devotional
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Albums"
+                  checked={music.includes("Albums")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Albums
               </label>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                Sub Caste <br />
-              </label>
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-              <br />
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Western"
+                  checked={music.includes("Western")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Western
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Hindi Songs"
+                  checked={music.includes("Hindi Songs")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Hindi Songs
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Gujrati Songs"
+                  checked={music.includes("Gujrati Songs")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Gujrati Songs
               </label>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="">Physical Status</label>
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Music Is My Life"
+                  checked={music.includes("Music Is My Life")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Music Is My Life
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Tamil Songs"
+                  checked={music.includes("Tamil Songs")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Tamil Songs
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="music"
+                  value="Don't Listen To Music"
+                  checked={music.includes("Don't Listen To Music")}
+                  onChange={musicHandler}
+                />
+                &nbsp;Don't Listen To Music
               </label>
             </Col>
           </Row>
@@ -304,100 +382,113 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
-                id="myRange"
+                step="20"
+                value={readingrange}
+                onChange={(e) => setReadingrange(parseInt(e.target.value))}
               />
             </div>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                About me <span className="compalsory">*</span>
-                <br />
-                <textarea
-                  name=""
-                  id=""
-                  className="form-control text-dark mt-1 rounded-2 border-secondary"
-                ></textarea>
-              </label> */}
-
-              {/* <label htmlFor="" className="pt-1 ">
-                Education <span className="compalsory">*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-
-              <p style={{ color: "#6E6E6E", fontStyle: "italic" }}>
-                (Characters Left : 600)
-              </p> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Newspapers"
+                  checked={reading.includes("Newspapers")}
+                  onChange={readHandler}
+                />
+                &nbsp;Newspapers
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Trade Journals"
+                  checked={reading.includes("Trade Journals")}
+                  onChange={readHandler}
+                />
+                &nbsp;Trade Journals
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Self Help Books"
+                  checked={reading.includes("Self Help Books")}
+                  onChange={readHandler}
+                />
+                &nbsp;Self Help Books
               </label>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                Spoken Language(s) <span className="compalsory">*</span>
-                <br />
-                <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang">
-                  <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                      className=""
-                    />
-                    English
-                  </label>
-                  <br />
-                  <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Gujarati
-                  </label>
-                  <br />
-                  <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Hindi
-                  </label>
-                  <br />
-                </span>
-              </label> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Management Books"
+                  checked={reading.includes("Management Books")}
+                  onChange={readHandler}
+                />
+                &nbsp;Management Books
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Comedy"
+                  checked={reading.includes("Comedy")}
+                  onChange={readHandler}
+                />
+                &nbsp;Comedy
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Biographies"
+                  checked={reading.includes("Biographies")}
+                  onChange={readHandler}
+                />
+                &nbsp;Biographies
+              </label>
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Devotional Books"
+                  checked={reading.includes("Devotional Books")}
+                  onChange={readHandler}
+                />
+                &nbsp;Devotional Books
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="Romance"
+                  checked={reading.includes("Romance")}
+                  onChange={readHandler}
+                />
+                &nbsp;Romance
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="reading"
+                  value="I Don't Read Much"
+                  checked={reading.includes("I Don't Read Much")}
+                  onChange={readHandler}
+                />
+                &nbsp;I Don't Read Much
               </label>
             </Col>
           </Row>
@@ -416,43 +507,115 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
-                id="myRange"
+                step="20"
+                value={movierange}
+                onChange={(e) => setMovierange(parseInt(e.target.value))}
               />
             </div>
             <Col className="mt-3">
-              {/* <label htmlFor="" className="pt-3">
-                Education <span className="compalsory">*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="English"
+                  checked={movies.includes("English")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;English
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Hindi"
+                  checked={movies.includes("Hindi")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Hindi
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Other Language Movies"
+                  checked={movies.includes("Other Language Movies")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Other Language Movies
               </label>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="" className="pt-3">
-                <br />
+              <label htmlFor="Action">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  id="Action"
+                  value="Action"
+                  checked={movies.includes("Action")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Action
               </label>
-              <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Romance"
+                  checked={movies.includes("Romance")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Romance
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Comedy"
+                  checked={movies.includes("Comedy")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Comedy
+              </label>
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Family Stories"
+                  checked={movies.includes("Family Stories")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Family Stories
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Spy"
+                  checked={movies.includes("Spy")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Spy
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="movie"
+                  value="Don't See Much Movies"
+                  checked={movies.includes("Don't See Much Movies")}
+                  onChange={moviesHandler}
+                />
+                &nbsp;Don't See Much Movies
+              </label>
             </Col>
           </Row>
           <div className="row">
@@ -470,32 +633,113 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
-                id="myRange"
+                step="20"
+                value={sportrange}
+                onChange={(e) => setSportrange(parseInt(e.target.value))}
               />
             </div>
             <div className="col-xl mt-3">
-              {/* <label htmlFor="eid">Education in Detail</label>
-              <br />
-              <input
-                type="text"
-                id="eid"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Cricket"
+                  checked={sports.includes("Cricket")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Cricket
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Football"
+                  checked={sports.includes("Football")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Football
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Tennis"
+                  checked={sports.includes("Tennis")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Tennis
+              </label>
+            </div>
+            <div className="col-xl mt-3">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Badminton"
+                  checked={sports.includes("Badminton")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Badminton
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Basketball"
+                  checked={sports.includes("Basketball")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Basketball
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Table Tennis"
+                  checked={sports.includes("Table Tennis")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Table Tennis
+              </label>
+            </div>
+            <div className="col-xl mt-3">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Swimming"
+                  checked={sports.includes("Swimming")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Swimming
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Boxing"
+                  checked={sports.includes("Boxing")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Boxing
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="sport"
+                  value="Don't Like Sports Much"
+                  checked={sports.includes("Don't Like Sports Much")}
+                  onChange={sportsHandler}
+                />
+                &nbsp;Don't Like Sports Much
               </label>
             </div>
           </div>
@@ -514,78 +758,113 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
-                id="myRange"
+                step="20"
+                value={foodrange}
+                onChange={(e) => setFoodrange(parseInt(e.target.value))}
               />
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">School Name</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="South Indian"
+                  checked={foods.includes("South Indian")}
+                  onChange={foodHandler}
+                />
+                &nbsp;South Indian
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="North Indian"
+                  checked={foods.includes("North Indian")}
+                  onChange={foodHandler}
+                />
+                &nbsp;North Indian
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-            </div>
-            <div className="col mt-3">
-              {/* <label htmlFor="">Place</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
-              /> */}
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-              <br />
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-              <br />
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Chinese"
+                  checked={foods.includes("Chinese")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Chinese
               </label>
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">Year of Study</label>
-              <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
-                <option></option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2000</option>
-              </select>
-              <label htmlFor=""></label> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Kathiyawadi"
+                  checked={foods.includes("Kathiyawadi")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Kathiyawadi
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Mexican"
+                  checked={foods.includes("Mexican")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Mexican
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Italian"
+                  checked={foods.includes("Italian")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Italian
+              </label>
+            </div>
+            <div className="col mt-3">
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Thai"
+                  checked={foods.includes("Thai")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Thai
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Kerala"
+                  checked={foods.includes("Kerala")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Kerala
+              </label>
+              <br />
+              <label htmlFor="">
+                <input
+                  type="checkbox"
+                  name="food"
+                  value="Anything"
+                  checked={foods.includes("Anything")}
+                  onChange={foodHandler}
+                />
+                &nbsp;Anything
               </label>
             </div>
           </div>
@@ -604,75 +883,79 @@ const Mypersonality = () => {
               <input
                 type="range"
                 min="1"
-                max="100"
+                max="101"
                 className="slider"
-                id="myRange"
+                step="20"
+                value={dressrange}
+                onChange={(e) => setDressrange(parseInt(e.target.value))}
               />
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">College Name</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="Indian"
+                  checked={dress.includes("Indian")}
+                  onChange={dressHandler}
+                />
+                &nbsp;Indian
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="Indo Western"
+                  checked={dress.includes("Indo Western")}
+                  onChange={dressHandler}
+                />
+                &nbsp;Indo Western
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-            </div>
-            <div className="col mt-3">
-              {/* <label htmlFor="">Course</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-              <br />
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
-              </label>
-              <br />
-              <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="Casual"
+                  checked={dress.includes("Casual")}
+                  onChange={dressHandler}
+                />
+                &nbsp;Casual
               </label>
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">Place</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="Western"
+                  checked={dress.includes("Western")}
+                  onChange={dressHandler}
+                />
+                &nbsp;Western
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="Traditional"
+                  checked={dress.includes("Traditional")}
+                  onChange={dressHandler}
+                />
+                &nbsp;Traditional
               </label>
               <br />
               <label htmlFor="">
-                <input type="checkbox" />
-                Music
+                <input
+                  type="checkbox"
+                  name="dress"
+                  value="No Preference"
+                  checked={dress.includes("No Preference")}
+                  onChange={dressHandler}
+                />
+                &nbsp;No Preference
               </label>
             </div>
           </div>

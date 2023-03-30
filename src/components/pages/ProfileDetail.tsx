@@ -27,21 +27,25 @@ const ProfileDetail = (props: Props) => {
             borderTopRightRadius: "35px",
             borderBottomLeftRadius: "0px",
             borderBottomRightRadius: "0px",
+            boxShadow: "none",
+            flexDirection:"row",
+            alignItems:"center"
           }}
         >
-          <Card.Img
-            src="../../image/png/girl31.png"
-            style={{
-              borderRadius: "20px",
-              width: "400px",
-              height: "400px",
-              padding: "40px 80px 60px",
-            }}
-            alt="Full Detail"
-          />
+            <Card.Img
+              src="../../image/png/girl31.png"
+              style={{
+                borderRadius: "20px",
+                width: "400px",
+                height: "400px",
+                margin: "40px 60px",
+              }}
+              alt="Full Detail"
+            />
+
           <Card.ImgOverlay
             className="text-start"
-            style={{ margin: "5% 29%", borderRadius: "20px" }}
+            style={{ borderRadius: "20px" , position:"relative"}}
           >
             <Card.Title className="my-4">Name : {}</Card.Title>
             <Card.Text>Age : {}</Card.Text>
