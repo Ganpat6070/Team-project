@@ -34,7 +34,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         ? data.religion.toLowerCase()
         : data.religion === props.religion.toLowerCase()) &&
       (props.gender.toLowerCase() === ""
-        ? data.gender.toLowerCase()
+        ? data.gender
         : data.gender.toLowerCase() === props.gender.toLowerCase()) &&
       (props.lessAge.toLowerCase() === ""
         ? data.born_year <= props.greatAge.toLowerCase()

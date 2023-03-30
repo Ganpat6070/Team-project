@@ -37,6 +37,7 @@ const EditProfile = () => {
   const [refaddress, setrefaddress] = useState("");
   const [refcontact, setrefcontact] = useState("");
 
+  
   const [complexion, setComplexion] = useState("");
   const [bodytype, setbodytype] = useState("");
   const [bloodGroup, setbloodGroup] = useState("");
@@ -69,6 +70,46 @@ const EditProfile = () => {
   const [currLoc, setcurrLoc] = useState("");
   const [resStatus, setresStatus] = useState("");
   const [native, setnative] = useState("");
+
+
+  const [ppAge1, setppAge1] = useState("");
+  const [ppAge2, setppAge2] = useState("");
+  const [ppHeight1, setppHeight1] = useState("");
+  const [ppHeight2, setppHeight2] = useState("");
+  const [ppPhyStatus, setppPhyStatus] = useState("");
+  const [ppFamStatus, setppFamStatus] = useState("");
+  const [ppCurrency, setppCurrency] = useState("");
+  const [ppAnnual, setppAnnual] = useState("");
+  const [ppMotherT, setppMotherT] = useState("");
+  const [ppreligion, setppreligion] = useState("");
+  const [ppCaste, setppCaste] = useState("");
+  const [ppdiet, setppdiet] = useState("");
+  const [ppEdu, setppEdu] = useState("");
+  const [ppLoc, setppLoc] = useState("");
+  const [ppmStatus, setppmStatus] = useState("");
+  const [ppNative, setppNative] = useState("");
+
+
+  const [mpDiet, setmpDiet] = useState("");
+  const [mpSmoke, setmpSmoke] = useState("");
+  const [mpDrink, setmpDrink] = useState("");
+  const [mpHobbies, setmpHobbies] = useState("");
+  const [mpMusic, setmpMusic] = useState("");
+  const [mpMyMusic, setmpMyMusic] = useState("");
+  const [mpReading, setmpReading] = useState("");
+  const [mpSports, setmpSports] = useState("");
+  const [mpDress, setmpDress] = useState("");
+  const [mpGames, setmpGames] = useState("");
+
+
+  const [aDOB, setaDOB] = useState("");
+  const [aTOB, setaTOB] = useState("");
+  const [aBTC, setaBTC] = useState("");
+  const [aPlaceofBirth, setaPlaceofBirth] = useState("");
+  const [aLatitude, setaLatitude] = useState("");
+  const [aLongitude, setaLongitude] = useState("");
+  const [aTimeZone, setaTimeZone] = useState("");
+
 
   const [age, setAge] = useState("");
 
@@ -987,8 +1028,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Age"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppAge1}
+                    onChange={(e) => setppAge1(e.target.value)}
                   >
                     <option>18</option>
                     <option>22</option>
@@ -996,8 +1037,8 @@ const EditProfile = () => {
                   </select>
                   <select
                     name="Age"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppAge2}
+                    onChange={(e) => setppAge2(e.target.value)}
                   >
                     <option>23</option>
                     <option>28</option>
@@ -1010,16 +1051,16 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Height"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppHeight1}
+                    onChange={(e) => setppHeight1(e.target.value)}
                   >
                     <option>5</option>
                     <option>6</option>
                   </select>
                   <select
                     name="Height"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppHeight2}
+                    onChange={(e) => setppHeight2(e.target.value)}
                   >
                     <option>5.5</option>
                     <option>6.5</option>
@@ -1031,8 +1072,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppPhyStatus}
+                    onChange={(e) => setppPhyStatus(e.target.value)}
                   >
                     <option>Type1</option>
                     <option>Type2</option>
@@ -1045,12 +1086,11 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppFamStatus}
+                    onChange={(e) => setppFamStatus(e.target.value)}
                   >
                     <option>With Family</option>
                     <option>Alone</option>
-                    {/* <option>Type3</option> */}
                   </select>
                 </td>
               </tr>
@@ -1059,8 +1099,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppCurrency}
+                    onChange={(e) => setppCurrency(e.target.value)}
                   >
                     <option>INR</option>
                     <option>USD</option>
@@ -1073,8 +1113,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppAnnual}
+                    onChange={(e) => setppAnnual(e.target.value)}
                   >
                     <option>1-3 L</option>
                     <option>3-5 L</option>
@@ -1088,8 +1128,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppMotherT}
+                    onChange={(e) => setppMotherT(e.target.value)}
                   >
                     <option>Hindi</option>
                     <option>Gujarati</option>
@@ -1103,8 +1143,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppreligion}
+                    onChange={(e) => setppreligion(e.target.value)}
                   >
                     <option>Any</option>
                     <option>Hindu</option>
@@ -1117,8 +1157,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppCaste}
+                    onChange={(e) => setppCaste(e.target.value)}
                   >
                     <option>Any</option>
                     <option>Hindu</option>
@@ -1131,8 +1171,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppdiet}
+                    onChange={(e) => setppdiet(e.target.value)}
                   >
                     <option>Vegetarian</option>
                     <option>Non-Vegetarian</option>
@@ -1146,21 +1186,22 @@ const EditProfile = () => {
                     type="checkbox"
                     id="education"
                     name="eduOptions"
-                    value="Graduate"
+                    value={ppEdu}
+                    onChange={(e) => setppEdu(e.target.value)}
                   />
                   <label htmlFor="education">Graduate</label>
                   <input
                     type="checkbox"
                     id="education"
-                    name="eduOptions"
-                    value="Post-Graduate"
+                    value={ppEdu}
+                    onChange={(e) => setppEdu(e.target.value)}
                   />
                   <label htmlFor="education">Post-Graduate</label>
                   <input
                     type="checkbox"
                     id="education"
-                    name="eduOptions"
-                    value="PH.D"
+                    value={ppEdu}
+                    onChange={(e) => setppEdu(e.target.value)}
                   />
                   <label htmlFor="education">PH.D</label>
                   {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
@@ -1172,8 +1213,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppLoc}
+                    onChange={(e) => setppLoc(e.target.value)}
                   >
                     <option>India</option>
                     <option>USA</option>
@@ -1185,8 +1226,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppmStatus}
+                    onChange={(e) => setppmStatus(e.target.value)}
                   >
                     <option>Married</option>
                     <option>Un-Married</option>
@@ -1200,8 +1241,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={ppNative}
+                    onChange={(e) => setppNative(e.target.value)}
                   >
                     <option></option>
                     <option></option>
@@ -1210,16 +1251,16 @@ const EditProfile = () => {
                   </select>
                 </td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td>Marital Status</td>
                 <td>
                   <input
                     type="text"
-                    value={motherOcc}
-                    onChange={(e) => setmotherOcc(e.target.value)}
+                    value={ppmStatus}
+                    onChange={(e) => setppmStatus(e.target.value)}
                   />
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </Table>
         </div>
@@ -1249,8 +1290,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Age"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={mpDiet}
+                    onChange={(e) => setmpDiet(e.target.value)}
                   >
                     <option>Vegetarain</option>
                     <option>Non-Vegetarian</option>
@@ -1262,8 +1303,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Height"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={mpSmoke}
+                    onChange={(e) => setmpSmoke(e.target.value)}
                   >
                     <option>Yes</option>
                     <option>No</option>
@@ -1275,8 +1316,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    value={mpDrink}
+                    onChange={(e) => setmpDrink(e.target.value)}
                   >
                     <option>Yes</option>
                     <option>No</option>
@@ -1290,21 +1331,24 @@ const EditProfile = () => {
                     type="checkbox"
                     id="hobby"
                     name="hobbies"
-                    value="Music"
+                    value={mpHobbies}
+                    onChange={(e) => setmpHobbies(e.target.value)}
                   />
                   <label htmlFor="Music">Music</label>
                   <input
                     type="checkbox"
                     id="hobby"
                     name="hobbies"
-                    value="Games"
+                    value={mpMusic}
+                    onChange={(e) => setmpMusic(e.target.value)}
                   />
                   <label htmlFor="Games">Games</label>
                   <input
                     type="checkbox"
                     id="hobby"
                     name="hobbies"
-                    value="Reading"
+                    value={mpGames}
+                    onChange={(e) => setmpGames(e.target.value)}
                   />
                   <label htmlFor="Reading">Reading</label>
                   {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
@@ -1318,35 +1362,40 @@ const EditProfile = () => {
                     type="checkbox"
                     id="music"
                     name="musics"
-                    value="Film Music"
+                    value={mpMyMusic}
+                    onChange={(e) => setmpMyMusic(e.target.value)}
                   />
                   <label htmlFor="Film Music">Film Music</label>
                   <input
                     type="checkbox"
                     id="music"
                     name="musics"
-                    value="Devotional"
+                    value={mpMyMusic}
+                    onChange={(e) => setmpMyMusic(e.target.value)}
                   />
                   <label htmlFor="Devotional">Devotional</label>
                   <input
                     type="checkbox"
                     id="music"
                     name="musics"
-                    value="Albums"
+                    value={mpMyMusic}
+                    onChange={(e) => setmpMyMusic(e.target.value)}
                   />
                   <label htmlFor="Albums">Albums</label>
                   <input
                     type="checkbox"
                     id="music"
                     name="musics"
-                    value="Hindi Song"
+                    value={mpMyMusic}
+                    onChange={(e) => setmpMyMusic(e.target.value)}
                   />
                   <label htmlFor="Hindi Song">Hindi Song</label>
                   <input
                     type="checkbox"
                     id="music"
                     name="musics"
-                    value="Western"
+                    value={mpMyMusic}
+                    onChange={(e) => setmpMyMusic(e.target.value)}
                   />
                   <label htmlFor="Western">Western</label>
                 </td>
@@ -1358,21 +1407,24 @@ const EditProfile = () => {
                     type="checkbox"
                     id="read"
                     name="reading"
-                    value="Newspaper"
+                    value={mpReading}
+                    onChange={(e) => setmpReading(e.target.value)}
                   />
                   <label htmlFor="Newspaper">Newspaper</label>
                   <input
                     type="checkbox"
                     id="read"
                     name="reading"
-                    value="Biographies"
+                    value={mpReading}
+                    onChange={(e) => setmpReading(e.target.value)}
                   />
                   <label htmlFor="Biographies">Biographies</label>
                   <input
                     type="checkbox"
                     id="read"
                     name="reading"
-                    value="Any thing"
+                    value={mpReading}
+                    onChange={(e) => setmpReading(e.target.value)}
                   />
                   <label htmlFor="Any thing">Any thing</label>
                 </td>
@@ -1384,14 +1436,16 @@ const EditProfile = () => {
                     type="checkbox"
                     id="sport"
                     name="sports"
-                    value="Cricket"
+                    value={mpSports}
+                    onChange={(e) => setmpSports(e.target.value)}
                   />
                   <label htmlFor="Cricket">Cricket</label>
                   <input
                     type="checkbox"
                     id="sport"
                     name="sports"
-                    value="Swimming"
+                    value={mpSports}
+                    onChange={(e) => setmpSports(e.target.value)}
                   />
                   <label htmlFor="Swimming">Swimming</label>
                 </td>
@@ -1403,21 +1457,24 @@ const EditProfile = () => {
                     type="checkbox"
                     id="dress"
                     name="dresses"
-                    value="Indian"
+                    value={mpDress}
+                    onChange={(e) => setmpSports(e.target.value)}
                   />
                   <label htmlFor="Indian">Indian</label>
                   <input
                     type="checkbox"
                     id="dress"
                     name="dresses"
-                    value="Western"
+                    value={mpDress}
+                    onChange={(e) => setmpDress(e.target.value)}
                   />
                   <label htmlFor="Western">Western</label>
                   <input
                     type="checkbox"
                     id="dress"
                     name="dresses"
-                    value="Traditional"
+                    value={mpDress}
+                    onChange={(e) => setmpDress(e.target.value)}
                   />
                   <label htmlFor="Traditional">Traditional</label>
                 </td>
@@ -1425,7 +1482,6 @@ const EditProfile = () => {
             </tbody>
           </Table>
         </div>
-
 
         <div
           style={{ width: "85%" }}
@@ -1450,7 +1506,121 @@ const EditProfile = () => {
               <tr>
                 <td>Date of Birth</td>
                 <td>
-                  <input type="date" name="" id="" value="" />
+                  <input
+                    type="date"
+                    name=""
+                    id=""
+                    value={aDOB}
+                    onChange={(e) => setaDOB(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Time of Birth</td>
+                <td>
+                <select
+                    name="Time of Birth"
+                    value={aTOB}
+                    onChange={(e) => setaTOB(e.target.value)}
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+                  <select
+                    name="Time of Birth"
+                    value={aTOB}
+                    onChange={(e) => setaTOB(e.target.value)}
+                  >
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                    <option>60</option>
+                  </select>
+                  <select
+                    name="Time of Birth"
+                    value={aTOB}
+                    onChange={(e) => setaTOB(e.target.value)}
+                  >
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                    <option>40</option>
+                    <option>50</option>
+                    <option>60</option>
+                  </select>
+                  <select
+                    name="Time of Birth"
+                    value={aTOB}
+                    onChange={(e) => setaTOB(e.target.value)}
+                  >
+                    <option>AM</option>
+                    <option>PM</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Birth Time Correction</td>
+                <td>
+                  <select
+                    name="Height"
+                    value={aBTC}
+                    onChange={(e) => setaBTC(e.target.value)}
+                  >
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Place of Birth</td>
+                <td>
+                  <input
+                    type="text"
+                    value={aPlaceofBirth}
+                    onChange={(e) => setaPlaceofBirth(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Latitude</td>
+                <td>
+                  <input
+                    type="text"
+                    value={aLatitude}
+                    onChange={(e) => setaLatitude(e.target.value)}
+                  />{" "}
+                </td>
+              </tr>
+              <tr>
+                <td>Longitude</td>
+                <td>
+                  <input
+                    type="text"
+                    value={aLongitude}
+                    onChange={(e) => setaLongitude(e.target.value)}
+                  />{" "}
+                </td>
+              </tr>
+              <tr>
+                <td>Time Zone</td>
+                <td>
+                  <input
+                    type="text"
+                    value={aTimeZone}
+                    onChange={(e) => setaTimeZone(e.target.value)}
+                  />{" "}
                 </td>
               </tr>
             </tbody>
