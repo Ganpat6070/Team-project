@@ -1,0 +1,79 @@
+.footer {
+  background-image: url("../../../public/image/png/Background2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+}
+
+.countryText {
+  position: absolute;
+  left: 10%;
+  padding-top: 5%;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+.copyright {
+  position: relative;
+  width: 100%;
+  height: 27px;
+  left: 10%;
+  top: 210px;
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+.horline {
+  position: relative;
+  width: 100%;
+  height: 55px;
+  left: 0px;
+  top: 250px;
+  background: #000000;
+  opacity: 0.3;
+}
+@media (max-width: 600px) {
+  .footer {
+    height: fit-content;
+  }
+  .footerdata {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .appdata{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .icons{
+    display: inline-block;
+  }
+  .countryText{
+  position: relative;
+
+  }
+  .copyright{
+    text-align: center;
+  }
+}
