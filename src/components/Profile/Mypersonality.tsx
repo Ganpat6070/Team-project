@@ -1,4 +1,4 @@
-import React from "react";
+import {useState}from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Mypersonality.css";
@@ -35,6 +35,8 @@ const Mypersonality = () => {
   const LArea = useRef<HTMLSelectElement>(null);
   const LNumber = useRef<HTMLInputElement>(null);
 
+
+  
   const submitHandler = (e: any) => {
     e.preventDefault();
     if (DOB.current) {
