@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Mypersonality.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
 
 const Mypersonality = () => {
+  const navigate = useNavigate();
   const [diet, setDiet] = useState("");
   const [smoke, setSmoke] = useState("");
   const [drink, setDrink] = useState("");
@@ -117,6 +118,7 @@ const Mypersonality = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
+    navigate('/astrodata')
   };
 
   return (

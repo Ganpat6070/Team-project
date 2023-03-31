@@ -83,7 +83,7 @@ const ProfileDetail = (props: Props) => {
               My Contact Info
             </ul>
             <ul className="mt-2" onClick={() => setDummy(7)}>
-              Subscribe Now to contact this member
+              Subscribe Now
             </ul>
           </li>
         </div>

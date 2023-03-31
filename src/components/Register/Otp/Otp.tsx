@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavbarHead from "../../navbar";
 import "./Otp.css";
 import { ToastContainer, toast } from "react-toastify";
-
+import Cookie from "js-cookie";
 
 const Otp = () => {
   const navigate = useNavigate();
@@ -13,16 +13,20 @@ const Otp = () => {
   const verifyOtp = async (e: any) => {
     e.preventDefault();
 
+    let id = Cookie.get("id");
+    console.log(id);
+
     let response = await fetch("http://localhost:8000/otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        otp: otp
+        user_id: id,
+        otp: otp,
       }),
     });
-
     const res = await response.json();
     console.log(res);
+    
     if (res.msg === "Registerd, You can login now") {
       toast.success(res.msg, {
         position: toast.POSITION.TOP_RIGHT,
@@ -35,15 +39,13 @@ const Otp = () => {
       toast.error(res.msg, {
         position: toast.POSITION.TOP_RIGHT,
       });
-
     }
-    
-  
+
     console.log(res.msg);
   };
   return (
     <>
-    <NavbarHead/>
+      <NavbarHead />
       <section className="myform-area">
         <div className="container">
           <div className="row justify-content-center">
@@ -116,7 +118,7 @@ const Otp = () => {
                         className="form-control"
                         id="otp"
                         maxLength={4}
-                        onWheel={e=>e.currentTarget.blur()}
+                        onWheel={(e) => e.currentTarget.blur()}
                         onChange={(e) => {
                           setOtp(parseInt(e.target.value));
                         }}

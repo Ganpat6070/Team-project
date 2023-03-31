@@ -1,51 +1,376 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./BasicInfo.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
 import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
 
 const BasicInfo = () => {
-  // Birthday Data
-  const DOB = useRef<HTMLInputElement>(null);
-  const Height = useRef<HTMLSelectElement>(null);
-  const Weight = useRef<HTMLSelectElement>(null);
-  const MStatus = useRef<HTMLSelectElement>(null);
-  const MTongue = useRef<HTMLSelectElement>(null);
-  const Religion = useRef<HTMLSelectElement>(null);
-  const Cast = useRef<HTMLInputElement>(null);
-  const SubCast = useRef<HTMLInputElement>(null);
-  const PStatus = useRef<HTMLInputElement>(null);
-  const Education = useRef<HTMLInputElement>(null);
-  const SLang = useRef<HTMLSelectElement>(null);
-  const EducationDetails = useRef<HTMLInputElement>(null);
-  const SchoolName = useRef<HTMLInputElement>(null);
-  const SPlace = useRef<HTMLInputElement>(null);
-  const SYOS = useRef<HTMLSelectElement>(null);
-  const CollegeName = useRef<HTMLInputElement>(null);
-  const Course = useRef<HTMLInputElement>(null);
-  const CPlace = useRef<HTMLInputElement>(null);
-  const CYOS = useRef<HTMLSelectElement>(null);
-  const CompanyName = useRef<HTMLInputElement>(null);
-  const Designation = useRef<HTMLInputElement>(null);
-  const WLocation = useRef<HTMLInputElement>(null);
-  const LCode = useRef<HTMLSelectElement>(null);
-  const LArea = useRef<HTMLSelectElement>(null);
-  const LNumber = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  // Error Statas for Validatoins
+  const [errorbi, setErrorbi] = useState<boolean | string>(false);
+
+  // States for storing enterd information
+  const [fname, setFname] = useState("");
+  const [mname, setMname] = useState("");
+  const [lname, setLname] = useState("");
+  const [dob, setdob] = useState("");
+  const [height, setheight] = useState("");
+  const [weight, setweight] = useState("");
+  const [mStatus, setmStatus] = useState("");
+  const [mTongue, setmTongue] = useState("");
+  const [religion, setreligion] = useState("");
+  const [cast, setcast] = useState("");
+  const [gender, setGender] = useState("");
+  const [phyStatus, setphyStatus] = useState("");
+  const [aboutme, setAboutme] = useState("");
+  const [spokenLanguage, setspokenLanguage] = useState<string[]>([]);
+  const [education, seteducation] = useState("");
+  const [eduDetails, seteduDetails] = useState("");
+  const [schoolName, setschoolName] = useState("");
+  const [splace, setsplace] = useState("");
+  const [syos, setsyos] = useState("");
+  const [collegeName, setcollegeName] = useState("");
+  const [course, setcourse] = useState("");
+  const [cplace, setcplace] = useState("");
+  const [cyos, setcyos] = useState("");
+  const [compName, setcompName] = useState("");
+  const [designation, setdesignation] = useState("");
+  const [wLoc, setwLoc] = useState("");
+  const [lcode, setlcode] = useState("");
+  const [larea, setlarea] = useState("");
+  const [lnum, setlnum] = useState("");
+  const [mNumber, setmNumber] = useState("");
+  const [email, setemail] = useState("");
+  const [street, setstreet] = useState("");
+  const [pin, setpin] = useState("");
+  const [city, setcity] = useState("");
+  const [refname, setrefname] = useState("");
+  const [refaddress, setrefaddress] = useState("");
+  const [refcontact, setrefcontact] = useState("");
+
+  //Input Value Handling Functions with Validations
+
+  const [age, setAge] = useState("");
+
+  const basicinfo: any = {
+    fname,
+    mname,
+    lname,
+    dob,
+    height,
+    weight,
+    mStatus,
+    mTongue,
+    religion,
+    cast,
+    gender,
+    phyStatus,
+    aboutme,
+    spokenLanguage,
+    education,
+    schoolName,
+    splace,
+    syos,
+    collegeName,
+    course,
+    cplace,
+    cyos,
+    compName,
+    designation,
+    wLoc,
+    lcode,
+    larea,
+    lnum,
+    mNumber,
+    email,
+    street,
+    pin,
+    city,
+    refname,
+    refaddress,
+    refcontact,
+  };
+
+  const fnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setFname(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const mnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setMname(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const lnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setLname(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const dobHandler = (e: React.ChangeEvent<HTMLDataElement>) => {
+    if (!(e.target.value === "")) setdob(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const heightHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setheight(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const weightHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setweight(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const mStatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setmStatus(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const mTongueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setmTongue(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const religionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setreligion(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const castHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setcast(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const genderHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setGender(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const phyStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setphyStatus(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const aboutmeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setAboutme(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const educationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) seteducation(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const spokenLanguageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // if (!(e.target.value === ""));
+    // console.log(fname)
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setspokenLanguage([...spokenLanguage, value]);
+    } else {
+      setspokenLanguage(spokenLanguage.filter((box) => box !== value));
+    }
+
+    setErrorbi(false);
+  };
+  const eduDetailsHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) seteduDetails(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const schoolNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setschoolName(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const splaceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setsplace(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const syosHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setsyos(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const collegeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setcollegeName(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const courseHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setcourse(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const cplaceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setcplace(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const cyosHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setcyos(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const compNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setcompName(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const designationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setdesignation(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const wLocHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setwLoc(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const lcodeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setlcode(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const lareaHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setlarea(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const lnumHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setlnum(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const mNumberHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setmNumber(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setemail(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const streetHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setstreet(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const pinHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setpin(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const cityHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setcity(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const refnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setrefname(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+
+  const refaddressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setrefaddress(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
+  const refcontactHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setrefcontact(e.target.value);
+    // console.log(fname)
+
+    setErrorbi(false);
+  };
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    if (DOB.current) {
-      console.log(DOB.current.value);
-    }
-    if (Cast.current) {
-      console.log(Cast.current.value);
-    }
-    if (Height.current) {
-      console.log(Height.current.value);
+    if (
+      (fname &&
+        mname 
+        // lname &&
+        // dob &&
+        // height &&
+        // mStatus &&
+        // mTongue &&
+        // religion &&
+        // cast &&
+        // gender &&
+        // aboutme &&
+        // spokenLanguage &&
+        // education 
+        ) === ""
+    ) {
+      setErrorbi(true);
+    } else {
+      setErrorbi(false);
+      console.log(basicinfo);
+      navigate("/personal-info");
     }
   };
 
@@ -73,16 +398,47 @@ const BasicInfo = () => {
           >
             Basic Information
           </p>
-          {/* 
-        <label>
-          Marital Status*
-          <select className="">
-            <option></option>
-            <option>Single</option>
-            <option>In-Relationship</option>
-            <option>Devorced</option>
-          </select>
-        </label> */}
+          {errorbi ? (
+            <small className="text-danger ">
+              {<span>All the fields with * are required</span>}
+            </small>
+          ) : null}
+          <Row>
+            <Col className="mt-3">
+              <label htmlFor="">
+                Fisrt Name <span className="compalsory">*</span>
+                <br />
+              </label>
+              <input
+                // ref={Cast}
+                value={fname}
+                onChange={fnameHandler}
+                type="text"
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">
+                Middle Name <span className="compalsory">*</span> <br />
+              </label>
+
+              <input
+                type="text"
+                value={mname}
+                onChange={mnameHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+            <Col className="mt-3">
+              <label htmlFor="">Last Name</label>
+              <span className="compalsory"> *</span> <br />
+              <input
+                type="text"
+                onChange={lnameHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary"
+              />
+            </Col>
+          </Row>
           <div className="row">
             <div className="col-lg-4">
               {/* <div className="form-group"> */}
@@ -91,29 +447,29 @@ const BasicInfo = () => {
                 <br />
               </label>
               <input
-                ref={DOB}
+                // ref={DOB}
+                onChange={dobHandler}
+                value={dob}
+                // onChange={dobHanlder}
                 type="date"
                 placeholder=""
                 className="form-control text-dark input-xs  mt-1 rounded-2 border-secondary"
               />
-              {/* </div> */}
             </div>
-            {/* <div className="col-xl-">
-            <label htmlFor="eid">Education in Detail</label>
-            <br />
-            <input type="text" id="eid" className="form-control" />
-          </div> */}
+
             <div className="col">
               <label className="mb">
                 Height<span className="compalsory">*</span>
                 <br />
               </label>
               <select
-                ref={Height}
+                // ref={heightHandler}
+                value={height}
+                onChange={heightHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option></option>
-                <option>4ft</option>
+                <option value=''>Select</option>
+                <option value='4'>4ft</option>
                 <option>5ft</option>
                 <option>6ft</option>
                 <option>7ft</option>
@@ -127,7 +483,8 @@ const BasicInfo = () => {
               </label>
               {/* <input type="number" className="form-control mt-1 rounded-2 border-secondary" /> */}
               <select
-                ref={Weight}
+                // ref={weightHandler}
+                onChange={weightHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
                 <option></option>
@@ -146,7 +503,8 @@ const BasicInfo = () => {
                 <br />
               </label>
               <select
-                ref={MStatus}
+                // ref={MStatus}
+                // onChange={mStatushandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option></option>
@@ -161,7 +519,8 @@ const BasicInfo = () => {
                 <br />
               </label>
               <select
-                ref={MTongue}
+                // ref={MTongue}
+                onChange={mTongueHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option></option>
@@ -177,7 +536,8 @@ const BasicInfo = () => {
                 <br />
               </label>
               <select
-                ref={Religion}
+                // ref={Religion}
+                onChange={religionHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option></option>
@@ -195,23 +555,31 @@ const BasicInfo = () => {
                 <br />
               </label>
               <input
-                ref={Cast}
+                // ref={Cast}
+                onChange={castHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
             </Col>
             <Col className="mt-3">
               <label htmlFor="">
-                Sub Caste <br />
+                Gender <span className="compalsory">*</span> <br />
               </label>
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
+
+              <select
+                onChange={genderHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+              >
+                <option>Please Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
             </Col>
             <Col className="mt-3">
               <label htmlFor="">Physical Status</label>
               <input
+                onChange={phyStatusHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -219,21 +587,12 @@ const BasicInfo = () => {
           </Row>
           <Row>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                About me <span className="compalsory">*</span>
-                <br />
-                <textarea
-                  name=""
-                  id=""
-                  className="form-control text-dark mt-1 rounded-2 border-secondary"
-                ></textarea>
-              </label> */}
-
               <label htmlFor="" className="pt-1 ">
-                Education <span className="compalsory">*</span>
+                About Me <span className="compalsory">*</span>
                 <br />
               </label>
               <input
+                onChange={aboutmeHandler}
                 type="text"
                 className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -250,10 +609,12 @@ const BasicInfo = () => {
                   <label htmlFor="" className="py-2">
                     <input
                       type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
+                      // id="vehicle1"
+                      name="language"
+                      value="english"
                       className=""
+                      checked={spokenLanguage.includes("english")}
+                      onChange={spokenLanguageHandler}
                     />
                     English
                   </label>
@@ -261,9 +622,11 @@ const BasicInfo = () => {
                   <label htmlFor="" className="py-2">
                     <input
                       type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
+                      // id="vehicle1"
+                      name="language"
+                      value="gujarati"
+                      checked={spokenLanguage.includes("gujarati")}
+                      onChange={spokenLanguageHandler}
                     />
                     Gujarati
                   </label>
@@ -271,9 +634,11 @@ const BasicInfo = () => {
                   <label htmlFor="" className="py-2">
                     <input
                       type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
+                      // id="vehicle1"
+                      name="language"
+                      value="hindi"
+                      checked={spokenLanguage.includes("hindi")}
+                      onChange={spokenLanguageHandler}
                     />
                     Hindi
                   </label>
@@ -289,6 +654,7 @@ const BasicInfo = () => {
                 <br />
               </label>
               <input
+                onChange={educationHandler}
                 type="text"
                 className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -308,6 +674,7 @@ const BasicInfo = () => {
               <label htmlFor="eid">Education in Detail</label>
               <br />
               <input
+                onChange={eduDetailsHandler}
                 type="text"
                 id="eid"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -319,6 +686,7 @@ const BasicInfo = () => {
               <label htmlFor="">School Name</label>
               <br />
               <input
+                onChange={schoolNameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -327,6 +695,7 @@ const BasicInfo = () => {
               <label htmlFor="">Place</label>
               <br />
               <input
+                onChange={splaceHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -334,7 +703,10 @@ const BasicInfo = () => {
             <div className="col mt-3">
               <label htmlFor="">Year of Study</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
+              <select
+                onChange={syosHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
+              >
                 <option></option>
                 <option>2012</option>
                 <option>2011</option>
@@ -348,6 +720,7 @@ const BasicInfo = () => {
               <label htmlFor="">College Name</label>
               <br />
               <input
+                onChange={collegeNameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -356,6 +729,7 @@ const BasicInfo = () => {
               <label htmlFor="">Course</label>
               <br />
               <input
+                onChange={courseHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -364,6 +738,7 @@ const BasicInfo = () => {
               <label htmlFor="">Place</label>
               <br />
               <input
+                onChange={cplaceHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -371,7 +746,10 @@ const BasicInfo = () => {
             <div className="col mt-3">
               <label htmlFor="">Year Of Study</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
+              <select
+                onChange={cyosHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+              >
                 <option></option>
                 <option>2012</option>
                 <option>2011</option>
@@ -384,6 +762,7 @@ const BasicInfo = () => {
               <label htmlFor="">Company Name</label>
               <br />
               <input
+                onChange={compNameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -393,6 +772,7 @@ const BasicInfo = () => {
               <label htmlFor="">Designation</label>
               <br />
               <input
+                onChange={designationHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -402,6 +782,7 @@ const BasicInfo = () => {
               <label htmlFor="">Work Location</label>
               <br />
               <input
+                onChange={wLocHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -411,22 +792,27 @@ const BasicInfo = () => {
             <div className="col mt-3">
               <label htmlFor="">Landline Number</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
+              <select
+                onChange={lcodeHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
+              >
                 <option value="">1231</option>
                 <option value="">12313</option>
                 <option value=""></option>
               </select>
             </div>
             <div className="col mt-3">
-              <label htmlFor=""></label>
+              <label htmlFor="">Area Code</label>
               <input
+                onChange={lareaHandler}
                 type="tel"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor=""></label>
+              <label htmlFor="">Number</label>
               <input
+                onChange={lnumHandler}
                 type="number"
                 className=" form-control text-dark mt-1 rounded-2 border-secondary -webkit-appearance: none"
               />
@@ -437,11 +823,14 @@ const BasicInfo = () => {
               <label htmlFor="">Mobile Number</label>
               <br />
               <select
+                onChange={mNumberHandler}
                 name=""
                 id=""
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option value=""></option>
+                <option value="" hidden>
+                  +91
+                </option>
                 <option value="">+91</option>
                 <option value="">+1</option>
                 <option value="">+59</option>
@@ -451,6 +840,7 @@ const BasicInfo = () => {
               <label htmlFor=""></label>
               <br />
               <input
+                // onChange={emailHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -467,6 +857,7 @@ const BasicInfo = () => {
               </label>
               <br />
               <input
+                // onChange={}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -562,6 +953,7 @@ const BasicInfo = () => {
               </label>
               <br />
               <input
+                onChange={pinHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -572,6 +964,7 @@ const BasicInfo = () => {
               </label>
               <br />
               <select
+                onChange={cityHandler}
                 name=""
                 id=""
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
@@ -587,6 +980,7 @@ const BasicInfo = () => {
               <label htmlFor="">Reference Name</label>
               <br />
               <input
+                onChange={refnameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -595,6 +989,7 @@ const BasicInfo = () => {
               <label htmlFor="">Address</label>
               <br />
               <input
+                onChange={refaddressHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -603,6 +998,7 @@ const BasicInfo = () => {
               <label htmlFor="">Contact Number</label>
               <br />
               <select
+                onChange={refcontactHandler}
                 name=""
                 id=""
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select mobiledrop"
@@ -623,16 +1019,15 @@ const BasicInfo = () => {
               />
             </div>
           </div>
-          <Link to="/personal-info">
-            <button
-              className="btn btn-light text-white btn-xl mt-2"
-              type="button"
-              onClick={submitHandler}
-              style={{ backgroundColor: "#fb9232" }}
-            >
-              Save & Continue
-            </button>
-          </Link>
+
+          <button
+            className="btn btn-light text-white btn-xl mt-2"
+            type="button"
+            onClick={submitHandler}
+            style={{ backgroundColor: "#fb9232" }}
+          >
+            Save & Continue
+          </button>
         </form>
       </div>
     </div>

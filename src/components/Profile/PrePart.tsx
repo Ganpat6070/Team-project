@@ -2,13 +2,15 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 import classes from "./PersonalInfo.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import "./PrePart.css";
 import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
 
 const PrePart = () => {
+  const navigate = useNavigate();
+
   // Birthday Data
   //   const DOB  = useRef<HTMLInputElement>(null);
   //   const Height = useRef<HTMLSelectElement>(null);
@@ -38,15 +40,7 @@ const PrePart = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    //           if(DOB.current){
-    //             console.log(DOB.current.value);
-    //           }
-    //           if(Cast.current){
-    //             console.log(Cast.current.value);
-    //           }
-    //           if(Height.current){
-    //             console.log(Height.current.value);
-    //           }
+   navigate('/mypersonality')
   };
 
   return (

@@ -6,7 +6,7 @@ const Subscribe = () => {
   return (
     <>
       <div>
-        <div className="text-center fw-bold">Subscribe Now</div>
+        <div className="text-center fw-bold">Subscribe Now to contact this member</div>
         <br />
         <br />
         <div

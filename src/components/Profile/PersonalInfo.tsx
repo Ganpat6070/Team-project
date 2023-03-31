@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from "./PersonalInfo.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
 import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
 
 const PersonalInfo = () => {
+  const navigate = useNavigate();
   //Error Status
   const [error, setError] = useState(false);
   const [error2, setError2] = useState(false);
@@ -149,18 +150,7 @@ const PersonalInfo = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    // let R:React.ChangeEvent<HTMLSelectElement>
-
-    // if (DOB.current) {
-    // console.log(DOB.current.value);
-    // }
-    // if (Cast.current) {
-    // console.log(Cast.current.value);
-    // }
-    // if (Height.current) {
-    // console.log(Height.current.value);
-    // }
-    // complexionHandler(R)
+    
     if (
       complexions === "" ||
       bodytype === "" ||
@@ -187,6 +177,7 @@ const PersonalInfo = () => {
     } else {
       setError3(false);
     }
+    navigate('/prefpart')
   };
   // console.log(complexions);
   // console.log(aboutmyfamily)

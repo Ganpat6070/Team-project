@@ -3,24 +3,56 @@ import "./AestroDetails.css";
 // import ProgressBar from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search } from "react-bootstrap-icons";
 import PhotoCard from "./PhotoCard";
 import ProgressBar from "./ProgressBar";
 import NavbarHead from "../navbar";
+import { useState } from "react";
 
 const AstroDetails = () => {
+  const navigate = useNavigate();
+
+  const [dob, setDob] = useState("");
+  const [timeofBirth, setTimeofBirth] = useState("");
+  const [timeCorrection, setTimeCorrection] = useState("");
+  const [placeofBirth, setPlaceofBirth] = useState("");
+  const [logitude, setLogitude] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [timeZone, setTimeZone] = useState("");
+
+  const [error, setError] = useState<boolean>(false);
+
+  const astrodata = {
+    dob,
+    timeofBirth,
+    timeCorrection,
+    placeofBirth,
+    logitude,
+    latitude,
+    timeZone,
+  };
+
+  // const time = hours + ":" + minute
+
+  const dobHandler = (e: React.ChangeEvent<HTMLDataElement>) => {
+    if (!(e.target.value === "")) {
+      setError(false);
+      setDob(e.target.value);
+    }
+    if (e.target.value === "") {
+      setError(true);
+    }
+  };
+
   const submitHandler = (e: any) => {
     e.preventDefault();
-    //           if(DOB.current){
-    //             console.log(DOB.current.value);
-    //           }
-    //           if(Cast.current){
-    //             console.log(Cast.current.value);
-    //           }
-    //           if(Height.current){
-    //             console.log(Height.current.value);
-    //           }
+    if (dob === "") {
+      setError(true);
+    } else {
+      console.log(astrodata);
+      navigate("/finished");
+    }
   };
 
   return (
@@ -55,7 +87,7 @@ const AstroDetails = () => {
 "
             style={{ color: "#6E6E6E" }}
           >
-            Aestrological Informations
+            Astrological Informations
             <small
               className="p-3 text-sm text-break"
               style={{ fontSize: "15px" }}
@@ -63,6 +95,7 @@ const AstroDetails = () => {
               ( You can create your free horoscope on PerfectMatch )
             </small>
           </p>
+
           <Row>
             <Col className="px-2 " style={{ marginRight: "-2%" }}>
               <label htmlFor="">
@@ -72,8 +105,15 @@ const AstroDetails = () => {
               <input
                 type="date"
                 style={{ height: "50%" }}
+                onChange={dobHandler}
+                value={dob}
                 className="form-control mt-1 py-0"
               />
+              {error ? (
+                <small className="text-danger ">
+                  Date of birth is required
+                </small>
+              ) : null}
             </Col>
 
             <Col
@@ -162,6 +202,9 @@ const AstroDetails = () => {
               <label htmlFor="">Birth Time Correction</label>
               <br />
               <select
+                onChange={(e) => {
+                  setTimeCorrection(e.target.value);
+                }}
                 style={{ height: "50%" }}
                 className="form-control p-2 text-dark mt-1 rounded-2 border-secondary form-select bg-white "
                 name=""
@@ -170,8 +213,8 @@ const AstroDetails = () => {
                 <option value="" hidden>
                   Please Select
                 </option>
-                <option value="">Yes</option>
-                <option value="">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </Col>
           </Row>
@@ -183,8 +226,11 @@ const AstroDetails = () => {
               </label>
               <br />
               <input
+                onChange={(e) => {
+                  setPlaceofBirth(e.target.value);
+                }}
                 type="text"
-                className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
+                className="icon form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
               />
             </Col>
             <Col>
@@ -192,6 +238,9 @@ const AstroDetails = () => {
               <br />
 
               <input
+                onChange={(e) => {
+                  setLogitude(e.target.value);
+                }}
                 type="text"
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
@@ -208,6 +257,9 @@ const AstroDetails = () => {
               <label htmlFor="">Latitude</label>
               <br />
               <input
+                onChange={(e) => {
+                  setLatitude(e.target.value);
+                }}
                 type="text"
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className="form-control p-2  text-dark mt-1 rounded-2 border-secondary form-input"
@@ -218,6 +270,9 @@ const AstroDetails = () => {
               <label htmlFor="">Time Zone</label>
               <br />
               <input
+              onChange={(e) => {
+                setTimeZone(e.target.value);
+              }}
                 style={{ border: "1px solid blue", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input "
                 type="text"
@@ -232,7 +287,7 @@ const AstroDetails = () => {
           </p>
           <hr className="mb-5" />
 
-          <Link to="\">
+          <Link to="/finished">
             <button
               className="btn btn-light text-white btn-xl mt-2"
               type="button"
