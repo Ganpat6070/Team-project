@@ -216,7 +216,7 @@ const NavbarHead = () => {
                     >
                       <div
                         className="card-body px-4 py-4 "
-                        style={{ backgroundColor: "#f6837d" }}
+                        style={{ backgroundColor: "#ffffff" }}
                       >
                         <div
                           id="circle-avatar"
@@ -233,14 +233,14 @@ const NavbarHead = () => {
                           style={{ margin: "0 -24px 0" }}
                         >
                           <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            className="list-group-item list-group-item-action border px-4 text-dark"
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <House color="white" size={20} />{" "}
+                            <House color="dark" size={20} />{" "}
                             <small>
                               <Link
                                 to="/basic-info"
-                                className="text-white"
+                                className="text-dark"
                                 style={{ textDecoration: "none" }}
                               >
                                 My Account
@@ -249,41 +249,41 @@ const NavbarHead = () => {
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <Person color="white" size={20} />{" "}
-                            <small>Edit My Profile</small>
+                            <Person color="dark" size={20} />{" "}
+                            <small className="text-dark">Edit My Profile</small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <ArrowCounterclockwise color="white" size={20} />{" "}
-                            <small>My Activity Log</small>
+                            <ArrowCounterclockwise color="dark" size={20} />{" "}
+                            <small className="text-dark">My Activity Log</small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <Trash color="white" size={20} />{" "}
-                            <small>Delete My Profile</small>
+                            <Trash color="dark" size={20} />{" "}
+                            <small className="text-dark">Delete My Profile</small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <Lock color="white" size={20} />{" "}
-                            <small>Change My Password</small>
+                            <Lock color="dark" size={20} />{" "}
+                            <small className="text-dark">Change My Password</small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
+                            style={{ backgroundColor: "#ffffff" }}
                           >
-                            <BoxArrowInRight color="white" size={20} />{" "}
+                            <BoxArrowInRight color="dark" size={20} />{" "}
                             <Link to="/" style={{ textDecoration: "none" }}>
                               <span
                                 onClick={logoutHandler}
-                                className="text-white"
+                                className="text-dark"
                               >
                                 Logout
                               </span>

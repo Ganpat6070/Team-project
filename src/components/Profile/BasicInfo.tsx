@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
 import PhotoCard from "./PhotoCard";
-
+import Cookies from "js-cookie";
 const BasicInfo = () => {
   // Error Statas for Validatoins
   const [errorbi, setErrorbi] = useState<boolean | string>(false);
@@ -62,6 +62,9 @@ const BasicInfo = () => {
   //Input Value Handling Functions with Validations
 
   const [age, setAge] = useState("");
+
+  let token = Cookies.get("Token");
+  let id = Cookies.get("id");
 
   const basicinfo: any = {
     fname,
@@ -392,123 +395,76 @@ const BasicInfo = () => {
 
     setErrorbi(false);
   };
-  const submitHandler  = async (e: any) => {
+  const submitHandler = async (e: any) => {
     e.preventDefault();
     if (
       (fname &&
-      mname &&
-      lname &&
-      dob &&
-      height &&
-      weight &&
-      mStatus &&
-      mTongue &&
-      religion &&
-      cast &&
-      gender &&
-      phyStatus) === ""
+        mname &&
+        lname &&
+        dob &&
+        height &&
+        weight &&
+        mStatus &&
+        mTongue &&
+        religion &&
+        cast &&
+        gender &&
+        phyStatus) === ""
     ) {
       setErrorbi(true);
-    }
-    // else if (
-    
-    // (  aboutme &&
-    //   spokenLanguage &&
-    //   education &&
-    //   eduDetails &&
-    //   schoolName &&
-    //   splace &&
-    //   syos &&
-    //   collegeName &&
-    //   course &&
-    //   cplace &&
-    //   cyos &&
-    //   compName &&
-    //   designation &&
-    //   wLoc &&
-    //   lcode &&
-    //   larea &&
-    //   lnum &&
-    //   mNumber &&
-    //   email &&
-    //   // street &&
-    //   countery &&
-    //   pin &&
-    //   city &&
-    //   refname &&
-    //   refaddress &&
-    //   refcontact &&
-    //   refmobile) === ""
-    // ) {
-    //   setErrorbi2(true);
-    // }
-    else {
-      console.log(basicinfo)
+    } else {
+      console.log(basicinfo);
     }
 
-    // let response = await fetch("http://localhost:8000/addProfile", {
-    //   // credentials: "include",
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //   //   firstName: fname,
-    //   //   lastName: lname,
-    //   //   dateOfBirth: DOB,
-    //   //   height: height,
-    //   //   weight: weight,
-    //   //   maritalStatus: mStatus,
-    //   //   motherTongue: mTongue,
-    //   //   religion: religion,
-    //   //   caste: cast,
-    //   //   gender: gender,
-    //   //   aboutMe: aboutme,
-    //   //   spokenLanguages: "spokenLanguage",
-    //   //   education: education,
-    //   //   schoolName: schoolName,
-    //   //   schoolPlace: splace,
-    //   //   yearOfStudySchool: syos,
-    //   //   companyName: compName,
-    //   //   designation: designation,
-    //   //   workLocation: wLoc,
-    //   //   mobileNumber: mNumber,
-    //   //   preferredContactType: precon,
-    //   //   contactName: "9448452121",
-    //   //   email: email,
-    //   //   profileCreatedBy: procre,
-    //   //   country: countery,
-    //   //   pinCode: pin,
-    //   //   cityState: city,
-    //   // }
-    //     "firstName":"chirag",
-    //     "lastName":"makwana",
-    //     "dateOfBirth":"2000-12-12",
-    //     "height":5,
-    //     "weight":58,
-    //     "maritalStatus":"divored",
-    //     "motherTongue":"hindi",
-    //     "religion":"hindu",
-    //     "caste":"type1",
-    //     "gender":"male",
-    //     "aboutMe":"hi i am chirag",
-    //     "spokenLanguages":"hindi",
-    //     "education":"m.e",
-    //     "schoolName":"silver oak",
-    //     "schoolPlace":"gota",
-    //     "yearOfStudySchool":"2022",
-    //     "companyName":"technomark",
-    //     "designation":"trainee",
-    //     "workLocation":"gota",
-    //     "mobileNumber":"94995502154",
-    //     "preferredContactType":"type1",
-    //     "contactName":"9448452121",
-    //     "email":"chirag.gmail@gmail.com",
-    //     "profileCreatedBy":"me",
-    //     "country":"india",
-    //     "pinCode":"254623",
-    //     "cityState":"ahmedabad"
-    //     }
-    //   ),
-    // });
+    let response = await fetch("http://localhost:8000/basicinfo", {
+      credentials: "include",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        Token: token,
+        user_id: id,
+        firstName: "John2",
+        lastName: "Doe",
+        dateOfBirth: "1990-01-01",
+        height: 175,
+        weight: 75,
+        maritalStatus: "Single",
+        motherTongue: "English",
+        religion: "Christian",
+        caste: "N/A",
+        gender: "N/A",
+        physicalStatus: "Normal",
+        aboutMe: "I am a software engineer with a passion for coding.",
+        spokenLanguages: ["English", "Spanish"],
+        education: "Bachelor's Degree",
+        educationInDetail: "Bachelor of Science in Computer Science",
+        schoolName: "XYZ High School",
+        schoolPlace: "New York",
+        yearOfStudySchool: 2016,
+        collegeName: "ABC University",
+        course: "Computer Science",
+        placeCollege: "New York",
+        yearOfStudyCollege: 2021,
+        companyName: "XYZ Corp",
+        designation: "Software Engineer",
+        workLocation: "San Francisco",
+        landlineNumber: "555-555-5555",
+        mobileNumber: "999-999-9999",
+        preferredContactType: "Mobile",
+        convenientTimeToCall: "Eve",
+        contactName: "Nikhil",
+        email: "nikhil@gmail.com",
+        profileCreatedBy: "self",
+        apartmentName: "jantanagar",
+        streetLocality: "jantanagar",
+        country: "jantanagar",
+        pinCode: "382424",
+        cityState: "jantanagar",
+        referenceName: "parth",
+        address: "jantanagar",
+        contactNumber: "9876543210",
+      }),
+    });
   };
 
   return (
@@ -643,7 +599,7 @@ const BasicInfo = () => {
                   onChange={mStatushandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden></option>
+                  <option hidden>select</option>
                   <option>Single</option>
                   <option>In-Relationship</option>
                   <option>Devorced</option>
@@ -659,7 +615,7 @@ const BasicInfo = () => {
                   onChange={mTongueHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option></option>
+                  <option hidden>select</option>
                   <option>Hindi</option>
                   <option>Gujarati</option>
                   <option>English</option>
@@ -676,7 +632,8 @@ const BasicInfo = () => {
                   onChange={religionHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option></option>
+                  {" "}
+                  <option hidden>select</option>
                   <option>Hinduism</option>
                   <option>Islam</option>
                   <option>Christianity</option>
@@ -706,7 +663,8 @@ const BasicInfo = () => {
                   onChange={genderHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option>Please Select</option>
+                  <option hidden>select</option>
+
                   <option>Male</option>
                   <option>Female</option>
                   <option>Other</option>
@@ -882,7 +840,7 @@ const BasicInfo = () => {
                   onChange={syosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
                 >
-                  <option></option>
+                  <option hidden>select</option>
                   <option>2012</option>
                   <option>2011</option>
                   <option>2000</option>
@@ -925,7 +883,7 @@ const BasicInfo = () => {
                   onChange={cyosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option></option>
+                  <option hidden>select</option>
                   <option>2012</option>
                   <option>2011</option>
                   <option>2000</option>
@@ -971,6 +929,8 @@ const BasicInfo = () => {
                   onChange={lcodeHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
+                  <option hidden>select</option>
+
                   <option value="123">123</option>
                   <option value="456">456</option>
                   <option value="789">789</option>
@@ -1002,9 +962,7 @@ const BasicInfo = () => {
                   id=""
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option value="" hidden>
-                    +91
-                  </option>
+                  <option hidden>+91</option>
                   <option value="">+91</option>
                   <option value="">+1</option>
                   <option value="">+59</option>
@@ -1167,6 +1125,7 @@ const BasicInfo = () => {
                 <label htmlFor="">Reference Name</label>
                 <br />
                 <input
+                  style={{ height: "50%" }}
                   onChange={refnameHandler}
                   type="text"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -1190,7 +1149,7 @@ const BasicInfo = () => {
                   id=""
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select mobiledrop"
                 >
-                  <option value="" hidden></option>
+                  <option hidden>select</option>
 
                   <option value="91">+91</option>
                   <option value="1">+1</option>

@@ -16,16 +16,35 @@ type ProfileSearchProps = {
   religion: string;
 };
 
-const ProfileSearch = (props: ProfileSearchProps) => {
+// const ProfileSearch = (props: ProfileSearchProps) => {
+//   const [myData, setMyData] = useState<any>([]);
+
+//   useEffect(() => {
+//     onSnapshot(collection(db, "userdata"), (snapshot) => {
+//       setMyData(snapshot.docs.map((doc) => doc.data()));
+//     });
+//   }, []);
+
+//   console.log(myData);
+ 
+
+const ProfileSearch = async (props: ProfileSearchProps) => {
   const [myData, setMyData] = useState<any>([]);
 
+  const fetchData = () => {
+    return fetch("http://localhost:8000/basic-info")
+          .then((response) => response.json())
+          .then((data) => setMyData(data));
+  }
+
+
   useEffect(() => {
-    onSnapshot(collection(db, "userdata"), (snapshot) => {
-      setMyData(snapshot.docs.map((doc) => doc.data()));
-    });
-  }, []);
+    fetchData();
+  },[])
 
   console.log(myData);
+ 
+
 
 
   const filteredData = myData.filter(

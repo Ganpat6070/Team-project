@@ -21,6 +21,7 @@ function Login() {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/login", {
+      credentials:"include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -32,7 +33,11 @@ function Login() {
     const res = await response.json();
     console.log(res);
     if (res.msg) {
-      if (res.msg === "You are not verified user!") {
+      if (
+        res.msg === "You are not verified user!" ||
+        res.msg === "Email id is not registered" ||
+        res.msg === "Password is incorrect!"
+      ) {
         toast.error(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -46,6 +51,14 @@ function Login() {
           navigate("/");
         }, 1500);
       }
+      if(res.msg === "please verify your email"){
+        toast.warning(res.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setTimeout(() => {
+          navigate("/otp");
+        }, 1500);
+      }
       // toast.success(res.msg, {
       //   position: toast.POSITION.TOP_RIGHT,
       // });
@@ -54,7 +67,6 @@ function Login() {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
-    
   };
   // const onSubmit = async (e: any) => {
   //   e.preventDefault();

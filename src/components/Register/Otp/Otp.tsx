@@ -13,6 +13,7 @@ const Otp = () => {
   const verifyOtp = async (e: any) => {
     e.preventDefault();
 
+   
     let id = Cookie.get("id");
     console.log("id:",id);
 
@@ -26,7 +27,7 @@ const Otp = () => {
     });
     const res = await response.json();
     console.log(res);
-   
+    
     if (res.msg === "Registerd, You can login now") {
       toast.success(res.msg, {
         position: toast.POSITION.TOP_RIGHT,
