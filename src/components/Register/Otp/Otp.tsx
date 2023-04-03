@@ -14,7 +14,7 @@ const Otp = () => {
     e.preventDefault();
 
     let id = Cookie.get("id");
-    console.log(id);
+    console.log("id:",id);
 
     let response = await fetch("http://localhost:8000/otp", {
       method: "POST",

@@ -18,12 +18,7 @@ const RegForm2 = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // const a = {
-  //   fnamer: fnamer,
-  //   email: email,
-  //   numberr: numberr,
-  //   pass: password,
-  // };
+
 
   const onRegister = async (e: any) => {
     e.preventDefault();
@@ -49,7 +44,7 @@ const RegForm2 = () => {
           navigate("/login");
         }, 2000);
       }
-      if (res.message === "Registered") {
+      if (res.msg === "Registered") {
         setTimeout(() => {
           navigate("/otp");
         }, 2000);

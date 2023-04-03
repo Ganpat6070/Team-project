@@ -20,13 +20,20 @@ const ProfileSearch = (props: ProfileSearchProps) => {
   const [myData, setMyData] = useState<any>([]);
 
   useEffect(() => {
-    onSnapshot(collection(db, "userdata"), (snapshot) => {
-      setMyData(snapshot.docs.map((doc) => doc.data()));
-    });
+    // onSnapshot(collection(db, "userdata"), (snapshot) => {
+    //   setMyData(snapshot.docs.map((doc) => doc.data()));
+    // });
+    fetchdata();
   }, []);
 
-  console.log(myData);
-
+  let fetchdata = async () => {
+    const response = await fetch("http://localhost:8000/basic-info", {
+      method: "GET",
+      
+    });
+    let res = await response.json();
+    console.log(res);
+  };
 
   const filteredData = myData.filter(
     (data: any) =>
@@ -42,7 +49,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         : data.born_year >= props.lessAge) &&
       (props.greatAge.toLowerCase() === ""
         ? data.born_year >= props.lessAge.toLowerCase()
-        : data.born_year <= props.greatAge) // (props.lessAge.toLowerCase() === "" || props.greatAge.toLowerCase() === '' ? data.born_year.toLowerCase(): '')
+        : data.born_year <= props.greatAge), // (props.lessAge.toLowerCase() === "" || props.greatAge.toLowerCase() === '' ? data.born_year.toLowerCase(): '')
     // data.born_year >= props.lessAge &&
     // data.born_year <= props.greatAge
   );

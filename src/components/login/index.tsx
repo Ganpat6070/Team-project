@@ -21,6 +21,7 @@ function Login() {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/login", {
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -213,7 +214,7 @@ function Login() {
                       New to PerfectMatch.com ?{" "}
                       <Link
                         to="/register"
-                        className="text-light"
+                        className="text-primary"
                         style={{ textDecoration: "none" }}
                       >
                         Register Free

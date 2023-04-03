@@ -44,7 +44,7 @@ const Mypersonality = () => {
     dressrange,
     dress,
   };
-  console.log(mypersonality);
+
 
   const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setDiet(e.target.value);
@@ -119,6 +119,7 @@ const Mypersonality = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
     navigate('/astrodata')
+    console.log(mypersonality);
   };
 
   return (
