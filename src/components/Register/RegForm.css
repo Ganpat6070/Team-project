@@ -171,10 +171,7 @@ select.form-control {
   margin-bottom: 5px;
 }
 
-/* .register-photo form .form-control:hover,
-:active {
-  color: #d25a10;
-} */
+.register-photo form .form-control,
 
 .register-photo form .form-check {
   font-size: 13px;

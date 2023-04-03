@@ -3,10 +3,19 @@ import React from "react";
 const BasicInfomation = () => {
   return (
     <div>
-      <div className="text-center fw-bold" >Basic Information</div><br/><br/>
-      <div className="d-flex justify-content-around"  style={{backgroundColor: 'rgb(238, 234, 234)', padding: "2rem", borderRadius: '4%'}}>
+      <div className="text-center fw-bold">Basic Information</div>
+      <br />
+      <br />
+      <div
+        className="d-flex justify-content-around"
+        style={{
+          backgroundColor: "rgb(238, 234, 234)",
+          padding: "2rem",
+          borderRadius: "4%",
+        }}
+      >
         <div className="text-start ml-4 d-flex">
-          <li style={{listStyle: 'none', fontWeight: '300'}}>
+          <li style={{ listStyle: "none", fontWeight: "300" }}>
             <ul>Age</ul>
             <ul>Gender</ul>
             <ul>Data of Birth</ul>
@@ -20,7 +29,7 @@ const BasicInfomation = () => {
           </li>
         </div>
         <div className="text-start">
-          <li style={{listStyle: 'none'}}>
+          <li style={{ listStyle: "none" }}>
             <ul>18</ul>
             <ul>Female</ul>
             <ul>Nov, 02, 2004</ul>
@@ -30,7 +39,7 @@ const BasicInfomation = () => {
             <ul>Tripura</ul>
             <ul>India</ul>
             <ul>Citizen</ul>
-            <ul>Unmarried</ul>  
+            <ul>Unmarried</ul>
           </li>
         </div>
       </div>

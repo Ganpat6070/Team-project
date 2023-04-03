@@ -25,7 +25,12 @@ const ProfileSearch = (props: ProfileSearchProps) => {
     });
   }, []);
 
+  useEffect(()=>{
+    // const myData = fetch()
+  }, [])
+
   console.log(myData);
+
 
   const filteredData = myData.filter(
     (data: any) =>
@@ -34,7 +39,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         ? data.religion.toLowerCase()
         : data.religion === props.religion.toLowerCase()) &&
       (props.gender.toLowerCase() === ""
-        ? data.gender
+        ? data.gender.toLowerCase()
         : data.gender.toLowerCase() === props.gender.toLowerCase()) &&
       (props.lessAge.toLowerCase() === ""
         ? data.born_year <= props.greatAge.toLowerCase()
@@ -45,7 +50,6 @@ const ProfileSearch = (props: ProfileSearchProps) => {
     // data.born_year >= props.lessAge &&
     // data.born_year <= props.greatAge
   );
-
   console.log(filteredData);
 
   console.log(props.gender, props.lessAge, props.greatAge, props.religion);

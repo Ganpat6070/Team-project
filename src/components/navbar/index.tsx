@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PopupMenu } from "react-simple-widgets";
+import "./index.css";
 import {
   BoxArrowInRight,
   Trash,
@@ -37,11 +38,6 @@ const NavbarHead = () => {
       setIsLogedin(true);
     } else setIsLogedin(false);
   }, [setIsLogedin, getlogin]);
-
-  const editProfileHandler = () => {
-
-  }
-
   return (
     <>
       {!islogedin && (
@@ -62,7 +58,7 @@ const NavbarHead = () => {
           <Container>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="justify-content-around flex-grow-1 me-auto">
+              <Nav className="justify-content-around navbar flex-grow-1 me-auto">
                 <Nav.Link>
                   <Link
                     to="/"
@@ -105,8 +101,14 @@ const NavbarHead = () => {
                     Aboutus
                   </Link>
                 </Nav.Link>
-                <Nav.Link href="#contactFooter" className="text-white">
-                  Contact
+                <Nav.Link className="text-white">
+                  <Link
+                    to="/contactus"
+                    className="text-white"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Contact
+                  </Link>
                 </Nav.Link>
                 <ToastContainer />
 
@@ -178,8 +180,14 @@ const NavbarHead = () => {
                     Aboutus
                   </Link>
                 </Nav.Link>
-                <Nav.Link href="#contactFooter" className="text-white pt-4">
-                  Contact
+                <Nav.Link className="text-white pt-4">
+                  <Link
+                    to="/contactus"
+                    className="text-white"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Contact
+                  </Link>
                 </Nav.Link>
                 <ToastContainer />
 
@@ -242,12 +250,15 @@ const NavbarHead = () => {
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
                             style={{ backgroundColor: "#f6837d" }}
-                            
                           >
-                            <Link to="/editProfile" className="text-white" style={{ textDecoration: "none" }}>
                             <Person color="white" size={20} />{" "}
-                            <small>Edit My Profile</small>
-                            </Link>
+                            <small><Link
+                                to="/edit-profile"
+                                className="text-white"
+                                style={{ textDecoration: "none" }}
+                              >
+                               Edit My Profile
+                              </Link></small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"

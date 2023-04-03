@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Sister = () => {
   return (
@@ -6,9 +6,16 @@ const Sister = () => {
       <div className="text-center fw-bold">Sister Information</div>
       <br />
       <br />
-      <div className="d-flex justify-content-lg-evenly" style={{backgroundColor: 'rgb(238, 234, 234)', padding: "2rem", borderRadius: '4%'}}>
+      <div
+        className="d-flex justify-content-lg-evenly"
+        style={{
+          backgroundColor: "rgb(238, 234, 234)",
+          padding: "2rem",
+          borderRadius: "4%",
+        }}
+      >
         <div className="text-start ml-4">
-          <li style={{ listStyle: "none", fontWeight: '300' }}>
+          <li style={{ listStyle: "none", fontWeight: "300" }}>
             <ul>No. of Brother</ul>
             <ul>Education</ul>
           </li>
@@ -21,7 +28,7 @@ const Sister = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sister
+export default Sister;

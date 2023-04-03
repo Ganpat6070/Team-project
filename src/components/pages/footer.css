@@ -8,7 +8,7 @@
 .countryText {
   position: absolute;
   left: 10%;
-  padding-top: 5% ;
+  padding-top: 5%;
 
   font-family: "Poppins";
   font-style: normal;
@@ -50,4 +50,30 @@
   top: 250px;
   background: #000000;
   opacity: 0.3;
+}
+@media (max-width: 600px) {
+  .footer {
+    height: fit-content;
+  }
+  .footerdata {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .appdata{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .icons{
+    display: inline-block;
+  }
+  .countryText{
+  position: relative;
+
+  }
+  .copyright{
+    text-align: center;
+  }
 }

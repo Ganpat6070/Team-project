@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
 // import { dummyData } from "../dummy";
 import { Link, useNavigate } from "react-router-dom";
+import { FileX } from "react-bootstrap-icons";
 
 type HomeProps = {
   onPass: (
     gender: string,
     lessAge: string,
     greatAge: string,
-    religion: string
+    religion: string,
   ) => void;
 };
 
@@ -20,22 +21,6 @@ const Home = ({ onPass }: HomeProps) => {
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
-  const [mydata, setMyData] = useState<any>([]);
-
-  useEffect(() => {
-    let response = fetch("http://localhost:8000/register", {
-      method: "POST",
-      headers:{"Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: "Shivani",
-        email: "shivani.makvana@technomark.io",
-        phoneNumber: 1234567890,
-        password: "shivani@1232",
-      }),
-    });
-    console.log(response)
-  }, []);
-  console.log(mydata);
 
   const navigate = useNavigate();
 
@@ -50,14 +35,14 @@ const Home = ({ onPass }: HomeProps) => {
   };
 
   const selectChangeGreatAge = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     event.preventDefault();
     setGreatAge(event.target.value);
   };
 
   const selectChangeReligion = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     event.preventDefault();
     setReligion(event.target.value);
@@ -85,7 +70,8 @@ const Home = ({ onPass }: HomeProps) => {
                   <Form.Label className="text-white">I'm lookig for</Form.Label>
                   <Form.Select
                     size="sm"
-                    style={{ width: "100px", height: "30px" }}
+                    className="filterinput"
+                    // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
                     <option>Select</option>
@@ -98,7 +84,8 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label className="text-white">Born Year </Form.Label>
                 <Form.Select
                   size="sm"
-                  style={{ width: "70px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeLessAge}
                 >
                   <option>Select</option>
@@ -108,22 +95,27 @@ const Home = ({ onPass }: HomeProps) => {
                 </Form.Select>
               </Col>
               <Col>
-                <Form.Label>&nbsp;</Form.Label>
-                <Form.Label>&nbsp;</Form.Label>
-              </Col>
-              <Col>
-                {" "}
-                <Form.Label>&nbsp;</Form.Label>
-                <Form.Label className="text-white" style={{ fontSize: "20px" }}>
+                <Form.Label>&nbsp;&nbsp;</Form.Label>
+                <Form.Label
+                  className="text-white"
+                  style={{ fontSize: "20px", marginTop: "20px" }}
+                >
                   TO
                 </Form.Label>
               </Col>
+              {/* <Col>
+                <Form.Label>&nbsp;</Form.Label>
+                <Form.Label className="mt-2 text-white" style={{ fontSize: "20px" }}>
+                  TO
+                </Form.Label>
+              </Col> */}
 
               <Col>
                 <Form.Label>&nbsp;</Form.Label>{" "}
                 <Form.Select
                   size="sm"
-                  style={{ width: "70px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeGreatAge}
                 >
                   <option>Select</option>
@@ -137,7 +129,8 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label className="text-white">Religion</Form.Label>
                 <Form.Select
                   size="sm"
-                  style={{ width: "100px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeReligion}
                 >
                   <option>Select</option>
@@ -148,9 +141,8 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
-                <Form.Label>&nbsp;</Form.Label>
-                <Form.Label>&nbsp;</Form.Label>
                 <Button
+                  className="findbtn filterinput"
                   size="sm"
                   style={{ backgroundColor: "#FE8A4D", width: "120px" }}
                   onClick={profileSearch}
@@ -177,45 +169,47 @@ const Home = ({ onPass }: HomeProps) => {
         </p>
       </div>
 
-      <div className="textandimage">
-        <div>
-          <img
-            src="../../image/joint.png"
-            alt="weddingImage"
-            style={{
-              width: "480px",
-              height: "446px",
-              top: "1064px",
-              left: "134px",
-            }}
-          />
+      <Container fluid>
+        <div className="textandimage">
+          <div className="perfectimg">
+            <img
+              src="../../image/joint.png"
+              alt="weddingImage"
+              style={{
+                width: "480px",
+                height: "446px",
+                top: "1064px",
+                left: "134px",
+              }}
+            />
+          </div>
+          <div className="combine">
+            <p
+              style={{
+                height: "108px",
+                width: "540px",
+                left: "645px",
+                top: "1063.999755859375px",
+                fontSize: "36px",
+              }}
+            >
+              No.1 Trusted Matrimonial Bureau in India
+            </p>
+            <p className="text2">
+              Being from a privileged class there are many things that get sort
+              out easily in life, but when it comes to marriage and finding the
+              right soul mate, it is the most difficult task. Numerous Best
+              Matrimonial Bureau in India are working day and night but their
+              approach is the same. The software allows you to tick the checkbox
+              and they present the prospective bride and groom to you. Being
+              from the elite society, having a privileged background, won’t it
+              be a better option than in place of a computer or software acting
+              as an most exclusive matchmaking service, there should be a person
+              listening constantly?
+            </p>
+          </div>
         </div>
-        <div className="combine">
-          <p
-            style={{
-              height: "108px",
-              width: "540px",
-              left: "645px",
-              top: "1063.999755859375px",
-              fontSize: "36px",
-            }}
-          >
-            No.1 Trusted Matrimonial Bureau in India
-          </p>
-          <p className="text2">
-            Being from a privileged class there are many things that get sort
-            out easily in life, but when it comes to marriage and finding the
-            right soul mate, it is the most difficult task. Numerous Best
-            Matrimonial Bureau in India are working day and night but their
-            approach is the same. The software allows you to tick the checkbox
-            and they present the prospective bride and groom to you. Being from
-            the elite society, having a privileged background, won’t it be a
-            better option than in place of a computer or software acting as an
-            most exclusive matchmaking service, there should be a person
-            listening constantly?
-          </p>
-        </div>
-      </div>
+      </Container>
 
       <Container>
         <div>
@@ -293,18 +287,18 @@ const Home = ({ onPass }: HomeProps) => {
           <p className="text-lg-center fs-3">Success Stories</p>
         </div>
         <div className="text-center">
-          <p>
+          <p className="mb-3">
             <u className="text-lg-center fs-4">
               Over thousand of success stories
             </u>
           </p>
         </div>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex stories justify-content-center">
           <Card className="mx-4 cardshadow">
             <Card.Img
-              width="328.52px"
-              height="390px"
+              width="30%"
+              height="85%"
               src="../../image/cd1.png"
               alt="cd1"
             />
@@ -312,11 +306,10 @@ const Home = ({ onPass }: HomeProps) => {
               <Card.Title className="text-center">Deepak & Navya</Card.Title>
             </Card.Body>
           </Card>
-
           <Card className="mx-4 cardshadow">
             <Card.Img
-              width="328.52px"
-              height="390px"
+              width="30%"
+              height="85%"
               src="../../image/cd2.png"
               alt="cd2"
             />
@@ -324,11 +317,10 @@ const Home = ({ onPass }: HomeProps) => {
               <Card.Title className="text-center">Neeraj & Vismaya</Card.Title>
             </Card.Body>
           </Card>
-
           <Card className="mx-4 cardshadow">
             <Card.Img
-              width="328.52px"
-              height="390px"
+              width="30%"
+              height="85%"
               src="../../image/cd3.png"
               alt="cd3"
             />
@@ -344,13 +336,13 @@ const Home = ({ onPass }: HomeProps) => {
           <Button
             style={{
               backgroundColor: "#ec5274",
-              width: "12%",
+              width: "14%",
               height: "13%",
-              margin: "19% 55%",
+              margin: "20% 60%",
               padding: "10px, 16px, 10px, 16px",
             }}
           >
-            Get Membership &nbsp; &nbsp; &gt;
+            Get Membership &nbsp; &gt;
           </Button>
         </Link>
       </div>
@@ -358,7 +350,7 @@ const Home = ({ onPass }: HomeProps) => {
         <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
           Connect with people you know but haven’t met yet
         </p>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex gallery justify-content-center">
           <Card className="clickableCard text-center">
             <Card.Img
               alt="woman_29years"
@@ -415,7 +407,7 @@ const Home = ({ onPass }: HomeProps) => {
           </Card>
         </div>
 
-        <div className="d-flex justify-content-center">
+        <div className="d-flex gallery justify-content-center">
           <Card className="clickableCard text-center">
             <Card.Img
               alt="man_29"
@@ -484,7 +476,7 @@ const Home = ({ onPass }: HomeProps) => {
             />
           </div>
           <div className="textmanage">
-            <h6 className="testtext">
+            <h6 className="testtext text-break">
               I am lucky to find this great organization, it’s impressive set-up
               and very friendly staff. They go deep to understand our
               preferences, hassles, limitations, etc. and then give very frank

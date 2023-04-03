@@ -1,63 +1,209 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from "./PersonalInfo.module.css";
 import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
+import NavbarHead from "../navbar";
+import PhotoCard from "./PhotoCard";
 
 const PersonalInfo = () => {
-  // Birthday Data
-  const DOB = useRef<HTMLInputElement>(null);
-  const Height = useRef<HTMLSelectElement>(null);
-  const Weight = useRef<HTMLSelectElement>(null);
-  const MStatus = useRef<HTMLSelectElement>(null);
-  const MTongue = useRef<HTMLSelectElement>(null);
-  const Religion = useRef<HTMLSelectElement>(null);
-  const Cast = useRef<HTMLInputElement>(null);
-  const SubCast = useRef<HTMLInputElement>(null);
-  const PStatus = useRef<HTMLInputElement>(null);
-  const Education = useRef<HTMLInputElement>(null);
-  const SLang = useRef<HTMLSelectElement>(null);
-  const EducationDetails = useRef<HTMLInputElement>(null);
-  const SchoolName = useRef<HTMLInputElement>(null);
-  const SPlace = useRef<HTMLInputElement>(null);
-  const SYOS = useRef<HTMLSelectElement>(null);
-  const CollegeName = useRef<HTMLInputElement>(null);
-  const Course = useRef<HTMLInputElement>(null);
-  const CPlace = useRef<HTMLInputElement>(null);
-  const CYOS = useRef<HTMLSelectElement>(null);
-  const CompanyName = useRef<HTMLInputElement>(null);
-  const Designation = useRef<HTMLInputElement>(null);
-  const WLocation = useRef<HTMLInputElement>(null);
-  const LCode = useRef<HTMLSelectElement>(null);
-  const LArea = useRef<HTMLSelectElement>(null);
-  const LNumber = useRef<HTMLInputElement>(null);
+  //Error Status
+  const [error, setError] = useState(false);
+  const [error2, setError2] = useState(false);
+  const [error3, setError3] = useState(false);
+  const [error4, setError4] = useState(false);
 
-  const submitHandler = (e: any) => {
-    e.preventDefault();
-    if (DOB.current) {
-      console.log(DOB.current.value);
-    }
-    if (Cast.current) {
-      console.log(Cast.current.value);
-    }
-    if (Height.current) {
-      console.log(Height.current.value);
+  // Set Data Status
+  const [complexions, setComplexion] = useState("");
+  const [bodytype, setBodytype] = useState("");
+  const [bloodgroup, setBloodgroup] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [empolyedin, setEmpolyedin] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [annualincome, setAnnualincome] = useState("");
+  const [astrodetails, setAstrodetails] = useState("");
+  const [aboutmyfamily, setAboutmyfamily] = useState("");
+  const [familytype, setFamilytype] = useState("");
+  const [familystatus, setFamilystatus] = useState("");
+  const [familyvalue2, setFamilyvalue2] = useState("");
+  const [annualfamilyincome2, setAnnualfamilyincome2] = useState("");
+  const [currency2, setCurrency2] = useState("");
+  const [fathername, setFathername] = useState("");
+  const [fatherfamilyname, setFatherfamilyname] = useState("");
+  const [fatherhome, setFatherhome] = useState("");
+
+  const complexionHandler: any = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    // let complexion: string = e.target.value;
+    // console.log(complexion);
+
+    if (!(e.target.value === "one")) {
+      setComplexion(e.target.value);
+      // console.log("this error")
+      // setComplexion(e.target.value);
+      // return "one";
+      setError(false);
     }
   };
 
+  const bodytypeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setBodytype(e.target.value);
+    }
+  };
+
+  const bloodgroupHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setBloodgroup(e.target.value);
+    }
+  };
+  const occupationHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setOccupation(e.target.value);
+    }
+  };
+
+  const employedinHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setEmpolyedin(e.target.value);
+    }
+  };
+
+  const currencyHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setCurrency(e.target.value);
+    }
+  };
+
+  const annualincomeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setAnnualincome(e.target.value);
+    }
+  };
+
+  const astrodetailsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "one")) {
+      setAstrodetails(e.target.value);
+    }
+  };
+
+  const aboutmyfamilyHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!(e.target.value === "")) {
+      setAboutmyfamily(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const familytypeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setFamilytype(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const familystatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setFamilystatus(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const familyvalue2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setFamilyvalue2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+
+  const annualfamilyincome2Handler = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    if (!(e.target.value === "")) {
+      setAnnualfamilyincome2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+
+  const currency2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrency2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const fathernameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrency2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const fatherfamilynameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrency2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+  const fatherhomehandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrency2(e.target.value);
+      // console.log(e.target.value)
+    }
+  };
+
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+    // let R:React.ChangeEvent<HTMLSelectElement>
+
+    // if (DOB.current) {
+    // console.log(DOB.current.value);
+    // }
+    // if (Cast.current) {
+    // console.log(Cast.current.value);
+    // }
+    // if (Height.current) {
+    // console.log(Height.current.value);
+    // }
+    // complexionHandler(R)
+    if (
+      complexions === "" ||
+      bodytype === "" ||
+      bloodgroup === "" ||
+      occupation === "" ||
+      empolyedin === "" ||
+      currency === "" ||
+      annualincome === ""
+    ) {
+      // setComplexion(complexion);
+      // console.log("error")
+      setError(true);
+      // return "one";
+    } else {
+      setError(false);
+    }
+    if (aboutmyfamily === "") {
+      setError2(true);
+    } else {
+      setError2(false);
+    }
+    if (familyvalue2 === "" || annualfamilyincome2 === "" || currency2 === "") {
+      setError3(true);
+    } else {
+      setError3(false);
+    }
+  };
+  // console.log(complexions);
+  // console.log(aboutmyfamily)
+
   return (
     <div
-      className="background_img"
+      className="background_image"
       style={{
-        backgroundImage: `url("../../image/Maskgroup.png")`,
+        backgroundImage: `url("../../image/BG.png")`,
         backgroundRepeat: "no-repeat",
         width: "100%",
-        height: "100%",
       }}
     >
+      <NavbarHead />
       <ProgressBar />
+      <PhotoCard />
+
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -70,7 +216,18 @@ const PersonalInfo = () => {
           >
             Personal Information
           </p>
-
+          {error ? (
+            <span
+              style={{
+                marginBottom: "20px",
+                // color: "red",
+                textTransform: "capitalize",
+              }}
+              className="text-danger"
+            >
+              All Below Mentioned Field Are Required
+            </span>
+          ) : null}
           <div className="row">
             <div className="col-lg-4">
               {/* <div className="form-group"> */}
@@ -79,16 +236,20 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={Height}
+                onChange={complexionHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
+                style={{ height: "50%" }}
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 {/* <option></option> */}
                 <option>Dark</option>
                 <option>Light</option>
                 <option>Medium</option>
                 <option>White</option>
               </select>
+
               {/* </div> */}
             </div>
             {/* <div className="col-xl-">
@@ -102,10 +263,13 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={Height}
+                style={{ height: "50%" }}
+                onChange={bodytypeHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>ectomorph</option>
                 <option>mesomorph</option>
                 <option>endomorph</option>
@@ -120,10 +284,13 @@ const PersonalInfo = () => {
               </label>
               {/* <input type="number" className="form-control mt-1 rounded-2 border-secondary" /> */}
               <select
-                ref={Weight}
+                style={{ height: "50%" }}
+                onChange={bloodgroupHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>A+</option>
                 <option>B+</option>
                 <option>AB+</option>
@@ -139,10 +306,13 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={MStatus}
+                onChange={occupationHandler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>Artist</option>
                 <option>Designer</option>
                 <option>Construction worker</option>
@@ -155,10 +325,13 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={MTongue}
+                onChange={employedinHandler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>TechnoMark</option>
                 <option>PathQuest</option>
                 <option>Google</option>
@@ -171,10 +344,13 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={Religion}
+                onChange={currencyHandler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>INR</option>
                 <option>USD</option>
                 <option>Euro</option>
@@ -189,10 +365,13 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={Religion}
+                onChange={annualincomeHandler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>4 - Lakh</option>
                 <option>5 - Lakh</option>
                 <option>6 - Lakh</option>
@@ -254,14 +433,16 @@ const PersonalInfo = () => {
               </label> */}
               <select
                 style={{ height: "40%" }}
-                ref={Religion}
+                onChange={astrodetailsHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
-                <option>Sun</option>
-                <option>Venus</option>
-                <option>Moon</option>
-                <option>Saturn</option>
+                <option value="one" hidden>
+                  Select Any One
+                </option>
+                <option value="sun">Sun</option>
+                <option value="venus">Venus</option>
+                <option value="moon">Moon</option>
+                <option value="saturn">Saturn</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -309,6 +490,11 @@ const PersonalInfo = () => {
           <Row className="" style={{ height: "250px" }}>
             {/* <div className="row"> */}
             <div className="col mt-3">
+              {error2 ? (
+                <span className="text-danger">
+                  plase tell us about your family
+                </span>
+              ) : null}
               <label htmlFor="">
                 About My Family <span className={classes.compalsory}>*</span>
               </label>
@@ -320,6 +506,7 @@ const PersonalInfo = () => {
               <textarea
                 name=""
                 id=""
+                onChange={aboutmyfamilyHandler}
                 className="w-100 p-4 h-1 "
                 style={{ width: "800" }}
               ></textarea>
@@ -354,7 +541,7 @@ const PersonalInfo = () => {
               </label>
               <select
                 style={{ height: "15%" }}
-                ref={Religion}
+                onChange={familytypeHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
                 <option hidden>Select Any One</option>
@@ -369,7 +556,7 @@ const PersonalInfo = () => {
               </label>
               <select
                 style={{ height: "15%" }}
-                ref={Religion}
+                onChange={familystatusHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
                 <option hidden>Select Any One</option>
@@ -385,17 +572,24 @@ const PersonalInfo = () => {
             </Col>
           </Row>
           <Row>
+            {error3 ? (
+              <span className="text-danger">
+                Please Select Below Mentio Fields
+              </span>
+            ) : null}
             <Col className="mt-3">
-              {" "}
               <label>
                 Currency <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
-                ref={Religion}
+                onChange={currency2Handler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option hidden value="one">
+                  Select Any One
+                </option>
                 <option>INR</option>
                 <option>USD</option>
                 <option>Euro</option>
@@ -409,7 +603,8 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={MStatus}
+                onChange={annualfamilyincome2Handler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option hidden>Select Any One</option>
@@ -425,7 +620,8 @@ const PersonalInfo = () => {
                 <br />
               </label>
               <select
-                ref={MTongue}
+                onChange={familyvalue2Handler}
+                style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option hidden>Select Any One</option>
@@ -446,48 +642,47 @@ const PersonalInfo = () => {
               />
             </div>
           </div> */}
+          {error4 ? <span>below entered data in not valid</span> : null}
           <div className="row">
             <div className="col mt-3">
-              <label htmlFor="">Farther's Name</label>
+              <label htmlFor="">Father Name</label>
               <br />
               <input
+                onChange={fathernameHandler}
+                type="text"
+                className={`form-control text-dark mt-1 rounded-2 border-secondary twothree ${classes.twothree}`}
+                style={{ height: "50%" }}
+              />
+            </div>
+            <div className="col mt-3">
+              <label htmlFor="">Father Family Name</label>
+              <br />
+              <input
+                onChange={fatherfamilynameHandler}
+                style={{ height: "50%" }}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor="">Farther's Family Name</label>
+              <label htmlFor="">Father Home/Place</label>
               <br />
               <input
+                onChange={fatherhomehandler}
+                //  style={{height:"50%"}}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
             </div>
-            <div className="col mt-3">
-              <label htmlFor="">Farther's Home/Place</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
-              />
-            </div>
-            {/* <div className="col mt-3">
-              <label htmlFor="">Year of Study</label>
-              <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
-                <option></option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2000</option>
-              </select>
-              <label htmlFor=""></label>
-            </div> */}
           </div>
           <div className="row">
             <div className="col mt-3">
-              <label htmlFor="">Father's Employed In</label>
+              <label htmlFor="">Father Employed In</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
+              <select
+                style={{ height: "50%" }}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
+              >
                 <option></option>
                 <option>ONGC</option>
                 <option>Goverment</option>
@@ -495,15 +690,16 @@ const PersonalInfo = () => {
               </select>
             </div>
             <div className="col mt-3">
-              <label htmlFor="">Father's Occupation</label>
+              <label htmlFor="">Father Occupation</label>
               <br />
               <input
+                style={{ height: "50%" }}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor="">Father's Education</label>
+              <label htmlFor="">Father Education</label>
               <br />
               <input
                 type="text"
@@ -523,7 +719,7 @@ const PersonalInfo = () => {
           </div>
           <div className="row ">
             <div className="col mt-3">
-              <label htmlFor="">Father's Company Name</label>
+              <label htmlFor="">Father Company Name</label>
               <br />
               <input
                 type="text"
@@ -532,7 +728,7 @@ const PersonalInfo = () => {
             </div>
 
             <div className="col mt-3">
-              <label htmlFor="">Father's Designation</label>
+              <label htmlFor="">Father Designation</label>
               <br />
               <input
                 type="text"
@@ -541,7 +737,7 @@ const PersonalInfo = () => {
             </div>
 
             <div className="col mt-3">
-              <label htmlFor="">Father's Work Location</label>
+              <label htmlFor="">Father Work Location</label>
               <br />
               <input
                 type="text"
@@ -732,7 +928,7 @@ const PersonalInfo = () => {
           </div>
           <div className="row">
             <div className="col mt-3">
-              <label htmlFor="">Residential Statua</label>
+              <label htmlFor="">Residential Status</label>
               <br />
               <select
                 style={{ height: "50%" }}
@@ -786,203 +982,13 @@ const PersonalInfo = () => {
               />
             </div> */}
           </div>
-          {/* <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">Mobile Number</label>
-              <br />
-              <select
-                name=""
-                id=""
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
-              >
-                <option value=""></option>
-                <option value="">+91</option>
-                <option value="">+1</option>
-                <option value="">+59</option>
-              </select>
-            </div>
-            <div className="col mt-3">
-            <label htmlFor=""></label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-              
-            </div>
-            <div className="col mt-5">
-              <label htmlFor=""></label>
-            <img className="" src="../../images/plus.png" alt="" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">
-                Preferred Contact Type <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">Convenient Time to Call</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">
-                Contact Name <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">
-                Email <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <input
-                type="email"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">
-                Profile Created By <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <select
-                name=""
-                id=""
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
-              >
-                <option value=""></option>
-                <option value="">Matrimonial Professtion</option>
-                <option value=""></option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">Apartment Name / House Name</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">Street / Locality</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <p style={{color:"#6E6E6E" , fontSize:"small"}}>
-                Please provide your valid address. We will not be displaying
-                your address on the site and will be gathered only for internal
-                purpose.
-              </p>
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">
-                Country <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">
-                Pin Code <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">
-                City / State <span className={classes.compalsory}>*</span>
-              </label>
-              <br />
-              <select
-                name=""
-                id=""
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
-              >
-                <option value=""></option>
-                <option value="">Ahmedabad/Gujarat</option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col mt-3">
-              <label htmlFor="">Reference Name</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">Address</label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-            <div className="col mt-3">
-              <label htmlFor="">Contact Number</label>
-              <br />
-              <select
-                name=""
-                id=""
-                className="form-control text-dark mt-1 rounded-2 border-secondary form-select mobiledrop"
-              >
-                <option value=""></option>
-
-                <option value="">+91</option>
-                <option value="">+1</option>
-                <option value="">+56</option>
-              </select>
-            </div>
-            <div className="col mt-3">
-            <label htmlFor=""></label>
-              <br />
-              <input
-                type="text"
-                className="form-control text-dark rounded-2 border-secondary"
-              />
-            </div> */}
           {/* </div> */}
-          <Link to="\">
+          <Link to="/">
             <button
-              className="btn btn-light btn-outline-secondary btn-xl mt-2"
+              className="btn btn-light text-white btn-xl mt-2"
               type="button"
               onClick={submitHandler}
+              style={{ backgroundColor: "#fb9232" }}
             >
               Save and Continue
             </button>

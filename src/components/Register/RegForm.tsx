@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./RegForm.css";
-import { collection, addDoc } from "firebase/firestore";
-import db from "../firebase";
+// import { collection, addDoc } from "firebase/firestore";
+// import db from "../firebase";
 import { Carousel } from "react-bootstrap";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarHead from "../navbar";
@@ -14,7 +14,7 @@ const RegForm2 = () => {
   const navigate = useNavigate();
   const [fnamer, setFirstName] = useState("");
   const [email, setEmail] = useState("");
-  const [numberr, setNumber] = useState("");
+  const [numberr, setNumber] = useState<number>();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -28,32 +28,78 @@ const RegForm2 = () => {
   const onRegister = async (e: any) => {
     e.preventDefault();
 
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        toast.success("Registered successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        navigate('/login')
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        toast.error(errorMessage, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-        setError(errorMessage);
-      });
-    const docRef = await addDoc(collection(db, "User"), {
-      fname: fnamer,
-      email: email,
-      number: numberr,
-      pass: password,
+    let response = await fetch("http://localhost:8000/register", {
+      credentials : "include",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: fnamer,
+        email: email,
+        phoneNumber: numberr,
+        password: password,
+      }),
     });
 
-    console.log(docRef.id);
+    const res = await response.json();
+    console.log(res);
 
+    if (res.msg) {
+      if (res.msg === "Already registered") {
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      }
+      if (res.msg === "Registered") {
+        setTimeout(() => {
+          navigate('/otp');
+        }, 2000);
+      }
+      toast.success(res.msg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.error(res.errorMessage, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+
+    // console.log(res.msg);
+    if (res.status === 422) {
+      console.log(res.errorMessage);
+    }
+    // console.log(response.msg)
+    // if (response.message ==="Suceess"){
+    //   navigate('/otp')
+    // }
+
+    // await createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     toast.success("Registered successfully", {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //     });
+    //     navigate("/login");
+    //   })
+    //   .catch((error) => {
+    //     const errorMessage = error.message;
+    //     toast.error(errorMessage, {
+    //       position: toast.POSITION.TOP_RIGHT,
+    //     });
+    //     setError(errorMessage);
+    //   });
+    // const docRef = await addDoc(collection(db, "User"), {
+    //   fname: fnamer,
+    //   email: email,
+    //   number: numberr,
+    //   pass: password,
+    // });
+
+    // console.log(docRef.id);
   };
 
   return (
@@ -66,7 +112,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0  "
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                  src="../../image/quick-reg.slideA.jpg"
                   alt="First slide"
                 />
                 <Carousel.Caption>
@@ -81,7 +127,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0  "
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideA.jpg"
+                  src="../../image/quick-reg.slideC.jpg"
                   alt="First slide"
                 />
                 <Carousel.Caption>
@@ -96,7 +142,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0"
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideE.jpg"
+                  src="../../image/quick-reg.slideA.jpg"
                   alt="Second slide"
                 />
 
@@ -111,7 +157,7 @@ const RegForm2 = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-0"
-                  src="https://static.m4marry.com/ui/images/quick-reg.slideC.jpg"
+                  src="../../image/regimage.jpg"
                   alt="Third slide"
                 />
 
@@ -171,7 +217,12 @@ const RegForm2 = () => {
                 <br />
                 <select
                   className="form-control"
-                  style={{ width: "90px", background: "0", border: "0" }}
+                  style={{
+                    width: "90px",
+                    background: "0",
+                    border: "0",
+                    marginBottom: "30px",
+                  }}
                 >
                   <option value="1">+91</option>
                   <option value="1">+92</option>
@@ -189,7 +240,7 @@ const RegForm2 = () => {
                   maxLength={10}
                   // ref={number}
                   onChange={(e) => {
-                    setNumber(e.target.value);
+                    setNumber(parseInt(e.target.value));
                   }}
                 />
               </div>

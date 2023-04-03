@@ -3,8 +3,8 @@ import Form from "react-bootstrap/Form";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import NavbarHead from "../navbar";
 import { signInWithGoogle } from "../firebase";
@@ -20,30 +20,80 @@ function Login() {
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("login successfully");
-        toast.success("Login Successful", {
+    let response = await fetch("http://localhost:8000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const res = await response.json();
+    console.log(res);
+    if (res.msg) {
+      if (
+        res.msg === "You are not verified user!" ||
+        res.msg === "Email id is not registered" ||
+        res.msg === "Password is incorrect!"
+      ) {
+        toast.error(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        // console.log(user.email);
-        const uname = user.email;
-        // console.log(uname);
-        localStorage.setItem("uname", JSON.stringify(uname));
+      }
+      if (res.msg === "User found successfully!") {
+        toast.success(res.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         localStorage.setItem("login", "true");
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        toast.error(errorMessage, {
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
+      }
+      if(res.msg === "please verify your email"){
+        toast.warning(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        setError(errorMessage);
+        setTimeout(() => {
+          navigate("/otp");
+        }, 1500);
+      }
+      // toast.success(res.msg, {
+      //   position: toast.POSITION.TOP_RIGHT,
+      // });
+    } else {
+      toast.error(res.errorMessage, {
+        position: toast.POSITION.TOP_RIGHT,
       });
+    }
   };
+  // const onSubmit = async (e: any) => {
+  //   e.preventDefault();
+
+  //   await signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       console.log("login successfully");
+  //       toast.success("Login Successful", {
+  //         position: toast.POSITION.TOP_RIGHT,
+  //       });
+  //       // console.log(user.email);
+  //       const uname = user.email;
+  //       // console.log(uname);
+  //       localStorage.setItem("uname", JSON.stringify(uname));
+  //       localStorage.setItem("login", "true");
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       const errorMessage = error.message;
+  //       console.log(errorMessage);
+  //       toast.error(errorMessage, {
+  //         position: toast.POSITION.TOP_RIGHT,
+  //       });
+  //       setError(errorMessage);
+  //     });
+  // };
 
   return (
     <>
@@ -161,7 +211,13 @@ function Login() {
                     <p className="text-center text-light">Forgot Password ?</p>
                     <p className="text-white text-center formFieldLink">
                       New to PerfectMatch.com ?{" "}
-                      <Link to="/register" className="text-light" style={{textDecoration:"none"}}>Register Free</Link>
+                      <Link
+                        to="/register"
+                        className="text-light"
+                        style={{ textDecoration: "none" }}
+                      >
+                        Register Free
+                      </Link>
                     </p>
                   </Form>
                   <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
