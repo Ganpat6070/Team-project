@@ -33,6 +33,56 @@ const PersonalInfo = () => {
   const [fatherfamilyname, setFatherfamilyname] = useState("");
   const [fatherhome, setFatherhome] = useState("");
 
+  const [fatheremp, setFatheremp] = useState("");
+  const [fatherocc, setFatherocc] = useState("");
+  const [fatheredu, setFatheredu] = useState("");
+  const [fathercomname, setFathercomname] = useState("");
+  const [fatherdes, setFatherdes] = useState("");
+  const [fatherworkloc, setFatherworkloc] = useState("");
+  const [mothername, setMothername] = useState("");
+  const [motherfamilyname, setMotherfamilyname] = useState("");
+  const [motherhome, setMotherhome] = useState("");
+  const [motheremp, setMotheremp] = useState("");
+  const [motherocc, setMotherocc] = useState("");
+  const [motheredu, setMotheredu] = useState("");
+  const [mothercomname, setMothercomname] = useState("");
+  const [motherdes, setMotherdes] = useState("");
+  const [motherworkloc, setMotherworkloc] = useState("");
+  const [counteryliving, setCounteryliving] = useState("");
+  const [currentloc, setCurrentloc] = useState("");
+
+  const [counteryliving2, setCounteryliving2] = useState("");
+  const [currentloc2, setCurrentloc2] = useState("");
+  const [perloc, setPerloc] = useState("");
+  const [residentialstatus, setResidentialstatus] = useState("");
+  const [nativeplace, setNativeplace] = useState("");
+
+
+  const presonalinfro2 = {
+    fatheremp,
+fatherocc,
+fatheredu,
+fathercomname,
+fatherdes,
+fatherworkloc,
+mothername,
+motherfamilyname,
+motherhome,
+motheremp,
+motherocc,
+motheredu,
+mothercomname,
+motherdes,
+motherworkloc,
+counteryliving,
+currentloc,
+counteryliving2,
+currentloc2,
+perloc,
+residentialstatus,
+nativeplace,
+
+  } 
   const complexionHandler: any = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // let complexion: string = e.target.value;
     // console.log(complexion);
@@ -113,7 +163,7 @@ const PersonalInfo = () => {
   };
 
   const annualfamilyincome2Handler = (
-    e: React.ChangeEvent<HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLSelectElement>
   ) => {
     if (!(e.target.value === "")) {
       setAnnualfamilyincome2(e.target.value);
@@ -146,46 +196,177 @@ const PersonalInfo = () => {
     }
   };
 
+  const fatherempHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setFatheremp(e.target.value);
+    }
+  };
+
+  const fatheroccHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherocc(e.target.value);
+    }
+  };
+
+  const fathereduHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatheredu(e.target.value);
+    }
+  };
+
+  const fathercomnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFathercomname(e.target.value);
+    }
+  };
+
+  const fatherdesHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherdes(e.target.value);
+    }
+  };
+
+  const fatherworklocHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherworkloc(e.target.value);
+    }
+  };
+
+  const mothernameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMothername(e.target.value);
+    }
+  };
+
+  const motherfamilynameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherfamilyname(e.target.value);
+    }
+  };
+
+  const motherhomeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherfamilyname(e.target.value);
+    }
+  };
+
+  const motherempHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setMotheremp(e.target.value);
+    }
+  };
+
+  const motheroccHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherocc(e.target.value);
+    }
+  };
+  const mothereduHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotheredu(e.target.value);
+    }
+  };
+
+  const mothercomnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMothercomname(e.target.value);
+    }
+  };
+
+  const motherdesHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherdes(e.target.value);
+    }
+  };
+
+  const motherworklocHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherworkloc(e.target.value);
+    }
+  };
+
+  const counterylivingHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCounteryliving(e.target.value);
+    }
+  };
+
+  const currentlocHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrentloc(e.target.value);
+    }
+  };
+
+  const counteryliving2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCounteryliving(e.target.value);
+    }
+  };
+
+  const currentloc2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrentloc2(e.target.value);
+    }
+  };
+
+  const perlocHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setPerloc(e.target.value);
+    }
+  };
+
+  const residentialstatusHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    if (!(e.target.value === "")) {
+      setResidentialstatus(e.target.value);
+    }
+  };
+
+  const nativeplaceHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setNativeplace(e.target.value);
+    }
+  };
+
   const submitHandler = (e: any) => {
     e.preventDefault();
-    // let R:React.ChangeEvent<HTMLSelectElement>
-
-    // if (DOB.current) {
-    // console.log(DOB.current.value);
-    // }
-    // if (Cast.current) {
-    // console.log(Cast.current.value);
-    // }
-    // if (Height.current) {
-    // console.log(Height.current.value);
-    // }
-    // complexionHandler(R)
-    if (
-      complexions === "" ||
-      bodytype === "" ||
-      bloodgroup === "" ||
-      occupation === "" ||
-      empolyedin === "" ||
-      currency === "" ||
-      annualincome === ""
+    if ((
+      complexions&&
+      bodytype &&
+      bloodgroup &&
+      occupation &&
+      empolyedin &&
+      currency  &&
+      annualincome ) === ""
     ) {
       // setComplexion(complexion);
       // console.log("error")
       setError(true);
       // return "one";
-    } else {
+    }else if(aboutmyfamily === ""){
+      setError2(true);
+    }
+    else if(familyvalue2 === "" && annualfamilyincome2 === "" && currency2  === ""){
+      setError3(true);
+    }
+    else {
+      // setError2(false);
+      console.log(presonalinfro2)
       setError(false);
     }
-    if (aboutmyfamily === "") {
-      setError2(true);
-    } else {
-      setError2(false);
-    }
-    if (familyvalue2 === "" || annualfamilyincome2 === "" || currency2 === "") {
-      setError3(true);
-    } else {
-      setError3(false);
-    }
+    // if (aboutmyfamily === "") {
+    //   setError2(true);
+    // }
+    
+    // if (familyvalue2 === "" && annualfamilyincome2 === "" && currency2  === "") {
+      
+    // } else {
+    //   setError3(false);
+    // }
+  
+
+ 
   };
   // console.log(complexions);
   // console.log(aboutmyfamily)
@@ -200,7 +381,7 @@ const PersonalInfo = () => {
       }}
     >
       <ProgressBar />
-      <PhotoCard/>
+      <PhotoCard />
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -237,14 +418,14 @@ const PersonalInfo = () => {
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 style={{ height: "50%" }}
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 {/* <option></option> */}
-                <option>Dark</option>
-                <option>Light</option>
-                <option>Medium</option>
-                <option>White</option>
+                <option value="Dark">Dark</option>
+                <option value="Light">Light</option>
+                <option value="Medium">Medium</option>
+                <option value="White">White</option>
               </select>
 
               {/* </div> */}
@@ -264,12 +445,12 @@ const PersonalInfo = () => {
                 onChange={bodytypeHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>ectomorph</option>
-                <option>mesomorph</option>
-                <option>endomorph</option>
+                <option value="ectomorph">ectomorph</option>
+                <option value="mesomorph">mesomorph</option>
+                <option value="endomorph">endomorph</option>
                 {/* <option>7ft</option>
                 <option>7ft +</option> */}
               </select>
@@ -285,14 +466,14 @@ const PersonalInfo = () => {
                 onChange={bloodgroupHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>A+</option>
-                <option>B+</option>
-                <option>AB+</option>
-                <option>AB-</option>
-                <option>O+</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
               </select>
             </div>
           </div>
@@ -307,7 +488,7 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>Artist</option>
@@ -677,6 +858,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Employed In</label>
               <br />
               <select
+                onChange={fatherempHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
               >
@@ -690,6 +872,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Occupation</label>
               <br />
               <input
+                onChange={fatheroccHandler}
                 style={{ height: "50%" }}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -699,6 +882,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Education</label>
               <br />
               <input
+                onChange={fathereduHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -719,6 +903,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Company Name</label>
               <br />
               <input
+                onChange={fathercomnameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -728,6 +913,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Designation</label>
               <br />
               <input
+                onChange={fatherdesHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -737,6 +923,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Work Location</label>
               <br />
               <input
+                onChange={fatherworklocHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -747,6 +934,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Name</label>
               <br />
               <input
+                onChange={mothernameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -755,6 +943,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Family Name</label>
               <br />
               <input
+                onChange={motherfamilynameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -763,6 +952,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Home/Place</label>
               <br />
               <input
+                onChange={motherhomeHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -772,7 +962,10 @@ const PersonalInfo = () => {
             <div className="col mt-3">
               <label htmlFor="">Mother's Employed In</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
+              <select
+                onChange={motherempHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
+              >
                 <option></option>
                 <option>Private</option>
                 <option>Goverment</option>
@@ -783,6 +976,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Occupation</label>
               <br />
               <input
+                onChange={motheroccHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -791,6 +985,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Education</label>
               <br />
               <input
+                onChange={mothereduHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -801,6 +996,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Company Name</label>
               <br />
               <input
+                onChange={mothercomnameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -810,6 +1006,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Designation</label>
               <br />
               <input
+                onChange={motherdesHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -819,6 +1016,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Work Location</label>
               <br />
               <input
+                onChange={motherworklocHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -830,6 +1028,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Country Living In</label>
               <br />
               <select
+                onChange={counterylivingHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -845,6 +1044,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Current Location</label>
               <br />
               <select
+                onChange={currentlocHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -867,6 +1067,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Country Living In</label>
               <br />
               <select
+                onChange={counterylivingHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -882,6 +1083,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Current Location</label>
               <br />
               <select
+                onChange={currentloc2Handler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -897,6 +1099,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Permanent Location</label>
               <br />
               <select
+                onChange={perlocHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -928,6 +1131,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Residential Status</label>
               <br />
               <select
+                onChange={residentialstatusHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -943,6 +1147,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Native Place</label>
               <br />
               <select
+                onChange={nativeplaceHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >

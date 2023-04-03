@@ -9,6 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarHead from "../navbar";
 import { useNavigate } from "react-router-dom";
+import useForm from "../Profile/Form";
+import Otp from "./Otp/Otp";
+
 
 const RegForm2 = () => {
   const navigate = useNavigate();
@@ -24,12 +27,14 @@ const RegForm2 = () => {
   //   numberr: numberr,
   //   pass: password,
   // };
+// const username = cookies.get('username')
+// const {regformHandler , values:any , submitHandler2 } = useForm();
 
   const onRegister = async (e: any) => {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/register", {
-      credentials: "include",
+      // credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -49,7 +54,7 @@ const RegForm2 = () => {
           navigate("/login");
         }, 2000);
       }
-      if (res.msg === "USER REGISTERED SUCCESSFULLY!") {
+      if (res.msg === "Registered") {
         setTimeout(() => {
           navigate("/otp");
         }, 2000);
@@ -64,9 +69,9 @@ const RegForm2 = () => {
     }
 
     // console.log(res.msg);
-    if (res.status === 422) {
-      console.log(res.errorMessage);
-    }
+    // if (res.status === 422) {
+    //   console.log(res.errorMessage);
+    // }
     // console.log(response.msg)
     // if (response.message ==="Suceess"){
     //   navigate('/otp')
@@ -172,6 +177,7 @@ const RegForm2 = () => {
          
           </Carousel> */}
           </div>
+          {/* <form onSubmit={submitHandler2}> */}
           <form onSubmit={onRegister}>
             <h2 className="text-center">
               <strong>Registration</strong>
@@ -183,12 +189,14 @@ const RegForm2 = () => {
                 className="form-control"
                 type="text"
                 name="fullname"
-                required
+                // required
                 placeholder="Shyam Dadhani"
                 // ref={fname}
                 onChange={(e) => {
                   setFirstName(e.target.value);
                 }}
+                // value={values.fnamer }
+                // onChange={regformHandler}
               />
               {/* <span className="text-danger size-small">{firstError}</span> */}
             </div>
@@ -198,12 +206,13 @@ const RegForm2 = () => {
                 className="form-control"
                 type="email"
                 name="email"
-                required
+                // required
                 placeholder="shyam.dadhani@gmail.com"
                 // ref={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                // onChange={regformHandler}
                 value={email}
               />
               {/* <span className="text-danger size-small">{emailError}</span> */}
@@ -227,18 +236,19 @@ const RegForm2 = () => {
                   <option value="3">+701</option>
                 </select>
                 <input
-                  required
+                  // required
                   style={{ margin: "0", background: "0", border: "0" }}
                   className="form-control"
                   type="tel"
                   name="number"
                   placeholder="1234567890"
-                  minLength={10}
-                  maxLength={10}
+                  // minLength={10}
+                  // maxLength={10}
                   // ref={number}
                   onChange={(e) => {
                     setNumber(parseInt(e.target.value));
                   }}
+                  // onChange={regformHandler}
                 />
               </div>
               {/* <span className="text-danger size-small pb-0">{numError}</span> */}
@@ -251,9 +261,10 @@ const RegForm2 = () => {
                 type="password"
                 name="password"
                 placeholder="******"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>  setPassword(e.target.value)}
                 required
                 value={password}
+                // onChange={regformHandler}
               />
               {/* <span className="text-danger size-small">{emailError}</span> */}
             </div>
@@ -263,7 +274,7 @@ const RegForm2 = () => {
               <div className="form-check">
                 <label className="form-check-label">
                   <input
-                    required
+                    // required
                     className="form-check-input"
                     type="checkbox"
                     // ref={agree}
