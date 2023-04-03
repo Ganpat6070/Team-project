@@ -194,7 +194,7 @@ const BasicInfo = () => {
 
     setErrorbi(false);
   };
-  const aboutmeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const aboutmeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!(e.target.value === "")) setAboutme(e.target.value);
     // console.log(fname)
   };
@@ -416,55 +416,56 @@ const BasicInfo = () => {
       console.log(basicinfo);
     }
 
-    let response = await fetch("http://localhost:8000/basicinfo", {
+    let response = await fetch("http://localhost:8000/basic-info", {
       credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        Token: token,
+        token: token,
         user_id: id,
-        firstName: "John2",
-        lastName: "Doe",
-        dateOfBirth: "1990-01-01",
-        height: 175,
-        weight: 75,
-        maritalStatus: "Single",
-        motherTongue: "English",
-        religion: "Christian",
-        caste: "N/A",
-        gender: "N/A",
-        physicalStatus: "Normal",
-        aboutMe: "I am a software engineer with a passion for coding.",
-        spokenLanguages: ["English", "Spanish"],
-        education: "Bachelor's Degree",
-        educationInDetail: "Bachelor of Science in Computer Science",
-        schoolName: "XYZ High School",
-        schoolPlace: "New York",
-        yearOfStudySchool: 2016,
-        collegeName: "ABC University",
-        course: "Computer Science",
-        placeCollege: "New York",
-        yearOfStudyCollege: 2021,
-        companyName: "XYZ Corp",
-        designation: "Software Engineer",
-        workLocation: "San Francisco",
-        landlineNumber: "555-555-5555",
-        mobileNumber: "999-999-9999",
-        preferredContactType: "Mobile",
-        convenientTimeToCall: "Eve",
-        contactName: "Nikhil",
-        email: "nikhil@gmail.com",
-        profileCreatedBy: "self",
-        apartmentName: "jantanagar",
-        streetLocality: "jantanagar",
-        country: "jantanagar",
-        pinCode: "382424",
-        cityState: "jantanagar",
-        referenceName: "parth",
-        address: "jantanagar",
-        contactNumber: "9876543210",
+        firstName: fname,
+        lastName: lname,
+        dateOfBirth: dob,
+        height: height,
+        weight: weight,
+        maritalStatus: mStatus,
+        motherTongue: mTongue,
+        religion: religion,
+        caste: cast,
+        gender: gender,
+        physicalStatus: phyStatus,
+        aboutMe: aboutme,
+        spokenLanguages: spokenLanguage,
+        education: education,
+        educationInDetail: eduDetails,
+        schoolName: schoolName,
+        schoolPlace: splace,
+        yearOfStudySchool: syos,
+        collegeName: collegeName,
+        course: course,
+        placeCollege: cplace,
+        yearOfStudyCollege: cyos,
+        companyName: compName,
+        designation: designation,
+        workLocation: wLoc,
+        landlineNumber: lcode,
+        mobileNumber: mNumber,
+        preferredContactType: precon,
+        convenientTimeToCall: time,
+        contactName: conname,
+        email: email,
+        profileCreatedBy: procre,
+        apartmentName: homename,
+        streetLocality: slocal,
+        country: countery,
+        pinCode: pin,
+        cityState: city,
+        referenceName: refname,
+        address: refaddress,
+        contactNumber: refcontact,
       }),
     });
+    console.log(response);
   };
 
   return (
@@ -512,7 +513,8 @@ const BasicInfo = () => {
               </Col>
               <Col className="mt-3">
                 <label htmlFor="">
-                  Middle Name <span className="compalsory">*</span> <br />
+                  Middle Name
+                  {/* <span className="compalsory">*</span> <br /> */}
                 </label>
 
                 <input
@@ -685,11 +687,12 @@ const BasicInfo = () => {
                   About Me <span className="compalsory">*</span>
                   <br />
                 </label>
-                <input
+                {/* <input
                   onChange={aboutmeHandler}
                   type="text"
                   className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-                />
+                /> */}
+                <textarea onChange={aboutmeHandler} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
 
                 <p style={{ color: "#6E6E6E", fontStyle: "italic" }}>
                   (Characters Left : 600)
@@ -699,8 +702,10 @@ const BasicInfo = () => {
                 <label htmlFor="">
                   Spoken Language(s) <span className="compalsory">*</span>
                   <br />
-                  <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
-                    <label htmlFor="english" className="py-2">
+                  <span style={{width: "100%"}} className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
+                    <Row>
+                      <Col className="" style={{marginRight:"30px"}}>
+                      <label htmlFor="english" className="py-2">
                       <input
                         type="checkbox"
                         id="english"
@@ -724,7 +729,7 @@ const BasicInfo = () => {
                       />
                       &nbsp; Gujarati
                     </label>
-                    <br />
+                   
                     <label htmlFor="hindi" className="py-2">
                       <input
                         type="checkbox"
@@ -736,7 +741,49 @@ const BasicInfo = () => {
                       />
                       &nbsp; Hindi
                     </label>
+                    
+                      </Col>
+                      <Col style={{marginRight:"30px"}}>
+                      <label htmlFor="Kanada" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="Kanada"
+                        name="language"
+                        value="Kanada"
+                        className=""
+                        checked={spokenLanguage.includes("Kanada")}
+                        onChange={spokenLanguageHandler}
+                      />
+                      &nbsp; Kanada
+                    </label>
                     <br />
+                    <label htmlFor="Telugu" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="Telugu"
+                        name="language"
+                        value="Telugu"
+                        checked={spokenLanguage.includes("Telugu")}
+                        onChange={spokenLanguageHandler}
+                      />
+                      &nbsp; Telugu
+                    </label>
+                    <br />
+                    <label htmlFor="Tamil" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="Tamil"
+                        name="language"
+                        value="Tamil"
+                        checked={spokenLanguage.includes("Tamil")}
+                        onChange={spokenLanguageHandler}
+                      />
+                      &nbsp; Tamil
+                    </label>
+                    
+                      </Col>
+                    </Row>
+                    
                   </span>
                 </label>
               </Col>
@@ -747,59 +794,125 @@ const BasicInfo = () => {
                   Education <span className="compalsory">*</span>
                   <br />
                 </label>
-                {/* <input
-                  onChange={educationHandler}
-                  type="text"
-                  className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-                /> */}
+
                 <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
-                  <label htmlFor="M.E" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="M.E"
-                      name="education"
-                      value="M.E"
-                      className=""
-                      checked={education.includes("M.E")}
-                      onChange={educationHandler}
-                    />
-                    &nbsp; M.E
-                  </label>
-                  <br />
-                  <label htmlFor="M.Tech" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="M.Tech"
-                      name="education"
-                      value="M.Tech"
-                      checked={education.includes("M.Tech")}
-                      onChange={educationHandler}
-                    />
-                    &nbsp; M.Tech
-                  </label>
-                  <br />
-                  <label htmlFor="MCA" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="MCA"
-                      name="MCA"
-                      value="education"
-                      checked={education.includes("MCA")}
-                      onChange={educationHandler}
-                    />
-                    &nbsp; MCA
-                  </label>
-                  <br />
+                  <Row>
+                    <Col>
+                      <label htmlFor="M.E" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="M.E"
+                          name="education"
+                          value="M.E"
+                          className=""
+                          checked={education.includes("M.E")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; M.E
+                      </label>
+                      <br />
+                      <label htmlFor="M.Tech" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="M.Tech"
+                          name="education"
+                          value="M.Tech"
+                          checked={education.includes("M.Tech")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; M.Tech
+                      </label>
+                      <br />
+                      <label htmlFor="MCA" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="MCA"
+                          name="education"
+                          value="MCA"
+                          checked={education.includes("MCA")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; MCA
+                      </label>
+                    </Col>
+                    <Col>
+                      <label htmlFor="B.Tech" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="B.Tech"
+                          name="education"
+                          value="B.Tech"
+                          className=""
+                          checked={education.includes("B.Tech")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; B.Tech
+                      </label>
+                      <br />
+                      <label htmlFor="BCOM" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="BCOM"
+                          name="education"
+                          value="BCOM"
+                          checked={education.includes("BCOM")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; BCOM
+                      </label>
+                      <br />
+                      <label htmlFor="BE" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="BE"
+                          name="education"
+                          value="BE"
+                          checked={education.includes("BE")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; BE
+                      </label>
+                    </Col>
+                    <Col>
+                      <label htmlFor="MCOM" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="MCOM"
+                          name="education"
+                          value="MCOM"
+                          className=""
+                          checked={education.includes("MCOM")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; MCOM
+                      </label>
+                      <br />
+                      <label htmlFor="BCA" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="BCA"
+                          name="education"
+                          value="BCA"
+                          checked={education.includes("BCA")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; BCA
+                      </label>
+                      <br />
+                      <label htmlFor="MBA" className="py-2">
+                        <input
+                          type="checkbox"
+                          id="MBA"
+                          name="education"
+                          value="MBA"
+                          checked={education.includes("MBA")}
+                          onChange={educationHandler}
+                        />
+                        &nbsp; MBA
+                      </label>
+                    </Col>
+                  </Row>
                 </span>
-              </Col>
-              <Col className="mt-3">
-                <label htmlFor="" className="pt-3">
-                  <br />
-                </label>
-                {/* <input
-                  type="text"
-                  className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-                /> */}
               </Col>
             </Row>
             <div className="row">

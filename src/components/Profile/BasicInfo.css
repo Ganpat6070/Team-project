@@ -48,3 +48,8 @@ select {
 .twothree {
   height: 35%;
 }
+
+textarea {
+  resize: none;
+  height: 140px;
+}
