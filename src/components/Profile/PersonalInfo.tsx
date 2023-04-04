@@ -5,8 +5,8 @@ import classes from "./PersonalInfo.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
-import NavbarHead from "../navbar";
 import PhotoCard from "./PhotoCard";
+import { toast } from "react-toastify";
 
 const PersonalInfo = () => {
   const navigate = useNavigate();
@@ -23,23 +23,71 @@ const PersonalInfo = () => {
   const [occupation, setOccupation] = useState("");
   const [empolyedin, setEmpolyedin] = useState("");
   const [currency, setCurrency] = useState("");
-  const [annualincome, setAnnualincome] = useState("");
+  const [annualincome, setAnnualincome] = useState<number>();
   const [astrodetails, setAstrodetails] = useState("");
   const [aboutmyfamily, setAboutmyfamily] = useState("");
   const [familytype, setFamilytype] = useState("");
   const [familystatus, setFamilystatus] = useState("");
   const [familyvalue2, setFamilyvalue2] = useState("");
-  const [annualfamilyincome2, setAnnualfamilyincome2] = useState("");
+  const [annualfamilyincome2, setAnnualfamilyincome2] = useState<number>();
   const [currency2, setCurrency2] = useState("");
   const [fathername, setFathername] = useState("");
   const [fatherfamilyname, setFatherfamilyname] = useState("");
   const [fatherhome, setFatherhome] = useState("");
 
+  const [fatheremp, setFatheremp] = useState("");
+  const [fatherocc, setFatherocc] = useState("");
+  const [fatheredu, setFatheredu] = useState("");
+  const [fathercomname, setFathercomname] = useState("");
+  const [fatherdes, setFatherdes] = useState("");
+  const [fatherworkloc, setFatherworkloc] = useState("");
+  const [mothername, setMothername] = useState("");
+  const [motherfamilyname, setMotherfamilyname] = useState("");
+  const [motherhome, setMotherhome] = useState("");
+  const [motheremp, setMotheremp] = useState("");
+  const [motherocc, setMotherocc] = useState("");
+  const [motheredu, setMotheredu] = useState("");
+  const [mothercomname, setMothercomname] = useState("");
+  const [motherdes, setMotherdes] = useState("");
+  const [motherworkloc, setMotherworkloc] = useState("");
+  const [counteryliving, setCounteryliving] = useState("");
+  const [currentloc, setCurrentloc] = useState("");
+
+  const [counteryliving2, setCounteryliving2] = useState("");
+  const [currentloc2, setCurrentloc2] = useState("");
+  const [perloc, setPerloc] = useState("");
+  const [residentialstatus, setResidentialstatus] = useState("");
+  const [nativeplace, setNativeplace] = useState("");
+
+  const presonalinfro2 = {
+    fatheremp,
+    fatherocc,
+    fatheredu,
+    fathercomname,
+    fatherdes,
+    fatherworkloc,
+    mothername,
+    motherfamilyname,
+    motherhome,
+    motheremp,
+    motherocc,
+    motheredu,
+    mothercomname,
+    motherdes,
+    motherworkloc,
+    counteryliving,
+    currentloc,
+    counteryliving2,
+    currentloc2,
+    perloc,
+    residentialstatus,
+    nativeplace,
+  };
   const complexionHandler: any = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // let complexion: string = e.target.value;
     // console.log(complexion);
 
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setComplexion(e.target.value);
       // console.log("this error")
       // setComplexion(e.target.value);
@@ -49,42 +97,42 @@ const PersonalInfo = () => {
   };
 
   const bodytypeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setBodytype(e.target.value);
     }
   };
 
   const bloodgroupHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setBloodgroup(e.target.value);
     }
   };
   const occupationHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setOccupation(e.target.value);
     }
   };
 
   const employedinHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setEmpolyedin(e.target.value);
     }
   };
 
   const currencyHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setCurrency(e.target.value);
     }
   };
 
   const annualincomeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
-      setAnnualincome(e.target.value);
+    if (!(e.target.value === null)) {
+      setAnnualincome(parseInt(e.target.value));
     }
   };
 
   const astrodetailsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setAstrodetails(e.target.value);
     }
   };
@@ -117,8 +165,8 @@ const PersonalInfo = () => {
   const annualfamilyincome2Handler = (
     e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
-    if (!(e.target.value === "")) {
-      setAnnualfamilyincome2(e.target.value);
+    if (!(e.target.value === null)) {
+      setAnnualfamilyincome2(parseInt(e.target.value));
       // console.log(e.target.value)
     }
   };
@@ -148,39 +196,224 @@ const PersonalInfo = () => {
     }
   };
 
-  const submitHandler = (e: any) => {
+  const fatherempHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setFatheremp(e.target.value);
+    }
+  };
+
+  const fatheroccHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherocc(e.target.value);
+    }
+  };
+
+  const fathereduHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatheredu(e.target.value);
+    }
+  };
+
+  const fathercomnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFathercomname(e.target.value);
+    }
+  };
+
+  const fatherdesHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherdes(e.target.value);
+    }
+  };
+
+  const fatherworklocHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setFatherworkloc(e.target.value);
+    }
+  };
+
+  const mothernameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMothername(e.target.value);
+    }
+  };
+
+  const motherfamilynameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherfamilyname(e.target.value);
+    }
+  };
+
+  const motherhomeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherfamilyname(e.target.value);
+    }
+  };
+
+  const motherempHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setMotheremp(e.target.value);
+    }
+  };
+
+  const motheroccHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherocc(e.target.value);
+    }
+  };
+  const mothereduHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotheredu(e.target.value);
+    }
+  };
+
+  const mothercomnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMothercomname(e.target.value);
+    }
+  };
+
+  const motherdesHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherdes(e.target.value);
+    }
+  };
+
+  const motherworklocHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) {
+      setMotherworkloc(e.target.value);
+    }
+  };
+
+  const counterylivingHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCounteryliving(e.target.value);
+    }
+  };
+
+  const currentlocHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrentloc(e.target.value);
+    }
+  };
+
+  const counteryliving2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCounteryliving(e.target.value);
+    }
+  };
+
+  const currentloc2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setCurrentloc2(e.target.value);
+    }
+  };
+
+  const perlocHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setPerloc(e.target.value);
+    }
+  };
+
+  const residentialstatusHandler = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    if (!(e.target.value === "")) {
+      setResidentialstatus(e.target.value);
+    }
+  };
+
+  const nativeplaceHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) {
+      setNativeplace(e.target.value);
+    }
+  };
+
+  let profileid: string | null = localStorage.getItem("profileID");
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/personal-info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        profileid: `${profileid}`,
+      },
+      body: JSON.stringify({
+        complexion: complexions,
+        bodyType: bodytype,
+        bloodGroup: bloodgroup,
+        occupation: occupation,
+        employedIn: empolyedin,
+        currency: currency,
+        annualIncome: annualincome,
+        star: astrodetails,
+        aboutMyFamily: aboutmyfamily,
+        familyStatus: familystatus,
+        familyValue: familyvalue2,
+        fatherName: fathername,
+        fatherFamilyName: fatherfamilyname,
+        fatherHomePlace: fatherhome,
+        fatherEmployedIn: fatheremp,
+        fatherEducation: fatheredu,
+        fatherCompanyName: fathercomname,
+        fatherDesignation: fatherdes,
+        fatherWorkLocation: fatherworkloc,
+        motherName: mothername,
+        motherFamilyName: motherfamilyname,
+        motherHomePlace: motherhome,
+        motherEmployedIn: motheremp,
+        motherOccupation: motherocc,
+        motherEducation: motheredu,
+        motherCompanyName: mothercomname,
+        motherDesignation: motherdes,
+        motherWorkLocation: motherworkloc,
+        countryLivingIn: counteryliving,
+        currentLocation: currentloc,
+        permanentLocation: perloc,
+        residentialStatus: residentialstatus,
+        nativePlace: nativeplace,
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+    if (response.status === 201) {
+      toast.success("Personal Information is saved!");
+      // navigate("/prefpart");
+      setTimeout(() => {
+        navigate("/prefpart");
+      }, 1500);
+    }
+  };
+
+  const submitHandler = async (e: any) => {
     e.preventDefault();
-    
     if (
-      complexions === "" ||
-      bodytype === "" ||
-      bloodgroup === "" ||
-      occupation === "" ||
-      empolyedin === "" ||
-      currency === "" ||
-      annualincome === ""
+      (complexions &&
+        bodytype &&
+        bloodgroup &&
+        occupation &&
+        empolyedin &&
+        currency &&
+        annualincome) === ""
     ) {
       // setComplexion(complexion);
       // console.log("error")
       setError(true);
-      // return "one";
-    } else {
-      setError(false);
-    }
-    if (aboutmyfamily === "") {
+      // return "";
+    } else if (aboutmyfamily === "") {
       setError2(true);
-    } else {
-      setError2(false);
-    }
-    if (familyvalue2 === "" || annualfamilyincome2 === "" || currency2 === "") {
+    } else if (
+      familyvalue2 === "" &&
+      annualfamilyincome2 === null &&
+      currency2 === ""
+    ) {
       setError3(true);
     } else {
-      setError3(false);
+      // setError2(false);
+      // console.log(presonalinfro2)
+      setError(false);
+      saveData();
     }
-    navigate('/prefpart')
   };
-  // console.log(complexions);
-  // console.log(aboutmyfamily)
 
   return (
     <div
@@ -191,10 +424,8 @@ const PersonalInfo = () => {
         width: "100%",
       }}
     >
-      <NavbarHead />
       <ProgressBar />
       <PhotoCard />
-
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -231,14 +462,14 @@ const PersonalInfo = () => {
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 style={{ height: "50%" }}
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 {/* <option></option> */}
-                <option>Dark</option>
-                <option>Light</option>
-                <option>Medium</option>
-                <option>White</option>
+                <option value="Dark">Dark</option>
+                <option value="Light">Light</option>
+                <option value="Medium">Medium</option>
+                <option value="White">White</option>
               </select>
 
               {/* </div> */}
@@ -250,7 +481,7 @@ const PersonalInfo = () => {
            </div> */}
             <div className="col">
               <label className="mb">
-                Body Type<span className={classes.compalsory}>*</span>
+                Body Type <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -258,12 +489,12 @@ const PersonalInfo = () => {
                 onChange={bodytypeHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>ectomorph</option>
-                <option>mesomorph</option>
-                <option>endomorph</option>
+                <option value="ectomorph">ectomorph</option>
+                <option value="mesomorph">mesomorph</option>
+                <option value="endomorph">endomorph</option>
                 {/* <option>7ft</option>
                 <option>7ft +</option> */}
               </select>
@@ -279,21 +510,21 @@ const PersonalInfo = () => {
                 onChange={bloodgroupHandler}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>A+</option>
-                <option>B+</option>
-                <option>AB+</option>
-                <option>AB-</option>
-                <option>O+</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
               </select>
             </div>
           </div>
           <Row>
             <Col className="mt-3">
               <label>
-                Occupation<span className={classes.compalsory}>*</span>
+                Occupation <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -301,7 +532,7 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>Artist</option>
@@ -312,7 +543,7 @@ const PersonalInfo = () => {
             </Col>
             <Col className="mt-3">
               <label>
-                Empolyed In <span className={classes.compalsory}>*</span>
+                Employed In <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -320,12 +551,15 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>TechnoMark</option>
                 <option>PathQuest</option>
                 <option>Google</option>
+                <option>Microsoft</option>
+                <option>PGC</option>
+                <option>Other</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -339,7 +573,7 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>INR</option>
@@ -352,7 +586,8 @@ const PersonalInfo = () => {
           <Row>
             <Col className="mt-3">
               <label htmlFor="">
-                Annual Income <span className={classes.compalsory}>*</span>
+                Annual Income (Lakhs){" "}
+                <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -360,13 +595,13 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>4 - Lakh</option>
-                <option>5 - Lakh</option>
-                <option>6 - Lakh</option>
-                <option>7 - Lakh</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -400,34 +635,13 @@ const PersonalInfo = () => {
           <Row className="border border rounded-2 mx-1">
             <Col className="mt-3">
               <p style={{ color: "#6E6E6E", fontStyle: "strong" }}>Star</p>
-              {/* <label htmlFor="">
-                About me <span className={classes.compalsory}>*</span>
-                <br />
-                <textarea
-                  name=""
-                  id=""
-                  className="form-control text-dark mt-1 rounded-2 border-secondary"
-                ></textarea>
-              </label> */}
-              {/*               
-              <label htmlFor="" className="pt-1 ">
-                Education <span className={classes.compalsory}>*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
-              {/* <label htmlFor="">
-                Annual Income <span className={classes.compalsory}>*</span>
-                <br />
-              </label> */}
+
               <select
                 style={{ height: "40%" }}
                 onChange={astrodetailsHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option value="one" hidden>
+                <option value="" hidden>
                   Select Any One
                 </option>
                 <option value="sun">Sun</option>
@@ -437,43 +651,11 @@ const PersonalInfo = () => {
               </select>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                Spoken Language(s) <span className={classes.compalsory}>*</span>
-                <br />
-                <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang">
-                  <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                      className=""
-                    />
-                    English
-                  </label> */}
               <br />
-              {/* <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Gujarati
-                  </label> */}
+
               <br />
-              {/* <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Hindi
-                  </label> */}
+
               <br />
-              {/* </span> */}
-              {/* </label> */}
             </Col>
           </Row>
           <hr className="mt-4 " />
@@ -490,17 +672,13 @@ const PersonalInfo = () => {
                 About My Family <span className={classes.compalsory}>*</span>
               </label>
               <br />
-              {/* <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
               <textarea
-                name=""
-                id=""
                 onChange={aboutmyfamilyHandler}
-                className="w-100 p-4 h-1 "
-                style={{ width: "800" }}
+                style={{ width: "6000" }}
+                className="form-control mb-2"
+                id="exampleFormControlTextarea1"
               ></textarea>
+
               <p
                 style={{
                   color: "#6E6E6E",
@@ -513,18 +691,6 @@ const PersonalInfo = () => {
                 purpose.
               </p>
             </div>
-            <div className="col mt-3"></div>
-            {/* </div> */}
-            {/* <Col  className="mt-3">
-              <label htmlFor="" className="pt-3">
-                Education <span className={classes.compalsory}>*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </Col> */}
             <Col className="mt-3">
               <label htmlFor="" className="pt-3">
                 Family Type
@@ -535,7 +701,7 @@ const PersonalInfo = () => {
                 onChange={familytypeHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Joint Family</option>
                 <option>Extended Family</option>
                 <option>Nuclear Family</option>
@@ -550,16 +716,12 @@ const PersonalInfo = () => {
                 onChange={familystatusHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Alive</option>
                 <option>Dead</option>
                 <option>Living With Them</option>
                 <option>Other Reason</option>
               </select>
-              {/* <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
             </Col>
           </Row>
           <Row>
@@ -578,7 +740,7 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>INR</option>
@@ -589,8 +751,7 @@ const PersonalInfo = () => {
             </Col>
             <Col className="mt-3">
               <label>
-                Annual Family Income
-                <span className={classes.compalsory}>*</span>
+                Annual Family Income <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -598,11 +759,11 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
-                <option>6Lakh</option>
-                <option>7Lakh</option>
-                <option>8Lakh</option>
-                <option>9Lakh</option>
+                <option value=""  hidden>Select Any One</option>
+                <option value="6">6Lakh</option>
+                <option value="7">7Lakh</option>
+                <option value="8">8Lakh</option>
+                <option value="9">9Lakh</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -615,24 +776,14 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Important</option>
                 <option>Vary Important</option>
                 <option>Not-Important</option>
               </select>
             </Col>
           </Row>
-          {/* <div className="row">
-            <div className="col-xl mt-3">
-              <label htmlFor="eid">Education in Detail</label>
-              <br />
-              <input
-                type="text"
-                id="eid"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-          </div> */}
+
           {error4 ? <span>below entered data in not valid</span> : null}
           <div className="row">
             <div className="col mt-3">
@@ -671,11 +822,12 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Employed In</label>
               <br />
               <select
+                onChange={fatherempHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
               >
                 <option></option>
-                <option>ONGC</option>
+                <option>Privete</option>
                 <option>Goverment</option>
                 <option>UnEmployed</option>
               </select>
@@ -684,6 +836,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Occupation</label>
               <br />
               <input
+                onChange={fatheroccHandler}
                 style={{ height: "50%" }}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -693,6 +846,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Education</label>
               <br />
               <input
+                onChange={fathereduHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -713,6 +867,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Company Name</label>
               <br />
               <input
+                onChange={fathercomnameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -722,6 +877,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Designation</label>
               <br />
               <input
+                onChange={fatherdesHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -731,6 +887,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Father Work Location</label>
               <br />
               <input
+                onChange={fatherworklocHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -741,6 +898,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Name</label>
               <br />
               <input
+                onChange={mothernameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -749,6 +907,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Family Name</label>
               <br />
               <input
+                onChange={motherfamilynameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -757,6 +916,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Home/Place</label>
               <br />
               <input
+                onChange={motherhomeHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary twothree"
               />
@@ -766,9 +926,12 @@ const PersonalInfo = () => {
             <div className="col mt-3">
               <label htmlFor="">Mother's Employed In</label>
               <br />
-              <select className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree">
+              <select
+                onChange={motherempHandler}
+                className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
+              >
                 <option></option>
-                <option>ONGC</option>
+                <option>Private</option>
                 <option>Goverment</option>
                 <option>UnEmployed</option>
               </select>
@@ -777,6 +940,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Occupation</label>
               <br />
               <input
+                onChange={motheroccHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -785,6 +949,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Education</label>
               <br />
               <input
+                onChange={mothereduHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -795,6 +960,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Company Name</label>
               <br />
               <input
+                onChange={mothercomnameHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -804,6 +970,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Designation</label>
               <br />
               <input
+                onChange={motherdesHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -813,6 +980,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Mother's Work Location</label>
               <br />
               <input
+                onChange={motherworklocHandler}
                 type="text"
                 className="form-control text-dark mt-1 rounded-2 border-secondary"
               />
@@ -821,9 +989,10 @@ const PersonalInfo = () => {
           <div className="row">
             <div className="row"></div>
             <div className="col mt-3">
-              <label htmlFor="">Countery Living In</label>
+              <label htmlFor="">Country Living In</label>
               <br />
               <select
+                onChange={counterylivingHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -839,6 +1008,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Current Location</label>
               <br />
               <select
+                onChange={currentlocHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -858,9 +1028,10 @@ const PersonalInfo = () => {
           <hr />
           <div className="row">
             <div className="col mt-3">
-              <label htmlFor="">Countery Living In</label>
+              <label htmlFor="">Country Living In</label>
               <br />
               <select
+                onChange={counterylivingHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -876,6 +1047,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Current Location</label>
               <br />
               <select
+                onChange={currentloc2Handler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -891,6 +1063,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Permanent Location</label>
               <br />
               <select
+                onChange={perlocHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -902,26 +1075,13 @@ const PersonalInfo = () => {
                 <option value="">Canada</option>
               </select>
             </div>
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="tel"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div> */}
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="number"
-                className=" form-control text-dark mt-1 rounded-2 border-secondary -webkit-appearance: none"
-              />
-            </div> */}
           </div>
           <div className="row">
             <div className="col mt-3">
               <label htmlFor="">Residential Status</label>
               <br />
               <select
+                onChange={residentialstatusHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -937,6 +1097,7 @@ const PersonalInfo = () => {
               <label htmlFor="">Native Place</label>
               <br />
               <select
+                onChange={nativeplaceHandler}
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
@@ -949,31 +1110,9 @@ const PersonalInfo = () => {
               </select>
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">Permanent Location</label> */}
               <br />
-              {/* <select style={{ height: "50%"}} className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
-                <option value="" hidden>Please Select Any</option>
-                <option value="">USA</option>
-                <option value="">Germany</option>
-                <option value="">Canada</option>
-              </select> */}
             </div>
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="tel"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div> */}
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="number"
-                className=" form-control text-dark mt-1 rounded-2 border-secondary -webkit-appearance: none"
-              />
-            </div> */}
           </div>
-          {/* </div> */}
           <Link to="/">
             <button
               className="btn btn-light text-white btn-xl mt-2"

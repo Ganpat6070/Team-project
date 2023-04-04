@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./BasicInfo.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
-import { useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
-import Cookies from "js-cookie";
-import NavbarHead from "../navbar";
+
+
 const BasicInfo = () => {
   // Error Statas for Validatoins
   const [errorbi, setErrorbi] = useState<boolean | string>(false);
@@ -395,38 +395,19 @@ const BasicInfo = () => {
 
   const mStatushandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setmStatus(e.target.value);
-
     setErrorbi(false);
   };
-  const submitHandler = async (e: any) => {
-    e.preventDefault();
-    if (
-      (fname &&
-        mname &&
-        lname &&
-        dob &&
-        height &&
-        weight &&
-        mStatus &&
-        mTongue &&
-        religion &&
-        cast &&
-        gender &&
-        phyStatus) === ""
-    ) {
-      setErrorbi(true);
-    } else {
-      setErrorbi(false);
-      console.log(basicinfo);
-    
+  const navigate = useNavigate();
 
+  const saveData = async () => {
+    let token = localStorage.getItem("Token")
     let response = await fetch("http://localhost:8000/basic-info", {
-      credentials: "include",
       method: "POST",
-      headers: { 'content-type': 'application/json' ,
-                  "token": `${token}`},
+      headers: {
+        "Content-Type": "application/json",
+        "token": `${token}`
+      },
       body: JSON.stringify({
-      
         firstName: fname,
         middleName: mname,
         lastName: lname,  
@@ -469,15 +450,47 @@ const BasicInfo = () => {
         address: refaddress,
         contactNumber: refcontact,
       }),
-      
-      
     });
+    // const res = await response.json();
     console.log(response);
     let res = await response.json();
     let profileid = res.profileId;
     localStorage.setItem("profileID", profileid)
-  }
+    if (response.status === 201) {
+      toast.success("Basic info saved!");
+      // navigate("/personal-info");
+      setTimeout(() => {
+        navigate("/personal-info");
+      }, 1500);
+    }
+    
   };
+
+
+  const submitHandler = async (e: any) => {
+    e.preventDefault();
+    if (
+      (fname &&
+        mname &&
+        lname &&
+        dob &&
+        height &&
+        weight &&
+        mStatus &&
+        mTongue &&
+        religion &&
+        cast &&
+        gender &&
+        phyStatus) === ""
+    ) {
+      setErrorbi(true);
+    } else {
+      setErrorbi(false);
+      console.log(basicinfo);
+     saveData()
+    };
+  }
+  
   
   return (
     <>
@@ -489,7 +502,6 @@ const BasicInfo = () => {
           width: "100%",
         }}
       >
-        <NavbarHead/>
         <ProgressBar />
         <PhotoCard />
         <div
@@ -574,7 +586,7 @@ const BasicInfo = () => {
                   onChange={heightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>4</option>
                   <option>4.5</option>
                   <option>5</option>
@@ -594,7 +606,7 @@ const BasicInfo = () => {
                   onChange={weightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>40</option>
                   <option>50</option>
                   <option>60</option>
@@ -614,7 +626,7 @@ const BasicInfo = () => {
                   onChange={mStatushandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>Single</option>
                   <option>In-Relationship</option>
                   <option>Devorced</option>
@@ -630,7 +642,7 @@ const BasicInfo = () => {
                   onChange={mTongueHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>Hindi</option>
                   <option>Gujarati</option>
                   <option>English</option>
@@ -648,7 +660,7 @@ const BasicInfo = () => {
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
                   {" "}
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>Hinduism</option>
                   <option>Islam</option>
                   <option>Christianity</option>
@@ -678,7 +690,7 @@ const BasicInfo = () => {
                   onChange={genderHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
 
                   <option>Male</option>
                   <option>Female</option>
@@ -966,10 +978,10 @@ const BasicInfo = () => {
                   onChange={syosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
                 >
-                  <option hidden>select</option>
-                  <option>2012</option>
-                  <option>2011</option>
-                  <option>2000</option>
+                  <option  value="" hidden>select</option>
+                  <option value="2012">2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2000">2000</option>
                 </select>
                 <label htmlFor=""></label>
               </div>
@@ -1009,7 +1021,7 @@ const BasicInfo = () => {
                   onChange={cyosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
                   <option>2012</option>
                   <option>2011</option>
                   <option>2000</option>
@@ -1055,7 +1067,7 @@ const BasicInfo = () => {
                   onChange={lcodeHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>select</option>
+                  <option hidden value="">select</option>
 
                   <option value="123">123</option>
                   <option value="456">456</option>
@@ -1088,7 +1100,7 @@ const BasicInfo = () => {
                   id=""
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden>+91</option>
+                  <option hidden value=""></option>
                   <option value="">+91</option>
                   <option value="">+1</option>
                   <option value="">+59</option>
@@ -1275,7 +1287,7 @@ const BasicInfo = () => {
                   id=""
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select mobiledrop"
                 >
-                  <option hidden>select</option>
+                  <option value="" hidden>select</option>
 
                   <option value="91">+91</option>
                   <option value="1">+1</option>

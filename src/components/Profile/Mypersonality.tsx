@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./Mypersonality.css";
 import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
-import NavbarHead from "../navbar";
+import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
 
 const Mypersonality = () => {
@@ -73,6 +73,10 @@ const Mypersonality = () => {
     });
     const res = await response.json();
     console.log(res);
+    if (response.status === 201) {
+      toast.success("My Personality is saved!");
+      navigate("/astrodata");
+    }
   };
 
   const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -148,7 +152,6 @@ const Mypersonality = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
     saveData();
-    navigate("/astrodata");
     console.log(mypersonality);
   };
 
@@ -161,7 +164,6 @@ const Mypersonality = () => {
         width: "100%",
       }}
     >
-      <NavbarHead />
       <ProgressBar />
       <PhotoCard />
       <div
@@ -188,7 +190,7 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value=""  hidden>Please Select</option>
                 <option>Veg</option>
                 <option>Non-Veg</option>
                 <option>Other</option>
@@ -209,7 +211,7 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value=""  hidden>Please Select</option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -225,7 +227,7 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value=""  hidden>Please Select</option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -261,7 +263,7 @@ const Mypersonality = () => {
                 style={{ height: "30%" }}
                 className="form-control text-dark mt-1 mb-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Please Select</option>
+                <option value=""  hidden>Please Select</option>
                 <option>Cooking</option>
                 <option>Hiking</option>
                 <option>Gardening</option>

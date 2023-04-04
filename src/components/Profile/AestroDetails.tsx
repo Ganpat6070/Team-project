@@ -9,23 +9,30 @@ import PhotoCard from "./PhotoCard";
 import ProgressBar from "./ProgressBar";
 import NavbarHead from "../navbar";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AstroDetails = () => {
   const navigate = useNavigate();
 
   const [dob, setDob] = useState("");
-  const [timeofBirth, setTimeofBirth] = useState("");
+  const [aHours, setaHours] = useState("");
+  const [aMinutes, setaMinutes] = useState("");
+  const [aSeconds, setaSeconds] = useState("");
+  const [aAMPM, setaAMPM] = useState("AM");
+  // const [timeofBirth, setTimeofBirth] = useState("");
   const [timeCorrection, setTimeCorrection] = useState("");
   const [placeofBirth, setPlaceofBirth] = useState("");
   const [logitude, setLogitude] = useState("");
   const [latitude, setLatitude] = useState("");
   const [timeZone, setTimeZone] = useState("");
 
+  const atime = aHours + "H " + aMinutes + "M " + aSeconds + "S " + aAMPM;
+
   const [error, setError] = useState<boolean>(false);
 
   const astrodata = {
     dob,
-    timeofBirth,
+    atime,
     timeCorrection,
     placeofBirth,
     logitude,
@@ -45,13 +52,43 @@ const AstroDetails = () => {
     }
   };
 
+  let profileid: string | null = localStorage.getItem("profileID");
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/astro-info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        profileid: `${profileid}`,
+      },
+      body: JSON.stringify({
+        dateOfBirth: dob,
+        timeOfBirth: atime,
+        birthTimeCorrection: timeCorrection,
+        placeOfBirth: placeofBirth,
+        longitude: logitude,
+        latitude: latitude,
+        timeZone: timeZone,
+      }),
+    });
+    const res = await response.json();
+    if (response.status === 201) {
+      toast.success("Astro info saved!");
+      setTimeout(() => {
+        navigate("/finished");
+      }, 1500);
+    }
+    console.log(res);
+  };
+
   const submitHandler = (e: any) => {
     e.preventDefault();
     if (dob === "") {
       setError(true);
     } else {
+      setError(false);
+      saveData();
       console.log(astrodata);
-      navigate("/finished");
+      
     }
   };
 
@@ -67,7 +104,6 @@ const AstroDetails = () => {
     >
       {/* <ProgressBar /> */}
       <div className="">
-        <NavbarHead />
         <ProgressBar />
         <PhotoCard />
       </div>
@@ -124,75 +160,54 @@ const AstroDetails = () => {
               <br />
               <select
                 className="from-control border rounded bg-white select"
-                name=""
-                id=""
+                value={aHours}
+                onChange={(e) => setaHours(e.target.value)}
                 style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   HH
                 </option>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
-                <option value="">7</option>
-                <option value="">8</option>
-                <option value="">9</option>
-                <option value="">10</option>
-                <option value="">11</option>
-                <option value="">12</option>
+                {Array.from(Array(12), (_, i) => (
+                  <option key={i}>{i + 1}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
+                value={aMinutes}
+                onChange={(e) => setaMinutes(e.target.value)}
                 style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   MM
                 </option>
-                <option value="">Jan</option>
-                <option value="">Feb</option>
-                <option value="">Mar</option>
-                <option value="">Apr</option>
-                <option value="">May</option>
-                <option value="">Jun</option>
-                <option value="">Jul</option>
-                <option value="">Aug</option>
-                <option value="">Sep</option>
-                <option value="">Oct</option>
-                <option value="">Nov</option>
-                <option value="">Dec</option>
+                {Array.from(Array(60), (_, i) => (
+                  <option key={i}>{i}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
+                value={aSeconds}
+                onChange={(e) => setaSeconds(e.target.value)}
                 style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   SS
                 </option>
-                <option value="">1-10</option>
-                <option value="">11-20</option>
-                <option value="">21-30</option>
-                <option value="">31-40</option>
-                <option value="">41-50</option>
-                <option value="">51-60</option>
+                {Array.from(Array(60), (_, i) => (
+                  <option key={i}>{i}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
+                value={aAMPM}
+                onChange={(e) => setaAMPM(e.target.value)}
                 style={{ width: "22%", paddingLeft: "10px", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   AM/PM
                 </option>
-                <option value="">AM</option>
-                <option value="">PM</option>
+                <option>AM</option>
+                <option>PM</option>
               </select>
             </Col>
             <Col
@@ -270,9 +285,9 @@ const AstroDetails = () => {
               <label htmlFor="">Time Zone</label>
               <br />
               <input
-              onChange={(e) => {
-                setTimeZone(e.target.value);
-              }}
+                onChange={(e) => {
+                  setTimeZone(e.target.value);
+                }}
                 style={{ border: "1px solid blue", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input "
                 type="text"

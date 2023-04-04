@@ -49,6 +49,8 @@ function Login() {
         });
       }
       if (res.msg === "User found successfully!") {
+        const uname = email;
+        localStorage.setItem("uname", JSON.stringify(uname));
         toast.success(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });

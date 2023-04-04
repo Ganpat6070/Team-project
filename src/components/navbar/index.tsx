@@ -18,7 +18,7 @@ import {
 
 const NavbarHead = () => {
   const [islogedin, setIsLogedin] = useState(false);
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<string | null>(null);
   // eslint-disable-next-line
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const getlogin = localStorage.getItem("login");
@@ -34,7 +34,10 @@ const NavbarHead = () => {
   };
   useEffect(() => {
     if (getlogin === "true") {
-      setUser(localStorage.getItem("uname"));
+      let username: any = localStorage.getItem("uname");
+      const name = username.substring(1, username.indexOf("@"));
+      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
+      setUser(capitalizedName);
 
       setIsLogedin(true);
     } else setIsLogedin(false);
@@ -180,116 +183,115 @@ const NavbarHead = () => {
                 </Link>
                 <ToastContainer />
 
-           
-                  <PopupMenu>
-                    <button className="btn rounded-circle">
-                      <img
-                        className="imgpro rounded-circle"
-                        style={{ width: "50px" }}
-                        src={
-                          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                        }
-                        alt=""
-                      ></img>
-                    </button>
+                <PopupMenu>
+                  <button className="btn rounded-circle">
+                    <img
+                      className="imgpro rounded-circle"
+                      style={{ width: "50px" }}
+                      src={
+                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                      }
+                      alt=""
+                    ></img>
+                  </button>
 
+                  <div
+                    style={{
+                      width: "250px",
+                      height: "400px",
+                      marginTop: "70px",
+                      marginRight: "10px",
+                      marginLeft: "-80px",
+                    }}
+                    className="card text-start"
+                  >
                     <div
-                      style={{
-                        width: "250px",
-                        height: "400px",
-                        marginTop: "70px",
-                        marginRight: "10px",
-                        marginLeft: "-80px",
-                      }}
-                      className="card text-start"
+                      className="card-body px-4 py-4 "
+                      style={{ backgroundColor: "#f6837d" }}
                     >
                       <div
-                        className="card-body px-4 py-4 "
-                        style={{ backgroundColor: "#f6837d" }}
+                        id="circle-avatar"
+                        className="text-center mx-auto mb-4"
+                      ></div>
+
+                      <h6 className="text-center ">{user}</h6>
+                      <p className="text-center ">Type:Free</p>
+
+                      <hr />
+
+                      <div
+                        className="list-group list-group-flush "
+                        style={{ margin: "0 -24px 0" }}
                       >
-                        <div
-                          id="circle-avatar"
-                          className="text-center mx-auto mb-4"
-                        ></div>
-
-                        <h6 className="text-center ">{user}</h6>
-                        <p className="text-center ">Type:Free</p>
-
-                        <hr />
-
-                        <div
-                          className="list-group list-group-flush "
-                          style={{ margin: "0 -24px 0" }}
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
                         >
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <House color="white" size={20} />{" "}
-                            <small>
-                              <Link
-                                to="/basic-info"
-                                className="text-white"
-                                style={{ textDecoration: "none" }}
-                              >
-                                My Account
-                              </Link>
-                            </small>
-                          </button>
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <Person color="white" size={20} />{" "}
-                            <small>
-                              <Link
-                                to="/edit-profile"
-                                className="text-white"
-                                style={{ textDecoration: "none" }}
-                              >
-                                Edit My Profile
-                              </Link>
-                            </small>
-                          </button>
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <ArrowCounterclockwise color="white" size={20} />{" "}
-                            <small>My Activity Log</small>
-                          </button>
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <Trash color="white" size={20} />{" "}
-                            <small>Delete My Profile</small>
-                          </button>
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <Lock color="white" size={20} />{" "}
-                            <small>Change My Password</small>
-                          </button>
-                          <button
-                            className="list-group-item list-group-item-action px-4 text-light"
-                            style={{ backgroundColor: "#f6837d" }}
-                          >
-                            <BoxArrowInRight color="white" size={20} />{" "}
-                            <Link to="/" style={{ textDecoration: "none" }}>
-                              <span
-                                onClick={logoutHandler}
-                                className="text-white"
-                              >
-                                Logout
-                              </span>
+                          <House color="white" size={20} />{" "}
+                          <small>
+                            <Link
+                              to="/basic-info"
+                              className="text-white"
+                              style={{ textDecoration: "none" }}
+                            >
+                              My Account
                             </Link>
-                          </button>
-                        </div>
+                          </small>
+                        </button>
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
+                        >
+                          <Person color="white" size={20} />{" "}
+                          <small>
+                            <Link
+                              to="/edit-profile"
+                              className="text-white"
+                              style={{ textDecoration: "none" }}
+                            >
+                              Edit My Profile
+                            </Link>
+                          </small>
+                        </button>
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
+                        >
+                          <ArrowCounterclockwise color="white" size={20} />{" "}
+                          <small>My Activity Log</small>
+                        </button>
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
+                        >
+                          <Trash color="white" size={20} />{" "}
+                          <small>Delete My Profile</small>
+                        </button>
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
+                        >
+                          <Lock color="white" size={20} />{" "}
+                          <small>Change My Password</small>
+                        </button>
+                        <button
+                          className="list-group-item list-group-item-action px-4 text-light"
+                          style={{ backgroundColor: "#f6837d" }}
+                        >
+                          <BoxArrowInRight color="white" size={20} />{" "}
+                          <Link to="/" style={{ textDecoration: "none" }}>
+                            <span
+                              onClick={logoutHandler}
+                              className="text-white"
+                            >
+                              Logout
+                            </span>
+                          </Link>
+                        </button>
                       </div>
                     </div>
-                  </PopupMenu>
+                  </div>
+                </PopupMenu>
               </Nav>
             </Navbar.Collapse>
           </Container>

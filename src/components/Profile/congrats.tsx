@@ -17,7 +17,6 @@ const Finished = () => {
           height: "100%",
         }}
       >
-        <NavbarHead />
         <ProgressBar />
         <PhotoCard />
         <div
