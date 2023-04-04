@@ -21,13 +21,13 @@ const PersonalInfo = () => {
   const [occupation, setOccupation] = useState("");
   const [empolyedin, setEmpolyedin] = useState("");
   const [currency, setCurrency] = useState("");
-  const [annualincome, setAnnualincome] = useState("");
+  const [annualincome, setAnnualincome] = useState<number>();
   const [astrodetails, setAstrodetails] = useState("");
   const [aboutmyfamily, setAboutmyfamily] = useState("");
   const [familytype, setFamilytype] = useState("");
   const [familystatus, setFamilystatus] = useState("");
   const [familyvalue2, setFamilyvalue2] = useState("");
-  const [annualfamilyincome2, setAnnualfamilyincome2] = useState("");
+  const [annualfamilyincome2, setAnnualfamilyincome2] = useState<number>();
   const [currency2, setCurrency2] = useState("");
   const [fathername, setFathername] = useState("");
   const [fatherfamilyname, setFatherfamilyname] = useState("");
@@ -57,32 +57,30 @@ const PersonalInfo = () => {
   const [residentialstatus, setResidentialstatus] = useState("");
   const [nativeplace, setNativeplace] = useState("");
 
-
   const presonalinfro2 = {
     fatheremp,
-fatherocc,
-fatheredu,
-fathercomname,
-fatherdes,
-fatherworkloc,
-mothername,
-motherfamilyname,
-motherhome,
-motheremp,
-motherocc,
-motheredu,
-mothercomname,
-motherdes,
-motherworkloc,
-counteryliving,
-currentloc,
-counteryliving2,
-currentloc2,
-perloc,
-residentialstatus,
-nativeplace,
-
-  } 
+    fatherocc,
+    fatheredu,
+    fathercomname,
+    fatherdes,
+    fatherworkloc,
+    mothername,
+    motherfamilyname,
+    motherhome,
+    motheremp,
+    motherocc,
+    motheredu,
+    mothercomname,
+    motherdes,
+    motherworkloc,
+    counteryliving,
+    currentloc,
+    counteryliving2,
+    currentloc2,
+    perloc,
+    residentialstatus,
+    nativeplace,
+  };
   const complexionHandler: any = (e: React.ChangeEvent<HTMLSelectElement>) => {
     // let complexion: string = e.target.value;
     // console.log(complexion);
@@ -97,48 +95,48 @@ nativeplace,
   };
 
   const bodytypeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setBodytype(e.target.value);
     }
   };
 
   const bloodgroupHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setBloodgroup(e.target.value);
     }
   };
   const occupationHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setOccupation(e.target.value);
     }
   };
 
   const employedinHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setEmpolyedin(e.target.value);
     }
   };
 
   const currencyHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setCurrency(e.target.value);
     }
   };
 
   const annualincomeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
-      setAnnualincome(e.target.value);
+    if (!(e.target.value === null )) {
+      setAnnualincome(parseInt(e.target.value));
     }
   };
 
   const astrodetailsHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "one")) {
+    if (!(e.target.value === "")) {
       setAstrodetails(e.target.value);
     }
   };
 
   const aboutmyfamilyHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (!(e.target.value === "")) {
+    if (!(e.target.value === "" )) {
       setAboutmyfamily(e.target.value);
       // console.log(e.target.value)
     }
@@ -165,8 +163,8 @@ nativeplace,
   const annualfamilyincome2Handler = (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    if (!(e.target.value === "")) {
-      setAnnualfamilyincome2(e.target.value);
+    if (!(e.target.value === null)) {
+      setAnnualfamilyincome2(parseInt(e.target.value));
       // console.log(e.target.value)
     }
   };
@@ -329,47 +327,84 @@ nativeplace,
     }
   };
 
-  const submitHandler = (e: any) => {
+  let profileid: string | null = localStorage.getItem("profileID");
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/personal-info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        profileid: `${profileid}`,
+      },
+      body: JSON.stringify({
+        complexion: complexions,
+        bodyType:bodytype ,
+        bloodGroup:bloodgroup ,
+        occupation: occupation,
+        employedIn: empolyedin,
+        currency:currency,
+        annualIncome:annualincome ,
+        star:astrodetails ,
+        aboutMyFamily: aboutmyfamily,
+        familyStatus:familystatus ,
+        familyValue: familyvalue2,
+        fatherName: fathername,
+        fatherFamilyName:fatherfamilyname ,
+        fatherHomePlace: fatherhome,
+        fatherEmployedIn:fatheremp,
+        fatherEducation: fatheredu,
+        fatherCompanyName: fathercomname,
+        fatherDesignation:fatherdes ,
+        fatherWorkLocation:fatherworkloc,
+        motherName:mothername ,
+        motherFamilyName: motherfamilyname,
+        motherHomePlace: motherhome,
+        motherEmployedIn:motheremp,
+        motherOccupation:motherocc,
+        motherEducation: motheredu,
+        motherCompanyName:mothercomname,
+        motherDesignation: motherdes,
+        motherWorkLocation:motherworkloc,
+        countryLivingIn: counteryliving,
+        currentLocation: currentloc,
+        permanentLocation:perloc,
+        residentialStatus:residentialstatus,
+        nativePlace: nativeplace,
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+  };
+
+  const submitHandler = async (e: any) => {
     e.preventDefault();
-    if ((
-      complexions&&
-      bodytype &&
-      bloodgroup &&
-      occupation &&
-      empolyedin &&
-      currency  &&
-      annualincome ) === ""
+    if (
+      (complexions &&
+        bodytype &&
+        bloodgroup &&
+        occupation &&
+        empolyedin &&
+        currency &&
+        annualincome) === ""
     ) {
       // setComplexion(complexion);
       // console.log("error")
       setError(true);
-      // return "one";
-    }else if(aboutmyfamily === ""){
+      // return "";
+    } else if (aboutmyfamily === "") {
       setError2(true);
-    }
-    else if(familyvalue2 === "" && annualfamilyincome2 === "" && currency2  === ""){
+    } else if (
+      familyvalue2 === "" &&
+      annualfamilyincome2 === null &&
+      currency2 === ""
+    ) {
       setError3(true);
-    }
-    else {
+    } else {
       // setError2(false);
-      console.log(presonalinfro2)
+      // console.log(presonalinfro2)
       setError(false);
+      saveData();
     }
-    // if (aboutmyfamily === "") {
-    //   setError2(true);
-    // }
-    
-    // if (familyvalue2 === "" && annualfamilyincome2 === "" && currency2  === "") {
-      
-    // } else {
-    //   setError3(false);
-    // }
-  
-
- 
   };
-  // console.log(complexions);
-  // console.log(aboutmyfamily)
 
   return (
     <div
@@ -507,7 +542,7 @@ nativeplace,
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>TechnoMark</option>
@@ -526,7 +561,7 @@ nativeplace,
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>INR</option>
@@ -539,7 +574,7 @@ nativeplace,
           <Row>
             <Col className="mt-3">
               <label htmlFor="">
-                Annual Income <span className={classes.compalsory}>*</span>
+                Annual Income (Lakhs) <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -547,13 +582,13 @@ nativeplace,
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
-                <option>4 - Lakh</option>
-                <option>5 - Lakh</option>
-                <option>6 - Lakh</option>
-                <option>7 - Lakh</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -614,7 +649,7 @@ nativeplace,
                 onChange={astrodetailsHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option value="one" hidden>
+                <option value="" hidden>
                   Select Any One
                 </option>
                 <option value="sun">Sun</option>
@@ -677,7 +712,12 @@ nativeplace,
                 About My Family <span className={classes.compalsory}>*</span>
               </label>
               <br />
-              <textarea onChange={aboutmyfamilyHandler} style={{ width: "6000" }} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
+              <textarea
+                onChange={aboutmyfamilyHandler}
+                style={{ width: "6000" }}
+                className="form-control mb-2"
+                id="exampleFormControlTextarea1"
+              ></textarea>
 
               {/* <textarea
                 name=""
@@ -730,7 +770,6 @@ nativeplace,
                 <option>Living With Them</option>
                 <option>Other Reason</option>
               </select>
-  
             </Col>
           </Row>
           <Row>
@@ -749,7 +788,7 @@ nativeplace,
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden value="one">
+                <option hidden value="">
                   Select Any One
                 </option>
                 <option>INR</option>
@@ -770,10 +809,10 @@ nativeplace,
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
                 <option hidden>Select Any One</option>
-                <option>6Lakh</option>
-                <option>7Lakh</option>
-                <option>8Lakh</option>
-                <option>9Lakh</option>
+                <option value="6">6Lakh</option>
+                <option value="7">7Lakh</option>
+                <option value="8">8Lakh</option>
+                <option value="9">9Lakh</option>
               </select>
             </Col>
             <Col className="mt-3">
