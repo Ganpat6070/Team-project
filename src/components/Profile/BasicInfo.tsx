@@ -470,9 +470,12 @@ const BasicInfo = () => {
       
       
     });
-    console.log(response);
-    // let profileid = response.profileId;
-    // localStorage.setItem("profileID", profileid)
+    const res= await response.json()
+    console.log(res);
+    // let profileId = res.profileId
+    // console.log(profileId);
+    let profileid = res.profileId;
+    localStorage.setItem("profileID", profileid)
   }
   };
   
