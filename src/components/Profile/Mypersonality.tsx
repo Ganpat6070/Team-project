@@ -44,7 +44,36 @@ const Mypersonality = () => {
     dressrange,
     dress,
   };
+  let profileid: string | null = localStorage.getItem("profileID");
 
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/my-personality", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        profileid: `${profileid}`,
+      },
+      body: JSON.stringify({
+        diet: diet,
+        smoke: smoke,
+        drink: drink,
+        music: music,
+        musicRange: musicrange,
+        reading: reading,
+        readingRange: readingrange,
+        movies: movies,
+        moviesRange: movierange,
+        sports: sports,
+        sportsRange: sportrange,
+        foods: foods,
+        foodsRange: foodrange,
+        dress: dress,
+        dressRange: dressrange,
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+  };
 
   const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setDiet(e.target.value);
@@ -118,7 +147,8 @@ const Mypersonality = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    navigate('/astrodata')
+    saveData();
+    navigate("/astrodata");
     console.log(mypersonality);
   };
 

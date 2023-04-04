@@ -18,13 +18,11 @@ const RegForm2 = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-
-
   const onRegister = async (e: any) => {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/register", {
-      credentials : "include",
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -36,7 +34,10 @@ const RegForm2 = () => {
     });
 
     const res = await response.json();
+    let id = res.id;
+    localStorage.setItem("id", id);
     console.log(res);
+    console.log(id)
 
     if (res.msg) {
       if (res.msg === "Already registered") {

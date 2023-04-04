@@ -25,6 +25,7 @@ const NavbarHead = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("login");
+    localStorage.removeItem("Token");
     localStorage.removeItem("uname");
     toast.error("You have logged out", {
       position: toast.POSITION.TOP_RIGHT,
@@ -59,67 +60,62 @@ const NavbarHead = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="justify-content-around navbar flex-grow-1 me-auto">
-                <Nav.Link>
-                  <Link
-                    to="/"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Home
-                  </Link>
-                </Nav.Link>
+                <Link
+                  to="/"
+                  className="text-white"
+                  style={{ textDecoration: "none" }}
+                >
+                  Home
+                </Link>
+
                 <Nav.Link href="#sucessStories" className="text-white">
                   Success Stories
                 </Nav.Link>
-                <Nav.Link>
-                  <Link
-                    to="/membership"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Membership
-                  </Link>
-                </Nav.Link>
+
+                <Link
+                  to="/membership"
+                  className="text-white"
+                  style={{ textDecoration: "none" }}
+                >
+                  Membership
+                </Link>
+
                 <Nav.Link href="#gallery" className="text-white">
                   Gallery
                 </Nav.Link>
-                <Nav.Link>
-                  <Link
-                    to="/faqs"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    FAQS
-                  </Link>
-                </Nav.Link>
-                <Nav.Link>
-                  <Link
-                    to="/aboutus"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Aboutus
-                  </Link>
-                </Nav.Link>
-                <Nav.Link className="text-white">
-                  <Link
-                    to="/contactus"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Contact
-                  </Link>
-                </Nav.Link>
+
+                <Link
+                  to="/faqs"
+                  className="text-white"
+                  style={{ textDecoration: "none" }}
+                >
+                  FAQS
+                </Link>
+
+                <Link
+                  to="/aboutus"
+                  className="text-white"
+                  style={{ textDecoration: "none" }}
+                >
+                  Aboutus
+                </Link>
+
+                <Link
+                  to="/contactus"
+                  className="text-white"
+                  style={{ textDecoration: "none" }}
+                >
+                  Contact
+                </Link>
                 <ToastContainer />
 
-                <Nav.Link
+                <Link
+                  to="/login"
                   className="p-2 rounded bg-white"
-                  style={{ color: "#FA4C55" }}
+                  style={{ textDecoration: "none", color: "#FA4C55" }}
                 >
-                  <Link to="/login" style={{ textDecoration: "none" }}>
-                    Login/Register
-                  </Link>
-                </Nav.Link>
+                  Login/Register
+                </Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -134,6 +130,7 @@ const NavbarHead = () => {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             position: "sticky",
+            // paddingBottom:"20px",
             top: 0,
             zIndex: 1,
             width: "100%",
@@ -144,61 +141,53 @@ const NavbarHead = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="justify-content-around flex-grow-1">
-                <Nav.Link className="pt-4">
-                  <Link
-                    to="/"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Home
-                  </Link>
-                </Nav.Link>
-                <Nav.Link className="pt-4">
-                  <Link
-                    to="/membership"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Membership
-                  </Link>
-                </Nav.Link>
-                <Nav.Link className="pt-4">
-                  <Link
-                    to="/faqs"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    FAQS
-                  </Link>
-                </Nav.Link>
-                <Nav.Link className="pt-4">
-                  <Link
-                    to="/aboutus"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Aboutus
-                  </Link>
-                </Nav.Link>
-                <Nav.Link className="text-white pt-4">
-                  <Link
-                    to="/contactus"
-                    className="text-white"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Contact
-                  </Link>
-                </Nav.Link>
+                <Link
+                  to="/"
+                  className="text-white pt-4"
+                  style={{ textDecoration: "none" }}
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/membership"
+                  className="text-white pt-4"
+                  style={{ textDecoration: "none" }}
+                >
+                  Membership
+                </Link>
+
+                <Link
+                  to="/faqs"
+                  className="text-white pt-4"
+                  style={{ textDecoration: "none" }}
+                >
+                  FAQS
+                </Link>
+                <Link
+                  to="/aboutus"
+                  className="text-white pt-4"
+                  style={{ textDecoration: "none" }}
+                >
+                  Aboutus
+                </Link>
+
+                <Link
+                  to="/contactus"
+                  className="text-white pt-4"
+                  style={{ textDecoration: "none" }}
+                >
+                  Contact
+                </Link>
                 <ToastContainer />
 
-                <Nav.Link className="rounded">
+           
                   <PopupMenu>
                     <button className="btn rounded-circle">
                       <img
                         className="imgpro rounded-circle"
                         style={{ width: "50px" }}
                         src={
-                          "https://qph.cf2.quoracdn.net/main-qimg-54166a525ee4fb3097d260173688c157-lq"
+                          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                         }
                         alt=""
                       ></img>
@@ -252,13 +241,15 @@ const NavbarHead = () => {
                             style={{ backgroundColor: "#f6837d" }}
                           >
                             <Person color="white" size={20} />{" "}
-                            <small><Link
+                            <small>
+                              <Link
                                 to="/edit-profile"
                                 className="text-white"
                                 style={{ textDecoration: "none" }}
                               >
-                               Edit My Profile
-                              </Link></small>
+                                Edit My Profile
+                              </Link>
+                            </small>
                           </button>
                           <button
                             className="list-group-item list-group-item-action px-4 text-light"
@@ -299,7 +290,6 @@ const NavbarHead = () => {
                       </div>
                     </div>
                   </PopupMenu>
-                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

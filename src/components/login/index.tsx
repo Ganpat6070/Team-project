@@ -31,6 +31,12 @@ function Login() {
     });
 
     const res = await response.json();
+    const token = res.token;
+    const id = res.id;
+    localStorage.setItem("id", id);
+    localStorage.setItem("Token", token);
+    console.log(token);
+
     console.log(res);
     if (res.msg) {
       if (
@@ -51,7 +57,7 @@ function Login() {
           navigate("/");
         }, 1500);
       }
-      if(res.msg === "please verify your email"){
+      if (res.msg === "please verify your email") {
         toast.warning(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });

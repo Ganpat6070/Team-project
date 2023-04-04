@@ -6,20 +6,13 @@ import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import "./PrePart.css";
 import PhotoCard from "./PhotoCard";
+import NavbarHead from "../navbar";
 
 const PrePart = () => {
   
   const submitHandler = (e: any) => {
     e.preventDefault();
-    //           if(DOB.current){
-    //             console.log(DOB.current.value);
-    //           }
-    //           if(Cast.current){
-    //             console.log(Cast.current.value);
-    //           }
-    //           if(Height.current){
-    //             console.log(Height.current.value);
-    //           }
+    
   };
 
   return (
@@ -31,8 +24,9 @@ const PrePart = () => {
       width: "100%",
     }}
     >
+      <NavbarHead />
       <ProgressBar />
-      <PhotoCard/>
+      <PhotoCard />
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
