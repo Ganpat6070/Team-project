@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/login", {
-      credentials:"include",
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -31,6 +31,9 @@ function Login() {
     });
 
     const res = await response.json();
+    const token = res.token;
+
+    localStorage.setItem("Token", token);
     console.log(res);
     if (res.msg) {
       if (
@@ -51,7 +54,7 @@ function Login() {
           navigate("/");
         }, 1500);
       }
-      if(res.msg === "please verify your email"){
+      if (res.msg === "please verify your email") {
         toast.warning(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -212,7 +215,13 @@ function Login() {
                     <p className="text-center text-light">Forgot Password ?</p>
                     <p className="text-white text-center formFieldLink">
                       New to PerfectMatch.com ?{" "}
-                      <Link to="/register" className="text-light" style={{textDecoration:"none"}}>Register Free</Link>
+                      <Link
+                        to="/register"
+                        className="text-light"
+                        style={{ textDecoration: "none" }}
+                      >
+                        Register Free
+                      </Link>
                     </p>
                   </Form>
                   <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">

@@ -25,6 +25,7 @@ const NavbarHead = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("login");
+    localStorage.removeItem("Token");
     localStorage.removeItem("uname");
     toast.error("You have logged out", {
       position: toast.POSITION.TOP_RIGHT,

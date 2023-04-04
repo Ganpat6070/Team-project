@@ -63,8 +63,10 @@ const BasicInfo = () => {
 
   const [age, setAge] = useState("");
 
-  let token = Cookies.get("Token");
-  let id = Cookies.get("id");
+  // let token = Cookies.get("Token");
+  let token = localStorage.getItem("Token")
+  
+  // let id = Cookies.get("id");
 
   const basicinfo: any = {
     fname,
@@ -413,16 +415,17 @@ const BasicInfo = () => {
     ) {
       setErrorbi(true);
     } else {
+      setErrorbi(false);
       console.log(basicinfo);
-    }
+    
 
     let response = await fetch("http://localhost:8000/basic-info", {
       credentials: "include",
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 'content-type': 'application/json' ,
+                  "token": `${token}`},
       body: JSON.stringify({
-        token: token,
-        user_id: id,
+      
         firstName: fname,
         lastName: lname,
         dateOfBirth: dob,
@@ -464,10 +467,15 @@ const BasicInfo = () => {
         address: refaddress,
         contactNumber: refcontact,
       }),
+      
+      
     });
     console.log(response);
+    // let profileid = response.profileId;
+    // localStorage.setItem("profileID", profileid)
+  }
   };
-
+  
   return (
     <>
       <div

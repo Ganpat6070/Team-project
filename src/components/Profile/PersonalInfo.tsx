@@ -677,17 +677,15 @@ nativeplace,
                 About My Family <span className={classes.compalsory}>*</span>
               </label>
               <br />
-              {/* <input
-                type="text"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
-              <textarea
+              <textarea onChange={aboutmyfamilyHandler} style={{ width: "6000" }} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
+
+              {/* <textarea
                 name=""
                 id=""
                 onChange={aboutmyfamilyHandler}
                 className="w-100 p-4 h-1 "
                 style={{ width: "800" }}
-              ></textarea>
+              ></textarea> */}
               <p
                 style={{
                   color: "#6E6E6E",
@@ -701,17 +699,6 @@ nativeplace,
               </p>
             </div>
             <div className="col mt-3"></div>
-            {/* </div> */}
-            {/* <Col  className="mt-3">
-              <label htmlFor="" className="pt-3">
-                Education <span className={classes.compalsory}>*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </Col> */}
             <Col className="mt-3">
               <label htmlFor="" className="pt-3">
                 Family Type
@@ -743,10 +730,7 @@ nativeplace,
                 <option>Living With Them</option>
                 <option>Other Reason</option>
               </select>
-              {/* <input
-                type="text"
-                className="w-5 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
+  
             </Col>
           </Row>
           <Row>

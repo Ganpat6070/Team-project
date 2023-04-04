@@ -51,3 +51,8 @@ input{
 .twothree{
     height: 50%;
 }
+
+textarea {
+    resize: none;
+    height: 140px;
+  }
