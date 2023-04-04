@@ -17,10 +17,11 @@ function Login() {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
 
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
-    let response = await fetch("http://localhost:8000/login", {
+    let response: any = await fetch("http://localhost:8000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -31,6 +32,10 @@ function Login() {
 
     const res = await response.json();
     console.log(res);
+    const token = res.token;
+    localStorage.setItem('token', token);
+
+
     if (res.msg) {
       if (
         res.msg === "You are not verified user!" ||

@@ -43,6 +43,8 @@ const RegForm2 = () => {
     const res = await response.json();
     console.log(res);
 
+    localStorage.setItem('id', res.id);
+
     if (res.msg) {
       if (res.msg === "Already registered") {
         setTimeout(() => {

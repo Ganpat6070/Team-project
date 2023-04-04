@@ -15,7 +15,7 @@ const AstroDetails = () => {
   const [aHours, setaHours] = useState("");
   const [aMinutes, setaMinutes] = useState("");
   const [aSeconds, setaSeconds] = useState("");
-  const [aAMPM, setaAMPM] = useState("");
+  const [aAMPM, setaAMPM] = useState("AM");
   const [abirthtimeC, setabirthtimeC] = useState("");
   const [aplace, setaplace] = useState("");
   const [alongitude, setalongitude] = useState("");
@@ -24,12 +24,15 @@ const AstroDetails = () => {
 
   const [error, setError] = useState<boolean>(false);
 
+  const atime = aHours + "H " + aMinutes + "M " + aSeconds + "S " + aAMPM;
+
   const astroObject = {
     adob,
-    aHours,
-    aMinutes,
-    aSeconds,
-    aAMPM,
+    // aHours,
+    // aMinutes,
+    // aSeconds,
+    // aAMPM,
+    atime,
     abirthtimeC,
     aplace,
     alongitude,
@@ -126,18 +129,9 @@ const AstroDetails = () => {
                 <option value="" hidden>
                   HH
                 </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
+                {Array.from(Array(12), (_, i) => (
+                  <option key={i}>{i + 1}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
@@ -161,12 +155,9 @@ const AstroDetails = () => {
                 <option value="" hidden>
                   SS
                 </option>
-                <option>1-10</option>
-                <option>11-20</option>
-                <option>21-30</option>
-                <option>31-40</option>
-                <option>41-50</option>
-                <option>51-60</option>
+                {Array.from(Array(60), (_, i) => (
+                  <option key={i}>{i}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Table } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +21,7 @@ function CardBox(props: string | any) {
   return (
     <Card
       className="d-flex justify-content-between"
-      style={{ width: "18rem", textAlign: "center" }}
+      style={{ width: "25rem", textAlign: "center" }}
     >
       <Card.Img
         variant="top"
@@ -30,7 +31,16 @@ function CardBox(props: string | any) {
 
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{props.description}</Card.Text>
+        <Card.Text>{props.ageAndReligion}</Card.Text>
+        <p > <b>Address : </b>&nbsp;&nbsp;{props.address}</p>
+        
+        <Card.Text>{props.designation}</Card.Text>
+        <Card.Text>{props._id}</Card.Text>
+
+
+        {/* {props.education.map((edu: string[]) => <Card.Text>{edu}</Card.Text>)} */}
+
+
         <Button
           onClick={handleDetails}
           variant="primary"

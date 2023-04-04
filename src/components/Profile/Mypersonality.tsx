@@ -43,7 +43,6 @@ const Mypersonality = () => {
     dressrange,
     dress,
   };
-  console.log(mypersonality);
 
   const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setDiet(e.target.value);
@@ -115,8 +114,42 @@ const Mypersonality = () => {
     }
   };
 
+  let id: string | null = localStorage.getItem('id');
+
+  const responsedata = async () => {
+    let response = await fetch("http://localhost:8000/my-personality", {
+      method: "POST",
+      headers: { "Content-Type": "application/json",
+      token: `${id}`
+    },
+      body: JSON.stringify({
+        diet: diet,
+        smoke:smoke,
+        drink: drink,
+        music: music,
+        musicRange: musicrange,
+        reading: reading,
+        readingRange:readingrange,
+        movies:movies,
+        moviesRange:movierange,
+        sports:sports,
+        sportsRange:sportrange,
+        foods:foods,
+        foodsRange:foodrange,
+        dress:dress,
+        dressRange:dressrange,
+
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+  };
+
   const submitHandler = (e: any) => {
     e.preventDefault();
+    console.log(responsedata);
+
+    responsedata();
   };
 
   return (

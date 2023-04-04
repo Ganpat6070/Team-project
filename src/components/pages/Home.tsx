@@ -74,9 +74,9 @@ const Home = ({ onPass }: HomeProps) => {
                     // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
-                    <option>Select</option>
-                    <option>Bride</option>
-                    <option>Groom</option>
+                    <option value=''>Select</option>
+                    <option value='female'>Bride</option>
+                    <option value='male'>Groom</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -98,7 +98,7 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label>&nbsp;&nbsp;</Form.Label>
                 <Form.Label
                   className="text-white"
-                  style={{ fontSize: "20px", marginTop: "20px" }}
+                  style={{ fontSize: "20px", marginTop: "24px", marginLeft: '34px' }}
                 >
                   TO
                 </Form.Label>
@@ -137,12 +137,13 @@ const Home = ({ onPass }: HomeProps) => {
                   <option>Any</option>
                   <option>Hindu</option>
                   <option>Muslim</option>
+                  <option>Christian</option>
                 </Form.Select>
               </Col>
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Button
-                  className="findbtn filterinput"
+                  className="findbtn filterinput border-0"
                   size="sm"
                   style={{ backgroundColor: "#FE8A4D", width: "120px" }}
                   onClick={profileSearch}

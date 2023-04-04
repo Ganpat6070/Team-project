@@ -18,39 +18,72 @@ type ProfileSearchProps = {
 
 const ProfileSearch = (props: ProfileSearchProps) => {
   const [myData, setMyData] = useState<any>([]);
+  // const [myData1, setMyData1] = useState<any>([]);
+
+  // useEffect(() => {
+  //   onSnapshot(collection(db, "userdata"), (snapshot) => {
+  //     setMyData(snapshot.docs.map((doc) => doc.data()));
+  //   });
+
+  // }, []);
 
   useEffect(() => {
-    onSnapshot(collection(db, "userdata"), (snapshot) => {
-      setMyData(snapshot.docs.map((doc) => doc.data()));
-    });
+    fetchdata();
   }, []);
 
-  useEffect(()=>{
-    // const myData = fetch()
-  }, [])
-
+  let fetchdata = async () => {
+    const response = await fetch("http://localhost:8000/basic-info", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    let res = await response.json();
+    console.log(res);
+    setMyData(res.basicInfo);
+  };
   console.log(myData);
-
+  // console.log(myData1);
 
   const filteredData = myData.filter(
     (data: any) =>
-      // (props.gender === '' || props.religion=== '' || props.lessAge==='' || props.greatAge === '' ? data.gender: '') &&
       (props.religion.toLowerCase() === ""
         ? data.religion.toLowerCase()
-        : data.religion === props.religion.toLowerCase()) &&
+        : data.religion.toLowerCase() === props.religion.toLowerCase()) &&
       (props.gender.toLowerCase() === ""
         ? data.gender.toLowerCase()
         : data.gender.toLowerCase() === props.gender.toLowerCase()) &&
       (props.lessAge.toLowerCase() === ""
-        ? data.born_year <= props.greatAge.toLowerCase()
-        : data.born_year >= props.lessAge) &&
+        ? data.dateOfBirth.substring(0, 4) <= props.greatAge.toLowerCase()
+        : data.dateOfBirth.substring(0, 4) >= props.lessAge.toLowerCase()) &&
       (props.greatAge.toLowerCase() === ""
-        ? data.born_year >= props.lessAge.toLowerCase()
-        : data.born_year <= props.greatAge) // (props.lessAge.toLowerCase() === "" || props.greatAge.toLowerCase() === '' ? data.born_year.toLowerCase(): '')
-    // data.born_year >= props.lessAge &&
-    // data.born_year <= props.greatAge
+        ? data.dateOfBirth.substring(0, 4) >= props.lessAge.toLowerCase()
+        : data.dateOfBirth.substring(0, 4) <= props.greatAge.toLowerCase())
   );
+
   console.log(filteredData);
+
+  // const myData1 = ["name", "fname"];
+
+  // const filteredData = myData.filter(
+  //   (data: any) =>
+  //     // (props.gender === '' || props.religion=== '' || props.lessAge==='' || props.greatAge === '' ? data.gender: '') &&
+  //     (props.religion.toLowerCase() === ""
+  //       ? data.religion.toLowerCase()
+  //       : data.religion === props.religion.toLowerCase()) &&
+  //     (props.gender.toLowerCase() === ""
+  //       ? data.gender.toLowerCase()
+  //       : data.gender.toLowerCase() === props.gender.toLowerCase()) &&
+  //     (props.lessAge.toLowerCase() === ""
+  //       ? data.born_year <= props.greatAge.toLowerCase()
+  //       : data.born_year >= props.lessAge) &&
+  //     (props.greatAge.toLowerCase() === ""
+  //       ? data.born_year >= props.lessAge.toLowerCase()
+  //       : data.born_year <= props.greatAge)
+
+  //       // (props.lessAge.toLowerCase() === "" || props.greatAge.toLowerCase() === '' ? data.born_year.toLowerCase(): '')
+  //   // data.born_year >= props.lessAge &&
+  //   // data.born_year <= props.greatAge
+  // );
+  // console.log(filteredData);
 
   console.log(props.gender, props.lessAge, props.greatAge, props.religion);
   return (
@@ -63,7 +96,6 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         * The profiles which appears here are members that match your partner
         preferences
       </div>
-      {/* console.log(data); */}
       <div className="profileCard">
         {props.gender === "" &&
         props.greatAge === "" &&
@@ -71,16 +103,27 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         props.religion === "" ? (
           myData.map((profile: any) => (
             <CardBox
-              name={profile.name}
-              description={profile.born_year + " " + profile.religion}
+              _id={profile._id}
+              name={profile.firstName + " " + profile.lastName}
+              ageAndReligion={
+                profile.dateOfBirth.substring(0, 4) + " " + profile.religion
+              }
+              address={profile.address}
+              education={profile.education}
+              designation={profile.designation}
               image={profile.image}
             />
           ))
         ) : filteredData.length > 0 ? (
           filteredData.map((profile: any) => (
             <CardBox
-              name={profile.name}
-              description={profile.born_year + " " + profile.religion}
+              _id={profile._id}
+              name={profile.firstName + " " + profile.lastName}
+              ageAndReligion={
+                profile.dateOfBirth.substring(0, 4) + " " + profile.religion
+              }
+              address={profile.address}
+              designation={profile.designation}
               image={profile.image}
             />
           ))
