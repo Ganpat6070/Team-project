@@ -33,7 +33,7 @@ function Login() {
     const res = await response.json();
     console.log(res);
     const token = res.token;
-    localStorage.setItem('token', token);
+    localStorage.setItem('Token', token);
 
 
     if (res.msg) {

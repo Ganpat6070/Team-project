@@ -15,13 +15,13 @@ const PrePart = () => {
   const [ppPhyStatus, setppPhyStatus] = useState<any>("");
   const [ppFamStatus, setppFamStatus] = useState<any>("");
   const [ppCurrency, setppCurrency] = useState<any>("");
-  const [ppAnnual, setppAnnual] = useState<any>("");
+  const [ppAnnual, setppAnnual] = useState<number>();
   const [ppMotherT, setppMotherT] = useState<any>("");
   const [ppreligion, setppreligion] = useState<any>("");
   const [ppCaste, setppCaste] = useState<any>("");
   const [ppdiet, setppdiet] = useState<any>("");
 
-  const [ppEdu, setppEdu] = useState<any[]>([]);
+  const [ppEdu, setppEdu] = useState<string[]>([]);
   const [ppOcc, setppOcc] = useState<any>("");
   const [ppLoc, setppLoc] = useState<any>("");
   const [ppmStatus, setppmStatus] = useState<any>("");
@@ -61,7 +61,7 @@ const PrePart = () => {
     setError(false);
   };
   const ppAnnualHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === "")) setppAnnual(e.target.value);
+    if (!(e.target.value === null)) setppAnnual(parseInt(e.target.value));
     setError(false);
   };
   const ppMotherTHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -81,8 +81,7 @@ const PrePart = () => {
     setError(false);
   };
   const ppeducationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // if (!(e.target.value === ""));
-    // console.log(fname)
+  
     const value = e.target.value;
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -90,7 +89,7 @@ const PrePart = () => {
     } else {
       setppEdu(ppEdu.filter((box) => box !== value));
     }
-
+    // if (!(e.target.value === "")) setppEdu(e.target.value);
     setError(false);
   };
   const ppOccHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -114,27 +113,57 @@ const PrePart = () => {
     setError(false);
   };
 
-  const ppObject: any = {
-    Age1: ppAge1,
-    Age2: ppAge2,
-    Height1: ppHeight1,
-    Height2: ppHeight2,
-    PhysicalStatus: ppPhyStatus,
-    FamilyStatus: ppFamStatus,
-    Currency: ppCurrency,
-    AnnualIncome: ppAnnual,
-    MotherTongue: ppMotherT,
-    Religion: ppreligion,
-    Caste: ppCaste,
-    Diet: ppdiet,
-    Education: ppEdu,
-    Occupation: ppOcc,
-    Location: ppLoc,
-    MaritalStatus: ppmStatus,
-    Native: ppNative,
-    AboutMyPartner: ppAboutPartner,
-  };
+  // const ppObject: any = {
+  //   age: ppAge1,
+  //   height: ppHeight1,
+  //   physicalStatus: ppPhyStatus,
+  //   familyStatus: ppFamStatus,
+  //   currency: ppCurrency,
+  //   annualIncome: ppAnnual,
+  //   motherTongue: ppMotherT,
+  //   religion: ppreligion,
+  //   castDenomination: ppCaste,
+  //   diet: ppdiet,
+  //   partnerEducation: ppEdu,
+  //   occupation: ppOcc,
+  //   location: ppLoc,
+  //   maritalStatus: ppmStatus,
+  //   nativePlace: ppNative,
+  //   aboutMyPartner: ppAboutPartner,
+  // };
 
+  const postObject = async () => {
+
+    const profileId = localStorage.getItem('profileID');
+
+    const response = await fetch("http://localhost:8000/preffered-partner", {
+      credentials: "include",
+      method: "POST",
+      headers: { "content-type": "application/json",
+      profileid: `${profileId}`
+    },
+      body: JSON.stringify({
+        age: ppAge1,
+        height: ppHeight1,
+        physicalStatus: ppPhyStatus,
+        familyStatus: ppFamStatus,
+        currency: ppCurrency,
+        annualIncome: ppAnnual,
+        motherTongue: ppMotherT,
+        religion: ppreligion,
+        castDenomination: ppCaste,
+        diet: ppdiet,
+        partnerEducation: ppEdu,
+        occupation: ppOcc,
+        location: ppLoc,
+        maritalStatus: ppmStatus,
+        nativePlace: ppNative,
+        aboutMyPartner: ppAboutPartner,
+      }),
+    });
+    console.log(response)
+
+  };
   const submitHandler = (e: any) => {
     e.preventDefault();
 
@@ -154,7 +183,8 @@ const PrePart = () => {
     } else if ((ppAge1 && ppAge2) === 0) {
       setError(true);
     } else {
-      console.log(ppObject);
+
+      postObject();
     }
   };
 
@@ -384,10 +414,10 @@ const PrePart = () => {
                   value={ppMotherT}
                   onChange={ppMotherTHandler}
                 >
-                  <option  hidden>select</option>
-                  <option >Hindi</option>
-                  <option >Gujarati</option>
-                  <option >English</option>
+                  <option hidden>select</option>
+                  <option>Hindi</option>
+                  <option>Gujarati</option>
+                  <option>English</option>
                 </select>
               </div>
             </Col>
