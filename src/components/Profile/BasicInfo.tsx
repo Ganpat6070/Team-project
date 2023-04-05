@@ -1227,7 +1227,7 @@ const BasicInfo = () => {
               </div>
               <div className="col mt-3">
                 <label htmlFor="">
-                  City / State <span className="compalsory">*</span>
+                  City / State <span className="compalsory">*</span>  
                 </label>
                 <br />
                 <select

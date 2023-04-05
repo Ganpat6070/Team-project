@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import NavbarHead from "../navbar";
+import { Col, Row } from "react-bootstrap";
 
 const EditProfile = () => {
+
+  
+  // Basic Info States
   const [dob, setdob] = useState("");
   const [height, setheight] = useState("");
   const [weight, setweight] = useState("");
@@ -10,10 +14,12 @@ const EditProfile = () => {
   const [mTongue, setmTongue] = useState("");
   const [religion, setreligion] = useState("");
   const [cast, setcast] = useState("");
+  const [gender, setGender] = useState("");
   const [subcast, setsubcast] = useState("");
   const [phyStatus, setphyStatus] = useState("");
-  const [education, seteducation] = useState("");
-  const [spokenLanguage, setspokenLanguage] = useState("");
+  const [about, setAbout] = useState("");
+  const [education, seteducation] = useState<string[]>([]);
+  const [spokenLanguage, setspokenLanguage] = useState<string[]>([]);
   const [eduDetails, seteduDetails] = useState("");
   const [schoolName, setschoolName] = useState("");
   const [splace, setsplace] = useState("");
@@ -29,19 +35,25 @@ const EditProfile = () => {
   const [larea, setlarea] = useState("");
   const [lnum, setlnum] = useState("");
   const [mNumber, setmNumber] = useState("");
+  const [pct, setpct] = useState("");
+  const [cttc, setCttc] = useState("");
+  const [cName, setcName] = useState("");
   const [email, setemail] = useState("");
   const [street, setstreet] = useState("");
+  const [country, setCountry] = useState("");
   const [pin, setpin] = useState("");
   const [city, setcity] = useState("");
   const [refname, setrefname] = useState("");
   const [refaddress, setrefaddress] = useState("");
   const [refcontact, setrefcontact] = useState("");
 
+  // Personal Info States
   const [complexion, setComplexion] = useState("");
   const [bodytype, setbodytype] = useState("");
   const [bloodGroup, setbloodGroup] = useState("");
   const [occupation, setoccupation] = useState("");
   const [employedin, setemployedin] = useState("");
+  const [piCurrency, setpiCurrency] = useState("");
   const [religion1, setreligion1] = useState("");
   const [currency1, setcurrency1] = useState("");
   const [subcast1, setsubcast1] = useState("");
@@ -64,11 +76,46 @@ const EditProfile = () => {
   const [motherName, setmotherName] = useState("");
   const [motherFamName, setmotherFamName] = useState("");
   const [motherHome, setmotherHome] = useState("");
+  const [motEmpIn, setmotEmpIn] = useState("");
   const [motherOcc, setmotherOcc] = useState("");
   const [motherEdu, setmotherEdu] = useState("");
+  const [countryLivingIn, setcountryLivingIn] = useState("");
   const [currLoc, setcurrLoc] = useState("");
   const [resStatus, setresStatus] = useState("");
   const [native, setnative] = useState("");
+
+  // Preferred Partner States
+  const [ppAge, setppAge] = useState("");
+  const [ppHeight, setppHeight] = useState("");
+  const [ppPhyStatus, setppPhyStatus] = useState("");
+  const [ppFamilyStatus, setppFamilyStatus] = useState("");
+  const [ppCurrency, setppCurrency] = useState("");
+  const [ppAnnual, setppAnnual] = useState("");
+  const [ppMotherT, setppMotherT] = useState("");
+  const [ppReligion, setppReligion] = useState("");
+  const [ppcaste, setppCaste] = useState("");
+  const [ppDiet, setppDiet] = useState("");
+  const [ppOcc, setppOcc] = useState("");
+  const [ppLocation, setppLocation] = useState("");
+  const [ppMStatus, setppMStatus] = useState("");
+  const [ppNative, setppNative] = useState("");
+  const [ppAboutPartner, setppAboutPartner] = useState("");
+  const [ppeducation, setppEducation] = useState<string[]>([]);
+
+  // My Personality States
+  const [mpdiet, setmpdiet] = useState("");
+  const [mpSmoke, setmpSmoke] = useState("");
+  const [mpDrink, setmpDrink] = useState("");
+  const [mpMusicrange, setmpMusicrange] = useState(0);
+  const [music, setMusic] = useState<string[]>([]);
+  const [mpReadingrange, setmpReadingrange] = useState(0);
+  const [reading, setReading] = useState<string[]>([]);
+
+  // Astro Details
+  const [aDate, setaDate] = useState("");
+  const [aTime, setaTime] = useState("");
+  const [aBirthTime, setaBirthTime] = useState("");
+  const [aPlace, setaPlace] = useState("");
 
   const [age, setAge] = useState("");
 
@@ -147,15 +194,65 @@ const EditProfile = () => {
     religion1: "hindu",
   });
 
+  const handleSpokenChange = (event: any) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      setspokenLanguage([...spokenLanguage, value]);
+    } else {
+      setspokenLanguage(spokenLanguage.filter((box) => box !== value));
+    }
+  };
+
+  const educationHandler = (event: any) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      seteducation([...education, value]);
+    } else {
+      seteducation(education.filter((box) => box !== value));
+    }
+  };
+
+  const musicHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setMusic([...music, value]);
+    } else {
+      setMusic(music.filter((box) => box !== value));
+    }
+  };
+
+  const readHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setReading([...reading, value]);
+    } else {
+      setReading(reading.filter((box) => box !== value));
+    }
+  };
+
   const changeHandle = (e: any) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const ppeducationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setppEducation([...ppeducation, value]);
+    } else {
+      setppEducation(ppeducation.filter((box) => box !== value));
+    }
   };
 
   console.log(userData);
 
   return (
     <div>
-      <NavbarHead/>
+      <NavbarHead />
       <div
         style={{ width: "85%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -190,16 +287,16 @@ const EditProfile = () => {
               <td>Height</td>
               <td>
                 <select
+                  style={{ width: "135px" }}
                   id="height"
                   name="Height"
                   value={height}
                   onChange={(e) => setheight(e.target.value)}
                 >
-                  <option value="4ft">4ft</option>
-                  <option value="5ft">5ft</option>
-                  <option value="6ft">6ft</option>
-                  <option value="7ft">7ft</option>
-                  <option value="7ft +">7ft +</option>
+                  <option value="4">4ft</option>
+                  <option value="5">5ft</option>
+                  <option value="6">6ft</option>
+                  <option value="7">7ft </option>
                 </select>
               </td>
             </tr>
@@ -207,6 +304,7 @@ const EditProfile = () => {
               <td>Weight</td>
               <td>
                 <select
+                  style={{ width: "135px" }}
                   name="Weight"
                   onChange={(e) => setweight(e.target.value)}
                 >
@@ -221,45 +319,49 @@ const EditProfile = () => {
             <tr>
               <td>Marital Status</td>
               <td>
-                <select onChange={(e) => setmStatus(e.target.value)}>
-                  <option value="single">Single</option>
-                  <option value="inRelationship">In-Relationship</option>
-                  <option value="devorced">Devorced</option>
+                <select
+                  style={{ width: "135px" }}
+                  onChange={(e) => setmStatus(e.target.value)}
+                >
+                  <option>Single</option>
+                  <option>In-Relationship</option>
+                  <option>Devorced</option>
                 </select>
               </td>
             </tr>
             <tr>
               <td>Mother Tongue</td>
               <td>
-                <input
-                  type="text"
+                <select
+                  style={{ width: "135px" }}
                   value={mTongue}
+                  name="Weight"
                   onChange={(e) => setmTongue(e.target.value)}
-                />
-                {/* <InputText
-                  name="mTongue1"
-                  value={userData.mTongue1}
-                  onChange={changeHandle}
-                /> */}
+                >
+                  <option>Hindi</option>
+                  <option>Gujarati</option>
+                  <option>English</option>
+                </select>
               </td>
             </tr>
             <tr>
               <td>Religion</td>
               <td>
-                {/* <InputText
-                  name="religion1"
-                  value={userData.religion1}
-                  onChange={changeHandle}
-                /> */}
-                <input
-                  type="text"
+                <select
+                  style={{ width: "135px" }}
                   value={religion}
+                  name="Weight"
                   onChange={(e) => setreligion(e.target.value)}
-                />
+                >
+                  <option>Hinduism</option>
+                  <option>Islam</option>
+                  <option>Christianity</option>
+                  <option>Jainism</option>
+                </select>
               </td>
             </tr>
             <tr>
-              <td>Cast</td>
+              <td>Caste</td>
               <td>
                 <input
                   type="text"
@@ -268,7 +370,7 @@ const EditProfile = () => {
                 />
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>SubCast</td>
               <td>
                 <input
@@ -276,6 +378,21 @@ const EditProfile = () => {
                   value={subcast}
                   onChange={(e) => setsubcast(e.target.value)}
                 />
+              </td>
+            </tr> */}
+            <tr>
+              <td>Gender</td>
+            <td>
+              <select
+                style={{ width: "135px" }}
+                value={gender}
+                name="Weight"
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
               </td>
             </tr>
             <tr>
@@ -289,12 +406,12 @@ const EditProfile = () => {
               </td>
             </tr>
             <tr>
-              <td>Education</td>
+              <td>About Me</td>
               <td>
                 <input
                   type="text"
-                  value={education}
-                  onChange={(e) => seteducation(e.target.value)}
+                  value={about}
+                  onChange={(e) => setAbout(e.target.value)}
                 />
               </td>
             </tr>
@@ -303,29 +420,184 @@ const EditProfile = () => {
               <td>
                 <input
                   type="checkbox"
-                  name="lang1"
-                  value={spokenLanguage}
-                  onChange={(e) => setspokenLanguage(e.target.value)}
+                  id="lang1"
+                  name="language"
+                  value="English"
+                  checked={spokenLanguage.includes("English")}
+                  onChange={handleSpokenChange}
+                  // checked
                 />
-                <label htmlFor="lang1">English</label>&nbsp;&nbsp;
+                <label htmlFor="lang1">&nbsp;English</label>&nbsp;&nbsp;
                 <input
                   type="checkbox"
-                  name="lang2"
-                  value={spokenLanguage}
-                  onChange={(e) => setspokenLanguage(e.target.value)}
+                  id="lang2"
+                  name="language"
+                  value="Hindi"
+                  checked={spokenLanguage.includes("Hindi")}
+                  onChange={handleSpokenChange}
                 />
-                <label htmlFor="lang2">Hindi</label>&nbsp;&nbsp;
+                <label htmlFor="lang2">&nbsp;Hindi</label>&nbsp;&nbsp;
                 <input
                   type="checkbox"
-                  name="lang3"
-                  value={spokenLanguage}
-                  onChange={(e) => setspokenLanguage(e.target.value)}
+                  id="lang3"
+                  name="language"
+                  value="Gujarati"
+                  checked={spokenLanguage.includes("Gujarati")}
+                  onChange={handleSpokenChange}
                 />
-                <label htmlFor="lang3">Gujarati</label>&nbsp;&nbsp;
+                <label htmlFor="lang3">&nbsp;Gujarati</label>&nbsp;&nbsp;
+                <input
+                  type="checkbox"
+                  id="lang4"
+                  name="language"
+                  value="Kanada"
+                  checked={spokenLanguage.includes("Kanada")}
+                  onChange={handleSpokenChange}
+                />
+                <label htmlFor="lang4">&nbsp;Kanada</label>&nbsp;&nbsp;
+                <input
+                  type="checkbox"
+                  id="lang5"
+                  name="language"
+                  value="Telugu"
+                  checked={spokenLanguage.includes("Telugu")}
+                  onChange={handleSpokenChange}
+                />
+                <label htmlFor="lang5">&nbsp;Telugu</label>&nbsp;&nbsp;
+                <input
+                  type="checkbox"
+                  id="lang6"
+                  name="language"
+                  value="Tamil"
+                  checked={spokenLanguage.includes("Tamil")}
+                  onChange={handleSpokenChange}
+                />
+                <label htmlFor="lang6">&nbsp;Tamil</label>&nbsp;&nbsp;
               </td>
             </tr>
             <tr>
-              <td>EducationDetails</td>
+              <td>Education Details</td>
+              <td>
+                <Row>
+                  <Col>
+                    <label htmlFor="M.E" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="M.E"
+                        name="education"
+                        value="M.E"
+                        className=""
+                        checked={education.includes("M.E")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; M.E
+                    </label>
+                    <br />
+                    <label htmlFor="M.Tech" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="M.Tech"
+                        name="education"
+                        value="M.Tech"
+                        checked={education.includes("M.Tech")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; M.Tech
+                    </label>
+                    <br />
+                    <label htmlFor="MCA" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="MCA"
+                        name="education"
+                        value="MCA"
+                        checked={education.includes("MCA")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; MCA
+                    </label>
+                  </Col>
+                  <Col>
+                    <label htmlFor="B.Tech" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="B.Tech"
+                        name="education"
+                        value="B.Tech"
+                        className=""
+                        checked={education.includes("B.Tech")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; B.Tech
+                    </label>
+                    <br />
+                    <label htmlFor="BCOM" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="BCOM"
+                        name="education"
+                        value="BCOM"
+                        checked={education.includes("BCOM")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; BCOM
+                    </label>
+                    <br />
+                    <label htmlFor="BE" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="BE"
+                        name="education"
+                        value="BE"
+                        checked={education.includes("BE")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; BE
+                    </label>
+                  </Col>
+                  <Col>
+                    <label htmlFor="MCOM" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="MCOM"
+                        name="education"
+                        value="MCOM"
+                        className=""
+                        checked={education.includes("MCOM")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; MCOM
+                    </label>
+                    <br />
+                    <label htmlFor="BCA" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="BCA"
+                        name="education"
+                        value="BCA"
+                        checked={education.includes("BCA")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; BCA
+                    </label>
+                    <br />
+                    <label htmlFor="MBA" className="py-2">
+                      <input
+                        type="checkbox"
+                        id="MBA"
+                        name="education"
+                        value="MBA"
+                        checked={education.includes("MBA")}
+                        onChange={educationHandler}
+                      />
+                      &nbsp; MBA
+                    </label>
+                  </Col>
+                </Row>
+              </td>
+            </tr>
+            <tr>
+              <td>Education in Detail</td>
               <td>
                 <input
                   type="text"
@@ -345,23 +617,29 @@ const EditProfile = () => {
               </td>
             </tr>
             <tr>
-              <td>School Place</td>
+              <td>Place</td>
               <td>
                 <input
                   type="text"
-                  value={splace}
-                  onChange={(e) => setsplace(e.target.value)}
+                  // value={}
+                  // onChange={(e) => setplace(e.target.value)}
                 />
               </td>
             </tr>
             <tr>
               <td>Year of Study</td>
               <td>
-                <input
-                  type="text"
+                <select
+                  style={{ width: "135px" }}
                   value={syos}
+                  name="yos"
                   onChange={(e) => setsyos(e.target.value)}
-                />
+                >
+                  <option hidden>select</option>
+                  <option>2012</option>
+                  <option>2011</option>
+                  <option>2000</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -397,11 +675,17 @@ const EditProfile = () => {
             <tr>
               <td> Course Year of Study</td>
               <td>
-                <input
-                  type="text"
+                <select
+                  style={{ width: "135px" }}
                   value={cyos}
+                  name="yos"
                   onChange={(e) => setcyos(e.target.value)}
-                />
+                >
+                  <option hidden>select</option>
+                  <option>2012</option>
+                  <option>2011</option>
+                  <option>2000</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -435,7 +719,7 @@ const EditProfile = () => {
               </td>
             </tr>
             <tr>
-              <td>Location Code</td>
+              <td>Area Code</td>
               <td>
                 <input
                   type="text"
@@ -444,7 +728,7 @@ const EditProfile = () => {
                 />
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <td>Location Area</td>
               <td>
                 <input
@@ -453,7 +737,7 @@ const EditProfile = () => {
                   onChange={(e) => setlarea(e.target.value)}
                 />
               </td>
-            </tr>
+            </tr> */}
             <tr>
               <td>Landline Number</td>
               <td>
@@ -471,6 +755,37 @@ const EditProfile = () => {
                   type="text"
                   value={mNumber}
                   onChange={(e) => setmNumber(e.target.value)}
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td>Preferred Contact Type</td>
+              <td>
+                <input
+                  type="text"
+                  value={pct}
+                  onChange={(e) => setpct(e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Convenient Time to Call</td>
+              <td>
+                <input
+                  type="text"
+                  value={cttc}
+                  onChange={(e) => setCttc(e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Contact Name</td>
+              <td>
+                <input
+                  type="text"
+                  value={cName}
+                  onChange={(e) => setcName(e.target.value)}
                 />
               </td>
             </tr>
@@ -495,6 +810,16 @@ const EditProfile = () => {
               </td>
             </tr>
             <tr>
+              <td>Country</td>
+              <td>
+                <input
+                  type="text"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                />
+              </td>
+            </tr>
+            <tr>
               <td>Pincode</td>
               <td>
                 <input
@@ -509,11 +834,14 @@ const EditProfile = () => {
             <tr>
               <td>City</td>
               <td>
-                <input
-                  type="text"
-                  value={city}
+                <select
+                  style={{ width: "135px" }}
                   onChange={(e) => setcity(e.target.value)}
-                />
+                  value="city"
+                >
+                  <option value="Ahmedabad/Gujarat">Ahmedabad/Gujarat</option>
+                  <option value="Meshana/Gujarat">Meshana/Gujarat</option>
+                </select>
               </td>
             </tr>
             <tr>
@@ -578,6 +906,7 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="skinColor"
+                    style={{ width: "135px" }}
                     value={complexion}
                     onChange={(e) => setComplexion(e.target.value)}
                   >
@@ -593,6 +922,7 @@ const EditProfile = () => {
                 <td>
                   <select
                     id="bodyType"
+                    style={{ width: "135px" }}
                     name="bodytype"
                     value={bodytype}
                     onChange={(e) => setbodytype(e.target.value)}
@@ -607,6 +937,7 @@ const EditProfile = () => {
                 <td>Blood Group</td>
                 <td>
                   <select
+                    style={{ width: "135px" }}
                     name="bloodGroup"
                     value={bloodGroup}
                     onChange={(e) => setbloodGroup(e.target.value)}
@@ -622,11 +953,37 @@ const EditProfile = () => {
               <tr>
                 <td>Occupation</td>
                 <td>
-                  <input
-                    type="text"
+                  <select
                     value={occupation}
+                    style={{ width: "135px" }}
                     onChange={(e) => setoccupation(e.target.value)}
-                  />
+                  >
+                    <option hidden value="one">
+                      Select Any One
+                    </option>
+                    <option>Artist</option>
+                    <option>Designer</option>
+                    <option>Construction worker</option>
+                    <option>Business analyst</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Currency</td>
+                <td>
+                  <select
+                    style={{ width: "135px" }}
+                    value={piCurrency}
+                    onChange={(e) => setpiCurrency(e.target.value)}
+                  >
+                    <option hidden value="one">
+                      Select Any One
+                    </option>
+                    <option>INR</option>
+                    <option>USD</option>
+                    <option>Euro</option>
+                    <option>CAD</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -653,6 +1010,8 @@ const EditProfile = () => {
                 <td>Currency</td>
                 <td>
                   <select
+                                      style={{ width: "135px" }}
+
                     name="currency"
                     value={currency1}
                     onChange={(e) => setcurrency1(e.target.value)}
@@ -665,28 +1024,30 @@ const EditProfile = () => {
                   </select>
                 </td>
               </tr>
-              <tr>
-                <td>SubCast</td>
+              {/* <tr>
+                <td>Annual Income</td>
                 <td>
                   <input
                     type="text"
                     value={subcast1}
                     onChange={(e) => setsubcast1(e.target.value)}
                   />
-                </td>
-              </tr>
+                </td> 
+              </tr>*/}
               <tr>
                 <td>Annual Income</td>
                 <td>
                   <select
                     name="AnnualIncome"
+                    style={{ width: "135px" }}
+
                     value={annualInc}
                     onChange={(e) => setannualInc(e.target.value)}
                   >
-                    <option>4L</option>
-                    <option>5L</option>
-                    <option>6L</option>
-                    <option>7L</option>
+                    <option value="4">4L</option>
+                    <option value="5">5L</option>
+                    <option value="6">6L</option>
+                    <option value="7">7L</option>
                   </select>
                 </td>
               </tr>
@@ -695,6 +1056,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="AstroDetails"
+                    style={{ width: "135px" }}
+
                     value={astro}
                     onChange={(e) => setastro(e.target.value)}
                   >
@@ -721,6 +1084,8 @@ const EditProfile = () => {
                   <select
                     name="FamilyType"
                     value={famtype}
+                    style={{ width: "135px" }}
+
                     onChange={(e) => setfamtype(e.target.value)}
                   >
                     <option>Joint Family</option>
@@ -735,6 +1100,8 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="FamilyStatus"
+                    style={{ width: "135px" }}
+
                     value={famstatus}
                     onChange={(e) => setfamstatus(e.target.value)}
                   >
@@ -749,6 +1116,8 @@ const EditProfile = () => {
                 <td>Father Currency</td>
                 <td>
                   <select
+                                      style={{ width: "135px" }}
+
                     name="FatherCurrency"
                     value={fatCurrency}
                     onChange={(e) => setfatCurrency(e.target.value)}
@@ -766,13 +1135,15 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="FatherAnnualIncome"
+                    style={{ width: "135px" }}
+
                     value={fatAnnualInc}
                     onChange={(e) => setfatAnnualInc(e.target.value)}
                   >
-                    <option>4L</option>
-                    <option>5L</option>
-                    <option>6L</option>
-                    <option>7L</option>
+                    <option value="6">6L</option>
+                    <option value="7">7L</option>
+                    <option value="8">8L</option>
+                    <option value="9">9L</option>
                   </select>
                 </td>
               </tr>
@@ -810,6 +1181,8 @@ const EditProfile = () => {
                 <td>Father Employed In</td>
                 <td>
                   <select
+                                      style={{ width: "135px" }}
+
                     name="FatherEmployedIn"
                     value={fatEmp}
                     onChange={(e) => setfatEmp(e.target.value)}
@@ -901,6 +1274,22 @@ const EditProfile = () => {
                 </td>
               </tr>
               <tr>
+                <td>Mother Employed In</td>
+                <td>
+                  <select
+                    value={motEmpIn}
+                    
+                    style={{ width: "135px" }}
+                    onChange={(e) => setmotEmpIn(e.target.value)}
+                  >
+                    <option></option>
+                    <option>ONGC</option>
+                    <option>Goverment</option>
+                    <option>UnEmployed</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
                 <td>Mother Occupation</td>
                 <td>
                   <input
@@ -920,11 +1309,30 @@ const EditProfile = () => {
                   />
                 </td>
               </tr>
+
+              <tr>
+                <td>Country Living In</td>
+                <td>
+                  <select
+                    value={countryLivingIn}
+                    style={{ width: "135px" }}
+                    onChange={(e) => setcountryLivingIn(e.target.value)}
+                  >
+                    <option></option>
+                    <option value="">USA</option>
+                    <option value="">Germany</option>
+                    <option value="">Canada</option>
+                  </select>
+                </td>
+              </tr>
+
               <tr>
                 <td>Current Location</td>
                 <td>
                   <select
                     name="CurrentLocation"
+                    style={{ width: "135px" }}
+
                     value={currLoc}
                     onChange={(e) => setcurrLoc(e.target.value)}
                   >
@@ -940,6 +1348,8 @@ const EditProfile = () => {
                   <select
                     name="ResidentailStatus"
                     value={resStatus}
+                    style={{ width: "135px" }}
+
                     onChange={(e) => setresStatus(e.target.value)}
                   >
                     <option>Living</option>
@@ -953,10 +1363,14 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="NativePlace"
+                    style={{ width: "135px" }}
+
                     value={native}
                     onChange={(e) => setnative(e.target.value)}
                   >
-                    <option></option>
+                    <option value="">gujarat</option>
+                    <option value="">mp</option>
+                    <option value="">delhi</option>
                   </select>
                 </td>
               </tr>
@@ -987,15 +1401,17 @@ const EditProfile = () => {
                 <td>Age</td>
                 <td>
                   <select
+                                      style={{ width: "135px" }}
+
                     name="Age"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppAge}
+                    onChange={(e) => setppAge(e.target.value)}
                   >
-                    <option>18</option>
-                    <option>22</option>
-                    <option>30</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
                   </select>
-                  <select
+                  {/* <select
                     name="Age"
                     // value={ppAge}
                     // onChange={(e) => setppAge(e.target.value)}
@@ -1003,28 +1419,31 @@ const EditProfile = () => {
                     <option>23</option>
                     <option>28</option>
                     <option>40</option>
-                  </select>
+                  </select> */}
                 </td>
               </tr>
               <tr>
                 <td>Height</td>
                 <td>
                   <select
+                                      style={{ width: "135px" }}
+
                     name="Height"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    value={ppHeight}
+                    onChange={(e) => setppHeight(e.target.value)}
                   >
+                    <option>4</option>
                     <option>5</option>
                     <option>6</option>
                   </select>
-                  <select
+                  {/* <select
                     name="Height"
                     // value={ppAge}
                     // onChange={(e) => setppAge(e.target.value)}
                   >
                     <option>5.5</option>
                     <option>6.5</option>
-                  </select>
+                  </select> */}
                 </td>
               </tr>
               <tr>
@@ -1032,12 +1451,15 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    style={{ width: "135px" }}
+
+                    value={ppPhyStatus}
+                    onChange={(e) => setppPhyStatus(e.target.value)}
                   >
                     <option>Type1</option>
                     <option>Type2</option>
                     <option>Type3</option>
+                    <option>Type4</option>
                   </select>
                 </td>
               </tr>
@@ -1045,9 +1467,11 @@ const EditProfile = () => {
                 <td>Family Status</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                                      style={{ width: "135px" }}
+
+                    name="Family Status"
+                    value={ppFamilyStatus}
+                    onChange={(e) => setppFamilyStatus(e.target.value)}
                   >
                     <option>With Family</option>
                     <option>Alone</option>
@@ -1059,9 +1483,11 @@ const EditProfile = () => {
                 <td>Currency</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Currency"
+                    style={{ width: "135px" }}
+
+                    value={ppCurrency}
+                    onChange={(e) => setppCurrency(e.target.value)}
                   >
                     <option>INR</option>
                     <option>USD</option>
@@ -1073,14 +1499,16 @@ const EditProfile = () => {
                 <td>Annual Income</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Annual Income"
+                    style={{ width: "135px" }}
+
+                    value={ppAnnual}
+                    onChange={(e) => setppAnnual(e.target.value)}
                   >
-                    <option>1-3 L</option>
-                    <option>3-5 L</option>
-                    <option>5-7 L</option>
-                    <option>7+ L</option>
+                    <option value="4">4 L</option>
+                    <option value="5">5 L</option>
+                    <option value="6">6 L</option>
+                    <option value="7">7 L</option>
                   </select>
                 </td>
               </tr>
@@ -1088,9 +1516,11 @@ const EditProfile = () => {
                 <td>Mother Tongue</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                                      style={{ width: "135px" }}
+
+                    name="Mother Tongue"
+                    value={ppMotherT}
+                    onChange={(e) => setppMotherT(e.target.value)}
                   >
                     <option>Hindi</option>
                     <option>Gujarati</option>
@@ -1103,81 +1533,197 @@ const EditProfile = () => {
                 <td>Religion</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Religion"
+                    style={{ width: "135px" }}
+
+                    value={ppReligion}
+                    onChange={(e) => setppReligion(e.target.value)}
                   >
-                    <option>Any</option>
-                    <option>Hindu</option>
-                    <option>Muslim</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Other">Other</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>Caste / Denomination</td>
                 <td>
-                  <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
-                  >
-                    <option>Any</option>
-                    <option>Hindu</option>
-                    <option>Muslim</option>
-                  </select>
+                  <input
+                    type="text"
+                    value={ppcaste}
+                    onChange={(e) => setppCaste(e.target.value)}
+                  />
                 </td>
               </tr>
               <tr>
                 <td>Diet</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Diet"
+                    style={{ width: "135px" }}
+
+                    value={ppDiet}
+                    onChange={(e) => setppDiet(e.target.value)}
                   >
-                    <option>Vegetarian</option>
-                    <option>Non-Vegetarian</option>
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>Education</td>
                 <td>
-                  <input
-                    type="checkbox"
-                    id="education"
-                    name="eduOptions"
-                    value="Graduate"
-                  />
-                  <label htmlFor="education">Graduate</label>
-                  <input
-                    type="checkbox"
-                    id="education"
-                    name="eduOptions"
-                    value="Post-Graduate"
-                  />
-                  <label htmlFor="education">Post-Graduate</label>
-                  <input
-                    type="checkbox"
-                    id="education"
-                    name="eduOptions"
-                    value="PH.D"
-                  />
-                  <label htmlFor="education">PH.D</label>
-                  {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
-                  <input type='checkbox' id="education" name="eduOptions" value='B.A'/> */}
+                  <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
+                    <Row>
+                      <Col>
+                        <label htmlFor="M.E." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="M.E."
+                            name="ppeducation"
+                            value="M.E."
+                            checked={ppeducation.includes("M.E.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; M.E
+                        </label>
+                        <br />
+                        <label htmlFor="M.Tech." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="M.Tech."
+                            name="ppeducation"
+                            value="M.Tech."
+                            checked={ppeducation.includes("M.Tech.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; M.Tech
+                        </label>
+                        <br />
+                        <label htmlFor="MCA." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="MCA."
+                            name="ppeducation"
+                            value="MCA."
+                            checked={ppeducation.includes("MCA.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; MCA
+                        </label>
+                      </Col>
+                      <Col>
+                        <label htmlFor="B.Tech." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="B.Tech."
+                            name="ppeducation"
+                            value="B.Tech."
+                            className=""
+                            checked={ppeducation.includes("B.Tech.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; B.Tech
+                        </label>
+                        <br />
+                        <label htmlFor="BCOM." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="BCOM."
+                            name="ppeducation"
+                            value="BCOM."
+                            checked={ppeducation.includes("BCOM.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; BCOM
+                        </label>
+                        <br />
+                        <label htmlFor="B.E." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="B.E."
+                            name="ppeducation"
+                            value="B.E."
+                            checked={ppeducation.includes("B.E.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; BE
+                        </label>
+                      </Col>
+                      <Col>
+                        <label htmlFor="M.COM" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="M.COM"
+                            name="ppeducation"
+                            value="M.COM"
+                            className=""
+                            checked={ppeducation.includes("M.COM")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; MCOM
+                        </label>
+                        <br />
+                        <label htmlFor="BCA." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="BCA."
+                            name="ppeducation"
+                            value="BCA."
+                            checked={ppeducation.includes("BCA.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; BCA
+                        </label>
+                        <br />
+                        <label htmlFor="MBA." className="py-2">
+                          <input
+                            type="checkbox"
+                            id="MBA."
+                            name="ppeducation"
+                            value="MBA."
+                            checked={ppeducation.includes("MBA.")}
+                            onChange={ppeducationHandler}
+                          />
+                          &nbsp; MBA
+                        </label>
+                      </Col>
+                    </Row>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>Occupation</td>
+                <td>
+                  <select
+                  style={{width: '135px'}}
+                    value={ppOcc}
+                    onChange={(e) => setppOcc(e.target.value)}
+                  >
+                    <option hidden value="">
+                      Select Any One
+                    </option>
+                    <option value="Manager">Manager</option>
+                    <option value="First Class">First Class</option>
+                    <option value="Second Class">Second Class</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </td>
               </tr>
               <tr>
                 <td>Location</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Location"
+                    style={{width: '135px'}}
+
+                    value={ppLocation}
+                    onChange={(e) => setppLocation(e.target.value)}
                   >
                     <option>India</option>
-                    <option>USA</option>
+                    <option>NRI</option>
+                    <option>Other</option>
                   </select>
                 </td>
               </tr>
@@ -1185,14 +1731,15 @@ const EditProfile = () => {
                 <td>Marital Status</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Marital Status"
+                    style={{width: '135px'}}
+
+                    value={ppMStatus}
+                    onChange={(e) => setppMStatus(e.target.value)}
                   >
-                    <option>Married</option>
+                    <option>Other</option>
                     <option>Un-Married</option>
                     <option>Divorced</option>
-                    <option>Seperated</option>
                   </select>
                 </td>
               </tr>
@@ -1200,24 +1747,25 @@ const EditProfile = () => {
                 <td>Native Place</td>
                 <td>
                   <select
-                    name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    name="Native"
+                    style={{width: '135px'}}
+
+                    value={ppNative}
+                    onChange={(e) => setppNative(e.target.value)}
                   >
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
+                    <option>India</option>
+                    <option>Out of India</option>
+                    <option>Other</option>
                   </select>
                 </td>
               </tr>
               <tr>
-                <td>Marital Status</td>
+                <td>About My Partner</td>
                 <td>
                   <input
                     type="text"
-                    value={motherOcc}
-                    onChange={(e) => setmotherOcc(e.target.value)}
+                    value={ppAboutPartner}
+                    onChange={(e) => setppAboutPartner(e.target.value)}
                   />
                 </td>
               </tr>
@@ -1250,11 +1798,14 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Age"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    style={{width: '135px'}}
+
+                    value={mpdiet}
+                    onChange={(e) => setmpdiet(e.target.value)}
                   >
-                    <option>Vegetarain</option>
-                    <option>Non-Vegetarian</option>
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
+                    <option>Other</option>
                   </select>
                 </td>
               </tr>
@@ -1263,8 +1814,10 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="Height"
-                    // value={ppAge}
-                    // onChange={(e) => setppAge(e.target.value)}
+                    style={{width: '135px'}}
+
+                    value={mpSmoke}
+                    onChange={(e) => setmpSmoke(e.target.value)}
                   >
                     <option>Yes</option>
                     <option>No</option>
@@ -1276,157 +1829,277 @@ const EditProfile = () => {
                 <td>
                   <select
                     name="PhysicalStatus"
-                    value={resStatus}
-                    onChange={(e) => setresStatus(e.target.value)}
+                    style={{width: '135px'}}
+
+                    value={mpDrink}
+                    onChange={(e) => setmpDrink(e.target.value)}
                   >
                     <option>Yes</option>
                     <option>No</option>
                   </select>
                 </td>
               </tr>
+
               <tr>
-                <td>Hobbies</td>
+                <td>Music Likes</td>
                 <td>
                   <input
-                    type="checkbox"
-                    id="hobby"
-                    name="hobbies"
-                    value="Music"
+                    type="range"
+                    min="1"
+                    max="101"
+                    className="slider"
+                    id="myRange"
+                    step="20"
+                    value={mpMusicrange}
+                    onChange={(e) => setmpMusicrange(parseInt(e.target.value))}
                   />
-                  <label htmlFor="Music">Music</label>
-                  <input
-                    type="checkbox"
-                    id="hobby"
-                    name="hobbies"
-                    value="Games"
-                  />
-                  <label htmlFor="Games">Games</label>
-                  <input
-                    type="checkbox"
-                    id="hobby"
-                    name="hobbies"
-                    value="Reading"
-                  />
-                  <label htmlFor="Reading">Reading</label>
-                  {/* <input type='checkbox' id="education" name="eduOptions" value='M.E'/>
-                  <input type='checkbox' id="education" name="eduOptions" value='B.A'/> */}
                 </td>
-              </tr>
-              <tr>
-                <td>Music</td>
+                </tr>
+                <tr>
+                  <td>Music Category</td>
                 <td>
-                  <input
-                    type="checkbox"
-                    id="music"
-                    name="musics"
-                    value="Film Music"
-                  />
-                  <label htmlFor="Film Music">Film Music</label>
-                  <input
-                    type="checkbox"
-                    id="music"
-                    name="musics"
-                    value="Devotional"
-                  />
-                  <label htmlFor="Devotional">Devotional</label>
-                  <input
-                    type="checkbox"
-                    id="music"
-                    name="musics"
-                    value="Albums"
-                  />
-                  <label htmlFor="Albums">Albums</label>
-                  <input
-                    type="checkbox"
-                    id="music"
-                    name="musics"
-                    value="Hindi Song"
-                  />
-                  <label htmlFor="Hindi Song">Hindi Song</label>
-                  <input
-                    type="checkbox"
-                    id="music"
-                    name="musics"
-                    value="Western"
-                  />
-                  <label htmlFor="Western">Western</label>
+                  <Row>
+                    <Col className="mt-3">
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Film Music"
+                          checked={music.includes("Film Music")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Film Music
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Devotional"
+                          checked={music.includes("Devotional")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Devotional
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Albums"
+                          checked={music.includes("Albums")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Albums
+                      </label>
+                    </Col>
+                    <Col className="mt-3">
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Western"
+                          checked={music.includes("Western")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Western
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Hindi Songs"
+                          checked={music.includes("Hindi Songs")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Hindi Songs
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Gujrati Songs"
+                          checked={music.includes("Gujrati Songs")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Gujrati Songs
+                      </label>
+                    </Col>
+                    <Col className="mt-3">
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Music Is My Life"
+                          checked={music.includes("Music Is My Life")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Music Is My Life
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Tamil Songs"
+                          checked={music.includes("Tamil Songs")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Tamil Songs
+                      </label>
+                      <br />
+                      <label htmlFor="">
+                        <input
+                          type="checkbox"
+                          name="music"
+                          value="Don't Listen To Music"
+                          checked={music.includes("Don't Listen To Music")}
+                          onChange={musicHandler}
+                        />
+                        &nbsp;Don't Listen To Music
+                      </label>
+                    </Col>
+                  </Row>
                 </td>
               </tr>
-              <tr>
-                <td>Reading</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    id="read"
-                    name="reading"
-                    value="Newspaper"
-                  />
-                  <label htmlFor="Newspaper">Newspaper</label>
-                  <input
-                    type="checkbox"
-                    id="read"
-                    name="reading"
-                    value="Biographies"
-                  />
-                  <label htmlFor="Biographies">Biographies</label>
-                  <input
-                    type="checkbox"
-                    id="read"
-                    name="reading"
-                    value="Any thing"
-                  />
-                  <label htmlFor="Any thing">Any thing</label>
-                </td>
-              </tr>
-              <tr>
-                <td>Sports</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    id="sport"
-                    name="sports"
-                    value="Cricket"
-                  />
-                  <label htmlFor="Cricket">Cricket</label>
-                  <input
-                    type="checkbox"
-                    id="sport"
-                    name="sports"
-                    value="Swimming"
-                  />
-                  <label htmlFor="Swimming">Swimming</label>
-                </td>
-              </tr>
-              <tr>
-                <td>Dress</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    id="dress"
-                    name="dresses"
-                    value="Indian"
-                  />
-                  <label htmlFor="Indian">Indian</label>
-                  <input
-                    type="checkbox"
-                    id="dress"
-                    name="dresses"
-                    value="Western"
-                  />
-                  <label htmlFor="Western">Western</label>
-                  <input
-                    type="checkbox"
-                    id="dress"
-                    name="dresses"
-                    value="Traditional"
-                  />
-                  <label htmlFor="Traditional">Traditional</label>
-                </td>
-              </tr>
+             
+               
+
+                {/* </tr> */}
+
+                <tr>
+                  <td>Reading likes</td>
+                  <td>
+                    <input
+                      type="range"
+                      min="1"
+                      max="101"
+                      className="slider"
+                      id="myRange"
+                      step="20"
+                      value={mpReadingrange}
+                      onChange={(e) =>
+                        setmpReadingrange(parseInt(e.target.value))
+                      }
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Reading</td>
+                  <td>
+                    <Row>
+                      <Col className="mt-3">
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Newspapers"
+                            checked={reading.includes("Newspapers")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Newspapers
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Trade Journals"
+                            checked={reading.includes("Trade Journals")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Trade Journals
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Self Help Books"
+                            checked={reading.includes("Self Help Books")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Self Help Books
+                        </label>
+                      </Col>
+                      <Col className="mt-3">
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Management Books"
+                            checked={reading.includes("Management Books")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Management Books
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Comedy"
+                            checked={reading.includes("Comedy")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Comedy
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Biographies"
+                            checked={reading.includes("Biographies")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Biographies
+                        </label>
+                      </Col>
+                      <Col className="mt-3">
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Devotional Books"
+                            checked={reading.includes("Devotional Books")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Devotional Books
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="Romance"
+                            checked={reading.includes("Romance")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;Romance
+                        </label>
+                        <br />
+                        <label htmlFor="">
+                          <input
+                            type="checkbox"
+                            name="reading"
+                            value="I Don't Read Much"
+                            checked={reading.includes("I Don't Read Much")}
+                            onChange={readHandler}
+                          />
+                          &nbsp;I Don't Read Much
+                        </label>
+                      </Col>
+                    </Row>
+                  </td>
+                </tr>
+              
             </tbody>
           </Table>
         </div>
-
 
         <div
           style={{ width: "85%" }}
@@ -1451,7 +2124,45 @@ const EditProfile = () => {
               <tr>
                 <td>Date of Birth</td>
                 <td>
-                  <input type="date" name="" id="" value="" />
+                  <input
+                    type="date"
+                    value={aDate}
+                    onChange={(e) => setaDate(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Time of Birth</td>
+                <td>
+                  <input
+                    type="string"
+                    value={aTime}
+                    onChange={(e) => setaTime(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Birth Time Correction</td>
+                <td>
+                  <select
+                    name="Birth Time Correction"
+                    style={{width: '135px'}}
+                    value={aBirthTime}
+                    onChange={(e) => setaBirthTime(e.target.value)}
+                  >
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Place of Birth</td>
+                <td>
+                  <input
+                    type="string"
+                    value={aPlace}
+                    onChange={(e) => setaPlace(e.target.value)}
+                  />
                 </td>
               </tr>
             </tbody>
