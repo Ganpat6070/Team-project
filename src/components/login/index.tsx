@@ -16,6 +16,8 @@ function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -30,10 +32,17 @@ function Login() {
       }),
     });
 
+    if(response.status === 200){
+      setIsLoading(false)
+      setButtonLoading(true)
+    }
     const res = await response.json();
     const token = res.token;
-
+    const id = res.id;
+    localStorage.setItem("id", id);
     localStorage.setItem("Token", token);
+    console.log(token);
+
     console.log(res);
     if (res.msg) {
       if (
@@ -46,6 +55,8 @@ function Login() {
         });
       }
       if (res.msg === "User found successfully!") {
+        const uname = email;
+        localStorage.setItem("uname", JSON.stringify(uname));
         toast.success(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -203,8 +214,9 @@ function Login() {
                     </Form.Group>
 
                     <div className="d-grid gap-2 text-center">
-                      <Button type="submit" variant="primary" size="lg">
-                        Login
+                      <Button type="submit" disabled={buttonLoading} variant="primary" size="lg">
+                                        {isLoading ? <p className="mb-0">Wait </p> : <p className="mb-0">Login</p>}
+
                       </Button>
                       {error && (
                         <span className="text-center text-danger">{error}</span>
@@ -217,7 +229,7 @@ function Login() {
                       New to PerfectMatch.com ?{" "}
                       <Link
                         to="/register"
-                        className="text-light"
+                        className="text-primary"
                         style={{ textDecoration: "none" }}
                       >
                         Register Free

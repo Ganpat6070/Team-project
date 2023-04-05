@@ -14,17 +14,20 @@ const ProgressBar = () => {
         <div className="step-item mx-4">
           <Link to="/basic-info">
             <button
+            disabled={true}
               className="px-2 btn-dark mx-5 mt-2 rounded-circle mb-1"
               type="button"
             >
-              1
+              1 
             </button>
           </Link>
+          
           <div className="step-title">Basic Information</div>
         </div>
         <div className="step-item mx-4">
           <Link to="/personal-info">
             <button
+              disabled={true}
               className="px-2 btn-dark mx-5 mt-2 rounded-circle mb-1"
               type="button"
             >
@@ -36,6 +39,7 @@ const ProgressBar = () => {
         <div className="step-item mx-4">
           <Link to="/prefpart">
             <button
+            disabled={true}
               className="px-2 btn-dark mx-5 mt-2 rounded-circle mb-1"
               type="button"
             >
@@ -47,6 +51,7 @@ const ProgressBar = () => {
         <div className="step-item mx-4">
           <Link to="/mypersonality">
             <button
+            disabled={true}
               className="px-2 btn-dark mx-5 mt-2 rounded-circle mb-1"
               type="button"
             >
@@ -58,6 +63,7 @@ const ProgressBar = () => {
         <div className="step-item mx-4">
           <Link to="/astrodata">
             <button
+            disabled={true}
               className="px-2 btn-dark mx-5 mt-2 rounded-circle mb-1"
               type="button"
             >

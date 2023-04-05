@@ -1,64 +1,220 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 import classes from "./PersonalInfo.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import "./PrePart.css";
 import PhotoCard from "./PhotoCard";
+import { toast } from "react-toastify";
+
 
 const PrePart = () => {
-  // Birthday Data
-  //   const DOB  = useRef<HTMLInputElement>(null);
-  //   const Height = useRef<HTMLSelectElement>(null);
-  //   const Weight = useRef<HTMLSelectElement>(null);
-  //   const MStatus = useRef<HTMLSelectElement>(null);
-  //   const MTongue = useRef<HTMLSelectElement>(null);
-  //   const Religion = useRef<HTMLSelectElement>(null);
-  //   const Cast = useRef<HTMLInputElement>(null);
-  //   const SubCast = useRef<HTMLInputElement>(null);
-  //   const PStatus = useRef<HTMLInputElement>(null);
-  //   const Education = useRef<HTMLInputElement>(null);
-  //   const SLang = useRef<HTMLSelectElement>(null);
-  //   const EducationDetails = useRef<HTMLInputElement>(null);
-  //   const SchoolName = useRef<HTMLInputElement>(null);
-  //   const SPlace = useRef<HTMLInputElement>(null);
-  //   const SYOS = useRef<HTMLSelectElement>(null);
-  //   const CollegeName = useRef<HTMLInputElement>(null);
-  //   const Course = useRef<HTMLInputElement>(null);
-  //   const CPlace  = useRef<HTMLInputElement>(null);
-  //   const CYOS = useRef<HTMLSelectElement>(null);
-  //   const CompanyName = useRef<HTMLInputElement>(null);
-  //   const Designation = useRef<HTMLInputElement>(null);
-  //   const WLocation = useRef<HTMLInputElement>(null);
-  //   const LCode = useRef<HTMLSelectElement>(null);
-  //   const LArea = useRef<HTMLSelectElement>(null);
-  //   const LNumber = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
+
+  const [ppAge1, setppAge1] = useState<any>(0);
+  const [ppAge2, setppAge2] = useState<any>(0);
+  const [ppHeight1, setppHeight1] = useState<any>("");
+  const [ppHeight2, setppHeight2] = useState<any>("");
+  const [ppPhyStatus, setppPhyStatus] = useState<any>("");
+  const [ppFamStatus, setppFamStatus] = useState<any>("");
+  const [ppCurrency, setppCurrency] = useState<any>("");
+  const [ppAnnual, setppAnnual] = useState<number>();
+  const [ppMotherT, setppMotherT] = useState<any>("");
+  const [ppreligion, setppreligion] = useState<any>("");
+  const [ppCaste, setppCaste] = useState<any>("");
+  const [ppdiet, setppdiet] = useState<any>("");
+
+  const [ppEdu, setppEdu] = useState<string[]>([]);
+  const [ppOcc, setppOcc] = useState<any>("");
+  const [ppLoc, setppLoc] = useState<any>("");
+  const [ppmStatus, setppmStatus] = useState<any>("");
+  const [ppNative, setppNative] = useState<any>("");
+  const [ppAboutPartner, setppAboutPartner] = useState<any>("");
+
+  //For Errors
+  const [error, setError] = useState<boolean>(false);
+
+  const ppAgeHandler1 = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppAge1(parseInt(e.target.value));
+    setError(false);
+  };
+  const ppAgeHandler2 = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppAge2(parseInt(e.target.value));
+    setError(false);
+  };
+  const ppHeight1Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppHeight1(e.target.value);
+    setError(false);
+  };
+  const ppHeight2Handler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppHeight2(e.target.value);
+    setError(false);
+  };
+
+  const ppPhyStatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppPhyStatus(e.target.value);
+    setError(false);
+  };
+  const ppFamStatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppFamStatus(e.target.value);
+    setError(false);
+  };
+  const ppCurrencyHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppCurrency(e.target.value);
+    setError(false);
+  };
+  const ppAnnualHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === null)) setppAnnual(parseInt(e.target.value));
+    setError(false);
+  };
+  const ppMotherTHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppMotherT(e.target.value);
+    setError(false);
+  };
+  const ppreligionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppreligion(e.target.value);
+    setError(false);
+  };
+  const ppCasteHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setppCaste(e.target.value);
+    setError(false);
+  };
+  const ppdietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppdiet(e.target.value);
+    setError(false);
+  };
+  const ppeducationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+    if (isChecked) {
+      setppEdu([...ppEdu, value]);
+    } else {
+      setppEdu(ppEdu.filter((box) => box !== value));
+    }
+    // if (!(e.target.value === "")) setppEdu(e.target.value);
+    setError(false);
+  };
+  const ppOccHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppOcc(e.target.value);
+    setError(false);
+  };
+  const ppLocHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppLoc(e.target.value);
+    setError(false);
+  };
+  const ppmStatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppmStatus(e.target.value);
+    setError(false);
+  };
+  const ppNativeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!(e.target.value === "")) setppNative(e.target.value);
+    setError(false);
+  };
+  const ppAboutPartnerHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!(e.target.value === "")) setppAboutPartner(e.target.value);
+    setError(false);
+  };
+
+  // const ppObject: any = {
+  //   age: ppAge1,
+  //   height: ppHeight1,
+  //   physicalStatus: ppPhyStatus,
+  //   familyStatus: ppFamStatus,
+  //   currency: ppCurrency,
+  //   annualIncome: ppAnnual,
+  //   motherTongue: ppMotherT,
+  //   religion: ppreligion,
+  //   castDenomination: ppCaste,
+  //   diet: ppdiet,
+  //   partnerEducation: ppEdu,
+  //   occupation: ppOcc,
+  //   location: ppLoc,
+  //   maritalStatus: ppmStatus,
+  //   nativePlace: ppNative,
+  //   aboutMyPartner: ppAboutPartner,
+  // };
+
+  const postObject = async () => {
+
+    const profileId = localStorage.getItem('profileID');
+
+    const response = await fetch("http://localhost:8000/preffered-partner", {
+      credentials: "include",
+      method: "POST",
+      headers: { "content-type": "application/json",
+      profileid: `${profileId}`
+    },
+      body: JSON.stringify({
+        age: ppAge1,
+        height: ppHeight1,
+        physicalStatus: ppPhyStatus,
+        familyStatus: ppFamStatus,
+        currency: ppCurrency,
+        annualIncome: ppAnnual,
+        motherTongue: ppMotherT,
+        religion: ppreligion,
+        castDenomination: ppCaste,
+        diet: ppdiet,
+        partnerEducation: ppEdu,
+        occupation: ppOcc,
+        location: ppLoc,
+        maritalStatus: ppmStatus,
+        nativePlace: ppNative,
+        aboutMyPartner: ppAboutPartner,
+      }),
+    });
+    console.log(response)
+    if (response.status === 201) {
+      setIsLoading(false)
+      setButtonLoading(true)
+      toast.success("Personal Information is saved!");
+      // navigate("/prefpart");
+      setTimeout(() => {
+        navigate("/mypersonality");
+      }, 1500);
+    }
+
+  };
   const submitHandler = (e: any) => {
     e.preventDefault();
-    //           if(DOB.current){
-    //             console.log(DOB.current.value);
-    //           }
-    //           if(Cast.current){
-    //             console.log(Cast.current.value);
-    //           }
-    //           if(Height.current){
-    //             console.log(Height.current.value);
-    //           }
+
+    if (
+      (ppreligion &&
+        ppCaste &&
+        ppdiet &&
+        ppEdu &&
+        ppOcc &&
+        ppLoc &&
+        ppmStatus &&
+        ppNative &&
+        ppAboutPartner &&
+        ppMotherT) === ""
+    ) {
+      setError(true);
+    } else if ((ppAge1 && ppAge2) === 0) {
+      setError(true);
+    } else {
+
+      postObject();
+    }
   };
 
   return (
     <div
-    className="background_image"
-    style={{
-      backgroundImage: `url("../../image/BG.png")`,
-      backgroundRepeat: "no-repeat",
-      width: "100%",
-    }}
+      className="background_image"
+      style={{
+        backgroundImage: `url("../../image/BG.png")`,
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+      }}
     >
       <ProgressBar />
-      <PhotoCard/>
+      <PhotoCard />
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
@@ -80,7 +236,11 @@ const PrePart = () => {
             neque, quis ipsa nisi. Voluptate enim recusandae, aut ab tempora
             cupiditate!mt
           </div>
-
+          {error ? (
+            <small className="text-danger">
+              {"Please enter the required (*) value"}
+            </small>
+          ) : null}
           <div className="row">
             <div className="col-lg">
               {/* <div className="form-group"> */}
@@ -89,16 +249,20 @@ const PrePart = () => {
                 <br />
               </label>
               <select
-              // color:"#d9d9d9" for adding in below line for text color
-                style={{ height: "50%" ,borderColor:"#d9d9d9"  }}
+                // color:"#d9d9d9" for adding in below line for text color
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
                 className="select form-control mt-1 rounded-2  form-select "
+                value={ppAge1}
+                onChange={ppAgeHandler1}
               >
-                <option hidden>18</option>
+                <option hidden value="">
+                  From
+                </option>
                 {/* <option></option> */}
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
+                <option value="">Select</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
               </select>
               {/* </div> */}
             </div>
@@ -109,33 +273,35 @@ const PrePart = () => {
               <br />
               {/* </label> */}
               <select
-                style={{ height: "50%" ,borderColor:"#d9d9d9" }}
-                className="form-control  mt-1 rounded-2 form-select "
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
+                className="form-control  mt-1 rounded-2 form-select"
+                value={ppAge2}
+                onChange={ppAgeHandler2}
               >
-                <option hidden>21</option>
-                {/* <option></option> */}
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
-                <option>21</option>
+                <option hidden value="">
+                  To
+                </option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
               </select>
-              {/* </div> */}
             </div>
             <div className="col-lg">
-              {/* <div className="form-group"> */}
               <label htmlFor="" className="">
                 Height
                 <br />
               </label>
               <select
-                style={{ height: "50%" ,borderColor:"#d9d9d9" }}
-                className="form-control  mt-1 rounded-2 form-select "
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
+                className="form-control  mt-1 rounded-2 form-select"
+                value={ppHeight1}
+                onChange={ppHeight1Handler}
               >
-                <option hidden>From</option>
-                {/* <option></option> */}
-                <option>4f</option>
-                <option>5f</option>
-                <option>6f+</option>
+                <option value="">From</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
               </select>
               {/* </div> */}
             </div>
@@ -146,14 +312,18 @@ const PrePart = () => {
               <br />
               {/* </label> */}
               <select
-                style={{ height: "50%" , borderColor:"#d9d9d9" }}
-                className="form-control  mt-1 rounded-2 form-select "
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
+                className="form-control  mt-1 rounded-2 form-select"
+                value={ppHeight2}
+                onChange={ppHeight2Handler}
               >
-                <option hidden>To</option>
+                <option hidden value="">
+                  To
+                </option>
                 {/* <option></option> */}
-                <option>4.5f</option>
-                <option>5.5f</option>
-                <option>6.5f+</option>
+                <option value="4.5">4</option>
+                <option value="5.5">5</option>
+                <option value="6.5">6</option>
               </select>
               {/* </div> */}
             </div>
@@ -161,20 +331,22 @@ const PrePart = () => {
           <Row>
             <Col className="mt-3">
               <label>
-                Physical Stutus
+                Physical Status
                 <br />
               </label>
               <select
-                style={{ height: "50%" ,borderColor:"#d9d9d9" }}
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
                 className="form-control  mt-1 rounded-2 form-select"
+                value={ppPhyStatus}
+                onChange={ppPhyStatusHandler}
               >
-                <option hidden style={{ height: "50%" }}>
+                <option hidden style={{ height: "50%" }} value="">
                   Choose
                 </option>
-                <option>Type 1</option>
-                <option>Type 2</option>
-                <option>Type 3</option>
-                <option>Type 4</option>
+                <option value="type1">Type 1</option>
+                <option value="type2">Type 2</option>
+                <option value="type3">Type 3</option>
+                <option value="type4">Type 4</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -183,13 +355,19 @@ const PrePart = () => {
                 <br />
               </label>
               <select
-                style={{ height: "50%" , borderColor:"#d9d9d9" }}
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
                 className="form-control  mt-1 rounded-2  form-select"
-                >
-                <option hidden>Please Select</option>
-                <option>Unmerried</option>
-                <option>Divorced</option>
-                <option>Preferred not to say</option>
+                value={ppFamStatus}
+                onChange={ppFamStatusHandler}
+              >
+                <option hidden value="">
+                  Please Select
+                </option>
+                <option value="unmarried">Unmarried</option>
+                <option value="divorced">Divorced</option>
+                <option value="preferred not to say">
+                  Preferred not to say
+                </option>
               </select>
             </Col>
           </Row>
@@ -201,14 +379,18 @@ const PrePart = () => {
                 <br />
               </label>
               <select
-                style={{ height: "50%" , borderColor:"#d9d9d9"}}
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
                 className="form-control  mt-1 rounded-2  form-select"
+                value={ppCurrency}
+                onChange={ppCurrencyHandler}
               >
-                <option hidden>Select Any One</option>
-                <option>INR</option>
-                <option>USD</option>
-                <option>Euro</option>
-                <option>CAD</option>
+                <option hidden value="">
+                  Select Any One
+                </option>
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="Euro">Euro</option>
+                <option value="CAD">CAD</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -217,14 +399,18 @@ const PrePart = () => {
                 <br />
               </label>
               <select
-                style={{ height: "50%" , borderColor:"#d9d9d9"}}
+                style={{ height: "50%", borderColor: "#d9d9d9" }}
                 className="form-control  mt-1 rounded-2 form-select"
+                value={ppAnnual}
+                onChange={ppAnnualHandler}
               >
-                <option hidden>Select Any One</option>
-                <option>4 - Lakh</option>
-                <option>5 - Lakh</option>
-                <option>6 - Lakh</option>
-                <option>7 - Lakh</option>
+                <option hidden value="">
+                  Select Any One
+                </option>
+                <option value="4">4 - Lakh</option>
+                <option value="5">5 - Lakh</option>
+                <option value="6">6 - Lakh</option>
+                <option value="7">7 - Lakh</option>
               </select>
             </Col>
           </Row>
@@ -234,14 +420,20 @@ const PrePart = () => {
                 Mother Tongue <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                    <select
-                style={{ height: "50%" , borderColor:"#d9d9d9"}}
-                className="form-control  mt-1 rounded-2 form-select"
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
               >
-                  <option value="">Hindi</option>
-                  <option value="">Gujarati</option>
-                  <option value="">English</option>
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppMotherT}
+                  onChange={ppMotherTHandler}
+                >
+                  <option hidden>select</option>
+                  <option>Hindi</option>
+                  <option>Gujarati</option>
+                  <option>English</option>
                 </select>
               </div>
             </Col>
@@ -250,15 +442,24 @@ const PrePart = () => {
                 Religion <span className={classes.compalsory}>*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-              <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>Hindi</option>
-                <option>Muslim</option>
-                <option>Christian</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppreligion}
+                  onChange={ppreligionHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="Hindi">Hindi</option>
+                  <option value="Muslim">Muslim</option>
+                  <option value="Christian">Christian</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </Col>
           </Row>
@@ -268,30 +469,35 @@ const PrePart = () => {
                 Cast / Denomination <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>X</option>
-                <option>Y</option>
-                <option>Z</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <input type="text" value={ppCaste} onChange={ppCasteHandler} />
               </div>
-
             </Col>
             <Col className="mt-3">
               <label htmlFor="" className="pt-1 mb-1 ">
                 Diet <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>Veg</option>
-                <option>Non-Veg</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppdiet}
+                  onChange={ppdietHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="Veg">Veg</option>
+                  <option value="Non-Veg">Non-Veg</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </Col>
           </Row>
@@ -301,30 +507,39 @@ const PrePart = () => {
                 Education <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">M.E</label>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <input
+                  type="checkbox"
+                  value="M.E"
+                  id="M.E"
+                  name="education"
+                  checked={ppEdu.includes("M.E")}
+                  onChange={ppeducationHandler}
+                />
+                <label htmlFor="M.E">&nbsp;M.E</label>
                 <br />
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">B.E</label>
+                <input
+                  type="checkbox"
+                  value="B.E"
+                  id="B.E"
+                  name="education"
+                  checked={ppEdu.includes("B.E")}
+                  onChange={ppeducationHandler}
+                />
+                <label htmlFor="B.E">&nbsp;B.E</label>
                 <br />
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
-              </div>
-            </Col>
-            <Col className="mt-3">
-              <label htmlFor="" className="pt-1 mb-1">
-                <br />
-              </label>
-              <div className=" px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">M.E</label>
-                <br />
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">B.E</label>
-                <br />
-                <input type="checkbox" id="horns" name="horns" />
-                <label htmlFor="horns">MCA</label>
+                <input
+                  type="checkbox"
+                  id="MCA"
+                  value="MCA"
+                  name="education"
+                  checked={ppEdu.includes("MCA")}
+                  onChange={ppeducationHandler}
+                />
+                <label htmlFor="MCA">&nbsp;MCA</label>
               </div>
             </Col>
           </Row>
@@ -334,32 +549,49 @@ const PrePart = () => {
                 Occupation <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>Manager</option>
-                <option>First Class</option>
-                <option>Second Class</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppOcc}
+                  onChange={ppOccHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="Manager">Manager</option>
+                  <option value="First Class">First Class</option>
+                  <option value="Second Class">Second Class</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
-
             </Col>
             <Col className="mt-3">
               <label htmlFor="" className="pt-1 mb-1 ">
                 Location <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>India</option>
-                <option>NRI</option>
-                <option>Other</option>
-              </select>
-              </div>  
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppLoc}
+                  onChange={ppLocHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="India">India</option>
+                  <option value="NRI">NRI</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </Col>
           </Row>
           <Row className="">
@@ -369,57 +601,79 @@ const PrePart = () => {
                 <br />
               </label>
 
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-               <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>Divorced</option>
-                <option>Unmarried</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppmStatus}
+                  onChange={ppmStatusHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
-
             </Col>
             <Col className="mt-3">
               <label htmlFor="" className="pt-1 mb-1 ">
                 Native Place <span className="compalsory">*</span>
                 <br />
               </label>
-              <div className="px-3 form-control  mt-1 rounded-2 " style={{borderColor:"#d9d9d9"}}>
-
-                 <select style={{height:"50%" , borderColor:"#d9d9d9"}} className="form-control  mt-1 rounded-2 form-select">
-                <option hidden>Select Any One</option>
-                <option>India</option>
-                <option>Outofindia</option>
-                <option>Other</option>
-              </select>
+              <div
+                className="px-3 form-control  mt-1 rounded-2 "
+                style={{ borderColor: "#d9d9d9" }}
+              >
+                <select
+                  style={{ height: "50%", borderColor: "#d9d9d9" }}
+                  className="form-control  mt-1 rounded-2 form-select"
+                  value={ppNative}
+                  onChange={ppNativeHandler}
+                >
+                  <option hidden value="">
+                    Select Any One
+                  </option>
+                  <option value="India">India</option>
+                  <option value="Outofindia">Outofindia</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
-
             </Col>
           </Row>
-            
+
           <Row className="mb-0">
-       
             <div className="col mt-3">
               <label htmlFor="">
                 About My Partner <span className={classes.compalsory}>*</span>
               </label>
               <br />
-              <textarea name="" id="" className="w-100 p-4 h-1 mt-2 " style={{width:"800" ,borderColor:"#d9d9d9"}}></textarea>
-              <p style={{color:"#6E6E6E" , fontStyle:"italic"}} className="mb-0">(Characters Left : 600)</p>
+              <textarea
+                value={ppAboutPartner}
+                className="w-100 p-4 h-1 mt-2 "
+                style={{ width: "800", borderColor: "#d9d9d9" }}
+                onChange={ppAboutPartnerHandler}
+              ></textarea>
             </div>
-            </Row>
+          </Row>
 
           <hr className="mb-5" />
-         
+
           <Link to="/">
             <button
               className="btn btn-light text-white btn-xl mt-2"
               type="button"
+              disabled={buttonLoading}
+
               onClick={submitHandler}
               style={{ backgroundColor: "#fb9232" }}
             >
-              Save & Continue
+                {isLoading ? <p className="mb-0">Wait </p> : <p className="mb-0">Save & Continue</p>}
+
             </button>
           </Link>
         </form>

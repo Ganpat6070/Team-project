@@ -20,23 +20,38 @@ const ProfileDetail = (props: Props) => {
       <div style={{ paddingTop: "2%" }}>
         <Card
           className="bg-dark text-white text-center"
-          style={{ width: "80%", marginLeft: "10%" }}
+          style={{
+            width: "80%",
+            marginLeft: "10%",
+            borderTopLeftRadius: "35px",
+            borderTopRightRadius: "35px",
+            borderBottomLeftRadius: "0px",
+            borderBottomRightRadius: "0px",
+            boxShadow: "none",
+            flexDirection:"row",
+            alignItems:"center"
+          }}
         >
-          <Card.Img
-            src="../../image/png/girl31.png"
-            style={{
-              width: "400px",
-              height: "400px",
-              padding: "40px 80px 60px",
-            }}
-            alt="Full Detail"
-          />
-          <Card.ImgOverlay style={{ margin: "5% 29%" }}>
-            <Card.Title>Name</Card.Title>
-            <Card.Text>Year</Card.Text>
-            <Card.Text>Religion</Card.Text>
-            <Card.Text>Profession</Card.Text>
-            <Card.Text>Bio Data</Card.Text>
+            <Card.Img
+              src="../../image/png/girl31.png"
+              style={{
+                borderRadius: "20px",
+                width: "400px",
+                height: "400px",
+                margin: "40px 60px",
+              }}
+              alt="Full Detail"
+            />
+
+          <Card.ImgOverlay
+            className="text-start"
+            style={{ borderRadius: "20px" , position:"relative"}}
+          >
+            <Card.Title className="my-4">Name : {}</Card.Title>
+            <Card.Text>Age : {}</Card.Text>
+            <Card.Text>Religion : {}</Card.Text>
+            <Card.Text>Profession : {}</Card.Text>
+            <Card.Text>Bio Data : {}</Card.Text>
           </Card.ImgOverlay>
         </Card>
 
@@ -44,19 +59,31 @@ const ProfileDetail = (props: Props) => {
           style={{
             width: "80%",
             marginLeft: "10%",
-            backgroundColor: "#f94c50",
+            backgroundImage: "linear-gradient(to right, #ff7e47, #fb4d56)",
             textAlign: "center",
           }}
         >
-          <li style={{ display: "flex", padding: "10px" }}>
-            <ul onClick={() => setDummy(1)}>Basic Info</ul>
-            <ul onClick={() => setDummy(2)}>Religious Info</ul>
-            <ul onClick={() => setDummy(3)}>Education and Career</ul>
-            <ul onClick={() => setDummy(4)}>My Family</ul>
-            <ul onClick={() => setDummy(5)}>My Interest and Hobbies</ul>
-            <ul onClick={() => setDummy(6)}>My Contact Info</ul>
-            <ul onClick={() => setDummy(7)}>
-              Subscribe Now to contact this member
+          <li className="d-flex p-1">
+            <ul className="mt-2" onClick={() => setDummy(1)}>
+              Basic Info
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(2)}>
+              Religious Info
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(3)}>
+              Education and Career
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(4)}>
+              My Family
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(5)}>
+              My Interest and Hobbies
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(6)}>
+              My Contact Info
+            </ul>
+            <ul className="mt-2" onClick={() => setDummy(7)}>
+              Subscribe Now
             </ul>
           </li>
         </div>

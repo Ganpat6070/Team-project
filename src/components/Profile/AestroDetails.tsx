@@ -3,39 +3,114 @@ import "./AestroDetails.css";
 // import ProgressBar from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search } from "react-bootstrap-icons";
 import PhotoCard from "./PhotoCard";
 import ProgressBar from "./ProgressBar";
+import NavbarHead from "../navbar";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AstroDetails = () => {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
+
+
+  const [dob, setDob] = useState("");
+  const [aHours, setaHours] = useState("");
+  const [aMinutes, setaMinutes] = useState("");
+  const [aSeconds, setaSeconds] = useState("");
+  const [aAMPM, setaAMPM] = useState("AM");
+  // const [timeofBirth, setTimeofBirth] = useState("");
+  const [timeCorrection, setTimeCorrection] = useState("");
+  const [placeofBirth, setPlaceofBirth] = useState("");
+  const [logitude, setLogitude] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [timeZone, setTimeZone] = useState("");
+
+  const atime = aHours + "H " + aMinutes + "M " + aSeconds + "S " + aAMPM;
+
+  const [error, setError] = useState<boolean>(false);
+
+  const astrodata = {
+    dob,
+    atime,
+    timeCorrection,
+    placeofBirth,
+    logitude,
+    latitude,
+    timeZone,
+  };
+
+  // const time = hours + ":" + minute
+
+  const dobHandler = (e: React.ChangeEvent<HTMLDataElement>) => {
+    if (!(e.target.value === "")) {
+      setError(false);
+      setDob(e.target.value);
+    }
+    if (e.target.value === "") {
+      setError(true);
+    }
+  };
+
+  let profileid: string | null = localStorage.getItem("profileID");
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/astro-info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        profileid: `${profileid}`,
+      },
+      body: JSON.stringify({
+        dateOfBirth: dob,
+        timeOfBirth: atime,
+        birthTimeCorrection: timeCorrection,
+        placeOfBirth: placeofBirth,
+        longitude: logitude,
+        latitude: latitude,
+        timeZone: timeZone,
+      }),
+    });
+    const res = await response.json();
+    if (response.status === 201) {
+      setIsLoading(false)
+      setButtonLoading(true)
+      toast.success("Astro info saved!");
+      setTimeout(() => {
+        navigate("/finished");
+      }, 1500);
+    }
+    console.log(res);
+  };
+
   const submitHandler = (e: any) => {
     e.preventDefault();
-    //           if(DOB.current){
-    //             console.log(DOB.current.value);
-    //           }
-    //           if(Cast.current){
-    //             console.log(Cast.current.value);
-    //           }
-    //           if(Height.current){
-    //             console.log(Height.current.value);
-    //           }
+    if (dob === "") {
+      setError(true);
+    } else {
+      setError(false);
+      saveData();
+      console.log(astrodata);
+      
+    }
   };
 
   return (
     <div
-    className="background_image"
-    style={{
-      backgroundImage: `url("../../image/BG.png")`,
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "0 -350px",
-      width: "100%",
-    }}
+      className="background_image"
+      style={{
+        backgroundImage: `url("../../image/BG.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "0 -350px",
+        width: "100%",
+      }}
     >
       {/* <ProgressBar /> */}
       <div className="">
-      <ProgressBar/>
-      <PhotoCard/>
+        <ProgressBar />
+        <PhotoCard />
       </div>
       <div
         style={{ width: "55%" }}
@@ -53,7 +128,7 @@ const AstroDetails = () => {
 "
             style={{ color: "#6E6E6E" }}
           >
-            Aestrological Informations
+            Astrological Informations
             <small
               className="p-3 text-sm text-break"
               style={{ fontSize: "15px" }}
@@ -61,6 +136,7 @@ const AstroDetails = () => {
               ( You can create your free horoscope on PerfectMatch )
             </small>
           </p>
+
           <Row>
             <Col className="px-2 " style={{ marginRight: "-2%" }}>
               <label htmlFor="">
@@ -70,8 +146,15 @@ const AstroDetails = () => {
               <input
                 type="date"
                 style={{ height: "50%" }}
+                onChange={dobHandler}
+                value={dob}
                 className="form-control mt-1 py-0"
               />
+              {error ? (
+                <small className="text-danger ">
+                  Date of birth is required
+                </small>
+              ) : null}
             </Col>
 
             <Col
@@ -82,75 +165,54 @@ const AstroDetails = () => {
               <br />
               <select
                 className="from-control border rounded bg-white select"
-                name=""
-                id=""
+                value={aHours}
+                onChange={(e) => setaHours(e.target.value)}
                 style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   HH
                 </option>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-                <option value="">5</option>
-                <option value="">6</option>
-                <option value="">7</option>
-                <option value="">8</option>
-                <option value="">9</option>
-                <option value="">10</option>
-                <option value="">11</option>
-                <option value="">12</option>
+                {Array.from(Array(12), (_, i) => (
+                  <option key={i}>{i + 1}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
-                style={{ width: "22%" , marginLeft: "2%"  }}
+                value={aMinutes}
+                onChange={(e) => setaMinutes(e.target.value)}
+                style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   MM
                 </option>
-                <option value="">Jan</option>
-                <option value="">Feb</option>
-                <option value="">Mar</option>
-                <option value="">Apr</option>
-                <option value="">May</option>
-                <option value="">Jun</option>
-                <option value="">Jul</option>
-                <option value="">Aug</option>
-                <option value="">Sep</option>
-                <option value="">Oct</option>
-                <option value="">Nov</option>
-                <option value="">Dec</option>
+                {Array.from(Array(60), (_, i) => (
+                  <option key={i}>{i}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
-                style={{ width: "22%" , marginLeft: "2%"  }}
+                value={aSeconds}
+                onChange={(e) => setaSeconds(e.target.value)}
+                style={{ width: "22%", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   SS
                 </option>
-                <option value="">1-10</option>
-                <option value="">11-20</option>
-                <option value="">21-30</option>
-                <option value="">31-40</option>
-                <option value="">41-50</option>
-                <option value="">51-60</option>
+                {Array.from(Array(60), (_, i) => (
+                  <option key={i}>{i}</option>
+                ))}
               </select>
               <select
                 className="bg-white border rounded"
-                name=""
-                id=""
+                value={aAMPM}
+                onChange={(e) => setaAMPM(e.target.value)}
                 style={{ width: "22%", paddingLeft: "10px", marginLeft: "2%" }}
               >
                 <option value="" hidden>
                   AM/PM
                 </option>
-                <option value="">AM</option>
-                <option value="">PM</option>
+                <option>AM</option>
+                <option>PM</option>
               </select>
             </Col>
             <Col
@@ -160,6 +222,9 @@ const AstroDetails = () => {
               <label htmlFor="">Birth Time Correction</label>
               <br />
               <select
+                onChange={(e) => {
+                  setTimeCorrection(e.target.value);
+                }}
                 style={{ height: "50%" }}
                 className="form-control p-2 text-dark mt-1 rounded-2 border-secondary form-select bg-white "
                 name=""
@@ -168,8 +233,8 @@ const AstroDetails = () => {
                 <option value="" hidden>
                   Please Select
                 </option>
-                <option value="">Yes</option>
-                <option value="">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </Col>
           </Row>
@@ -181,8 +246,11 @@ const AstroDetails = () => {
               </label>
               <br />
               <input
+                onChange={(e) => {
+                  setPlaceofBirth(e.target.value);
+                }}
                 type="text"
-                className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
+                className="icon form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
               />
             </Col>
             <Col>
@@ -190,6 +258,9 @@ const AstroDetails = () => {
               <br />
 
               <input
+                onChange={(e) => {
+                  setLogitude(e.target.value);
+                }}
                 type="text"
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
@@ -206,6 +277,9 @@ const AstroDetails = () => {
               <label htmlFor="">Latitude</label>
               <br />
               <input
+                onChange={(e) => {
+                  setLatitude(e.target.value);
+                }}
                 type="text"
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className="form-control p-2  text-dark mt-1 rounded-2 border-secondary form-input"
@@ -216,6 +290,9 @@ const AstroDetails = () => {
               <label htmlFor="">Time Zone</label>
               <br />
               <input
+                onChange={(e) => {
+                  setTimeZone(e.target.value);
+                }}
                 style={{ border: "1px solid blue", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input "
                 type="text"
@@ -230,14 +307,17 @@ const AstroDetails = () => {
           </p>
           <hr className="mb-5" />
 
-          <Link to="\">
+          <Link to="/finished">
             <button
               className="btn btn-light text-white btn-xl mt-2"
               type="button"
               onClick={submitHandler}
+              disabled={buttonLoading}
+
               style={{ backgroundColor: "#fb9232" }}
             >
-              Finish
+                {isLoading ? <p className="mb-0">Wait </p> : <p className="mb-0">Finish</p>}
+
             </button>
           </Link>
         </form>

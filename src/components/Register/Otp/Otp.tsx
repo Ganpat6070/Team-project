@@ -13,21 +13,24 @@ const Otp = () => {
   const verifyOtp = async (e: any) => {
     e.preventDefault();
 
-   
-    let id = Cookie.get("id");
+    // let token = localStorage.getItem("Token");
+    let id = localStorage.getItem("id");
     console.log("id:",id);
+
 
     let response = await fetch("http://localhost:8000/otp", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "id": `${id}`,
+      },
       body: JSON.stringify({
-        user_id: id,
         otp: otp,
       }),
     });
     const res = await response.json();
     console.log(res);
-    
+
     if (res.msg === "Registerd, You can login now") {
       toast.success(res.msg, {
         position: toast.POSITION.TOP_RIGHT,

@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import classes from "./PersonalInfo.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { useEffect, useRef } from "react";
 import PhotoCard from "./PhotoCard";
+import { toast } from "react-toastify";
 
 const PersonalInfo = () => {
+  const navigate = useNavigate();
+
+  //Loading States 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [buttonLoading, setButtonLoading] = useState<boolean>(false);
+
   //Error Status
   const [error, setError] = useState(false);
   const [error2, setError2] = useState(false);
@@ -124,7 +131,7 @@ const PersonalInfo = () => {
   };
 
   const annualincomeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (!(e.target.value === null )) {
+    if (!(e.target.value === null)) {
       setAnnualincome(parseInt(e.target.value));
     }
   };
@@ -136,7 +143,7 @@ const PersonalInfo = () => {
   };
 
   const aboutmyfamilyHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (!(e.target.value === "" )) {
+    if (!(e.target.value === "")) {
       setAboutmyfamily(e.target.value);
       // console.log(e.target.value)
     }
@@ -161,7 +168,7 @@ const PersonalInfo = () => {
   };
 
   const annualfamilyincome2Handler = (
-    e: React.ChangeEvent<HTMLSelectElement>
+    e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     if (!(e.target.value === null)) {
       setAnnualfamilyincome2(parseInt(e.target.value));
@@ -314,7 +321,7 @@ const PersonalInfo = () => {
   };
 
   const residentialstatusHandler = (
-    e: React.ChangeEvent<HTMLSelectElement>
+    e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     if (!(e.target.value === "")) {
       setResidentialstatus(e.target.value);
@@ -337,42 +344,51 @@ const PersonalInfo = () => {
       },
       body: JSON.stringify({
         complexion: complexions,
-        bodyType:bodytype ,
-        bloodGroup:bloodgroup ,
+        bodyType: bodytype,
+        bloodGroup: bloodgroup,
         occupation: occupation,
         employedIn: empolyedin,
-        currency:currency,
-        annualIncome:annualincome ,
-        star:astrodetails ,
+        currency: currency,
+        annualIncome: annualincome,
+        star: astrodetails,
         aboutMyFamily: aboutmyfamily,
-        familyStatus:familystatus ,
+        familyStatus: familystatus,
         familyValue: familyvalue2,
         fatherName: fathername,
-        fatherFamilyName:fatherfamilyname ,
+        fatherFamilyName: fatherfamilyname,
         fatherHomePlace: fatherhome,
-        fatherEmployedIn:fatheremp,
+        fatherEmployedIn: fatheremp,
         fatherEducation: fatheredu,
         fatherCompanyName: fathercomname,
-        fatherDesignation:fatherdes ,
-        fatherWorkLocation:fatherworkloc,
-        motherName:mothername ,
+        fatherDesignation: fatherdes,
+        fatherWorkLocation: fatherworkloc,
+        motherName: mothername,
         motherFamilyName: motherfamilyname,
         motherHomePlace: motherhome,
-        motherEmployedIn:motheremp,
-        motherOccupation:motherocc,
+        motherEmployedIn: motheremp,
+        motherOccupation: motherocc,
         motherEducation: motheredu,
-        motherCompanyName:mothercomname,
+        motherCompanyName: mothercomname,
         motherDesignation: motherdes,
-        motherWorkLocation:motherworkloc,
+        motherWorkLocation: motherworkloc,
         countryLivingIn: counteryliving,
         currentLocation: currentloc,
-        permanentLocation:perloc,
-        residentialStatus:residentialstatus,
+        permanentLocation: perloc,
+        residentialStatus: residentialstatus,
         nativePlace: nativeplace,
       }),
     });
     const res = await response.json();
     console.log(res);
+    if (response.status === 201) {
+      setIsLoading(false)
+      setButtonLoading(true)
+      toast.success("Personal Information is saved!");
+      // navigate("/prefpart");
+      setTimeout(() => {
+        navigate("/prefpart");
+      }, 1500);
+    }
   };
 
   const submitHandler = async (e: any) => {
@@ -472,7 +488,7 @@ const PersonalInfo = () => {
            </div> */}
             <div className="col">
               <label className="mb">
-                Body Type<span className={classes.compalsory}>*</span>
+                Body Type <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -515,7 +531,7 @@ const PersonalInfo = () => {
           <Row>
             <Col className="mt-3">
               <label>
-                Occupation<span className={classes.compalsory}>*</span>
+                Occupation <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -548,6 +564,9 @@ const PersonalInfo = () => {
                 <option>TechnoMark</option>
                 <option>PathQuest</option>
                 <option>Google</option>
+                <option>Microsoft</option>
+                <option>PGC</option>
+                <option>Other</option>
               </select>
             </Col>
             <Col className="mt-3">
@@ -574,7 +593,8 @@ const PersonalInfo = () => {
           <Row>
             <Col className="mt-3">
               <label htmlFor="">
-                Annual Income (Lakhs) <span className={classes.compalsory}>*</span>
+                Annual Income (Lakhs){" "}
+                <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -622,28 +642,7 @@ const PersonalInfo = () => {
           <Row className="border border rounded-2 mx-1">
             <Col className="mt-3">
               <p style={{ color: "#6E6E6E", fontStyle: "strong" }}>Star</p>
-              {/* <label htmlFor="">
-                About me <span className={classes.compalsory}>*</span>
-                <br />
-                <textarea
-                  name=""
-                  id=""
-                  className="form-control text-dark mt-1 rounded-2 border-secondary"
-                ></textarea>
-              </label> */}
-              {/*               
-              <label htmlFor="" className="pt-1 ">
-                Education <span className={classes.compalsory}>*</span>
-                <br />
-              </label>
-              <input
-                type="text"
-                className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
-              /> */}
-              {/* <label htmlFor="">
-                Annual Income <span className={classes.compalsory}>*</span>
-                <br />
-              </label> */}
+
               <select
                 style={{ height: "40%" }}
                 onChange={astrodetailsHandler}
@@ -659,43 +658,11 @@ const PersonalInfo = () => {
               </select>
             </Col>
             <Col className="mt-3">
-              {/* <label htmlFor="">
-                Spoken Language(s) <span className={classes.compalsory}>*</span>
-                <br />
-                <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang">
-                  <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                      className=""
-                    />
-                    English
-                  </label> */}
               <br />
-              {/* <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Gujarati
-                  </label> */}
+
               <br />
-              {/* <label htmlFor="" className="py-2">
-                    <input
-                      type="checkbox"
-                      id="vehicle1"
-                      name="vehicle1"
-                      value="Bike"
-                    />
-                    Hindi
-                  </label> */}
+
               <br />
-              {/* </span> */}
-              {/* </label> */}
             </Col>
           </Row>
           <hr className="mt-4 " />
@@ -719,13 +686,6 @@ const PersonalInfo = () => {
                 id="exampleFormControlTextarea1"
               ></textarea>
 
-              {/* <textarea
-                name=""
-                id=""
-                onChange={aboutmyfamilyHandler}
-                className="w-100 p-4 h-1 "
-                style={{ width: "800" }}
-              ></textarea> */}
               <p
                 style={{
                   color: "#6E6E6E",
@@ -738,7 +698,6 @@ const PersonalInfo = () => {
                 purpose.
               </p>
             </div>
-            <div className="col mt-3"></div>
             <Col className="mt-3">
               <label htmlFor="" className="pt-3">
                 Family Type
@@ -749,7 +708,7 @@ const PersonalInfo = () => {
                 onChange={familytypeHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Joint Family</option>
                 <option>Extended Family</option>
                 <option>Nuclear Family</option>
@@ -764,7 +723,7 @@ const PersonalInfo = () => {
                 onChange={familystatusHandler}
                 className="form-control text-dark mt-1 mb-4 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Alive</option>
                 <option>Dead</option>
                 <option>Living With Them</option>
@@ -799,8 +758,7 @@ const PersonalInfo = () => {
             </Col>
             <Col className="mt-3">
               <label>
-                Annual Family Income
-                <span className={classes.compalsory}>*</span>
+                Annual Family Income <span className={classes.compalsory}>*</span>
                 <br />
               </label>
               <select
@@ -808,7 +766,7 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option value="6">6Lakh</option>
                 <option value="7">7Lakh</option>
                 <option value="8">8Lakh</option>
@@ -825,24 +783,14 @@ const PersonalInfo = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Select Any One</option>
+                <option value=""  hidden>Select Any One</option>
                 <option>Important</option>
                 <option>Vary Important</option>
                 <option>Not-Important</option>
               </select>
             </Col>
           </Row>
-          {/* <div className="row">
-            <div className="col-xl mt-3">
-              <label htmlFor="eid">Education in Detail</label>
-              <br />
-              <input
-                type="text"
-                id="eid"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div>
-          </div> */}
+
           {error4 ? <span>below entered data in not valid</span> : null}
           <div className="row">
             <div className="col mt-3">
@@ -1134,20 +1082,6 @@ const PersonalInfo = () => {
                 <option value="">Canada</option>
               </select>
             </div>
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="tel"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div> */}
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="number"
-                className=" form-control text-dark mt-1 rounded-2 border-secondary -webkit-appearance: none"
-              />
-            </div> */}
           </div>
           <div className="row">
             <div className="col mt-3">
@@ -1183,39 +1117,21 @@ const PersonalInfo = () => {
               </select>
             </div>
             <div className="col mt-3">
-              {/* <label htmlFor="">Permanent Location</label> */}
               <br />
-              {/* <select style={{ height: "50%"}} className="form-control text-dark mt-1 rounded-2 border-secondary form-select">
-                <option value="" hidden>Please Select Any</option>
-                <option value="">USA</option>
-                <option value="">Germany</option>
-                <option value="">Canada</option>
-              </select> */}
             </div>
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="tel"
-                className="form-control text-dark mt-1 rounded-2 border-secondary"
-              />
-            </div> */}
-            {/* <div className="col mt-3">
-            <label htmlFor=""></label>
-              <input
-                type="number"
-                className=" form-control text-dark mt-1 rounded-2 border-secondary -webkit-appearance: none"
-              />
-            </div> */}
           </div>
-          {/* </div> */}
           <Link to="/">
             <button
               className="btn btn-light text-white btn-xl mt-2"
               type="button"
+              disabled={buttonLoading}
+
               onClick={submitHandler}
               style={{ backgroundColor: "#fb9232" }}
             >
-              Save and Continue
+                {isLoading ? <p className="mb-0">Wait </p> : <p className="mb-0">Save and Continue</p>}
+
+             
             </button>
           </Link>
         </form>

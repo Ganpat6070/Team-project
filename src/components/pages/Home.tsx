@@ -70,7 +70,8 @@ const Home = ({ onPass }: HomeProps) => {
                   <Form.Label className="text-white">I'm lookig for</Form.Label>
                   <Form.Select
                     size="sm"
-                    style={{ width: "90px", height: "30px" }}
+                    className="filterinput"
+                    // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
                     <option>Select</option>
@@ -83,7 +84,8 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label className="text-white">Born Year </Form.Label>
                 <Form.Select
                   size="sm"
-                  style={{ width: "90px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeLessAge}
                 >
                   <option>Select</option>
@@ -94,7 +96,12 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 <Form.Label>&nbsp;&nbsp;</Form.Label>
-                <Form.Label className="text-white" style={{ fontSize: "20px", marginTop:"20px" }}>TO</Form.Label>
+                <Form.Label
+                  className="text-white"
+                  style={{ fontSize: "20px", marginTop: "24px", marginLeft: "34px" }}
+                >
+                  TO
+                </Form.Label>
               </Col>
               {/* <Col>
                 <Form.Label>&nbsp;</Form.Label>
@@ -107,7 +114,8 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label>&nbsp;</Form.Label>{" "}
                 <Form.Select
                   size="sm"
-                  style={{ width: "90px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeGreatAge}
                 >
                   <option>Select</option>
@@ -121,7 +129,8 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label className="text-white">Religion</Form.Label>
                 <Form.Select
                   size="sm"
-                  style={{ width: "90px", height: "30px" }}
+                  className="filterinput"
+                  // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeReligion}
                 >
                   <option>Select</option>
@@ -132,9 +141,8 @@ const Home = ({ onPass }: HomeProps) => {
               </Col>
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
-                <Form.Label>&nbsp;</Form.Label>
-                <Form.Label>&nbsp;</Form.Label>
                 <Button
+                  className="findbtn filterinput border-0"
                   size="sm"
                   style={{ backgroundColor: "#FE8A4D", width: "120px" }}
                   onClick={profileSearch}
@@ -202,7 +210,7 @@ const Home = ({ onPass }: HomeProps) => {
           </div>
         </div>
       </Container>
- 
+
       <Container>
         <div>
           <p className="text-center mt-5 fs-3">Why Choose Perfect Match?</p>
@@ -287,45 +295,39 @@ const Home = ({ onPass }: HomeProps) => {
         </div>
 
         <div className="d-flex stories justify-content-center">
-              <Card className="mx-4 cardshadow">
-                <Card.Img
-                  width="30%"
-                  height="85%"
-                  src="../../image/cd1.png"
-                  alt="cd1"
-                />
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    Deepak & Navya
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-              <Card className="mx-4 cardshadow">
-                <Card.Img
-                  width="30%"
-                  height="85%"
-                  src="../../image/cd2.png"
-                  alt="cd2"
-                />
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    Neeraj & Vismaya
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-              <Card className="mx-4 cardshadow">
-                <Card.Img
-                  width="30%"
-                  height="85%"
-                  src="../../image/cd3.png"
-                  alt="cd3"
-                />
-                <Card.Body>
-                  <Card.Title className="text-center">
-                    Adarsh & Archana
-                  </Card.Title>
-                </Card.Body>
-              </Card>
+          <Card className="mx-4 cardshadow">
+            <Card.Img
+              width="30%"
+              height="85%"
+              src="../../image/cd1.png"
+              alt="cd1"
+            />
+            <Card.Body>
+              <Card.Title className="text-center">Deepak & Navya</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card className="mx-4 cardshadow">
+            <Card.Img
+              width="30%"
+              height="85%"
+              src="../../image/cd2.png"
+              alt="cd2"
+            />
+            <Card.Body>
+              <Card.Title className="text-center">Neeraj & Vismaya</Card.Title>
+            </Card.Body>
+          </Card>
+          <Card className="mx-4 cardshadow">
+            <Card.Img
+              width="30%"
+              height="85%"
+              src="../../image/cd3.png"
+              alt="cd3"
+            />
+            <Card.Body>
+              <Card.Title className="text-center">Adarsh & Archana</Card.Title>
+            </Card.Body>
+          </Card>
         </div>
       </div>
 
@@ -503,7 +505,6 @@ const Home = ({ onPass }: HomeProps) => {
             <h2 className="fs-6 fw-bold">Rushabh Kahar</h2>
           </div>
         </div>
-        
       </div>
       <div id="contactFooter">
         <Footer />
