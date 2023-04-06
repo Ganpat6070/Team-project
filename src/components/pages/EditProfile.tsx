@@ -7,6 +7,10 @@ const EditProfile = () => {
   const [apiData, setapiData] = useState<any[]>([]);
 
   // Basic Info States
+  const [firstName, setfirstName] = useState("");
+  const [middleName, setmiddleName] = useState("");
+  const [lastName, setlastName] = useState("");
+
   const [dob, setdob] = useState("");
   const [height, setheight] = useState<number>(0);
   const [weight, setweight] = useState<number>(0);
@@ -23,13 +27,13 @@ const EditProfile = () => {
   const [eduDetails, seteduDetails] = useState("");
   const [schoolName, setschoolName] = useState("");
   const [splace, setsplace] = useState("");
-  const [syos, setsyos] = useState("");
+  const [syos, setsyos] = useState<number>(0);
   const [collegeName, setcollegeName] = useState("");
   const [course, setcourse] = useState("");
   const [place, setPlace] = useState("");
 
   const [cplace, setcplace] = useState("");
-  const [cyos, setcyos] = useState("");
+  const [cyos, setcyos] = useState<number>(0);
   const [compName, setcompName] = useState("");
   const [designation, setdesignation] = useState("");
   const [wLoc, setwLoc] = useState("");
@@ -59,7 +63,7 @@ const EditProfile = () => {
   const [religion1, setreligion1] = useState("");
   const [currency1, setcurrency1] = useState("");
   const [subcast1, setsubcast1] = useState("");
-  const [annualInc, setannualInc] = useState("");
+  const [annualInc, setannualInc] = useState<number>(0);
   const [astro, setastro] = useState("");
   const [aboutfam, setaboutfam] = useState("");
   const [famtype, setfamtype] = useState("");
@@ -87,12 +91,12 @@ const EditProfile = () => {
   const [native, setnative] = useState("");
 
   // Preferred Partner States
-  const [ppAge, setppAge] = useState("");
-  const [ppHeight, setppHeight] = useState("");
+  const [ppAge, setppAge] = useState<number>(0);
+  const [ppHeight, setppHeight] = useState<number>(0);
   const [ppPhyStatus, setppPhyStatus] = useState("");
   const [ppFamilyStatus, setppFamilyStatus] = useState("");
   const [ppCurrency, setppCurrency] = useState("");
-  const [ppAnnual, setppAnnual] = useState("");
+  const [ppAnnual, setppAnnual] = useState<number>(0);
   const [ppMotherT, setppMotherT] = useState("");
   const [ppReligion, setppReligion] = useState("");
   const [ppcaste, setppCaste] = useState("");
@@ -116,7 +120,7 @@ const EditProfile = () => {
   // Astro Details
   const [aDate, setaDate] = useState("");
   const [aTime, setaTime] = useState("");
-  const [aBirthTime, setaBirthTime] = useState("");
+  const [aBirthTime, setaBirthTime] = useState<number>(0);
   const [aPlace, setaPlace] = useState("");
 
   // Storing api data
@@ -131,7 +135,7 @@ const EditProfile = () => {
     let response = await fetch("http://localhost:8000/profile", {
       credentials: "include",
       method: "GET",
-      headers: { "Content-Type": "application/json", token: `${token}` },
+      headers: { "Content-Type": "application/json", authorization: `${token}` },
     });
 
     let res = await response.json();
@@ -141,6 +145,9 @@ const EditProfile = () => {
 
     if (response.status === 200) {
       setState(true);
+      setfirstName(res.profile[0].firstName);
+      setmiddleName(res.profile[0].middleName);
+      setlastName(res.profile[0].lastName);
       setdob(res.profile[0].dateOfBirth);
       setheight(res.profile[0].height);
       setweight(res.profile[0].weight);
@@ -259,6 +266,7 @@ const EditProfile = () => {
   }, []);
 
   // console.log({
+  //   // Basic Info
   //   dob,
   //   height,
   //   weight,
@@ -266,10 +274,12 @@ const EditProfile = () => {
   //   mTongue,
   //   religion,
   //   cast,
-  //   subcast,
+  //   // subcast,
   //   phyStatus,
+  //   about,
   //   education,
   //   spokenLanguage,
+  //   eduDetails,
   //   schoolName,
   //   splace,
   //   syos,
@@ -284,6 +294,8 @@ const EditProfile = () => {
   //   larea,
   //   lnum,
   //   mNumber,
+  //   pct,
+  //   cttc,
   //   email,
   //   street,
   //   pin,
@@ -291,16 +303,15 @@ const EditProfile = () => {
   //   refname,
   //   refaddress,
   //   refcontact,
-  // });
 
-  // console.log({
-  //   complexion,
+  //   // Personal Info
+  //   complexionState,
   //   bodytype,
   //   bloodGroup,
   //   occupation,
   //   employedin,
-  //   religion1,
   //   currency1,
+  //   religion1,
   //   subcast1,
   //   annualInc,
   //   astro,
@@ -321,12 +332,49 @@ const EditProfile = () => {
   //   motherName,
   //   motherFamName,
   //   motherHome,
+  //   ///////////////
+  //   /////////////
   //   motherOcc,
   //   motherEdu,
-  //   currLoc,
+  //   ////////////
   //   resStatus,
   //   native,
+  //   // currLoc,
+
+  //   // Preferred Partner States
+  //   ppAge,
+  //   ppHeight,
+  //   ppFamilyStatus,
+  //   ppCurrency,
+  //   ppAnnual,
+  //   ppMotherT,
+  //   ppReligion,
+  //   ppcaste,
+  //   ppeducation,
+  //   ppOcc,
+  //   ppLocation,
+  //   ppMStatus,
+  //   ppNative,
+  //   ppAboutPartner,
+
+  //   // My Personality
+
+  //   mpdiet,
+  //   mpSmoke,
+  //   mpDrink,
+  //   music,
+  //   mpMusicrange,
+  //   reading,
+  //   mpReadingrange,
+
+  //   // Astro Details
+  //   aDate,
+  //   aTime,
+  //   aBirthTime,
+  //   aPlace,
+
   // });
+
 
   const [userData, setUserData] = useState<any>({
     mTongue1: "",
@@ -389,6 +437,159 @@ const EditProfile = () => {
 
   console.log(userData);
 
+  let profileId = localStorage.getItem('profileID');
+  // let profileId = '642e62f5916912c9d50278ec';
+
+
+  const updateHandler= async() => {
+    let updatedResponse = await fetch(`http://localhost:8000/profile-update/${profileId}`, {
+      credentials: "include",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+
+        firstName: firstName,
+        middleName: middleName,
+        lastName: lastName,
+        dateOfBirth: dob,
+        height: height,
+        weight: weight,
+        maritalStatus: mStatus,
+        motherTongue: mTongue,
+    religion: religion,
+    caste :cast,
+    gender: gender,
+    subCaste: subcast,
+    physicalStatus: phyStatus,
+    aboutMe: about,
+    spokenLanguages: spokenLanguage,
+    education: education,
+    educationInDetail: eduDetails,
+    schoolName: schoolName,
+    schoolPlace: splace,
+    yearOfStudySchool: syos,
+    collegeName: collegeName,
+    course: course,
+    placeCollege: cplace,
+    yearOfStudyCollege: cyos,
+    companyName: compName,
+    designation: designation,
+    workLocation: wLoc,
+    landlineNumber: lnum,
+    mobileNumber: mNumber,
+    // lcode,
+    // larea,
+    preferredContactType: pct,
+    convenientTimeToCall: cttc,
+    contactName: "",
+    email: email,
+    profileCreatedBy: "",
+    apartmentName: "",
+    streetLocality: street,
+    country: "",
+    pinCode: pin,
+    cityState: city,
+    referenceName: refname,
+    address: refaddress,
+    contactNumber: refcontact,
+
+    // Personal Info
+    complexion: complexionState,
+    bodyType: bodytype,
+    bloodGroup: bloodGroup,
+    occupation: occupation,
+    employedIn: employedin,
+    currency: currency1,
+    annualIncome: religion1,
+    // subcast1,
+    // annualInc,
+    star: astro,
+    aboutMyFamily: aboutfam,
+    // famtype,
+    familyStatus: famstatus,
+    familyValue: "",
+    // fatCurrency,
+    // fatAnnualInc,
+    fatherName: fatname,
+    fatherFamilyName: fatFamilyname,
+    fatherHomePlace: fatHome,
+    fatherEmployedIn: fatEmp,
+    // fatOcc,
+    fatherEducation: fatEdu,
+    fatherCompanyName: fatCompName,
+    fatherDesignation: fatDesig,
+    fatherWorkLocation: fatWorkLoc,
+    motherName: motherName,
+    motherFamilyName: motherFamName,
+    motherHomePlace: motherHome,
+    motherEmployedIn: "",
+    ///////////////
+    /////////////
+    motherOccupation: motherOcc,
+    motherEducation: motherEdu,
+    motherCompanyName: "",
+    motherDesignation: "",
+    motherWorkLocation: "",
+    countryLivingIn: "",
+    currentLocation: currLoc,
+    permanentLocation: "",
+
+    ////////////
+    residentialStatus: resStatus,
+    nativePlace: native,
+
+    // Preferred Partner States
+    preferredAge: ppAge,
+    preferredHeight: ppHeight,
+    preferredPhysicalStatus: "",
+    preferredFamilyStatus: ppFamilyStatus,
+    preferredCurrency: ppCurrency,
+    preferredAnnualIncome: ppAnnual,
+    preferredMotherTongue: ppMotherT,
+    preferredReligion: ppReligion,
+    preferredCastDenomination: ppcaste,
+    preferredDiet: ppDiet,
+    preferredEducation: ppeducation,
+    preferredOccupation: ppOcc,
+    preferredLocation: ppLocation,
+    preferredMaritalStatus: ppMStatus,
+    preferredNativePlace: ppNative,
+    preferredAboutMyPartner: ppAboutPartner,
+
+    // My Personality
+
+    myDiet: mpdiet,
+    smoke:  mpSmoke,
+    drink: mpDrink,
+    music: music,
+    musicRange: mpMusicrange,
+    reading: reading,
+    readingRange: mpReadingrange,
+    movies: [""],
+    moviesRange: "",
+    sports: [""],
+    sportsRange: "",
+    foods:  [""],
+    foodsRange: "",
+    dress: [""],
+    dressRange: "",
+
+
+    // Astro Details
+    astroDateOfBirth: aDate,
+    timeOfBirth: aTime,
+    birthTimeCorrection: aBirthTime,
+    placeOfBirth: aPlace,
+    longitude: "",
+    latitude: "",
+    timeZone: "",
+      }),
+    });
+
+    let nayaData = await updatedResponse.json();
+    console.log("puradata", nayaData);
+  }
+
   return (
     <div>
       <NavbarHead />
@@ -414,6 +615,36 @@ const EditProfile = () => {
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>First Name</td>
+                  <td>
+                  <input
+                      type="text"
+                      value={firstName}
+                      onChange={(e) => setfirstName(e.target.value)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                <td>Middle Name</td>
+                  <td>
+                  <input
+                      type="text"
+                      value={middleName}
+                      onChange={(e) => setmiddleName(e.target.value)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                <td>Last Name</td>
+                  <td>
+                  <input
+                      type="text"
+                      value={lastName}
+                      onChange={(e) => setlastName(e.target.value)}
+                    />
+                  </td>
+                </tr>
                 <tr>
                   <td>Date of Birth</td>
                   <td>
@@ -776,7 +1007,7 @@ const EditProfile = () => {
                       style={{ width: "135px" }}
                       value={syos}
                       name="yos"
-                      onChange={(e) => setsyos(e.target.value)}
+                      onChange={(e) => setsyos(parseInt(e.target.value))}
                     >
                       <option hidden>select</option>
                       <option>2012</option>
@@ -822,7 +1053,7 @@ const EditProfile = () => {
                       style={{ width: "135px" }}
                       value={cyos}
                       name="yos"
-                      onChange={(e) => setcyos(e.target.value)}
+                      onChange={(e) => setcyos(parseInt(e.target.value))}
                     >
                       <option hidden>select</option>
                       <option>2012</option>
@@ -1189,12 +1420,12 @@ const EditProfile = () => {
                         name="AnnualIncome"
                         style={{ width: "135px" }}
                         value={annualInc}
-                        onChange={(e) => setannualInc(e.target.value)}
+                        onChange={(e) => setannualInc(parseInt(e.target.value))}
                       >
-                        <option value="5">5L</option>
-                        <option value="6">6L</option>
-                        <option value="4">4L</option>
-                        <option value="7">7L</option>
+                        <option>400000</option>
+                        <option>500000</option>
+                        <option>600000</option>
+                        <option>700000</option>
                       </select>
                     </td>
                   </tr>
@@ -1541,7 +1772,7 @@ const EditProfile = () => {
                         style={{ width: "135px" }}
                         name="Age"
                         value={ppAge}
-                        onChange={(e) => setppAge(e.target.value)}
+                        onChange={(e) => setppAge(parseInt(e.target.value))}
                       >
                         <option>19</option>
                         <option>20</option>
@@ -1565,11 +1796,12 @@ const EditProfile = () => {
                         style={{ width: "135px" }}
                         name="Height"
                         value={ppHeight}
-                        onChange={(e) => setppHeight(e.target.value)}
+                        onChange={(e) => setppHeight(parseInt(e.target.value))}
                       >
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
+                        <option>400000</option>
+                        <option>500000</option>
+                        <option>600000</option>
+                        <option>700000</option>
                       </select>
                       {/* <select
                     name="Height"
@@ -1634,12 +1866,12 @@ const EditProfile = () => {
                         name="Annual Income"
                         style={{ width: "135px" }}
                         value={ppAnnual}
-                        onChange={(e) => setppAnnual(e.target.value)}
+                        onChange={(e) => setppAnnual(parseInt(e.target.value))}
                       >
-                        <option value="4">4 L</option>
-                        <option value="5">5 L</option>
-                        <option value="6">6 L</option>
-                        <option value="7">7 L</option>
+                        <option>400000</option>
+                        <option>500000</option>
+                        <option>600000</option>
+                        <option>700000</option>
                       </select>
                     </td>
                   </tr>
@@ -2269,10 +2501,10 @@ const EditProfile = () => {
                         name="Birth Time Correction"
                         style={{ width: "135px" }}
                         value={aBirthTime}
-                        onChange={(e) => setaBirthTime(e.target.value)}
+                        onChange={(e) => setaBirthTime(parseInt(e.target.value))}
                       >
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value='1'>Yes</option>
+                        <option value='0'>No</option>
                       </select>
                     </td>
                   </tr>
@@ -2288,6 +2520,10 @@ const EditProfile = () => {
                   </tr>
                 </tbody>
               </Table>
+
+              <div>
+                <button type = "submit" onClick={updateHandler}>Update</button>
+              </div>
             </div>
           </div>
         </div>
