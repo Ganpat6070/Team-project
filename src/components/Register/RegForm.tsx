@@ -13,46 +13,199 @@ import { FaSmileWink } from "react-icons/fa";
 
 const RegForm2 = () => {
   const navigate = useNavigate();
-  const [fnamer, setFirstName] = useState("");
+  const [fullName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
-  const [numberr, setNumber] = useState<number>();
+  const [phoneNumber, setNumber] = useState<number>();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
+  // Iniail State  types for use reducer
+  type FormState = {
+    fullName: string;
+    email: string;
+    phoneNumber: number;
+    password: string;
+  };
+
+  type FormValidityState = {
+    fullNameError: boolean;
+    emailError: boolean;
+    phoneNumberError: boolean;
+    passwordError: boolean;
+    isFormValid: boolean;
+  };
+
+  type FormAction = {
+    type: string | number;
+    payLoad: string | number;
+  };
+
+  type FormValidityAction = {
+    type: string;
+    payLoad: FormState;
+  };
+
+  // Iniail State for use reducer
+  const initialState: FormState = {
+    fullName: "",
+    email: "",
+    phoneNumber: 0,
+    password: "",
+  };
+
+  // form reducer function
+  const formReducer = (state: any, action: any): FormState => {
+    switch (action.type) {
+      case "UPDATE_FULL_NAME":
+        return {
+          ...state,
+          fullName: action.payLoad,
+        };
+      case "UPDATE_EMAIL":
+        return {
+          ...state,
+          email: action.payLoad,
+        };
+      case "UPDATE_PHONE_NUMBER":
+        return {
+          ...state,
+          phoneNumber: action.payLoad,
+        };
+
+      case "UPDATE_PASSWORD":
+        return {
+          ...state,
+          password: action.payLoad,
+        };
+      default:
+        return state;
+    }
+  };
+
+  const formValidityReducer = (state: any, action: any): FormValidityState => {
+    let isValid: boolean = false;
+    let regex = /^[a-zA-Z]*$/;
+    switch (action.type) {
+      case "VALIDATE_FULL_NAME":
+        // isValid = action.payLoad.fullName.length > 0 ? true : false;
+        isValid = action.payLoad.fullName.length > 4 ? true : false;
+        // isValid = action.payLoad.fullName = regex ? true : false;
+        if (!regex.test(fullName)){
+          isValid = true 
+        }
+        return {
+          ...state,
+          ...{
+            fullNameError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.lastNameError &&
+            
+              !state.emailError &&
+              !state.passwordError,
+          },
+        };
+      case "VALIDATE_PHONE_NUMBER":
+        isValid = action.payLoad.phoneNumber.toString().length === 10 ? true : false;
+        return {
+          ...state,
+          ...{
+            phoneNumberError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.firstNameError &&
+              !state.ageError &&
+              !state.emailError &&
+              !state.passwordError,
+          },
+        };
+      case "VALIDATE_EMAIL":
+        isValid =
+          action.payLoad.email.length > 0 && action.payLoad.email.includes("@")
+            ? true
+            : false;
+        return {
+          ...state,
+          ...{
+            emailError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.firstNameError &&
+              !state.lastNameError &&
+              !state.ageError &&
+              !state.passwordError,
+          },
+        };
+      case "VALIDATE_PASSWORD":
+        isValid = action.payLoad.password.length > 9 ? true : false;
+        return {
+          ...state,
+          ...{
+            passwordError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.firstNameError &&
+              !state.lastNameError &&
+              !state.ageError &&
+              !state.emailError,
+          },
+        };
+      default:
+        return state;
+    }
+  };
+
+  const initialValidityState: FormValidityState = {
+    fullNameError: false,
+    phoneNumberError: false,
+    emailError: false,
+    passwordError: false,
+    isFormValid: false,
+  };
+
+  // use reducer functions
+  const [formData, setFormData] = useReducer(formReducer, initialState);
+  const [formValidityData, setFormValidityData] = useReducer(
+    formValidityReducer,
+    initialValidityState
+  );
+
+  //
   const reg = async () => {
-    setIsLoading(true)
-    setButtonLoading(true)
+    setIsLoading(true);
+    setButtonLoading(true);
     let response = await fetch("http://localhost:8000/register", {
       credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: fnamer,
-        email: email,
-        phoneNumber: numberr,
-        password: password,
+        name: formData.fullName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        password: formData.password,
       }),
     });
     const res = await response.json();
-    if(response.status === 200){
-      setIsLoading(false)
-      setButtonLoading(true)
+    if (response.status === 200) {
+      // setIsLoading(false);
+      setButtonLoading(true);
     }
     let id = res.id;
     localStorage.setItem("id", id);
-    console.log(res);
-    console.log(id);
-    
 
     if (res.msg) {
       if (res.msg === "Already registered") {
+        // setIsLoading(false);
+        setButtonLoading(true);
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
       if (res.msg === "Registered") {
+        // setIsLoading(false);
+        setButtonLoading(true);
         setTimeout(() => {
           navigate("/otp");
         }, 2000);
@@ -74,43 +227,12 @@ const RegForm2 = () => {
       console.log(res.errorMessage);
     }
 
-    setIsLoading(false)
+    setIsLoading(false);
   };
   const onRegister = async (e: any) => {
     e.preventDefault();
-
+    console.log(formData);
     reg();
-
-    // console.log(response.msg)
-    // if (response.message ==="Suceess"){
-    //   navigate('/otp')
-    // }
-
-    // await createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(user);
-    //     toast.success("Registered successfully", {
-    //       position: toast.POSITION.TOP_RIGHT,
-    //     });
-    //     navigate("/login");
-    //   })
-    //   .catch((error) => {
-    //     const errorMessage = error.message;
-    //     toast.error(errorMessage, {
-    //       position: toast.POSITION.TOP_RIGHT,
-    //     });
-    //     setError(errorMessage);
-    //   });
-    // const docRef = await addDoc(collection(db, "User"), {
-    //   fname: fnamer,
-    //   email: email,
-    //   number: numberr,
-    //   pass: password,
-    // });
-
-    // console.log(docRef.id);
   };
 
   return (
@@ -118,10 +240,11 @@ const RegForm2 = () => {
       <NavbarHead />
       <div className="register-photo">
         <div className="form-container imgdiv">
-          <div className="image-hold">
-            <Carousel className="imgset">
-              <Carousel.Item>
+          <div className="image-hold" >
+            <Carousel className="imgset" >
+              <Carousel.Item >
                 <img
+                  style={{height:"800px"}}
                   className="d-block w-0  "
                   src="../../image/quick-reg.slideA.jpg"
                   alt="First slide"
@@ -137,6 +260,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
+                 style={{height:"800px"}}
                   className="d-block w-0  "
                   src="../../image/quick-reg.slideC.jpg"
                   alt="First slide"
@@ -152,6 +276,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
+                 style={{height:"800px"}}
                   className="d-block w-0"
                   src="../../image/quick-reg.slideA.jpg"
                   alt="Second slide"
@@ -167,6 +292,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
+                 style={{height:"800px"}}
                   className="d-block w-0"
                   src="../../image/regimage.jpg"
                   alt="Third slide"
@@ -191,20 +317,29 @@ const RegForm2 = () => {
               <strong>Registration</strong>
             </h2>
             <div className="form-group">
-              <label htmlFor="fullname">Your Fullname</label>
+              <label htmlFor="fullname">Your FullName</label>
 
               <input
                 className="form-control"
                 type="text"
                 name="fullname"
-                required
-                placeholder="Shyam Dadhani"
-                // ref={fname}
-                onChange={(e) => {
-                  setFirstName(e.target.value);
+                // required
+                style={{
+                  backgroundColor: formValidityData.fullNameError ? "pink" : "",
                 }}
+                placeholder="Shyam Dadhaniya"
+                onChange={(e) =>
+                  setFormData({
+                    type: "UPDATE_FULL_NAME",
+                    payLoad: e.target.value,
+                  })
+                }
+                onBlur={(e) => setFormValidityData({type: "VALIDATE_FULL_NAME", payLoad: formData})}
+
               />
+
               {/* <span className="text-danger size-small">{firstError}</span> */}
+              {formValidityData.fullNameError ? <span className="text-danger size-small">Name Should be only alphabets & not shorter then 4 latter</span> : ""}
             </div>
             <div className="form-group">
               <label htmlFor="email">Your Email</label>
@@ -212,14 +347,26 @@ const RegForm2 = () => {
                 className="form-control"
                 type="email"
                 name="email"
-                required
+                // required
                 placeholder="shyam.dadhani@gmail.com"
                 // ref={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
+                // onChange={(e) => {
+                //   setEmail(e.target.value);
+                // }}
+
+                style={{
+                  backgroundColor: formValidityData.emailError ? "pink" : "",
                 }}
-                value={email}
+
+                onChange={(e) =>
+                  setFormData({ type: "UPDATE_EMAIL", payLoad: e.target.value })
+                }
+                onBlur={(e) => setFormValidityData({type: "VALIDATE_EMAIL", payLoad: formData})}
+
+                // value={email}
               />
+              {formValidityData.emailError ? <span className="text-danger size-small">Email Should Contain "@" and should be valid</span> : ""}
+
               {/* <span className="text-danger size-small">{emailError}</span> */}
             </div>
             <div className="form-group">
@@ -241,22 +388,29 @@ const RegForm2 = () => {
                   <option value="3">+701</option>
                 </select>
                 <input
-                  required
-                  style={{ margin: "0", background: "0", border: "0" }}
+                  // required
+                  style={{ margin: "0", background: "0", border: "0" , backgroundColor: formValidityData.phoneNumberError ? "pink" : "",}}
                   className="form-control"
-                  type="tel"
+                  // type="tel"
+                  type="number"
                   name="number"
                   placeholder="1234567890"
-                  minLength={10}
-                  maxLength={10}
-                  // ref={number}
-                  onChange={(e) => {
-                    setNumber(parseInt(e.target.value));
-                  }}
+                  // minLength={10}
+                  // maxLength={10}
+    
+                  onChange={(e) =>
+                    setFormData({
+                      type: "UPDATE_PHONE_NUMBER",
+                      payLoad: parseInt(e.target.value),
+                    })
+                  }
+                onBlur={(e) => setFormValidityData({type: "VALIDATE_PHONE_NUMBER", payLoad: formData})}
+
                 />
               </div>
-              {/* <span className="text-danger size-small pb-0">{numError}</span> */}
+
             </div>
+            {formValidityData.phoneNumberError ? <span className="text-danger size-small">Phone Number Should only Contains Digit & only 10 digits are allowed</span> : ""}
 
             <div className="form-group">
               <label htmlFor="email">Password</label>
@@ -265,22 +419,29 @@ const RegForm2 = () => {
                 type="password"
                 name="password"
                 placeholder="******"
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                value={password}
+                style={{
+                  backgroundColor: formValidityData.passwordError ? "pink" : "",
+                }}
+
+                onChange={(e) =>
+                  setFormData({
+                    type: "UPDATE_PASSWORD",
+                    payLoad: e.target.value,
+                  })
+                }
+                onBlur={(e) => setFormValidityData({type: "VALIDATE_PASSWORD", payLoad: formData})}
+
               />
-              {/* <span className="text-danger size-small">{emailError}</span> */}
             </div>
+            {formValidityData.passwordError ? <span className="text-danger size-small">Password Should Contain alphabets, Numbers & Symbols not be shorter then 6 latter</span> : ""}
 
             {/* '''''''''''''''''' */}
             <div className="form-group">
               <div className="form-check">
                 <label className="form-check-label">
                   <input
-                    required
                     className="form-check-input"
                     type="checkbox"
-                    // ref={agree}
                   />
                   I agree to the terms & conditions.
                 </label>
@@ -290,9 +451,17 @@ const RegForm2 = () => {
               <button
                 className="btn btn-primary btn-block"
                 type="submit"
-                disabled={buttonLoading}
+                disabled={!formValidityData.isFormValid}
+
+                value={""+formValidityData.isFormValid}
               >
-                {isLoading ? <p className="mb-0">Wait </p> : <p className="mb-0">Register</p>}
+                {/* {isLoading ? (
+                ) : (
+                  <p className="mb-0">Register</p>
+                )} */}
+                {/* Registration */}
+                {isLoading ? <p className="mb-0"> In Process </p> : <p className="mb-0">Register</p>}
+
               </button>
               {error && (
                 <span className="text-center text-danger">{error}</span>
@@ -326,5 +495,17 @@ const RegForm2 = () => {
     </>
   );
 };
+
+const STYLE = {
+  container: {
+      borderRadius: "5px",
+      backgroundColor: "#f2f2f2",
+      padding: "20px",
+      maxWidth:"240px"
+  },
+  formElement: {
+      padding: "6px 24px"
+  }
+}
 
 export default RegForm2;
