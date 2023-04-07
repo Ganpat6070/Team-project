@@ -12,14 +12,14 @@ const Mother = (props: any) => {
         <div className="text-start ml-4">
           <li style={{ listStyle: "none", fontWeight: '300' }}>
             <ul>Mother Name</ul>
-            <ul>motherHomePlace</ul>
-            <ul>motherFamilyName</ul>
-            <ul>motherDesignation</ul>
-            <ul>motherEducation</ul>
-            <ul>motherEmployedIn</ul>
-            <ul>motherOccupation</ul>
-            <ul>motherWorkLocation</ul>
-            <ul>nativePlace</ul>
+            <ul>Mother Home Place</ul>
+            <ul>Mother FamilyName</ul>
+            <ul>Mother Designation</ul>
+            <ul>Mother Education</ul>
+            <ul>Mother EmployedIn</ul>
+            <ul>Mother Occupation</ul>
+            <ul>Mother Work Location</ul>
+            <ul>Native Place</ul>
           </li>
         </div>
         <div className="text-start">

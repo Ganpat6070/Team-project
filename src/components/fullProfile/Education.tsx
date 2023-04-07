@@ -20,9 +20,9 @@ const Education = (props: any) => {
             <ul>Education</ul>
             <ul>Detail of Education</ul>
             <ul>College Name</ul>
-            <ul>course</ul>
-            <ul>placeCollege</ul>
-            <ul>yearOfStudyCollege</ul>
+            <ul>Course</ul>
+            <ul>Place of College</ul>
+            <ul>year Of Study College</ul>
 
             <ul>School Name</ul>
             <ul>School Place</ul>

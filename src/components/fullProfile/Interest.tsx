@@ -24,11 +24,11 @@ const Interest = (props: any) => {
               <ul>I Like reading</ul>
               <ul>Reading</ul>
               <ul>I Like Movies</ul>
-              <ul>movies</ul>
+              <ul>Movies</ul>
               <ul>I Like dress</ul>
-              <ul>dress</ul>
+              <ul>Dress</ul>
               <ul>I Like sports</ul>
-              <ul>sports</ul>
+              <ul>Sports</ul>
             </li>
           </div>
           <div className="text-start">

@@ -20,11 +20,11 @@ const Father = (props : any) => {
             <ul>Father Name</ul>
             <ul>Father Designation</ul>
             <ul>Education</ul>
-            <ul>fatherCompanyName</ul>
-            <ul>fatherEmployedIn</ul>
-            <ul>fatherFamilyName</ul>
-            <ul>fatherHomePlace</ul>
-            <ul>fatherWorkLocation</ul>
+            <ul>Father Company Name</ul>
+            <ul>Father Employed In</ul>
+            <ul>Father Family Name</ul>
+            <ul>Father Home Place</ul>
+            <ul>Father Work Location</ul>
           </li>
         </div>
         <div className="text-start">
