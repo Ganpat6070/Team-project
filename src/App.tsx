@@ -19,6 +19,9 @@ import Mypersonality from "./components/Profile/Mypersonality";
 import PrePart from "./components/Profile/PrePart";
 import AstroDetails from "./components/Profile/AestroDetails";
 import EditProfile from "./components/pages/EditProfile";
+import Finished from "./components/Profile/congrats";
+
+import { useParams } from 'react-router-dom';
 
 
 function App() {
@@ -26,6 +29,9 @@ function App() {
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
+  // let { token } = useParams();
+  // let token = props.match.params.id
+  // console.log(useParams());
 
   const pass = (gender:string, lessAge: string, greatAge: string, religion: string) => {
       setGender(gender);
@@ -47,16 +53,17 @@ function App() {
                 <Route path="/faqs" element={<Faqs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/otp" element={<Otp />} />
-                <Route path="/pass" element={<Pass />} />
+                <Route path={`/reset-password/`} element={<Pass/>} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
                 <Route path="/profileSearch" element={<ProfileSearch gender={gender} lessAge={lessAge} greatAge={greatAge} religion={religion} />}/>
-                <Route path="/profileDetails" element={<ProfileDetail />} />
+                <Route path="/profileDetails/:id" element={<ProfileDetail />} />
                 <Route path="/personal-info" element={<PersonalInfo/>} />
                 <Route path="/basic-info" element={<BasicInfo/>} />
                 <Route path="/mypersonality" element={<Mypersonality/>} />
                 <Route path="/prefpart"  element={<PrePart/>}/>
                 <Route path="/astrodata" element={<AstroDetails/>} />
+                <Route path="/finished" element={<Finished/>} />
                 <Route path="/data-info" element={<ShowData/>} />
                 <Route path="/data-add" element={<AddData/>} />
                 <Route path="/edit-profile" element={<EditProfile/>} />

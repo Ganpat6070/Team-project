@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import BasicInfomation from "../fullProfile/BasicInfo";
 import Contact from "../fullProfile/Contact";
@@ -9,10 +9,40 @@ import ReligiousInfo from "../fullProfile/ReligiousInfo";
 import Subscribe from "../fullProfile/Subscribe";
 import NavbarHead from "../navbar";
 
+import { useParams } from "react-router-dom";
+
 type Props = {};
 
 const ProfileDetail = (props: Props) => {
   const [dummy, setDummy] = useState<Number>(1);
+  const [data, setData] = useState<any>({});
+
+  const params = useParams();
+
+  console.log(params);
+
+  const fetchUsersData = async () => {
+    let response = await fetch(`http://localhost:8000/profile/${params.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await response.json();
+    setData(res.profile);
+  };
+
+  useEffect(() => {
+    fetchUsersData();
+  }, []);
+
+  console.log("mera data", data);
+
+  // Converts age based on date calendar
+  const dateOfBirth = new Date(data.dateOfBirth);
+  const ageInMilliseconds = Date.now() - dateOfBirth.getTime();
+  const ageInYears = new Date(ageInMilliseconds).getUTCFullYear() - 1970;
+
 
   return (
     <>
@@ -27,27 +57,38 @@ const ProfileDetail = (props: Props) => {
             borderTopRightRadius: "35px",
             borderBottomLeftRadius: "0px",
             borderBottomRightRadius: "0px",
+            boxShadow: "none",
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
           <Card.Img
-            src="../../image/png/girl31.png"
+            // src="../../image/png/girl31.png"
+            src={data.images}
             style={{
               borderRadius: "20px",
               width: "400px",
               height: "400px",
-              padding: "40px 80px 60px",
+              margin: "40px 60px",
             }}
-            alt="Full Detail"
+            alt="Profile Image of the User"
           />
+
           <Card.ImgOverlay
             className="text-start"
-            style={{ margin: "5% 29%", borderRadius: "20px" }}
+            style={{ borderRadius: "20px", position: "relative" }}
           >
-            <Card.Title className="my-4">Name : {}</Card.Title>
-            <Card.Text>Age : {}</Card.Text>
-            <Card.Text>Religion : {}</Card.Text>
-            <Card.Text>Profession : {}</Card.Text>
-            <Card.Text>Bio Data : {}</Card.Text>
+            <Card.Title className="my-4">
+              Name : &nbsp;&nbsp;&nbsp;
+              {data.firstName + " " + data.middleName + " " + data.lastName}
+            </Card.Title>
+            <Card.Text>Age : &nbsp;&nbsp;&nbsp;{ageInYears}</Card.Text>
+            <Card.Text>Religion : {data.religion}</Card.Text>
+            <Card.Text>Profession : {data.designation}</Card.Text>
+            <Card.Text>Marital Status : {data.maritalStatus}</Card.Text>
+            <Card.Text>City : {data.cityState}</Card.Text>
+            <Card.Text>Bio Data : {data.aboutMe}</Card.Text>
+
           </Card.ImgOverlay>
         </Card>
 
@@ -79,17 +120,17 @@ const ProfileDetail = (props: Props) => {
               My Contact Info
             </ul>
             <ul className="mt-2" onClick={() => setDummy(7)}>
-              Subscribe Now to contact this member
+              Subscribe Now
             </ul>
           </li>
         </div>
         <div style={{ width: "80%", marginLeft: "9%", padding: "2%" }}>
-          {dummy === 1 && <BasicInfomation />}
-          {dummy === 2 && <ReligiousInfo />}
-          {dummy === 3 && <Education />}
-          {dummy === 4 && <MyFamily />}
-          {dummy === 5 && <Interest />}
-          {dummy === 6 && <Contact />}
+          {dummy === 1 && <BasicInfomation data={data}/>}
+          {dummy === 2 && <ReligiousInfo data={data} />}
+          {dummy === 3 && <Education data={data} />}
+          {dummy === 4 && <MyFamily  data={data} />}
+          {dummy === 5 && <Interest  data={data} />}
+          {dummy === 6 && <Contact data={data}  />}
           {dummy === 7 && <Subscribe />}
         </div>
       </div>

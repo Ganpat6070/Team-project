@@ -3,11 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProgressBar.css";
 // import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import NavbarHead from "../navbar";
 // import BasicInfo from "./BasicInfo";
 
 const ProgressBar = () => {
   return (
     <>
+      <NavbarHead/>
       <div className="steps mt-4">
         <div className="step-item mx-4">
           <Link to="/basic-info">

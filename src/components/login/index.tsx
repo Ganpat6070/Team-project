@@ -2,10 +2,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 // import { auth } from "../firebase";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
 import NavbarHead from "../navbar";
 import { signInWithGoogle } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,27 +15,80 @@ import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
+  const [resetEmail, setResetEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const handleResetEmail = async () => {
+    let response = await fetch("http://localhost:8000/forget-password", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `http://localhost:3000/reset-password/`,
+      },
+      body: JSON.stringify({
+        email: resetEmail,
+      }),
+    });
+    if (response.ok) {
+      toast.success ("Email Sent!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else if (response.status === 404) {
+      toast.error("User not found!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+    let res = await response.json();
+    let token = res.forgetPasswordToken;
+
+    localStorage.setItem("resetPasswordtkn", token);
+    console.log(response);
+    setShow(false);
+  };
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
-    let response: any = await fetch("http://localhost:8000/login", {
+    let response = await fetch("http://localhost:8000/login", {
+      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: formData.email,
+        password: formData.password,
       }),
     });
 
     const res = await response.json();
-    console.log(res);
     const token = res.token;
-    localStorage.setItem('Token', token);
+    // const id = res.id;
+    // localStorage.setItem("id", id);
+    localStorage.setItem("Token", token);
+    console.log(token);
 
+    console.log(res);
+
+    // if (response.status === 200) {
+    //   toast.error(res.msg, {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // }
+    // if (response.status === 201) {
+    //   const uname = email;
+    //   localStorage.setItem("uname", JSON.stringify(uname));
+    //   toast.success(res.msg, {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    //   localStorage.setItem("login", "true");
+    //   setTimeout(() => {
+    //     navigate("/");
+    //   }, 1500);
+    // }
 
     if (res.msg) {
       if (
@@ -47,6 +101,8 @@ function Login() {
         });
       }
       if (res.msg === "User found successfully!") {
+        const uname = formData.email;
+        localStorage.setItem("uname", JSON.stringify(uname));
         toast.success(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -55,7 +111,7 @@ function Login() {
           navigate("/");
         }, 1500);
       }
-      if(res.msg === "please verify your email"){
+      if (res.msg === "please verify your email") {
         toast.warning(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -63,15 +119,114 @@ function Login() {
           navigate("/otp");
         }, 1500);
       }
-      // toast.success(res.msg, {
-      //   position: toast.POSITION.TOP_RIGHT,
-      // });
     } else {
       toast.error(res.errorMessage, {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
   };
+
+  // Iniail State  types for use reducer
+  type FormState = {
+    email: string;
+    password: string;
+  };
+
+  type FormValidityState = {
+    emailError: boolean;
+    passwordError: boolean;
+    isFormValid: boolean;
+  };
+
+  type FormAction = {
+    type: string | number;
+    payLoad: string | number;
+  };
+
+  type FormValidityAction = {
+    type: string;
+    payLoad: FormState;
+  };
+
+  // Iniail State for use reducer
+  const initialState: FormState = {
+    email: "",
+    password: "",
+  };
+
+  // form reducer function
+  const formReducer = (state: any, action: FormAction): FormState => {
+    switch (action.type) {
+      case "UPDATE_EMAIL":
+        return {
+          ...state,
+          email: action.payLoad,
+        };
+
+      case "UPDATE_PASSWORD":
+        return {
+          ...state,
+          password: action.payLoad,
+        };
+      default:
+        return state;
+    }
+  };
+
+  const formValidityReducer = (
+    state: any,
+    action: FormValidityAction,
+  ): FormValidityState => {
+    let isValid: boolean = false;
+    switch (action.type) {
+      case "VALIDATE_EMAIL":
+        isValid =
+          action.payLoad.email.length > 0 && action.payLoad.email.includes("@")
+            ? true
+            : false;
+        return {
+          ...state,
+          ...{
+            emailError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.firstNameError &&
+              !state.lastNameError &&
+              !state.ageError &&
+              !state.passwordError,
+          },
+        };
+      case "VALIDATE_PASSWORD":
+        isValid = action.payLoad.password.length > 9 ? true : false;
+        return {
+          ...state,
+          ...{
+            passwordError: !isValid,
+            isFormValid:
+              isValid &&
+              !state.firstNameError &&
+              !state.lastNameError &&
+              !state.ageError &&
+              !state.emailError,
+          },
+        };
+      default:
+        return state;
+    }
+  };
+  const initialValidityState: FormValidityState = {
+    emailError: false,
+    passwordError: false,
+    isFormValid: false,
+  };
+
+  // use reducer functions
+  const [formData, setFormData] = useReducer(formReducer, initialState);
+  const [formValidityData, setFormValidityData] = useReducer(
+    formValidityReducer,
+    initialValidityState,
+  );
+
   // const onSubmit = async (e: any) => {
   //   e.preventDefault();
 
@@ -155,12 +310,15 @@ function Login() {
                   </Carousel.Item>
                 </Carousel>
               </div>
-              <div className="col-xl-6" style={{ backgroundColor: "#FE8A4D" }}>
+              <div
+                className="col-xl-6"
+                style={{ backgroundColor: "rgba(232, 221, 221, 0.66)" }}
+              >
                 <div className="card-body p-md-5 text-black">
-                  <h3 className="mb-2 text-center text-white">
+                  <h3 className="mb-2 text-center text-dark">
                     Let’s get started now!
                   </h3>
-                  <h5 className="mb-5 text-center text-white">
+                  <h5 className="mb-5 text-center text-dark">
                     Login and find your life partner
                   </h5>
 
@@ -174,10 +332,28 @@ function Login() {
                         // ref={emailRef}
                         type="email"
                         placeholder="abc@xyz.com"
-                        onChange={(e) => setEmail(e.target.value)}
                         required
-                        value={email}
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({
+                            type: "UPDATE_EMAIL",
+                            payLoad: e.target.value,
+                          })
+                        }
+                        onBlur={(e) =>
+                          setFormValidityData({
+                            type: "VALIDATE_EMAIL",
+                            payLoad: formData,
+                          })
+                        }
                       />
+                      {formValidityData.emailError ? (
+                        <span className="text-danger size-small">
+                          Email Should Contain "@" and should be valid
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </Form.Group>
                     <Form.Group
                       className="mb-3 text-white"
@@ -188,10 +364,29 @@ function Login() {
                         // ref={passwordRef}
                         type="password"
                         placeholder="********"
-                        onChange={(e) => setPassword(e.target.value)}
                         required
-                        value={password}
+                        value={formData.password}
+                        onChange={(e) =>
+                          setFormData({
+                            type: "UPDATE_PASSWORD",
+                            payLoad: e.target.value,
+                          })
+                        }
+                        onBlur={(e) =>
+                          setFormValidityData({
+                            type: "VALIDATE_PASSWORD",
+                            payLoad: formData,
+                          })
+                        }
                       />
+                      {formValidityData.passwordError ? (
+                        <span className="text-danger size-small">
+                          Password Should Contain alphabets, Numbers & Symbols
+                          not be shorter then 6 latter
+                        </span>
+                      ) : (
+                        ""
+                      )}
                     </Form.Group>
                     <Form.Group
                       className="mb-3 text-white"
@@ -213,12 +408,47 @@ function Login() {
                       <ToastContainer />
                     </div>
                     <br />
-                    <p className="text-center text-light">Forgot Password ?</p>
-                    <p className="text-white text-center formFieldLink">
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Reset Password</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <Form>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control
+                              type="email"
+                              placeholder="name@example.com"
+                              value={resetEmail}
+                              onChange={(e) => setResetEmail(e.target.value)}
+                              autoFocus
+                            />
+                          </Form.Group>
+                        </Form>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="success" onClick={handleResetEmail}>
+                          Send Email
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                    <p
+                      className="text-center text-primary"
+                      onClick={handleShow}
+                    >
+                      Forgot Password ?
+                    </p>
+                    <p className="text-darks text-center formFieldLink">
                       New to PerfectMatch.com ?{" "}
                       <Link
                         to="/register"
-                        className="text-light"
+                        className="text-primary"
                         style={{ textDecoration: "none" }}
                       >
                         Register Free

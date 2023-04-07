@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Mypersonality.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
-import NavbarHead from "../navbar";
+import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
 
 const Mypersonality = () => {
+  const navigate = useNavigate();
   const [diet, setDiet] = useState("");
   const [smoke, setSmoke] = useState("");
   const [drink, setDrink] = useState("");
@@ -42,6 +43,42 @@ const Mypersonality = () => {
     foods,
     dressrange,
     dress,
+  };
+  let profileid: string | null = localStorage.getItem("profileID");
+
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/my-personality", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `${profileid}`,
+      },
+      body: JSON.stringify({
+        diet: diet,
+        smoke: smoke,
+        drink: drink,
+        music: music,
+        musicRange: musicrange,
+        reading: reading,
+        readingRange: readingrange,
+        movies: movies,
+        moviesRange: movierange,
+        sports: sports,
+        sportsRange: sportrange,
+        foods: foods,
+        foodsRange: foodrange,
+        dress: dress,
+        dressRange: dressrange,
+      }),
+    });
+    const res = await response.json();
+    console.log(res);
+    if (response.status === 201) {
+      toast.success("My Personality is saved!");
+      setTimeout(() => {
+        navigate("/astrodata");
+      }, 1500);
+    }
   };
 
   const dietHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -114,42 +151,10 @@ const Mypersonality = () => {
     }
   };
 
-  let id: string | null = localStorage.getItem('id');
-
-  const responsedata = async () => {
-    let response = await fetch("http://localhost:8000/my-personality", {
-      method: "POST",
-      headers: { "Content-Type": "application/json",
-      token: `${id}`
-    },
-      body: JSON.stringify({
-        diet: diet,
-        smoke:smoke,
-        drink: drink,
-        music: music,
-        musicRange: musicrange,
-        reading: reading,
-        readingRange:readingrange,
-        movies:movies,
-        moviesRange:movierange,
-        sports:sports,
-        sportsRange:sportrange,
-        foods:foods,
-        foodsRange:foodrange,
-        dress:dress,
-        dressRange:dressrange,
-
-      }),
-    });
-    const res = await response.json();
-    console.log(res);
-  };
-
   const submitHandler = (e: any) => {
     e.preventDefault();
-    console.log(responsedata);
-
-    responsedata();
+    saveData();
+    console.log(mypersonality);
   };
 
   return (
@@ -161,7 +166,6 @@ const Mypersonality = () => {
         width: "100%",
       }}
     >
-      <NavbarHead />
       <ProgressBar />
       <PhotoCard />
       <div
@@ -188,7 +192,9 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value="" hidden>
+                  Please Select
+                </option>
                 <option>Veg</option>
                 <option>Non-Veg</option>
                 <option>Other</option>
@@ -209,7 +215,9 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value="" hidden>
+                  Please Select
+                </option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -225,7 +233,9 @@ const Mypersonality = () => {
                 style={{ height: "50%" }}
                 className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
               >
-                <option hidden>Please Select</option>
+                <option value="" hidden>
+                  Please Select
+                </option>
                 <option>Yes</option>
                 <option>No</option>
               </select>
@@ -261,7 +271,9 @@ const Mypersonality = () => {
                 style={{ height: "30%" }}
                 className="form-control text-dark mt-1 mb-1 rounded-2 border-secondary form-select"
               >
-                <option hidden>Please Select</option>
+                <option value="" hidden>
+                  Please Select
+                </option>
                 <option>Cooking</option>
                 <option>Hiking</option>
                 <option>Gardening</option>
@@ -298,10 +310,11 @@ const Mypersonality = () => {
             </div>
 
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Film Music">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Film Music"
                   value="Film Music"
                   checked={music.includes("Film Music")}
                   onChange={musicHandler}
@@ -309,10 +322,11 @@ const Mypersonality = () => {
                 &nbsp;Film Music
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Devotional">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Devotional"
                   value="Devotional"
                   checked={music.includes("Devotional")}
                   onChange={musicHandler}
@@ -320,10 +334,11 @@ const Mypersonality = () => {
                 &nbsp;Devotional
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Albums">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Albums"
                   value="Albums"
                   checked={music.includes("Albums")}
                   onChange={musicHandler}
@@ -332,10 +347,11 @@ const Mypersonality = () => {
               </label>
             </Col>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Western">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Western"
                   value="Western"
                   checked={music.includes("Western")}
                   onChange={musicHandler}
@@ -343,10 +359,11 @@ const Mypersonality = () => {
                 &nbsp;Western
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Hindi Songs">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Hindi Songs"
                   value="Hindi Songs"
                   checked={music.includes("Hindi Songs")}
                   onChange={musicHandler}
@@ -354,10 +371,11 @@ const Mypersonality = () => {
                 &nbsp;Hindi Songs
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Gujrati Songs">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Gujrati Songs"
                   value="Gujrati Songs"
                   checked={music.includes("Gujrati Songs")}
                   onChange={musicHandler}
@@ -366,10 +384,11 @@ const Mypersonality = () => {
               </label>
             </Col>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Music Is My Life">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Music Is My Life"
                   value="Music Is My Life"
                   checked={music.includes("Music Is My Life")}
                   onChange={musicHandler}
@@ -377,10 +396,11 @@ const Mypersonality = () => {
                 &nbsp;Music Is My Life
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Tamil Songs">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Tamil Songs"
                   value="Tamil Songs"
                   checked={music.includes("Tamil Songs")}
                   onChange={musicHandler}
@@ -388,10 +408,11 @@ const Mypersonality = () => {
                 &nbsp;Tamil Songs
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Don't Listen To Music">
                 <input
                   type="checkbox"
                   name="music"
+                  id="Don't Listen To Music"
                   value="Don't Listen To Music"
                   checked={music.includes("Don't Listen To Music")}
                   onChange={musicHandler}
@@ -423,10 +444,11 @@ const Mypersonality = () => {
               />
             </div>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Newspapers">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Newspapers"
                   value="Newspapers"
                   checked={reading.includes("Newspapers")}
                   onChange={readHandler}
@@ -434,10 +456,11 @@ const Mypersonality = () => {
                 &nbsp;Newspapers
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Trade Journals">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Trade Journals"
                   value="Trade Journals"
                   checked={reading.includes("Trade Journals")}
                   onChange={readHandler}
@@ -445,10 +468,11 @@ const Mypersonality = () => {
                 &nbsp;Trade Journals
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Self Help Books">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Self Help Books"
                   value="Self Help Books"
                   checked={reading.includes("Self Help Books")}
                   onChange={readHandler}
@@ -457,10 +481,11 @@ const Mypersonality = () => {
               </label>
             </Col>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Management Books">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Management Books"
                   value="Management Books"
                   checked={reading.includes("Management Books")}
                   onChange={readHandler}
@@ -468,10 +493,11 @@ const Mypersonality = () => {
                 &nbsp;Management Books
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="ComedyR">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="ComedyR"
                   value="Comedy"
                   checked={reading.includes("Comedy")}
                   onChange={readHandler}
@@ -479,10 +505,11 @@ const Mypersonality = () => {
                 &nbsp;Comedy
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Biographies">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Biographies"
                   value="Biographies"
                   checked={reading.includes("Biographies")}
                   onChange={readHandler}
@@ -491,10 +518,11 @@ const Mypersonality = () => {
               </label>
             </Col>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Devotional Books">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Devotional Books"
                   value="Devotional Books"
                   checked={reading.includes("Devotional Books")}
                   onChange={readHandler}
@@ -502,10 +530,11 @@ const Mypersonality = () => {
                 &nbsp;Devotional Books
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Romance">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="Romance"
                   value="Romance"
                   checked={reading.includes("Romance")}
                   onChange={readHandler}
@@ -513,10 +542,11 @@ const Mypersonality = () => {
                 &nbsp;Romance
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="I Don't Read Much">
                 <input
                   type="checkbox"
                   name="reading"
+                  id="I Don't Read Much"
                   value="I Don't Read Much"
                   checked={reading.includes("I Don't Read Much")}
                   onChange={readHandler}
@@ -548,10 +578,11 @@ const Mypersonality = () => {
               />
             </div>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="English">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="English"
                   value="English"
                   checked={movies.includes("English")}
                   onChange={moviesHandler}
@@ -559,10 +590,11 @@ const Mypersonality = () => {
                 &nbsp;English
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Hindi">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Hindi"
                   value="Hindi"
                   checked={movies.includes("Hindi")}
                   onChange={moviesHandler}
@@ -570,10 +602,11 @@ const Mypersonality = () => {
                 &nbsp;Hindi
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Other Language Movies">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Other Language Movies"
                   value="Other Language Movies"
                   checked={movies.includes("Other Language Movies")}
                   onChange={moviesHandler}
@@ -594,10 +627,11 @@ const Mypersonality = () => {
                 &nbsp;Action
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Romance">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Romance"
                   value="Romance"
                   checked={movies.includes("Romance")}
                   onChange={moviesHandler}
@@ -605,10 +639,11 @@ const Mypersonality = () => {
                 &nbsp;Romance
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Comedy">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Comedy"
                   value="Comedy"
                   checked={movies.includes("Comedy")}
                   onChange={moviesHandler}
@@ -617,10 +652,11 @@ const Mypersonality = () => {
               </label>
             </Col>
             <Col className="mt-3">
-              <label htmlFor="">
+              <label htmlFor="Family Stories">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Family Stories"
                   value="Family Stories"
                   checked={movies.includes("Family Stories")}
                   onChange={moviesHandler}
@@ -628,10 +664,11 @@ const Mypersonality = () => {
                 &nbsp;Family Stories
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Spy">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Spy"
                   value="Spy"
                   checked={movies.includes("Spy")}
                   onChange={moviesHandler}
@@ -639,10 +676,11 @@ const Mypersonality = () => {
                 &nbsp;Spy
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Don't See">
                 <input
                   type="checkbox"
                   name="movie"
+                  id="Don't See"
                   value="Don't See Much Movies"
                   checked={movies.includes("Don't See Much Movies")}
                   onChange={moviesHandler}
@@ -674,10 +712,11 @@ const Mypersonality = () => {
               />
             </div>
             <div className="col-xl mt-3">
-              <label htmlFor="">
+              <label htmlFor="Cricket">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Cricket"
                   value="Cricket"
                   checked={sports.includes("Cricket")}
                   onChange={sportsHandler}
@@ -685,10 +724,11 @@ const Mypersonality = () => {
                 &nbsp;Cricket
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Football">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Football"
                   value="Football"
                   checked={sports.includes("Football")}
                   onChange={sportsHandler}
@@ -696,10 +736,11 @@ const Mypersonality = () => {
                 &nbsp;Football
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Tennis">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Tennis"
                   value="Tennis"
                   checked={sports.includes("Tennis")}
                   onChange={sportsHandler}
@@ -708,10 +749,11 @@ const Mypersonality = () => {
               </label>
             </div>
             <div className="col-xl mt-3">
-              <label htmlFor="">
+              <label htmlFor="Badminton">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Badminton"
                   value="Badminton"
                   checked={sports.includes("Badminton")}
                   onChange={sportsHandler}
@@ -719,10 +761,11 @@ const Mypersonality = () => {
                 &nbsp;Badminton
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Basketball">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Basketball"
                   value="Basketball"
                   checked={sports.includes("Basketball")}
                   onChange={sportsHandler}
@@ -730,10 +773,11 @@ const Mypersonality = () => {
                 &nbsp;Basketball
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Table Tennis">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Table Tennis"
                   value="Table Tennis"
                   checked={sports.includes("Table Tennis")}
                   onChange={sportsHandler}
@@ -742,10 +786,11 @@ const Mypersonality = () => {
               </label>
             </div>
             <div className="col-xl mt-3">
-              <label htmlFor="">
+              <label htmlFor="Swimming">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Swimming"
                   value="Swimming"
                   checked={sports.includes("Swimming")}
                   onChange={sportsHandler}
@@ -753,10 +798,11 @@ const Mypersonality = () => {
                 &nbsp;Swimming
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Boxing">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Boxing"
                   value="Boxing"
                   checked={sports.includes("Boxing")}
                   onChange={sportsHandler}
@@ -764,10 +810,11 @@ const Mypersonality = () => {
                 &nbsp;Boxing
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Don't Like Sports Much">
                 <input
                   type="checkbox"
                   name="sport"
+                  id="Don't Like Sports Much"
                   value="Don't Like Sports Much"
                   checked={sports.includes("Don't Like Sports Much")}
                   onChange={sportsHandler}
@@ -799,10 +846,11 @@ const Mypersonality = () => {
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor="">
+              <label htmlFor="South Indian">
                 <input
                   type="checkbox"
                   name="food"
+                  id="South Indian"
                   value="South Indian"
                   checked={foods.includes("South Indian")}
                   onChange={foodHandler}
@@ -810,10 +858,11 @@ const Mypersonality = () => {
                 &nbsp;South Indian
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="North Indian">
                 <input
                   type="checkbox"
                   name="food"
+                  id="North Indian"
                   value="North Indian"
                   checked={foods.includes("North Indian")}
                   onChange={foodHandler}
@@ -821,10 +870,11 @@ const Mypersonality = () => {
                 &nbsp;North Indian
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Chinese">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Chinese"
                   value="Chinese"
                   checked={foods.includes("Chinese")}
                   onChange={foodHandler}
@@ -833,10 +883,11 @@ const Mypersonality = () => {
               </label>
             </div>
             <div className="col mt-3">
-              <label htmlFor="">
+              <label htmlFor="Kathiyawadi">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Kathiyawadi"
                   value="Kathiyawadi"
                   checked={foods.includes("Kathiyawadi")}
                   onChange={foodHandler}
@@ -844,10 +895,11 @@ const Mypersonality = () => {
                 &nbsp;Kathiyawadi
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Mexican">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Mexican"
                   value="Mexican"
                   checked={foods.includes("Mexican")}
                   onChange={foodHandler}
@@ -855,10 +907,11 @@ const Mypersonality = () => {
                 &nbsp;Mexican
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Italian">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Italian"
                   value="Italian"
                   checked={foods.includes("Italian")}
                   onChange={foodHandler}
@@ -867,10 +920,11 @@ const Mypersonality = () => {
               </label>
             </div>
             <div className="col mt-3">
-              <label htmlFor="">
+              <label htmlFor="Thai">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Thai"
                   value="Thai"
                   checked={foods.includes("Thai")}
                   onChange={foodHandler}
@@ -878,10 +932,11 @@ const Mypersonality = () => {
                 &nbsp;Thai
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Kerala">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Kerala"
                   value="Kerala"
                   checked={foods.includes("Kerala")}
                   onChange={foodHandler}
@@ -889,10 +944,11 @@ const Mypersonality = () => {
                 &nbsp;Kerala
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Anything">
                 <input
                   type="checkbox"
                   name="food"
+                  id="Anything"
                   value="Anything"
                   checked={foods.includes("Anything")}
                   onChange={foodHandler}
@@ -924,10 +980,11 @@ const Mypersonality = () => {
               />
             </div>
             <div className="col mt-3">
-              <label htmlFor="">
+              <label htmlFor="Indian">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="Indian"
                   value="Indian"
                   checked={dress.includes("Indian")}
                   onChange={dressHandler}
@@ -935,10 +992,11 @@ const Mypersonality = () => {
                 &nbsp;Indian
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Indo Western">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="Indo Western"
                   value="Indo Western"
                   checked={dress.includes("Indo Western")}
                   onChange={dressHandler}
@@ -946,10 +1004,11 @@ const Mypersonality = () => {
                 &nbsp;Indo Western
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Casual">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="Casual"
                   value="Casual"
                   checked={dress.includes("Casual")}
                   onChange={dressHandler}
@@ -958,10 +1017,11 @@ const Mypersonality = () => {
               </label>
             </div>
             <div className="col mt-3">
-              <label htmlFor="">
+              <label htmlFor="Western">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="Western"
                   value="Western"
                   checked={dress.includes("Western")}
                   onChange={dressHandler}
@@ -969,10 +1029,11 @@ const Mypersonality = () => {
                 &nbsp;Western
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="Traditional">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="Traditional"
                   value="Traditional"
                   checked={dress.includes("Traditional")}
                   onChange={dressHandler}
@@ -980,10 +1041,11 @@ const Mypersonality = () => {
                 &nbsp;Traditional
               </label>
               <br />
-              <label htmlFor="">
+              <label htmlFor="No Preference">
                 <input
                   type="checkbox"
                   name="dress"
+                  id="No Preference"
                   value="No Preference"
                   checked={dress.includes("No Preference")}
                   onChange={dressHandler}

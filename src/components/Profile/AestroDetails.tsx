@@ -3,54 +3,93 @@ import "./AestroDetails.css";
 // import ProgressBar from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search } from "react-bootstrap-icons";
 import PhotoCard from "./PhotoCard";
 import ProgressBar from "./ProgressBar";
 import NavbarHead from "../navbar";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const AstroDetails = () => {
-  const [adob, setadob] = useState("");
+  const navigate = useNavigate();
+
+  const [dob, setDob] = useState("");
   const [aHours, setaHours] = useState("");
   const [aMinutes, setaMinutes] = useState("");
   const [aSeconds, setaSeconds] = useState("");
   const [aAMPM, setaAMPM] = useState("AM");
-  const [abirthtimeC, setabirthtimeC] = useState("");
-  const [aplace, setaplace] = useState("");
-  const [alongitude, setalongitude] = useState("");
-  const [alatitude, setalatitude] = useState("");
-  const [aTimezone, setaTimezone] = useState("");
-
-  const [error, setError] = useState<boolean>(false);
+  // const [timeofBirth, setTimeofBirth] = useState("");
+  const [timeCorrection, setTimeCorrection] = useState("");
+  const [placeofBirth, setPlaceofBirth] = useState("");
+  const [logitude, setLogitude] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [timeZone, setTimeZone] = useState("");
 
   const atime = aHours + "H " + aMinutes + "M " + aSeconds + "S " + aAMPM;
 
-  const astroObject = {
-    adob,
-    // aHours,
-    // aMinutes,
-    // aSeconds,
-    // aAMPM,
+  const [error, setError] = useState<boolean>(false);
+
+  const astrodata = {
+    dob,
     atime,
-    abirthtimeC,
-    aplace,
-    alongitude,
-    alatitude,
-    aTimezone,
+    timeCorrection,
+    placeofBirth,
+    logitude,
+    latitude,
+    timeZone,
+  };
+
+  // const time = hours + ":" + minute
+
+  const dobHandler = (e: React.ChangeEvent<HTMLDataElement>) => {
+    if (!(e.target.value === "")) {
+      setError(false);
+      setDob(e.target.value);
+    }
+    if (e.target.value === "") {
+      setError(true);
+    }
+  };
+
+  let profileid: string | null = localStorage.getItem("profileID");
+  // console.log(profileid);
+  const saveData = async () => {
+    let response = await fetch("http://localhost:8000/astro-info", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": `${profileid}`,
+      },
+      body: JSON.stringify({
+        "astroDateOfBirth": dob,
+        "timeOfBirth": atime,
+        "birthTimeCorrection": timeCorrection,
+        "placeOfBirth": placeofBirth,
+        "longitude": logitude,
+        "latitude": latitude,
+        "timeZone": timeZone,
+      }),
+    });
+    const res = await response.json();
+    if (response.status === 201) {
+      toast.success("Astro info saved!");
+      setTimeout(() => {
+        navigate("/finished");
+      }, 1500);
+    }
+    console.log(res);
   };
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    // if (adob === "") {
-    //   setError(true);
-    // }else{
-    //   console.log(astroObject);
-    // }
-    if (adob === "") {
+    if (dob === "") {
       setError(true);
     } else {
-      console.log(astroObject);
+      setError(false);
+      saveData();
+      console.log(astrodata);
+      
     }
   };
 
@@ -66,7 +105,6 @@ const AstroDetails = () => {
     >
       {/* <ProgressBar /> */}
       <div className="">
-        <NavbarHead />
         <ProgressBar />
         <PhotoCard />
       </div>
@@ -94,13 +132,8 @@ const AstroDetails = () => {
               ( You can create your free horoscope on PerfectMatch )
             </small>
           </p>
+
           <Row>
-            {error ? (
-              <small className="text-danger">
-                {"Please enter the required (*) value"}
-              </small>
-            ) : null}{" "}
-            
             <Col className="px-2 " style={{ marginRight: "-2%" }}>
               <label htmlFor="">
                 Date Of Birth<span className="text-danger">*</span>
@@ -108,12 +141,18 @@ const AstroDetails = () => {
               <br />
               <input
                 type="date"
-                value={adob}
                 style={{ height: "50%" }}
-                onChange={(e) => setadob(e.target.value)}
+                onChange={dobHandler}
+                value={dob}
                 className="form-control mt-1 py-0"
               />
+              {error ? (
+                <small className="text-danger ">
+                  Date of birth is required
+                </small>
+              ) : null}
             </Col>
+
             <Col
               className="p-1 mt-1 px-2 py-0 "
               style={{ marginLeft: "0%", marginRight: "0%" }}
@@ -179,16 +218,19 @@ const AstroDetails = () => {
               <label htmlFor="">Birth Time Correction</label>
               <br />
               <select
+                onChange={(e) => {
+                  setTimeCorrection(e.target.value);
+                }}
                 style={{ height: "50%" }}
                 className="form-control p-2 text-dark mt-1 rounded-2 border-secondary form-select bg-white "
-                value={abirthtimeC}
-                onChange={(e) => setabirthtimeC(e.target.value)}
+                name=""
+                id=""
               >
                 <option value="" hidden>
                   Please Select
                 </option>
-                <option>Yes</option>
-                <option>No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </Col>
           </Row>
@@ -200,20 +242,22 @@ const AstroDetails = () => {
               </label>
               <br />
               <input
+                onChange={(e) => {
+                  setPlaceofBirth(e.target.value);
+                }}
                 type="text"
-                value={aplace}
-                onChange={(e) => setaplace(e.target.value)}
-                className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
+                className="icon form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
               />
             </Col>
             <Col>
-              <label htmlFor="">Longitude</label>
+              <label htmlFor="">Logitude</label>
               <br />
 
               <input
+                onChange={(e) => {
+                  setLogitude(e.target.value);
+                }}
                 type="text"
-                value={alongitude}
-                onChange={(e) => setalongitude(e.target.value)}
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
               />
@@ -229,9 +273,10 @@ const AstroDetails = () => {
               <label htmlFor="">Latitude</label>
               <br />
               <input
+                onChange={(e) => {
+                  setLatitude(e.target.value);
+                }}
                 type="text"
-                value={alatitude}
-                onChange={(e) => setalatitude(e.target.value)}
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className="form-control p-2  text-dark mt-1 rounded-2 border-secondary form-input"
               />
@@ -241,11 +286,12 @@ const AstroDetails = () => {
               <label htmlFor="">Time Zone</label>
               <br />
               <input
+                onChange={(e) => {
+                  setTimeZone(e.target.value);
+                }}
                 style={{ border: "1px solid blue", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input "
                 type="text"
-                value={aTimezone}
-                onChange={(e) => setaTimezone(e.target.value)}
               />
             </Col>
           </Row>
@@ -257,7 +303,7 @@ const AstroDetails = () => {
           </p>
           <hr className="mb-5" />
 
-          <Link to="\">
+          <Link to="/finished">
             <button
               className="btn btn-light text-white btn-xl mt-2"
               type="button"

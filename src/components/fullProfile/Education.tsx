@@ -1,6 +1,7 @@
 import React from "react";
 
-const Education = () => {
+const Education = (props: any) => {
+  const data2 = props.data;
   return (
     <div>
       <div className="text-center fw-bold">Education Details</div>
@@ -17,7 +18,15 @@ const Education = () => {
         <div className="text-start ml-4">
           <li style={{ listStyle: "none", fontWeight: "300" }}>
             <ul>Education</ul>
-            <ul>Schools</ul>
+            <ul>Detail of Education</ul>
+            <ul>College Name</ul>
+            <ul>course</ul>
+            <ul>placeCollege</ul>
+            <ul>yearOfStudyCollege</ul>
+
+            <ul>School Name</ul>
+            <ul>School Place</ul>
+            <ul>Study Year of School</ul>
             <ul>Collages</ul>
             <ul>Employment Details</ul>
             <ul>career Details</ul>
@@ -25,11 +34,20 @@ const Education = () => {
         </div>
         <div className="text-start">
           <li style={{ listStyle: "none" }}>
-            <ul>Chartered Accountant ( CA )</ul>
-            <ul>St. Xaviors</ul>
-            <ul>St. Xaviors</ul>
-            <ul>Accounts/Financial Professional</ul>
-            <ul>--</ul>
+            <ul>{data2.education? data2.education.join(", ")  : "Not Available"}</ul>
+            <ul>{data2.educationInDetail ? data2.educationInDetail : "Not Available"}</ul>
+            <ul>{data2.collegeName ? data2.collegeName : "Not Available"}</ul>
+            <ul>{data2.course ? data2.course : "Not Available"}</ul>
+            <ul>{data2.placeCollege ? data2.placeCollege : "Not Available"}</ul>
+            <ul>{data2.yearOfStudyCollege ? data2.yearOfStudyCollege : "Not Available"}</ul>
+            
+            <ul>{data2.schoolName ? data2.schoolName : "Not Available"}</ul>
+            <ul>{data2.schoolPlace ? data2.schoolPlace : "Not Available"}</ul>
+            <ul>{data2.yearOfStudySchool ? data2.yearOfStudySchool : "Not Available"}</ul>
+
+            <ul>{data2.gender ? data2.gender : "Not Available"}</ul>
+            <ul>{data2.gender ? data2.gender : "Not Available"}</ul>
+            <ul>{data2.gender ? data2.gender : "Not Available"}</ul>
           </li>
         </div>
       </div>

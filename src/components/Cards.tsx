@@ -5,14 +5,15 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
 function CardBox(props: string | any) {
+
   const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
   const getlogin = localStorage.getItem("login");
   console.log(filteredData);
 
-  const handleDetails = () => {
+  const handleDetails = (id: any): any => {
     if (getlogin === "true") {
-      navigate("/profileDetails");
+      navigate(`/profileDetails/${id}`);
     } else {
       navigate("/login");
     }
@@ -30,19 +31,24 @@ function CardBox(props: string | any) {
       />
 
       <Card.Body>
+        <Card.Title>{props.id}</Card.Title>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.ageAndReligion}</Card.Text>
-        <p > <b>Address : </b>&nbsp;&nbsp;{props.address}</p>
-        
-        <Card.Text>{props.designation}</Card.Text>
-        <Card.Text>{props._id}</Card.Text>
+        <p>
+          {" "}
+          <b>Address : </b>&nbsp;&nbsp;{props.address}
+        </p>
+        <Card.Text>{props.education}</Card.Text>
 
+        <Card.Text>{props.designation}</Card.Text>
+        {/* <Card.Text>{props._id}</Card.Text> */}
 
         {/* {props.education.map((edu: string[]) => <Card.Text>{edu}</Card.Text>)} */}
 
-
         <Button
-          onClick={handleDetails}
+          onClick={() => {
+            handleDetails(props.id);
+          }}
           variant="primary"
           style={{
             cursor: "pointer",

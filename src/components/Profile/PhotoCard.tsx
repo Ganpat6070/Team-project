@@ -1,31 +1,6 @@
-import React, { useState } from 'react';
 import "./PhotoCard.css";
 import { Facebook } from "react-bootstrap-icons";
 const PhotoCard = () => {
-  const handleFileChange = (event: any) => {
-    console.log(event.target.files[0]);
-  };
-
-  // const [imageUrl, setImageUrl] = useState('');
-
-  // const handleFileChange = async (event: any) => {
-  //   const file = event.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-
-  //   try {
-  //     const response = await fetch('/api/upload-image', {
-  //       method: 'POST',
-  //       body: formData
-  //     });
-
-  //     const data = await response.json();
-  //     setImageUrl(data.imageUrl);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   return (
     <div
       className="container p-2 border border-secondary rounded "
@@ -75,8 +50,7 @@ const PhotoCard = () => {
       <div className="row mt-2 mx-0">
         <div className="col-sm">
           <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcLocal">
-            <input type="file" name="file" onChange={handleFileChange} />
-            {/* {imageUrl && <img src ={imageUrl} alt="Uploaded Image" />} */}
+            <input type="file" name="file" />
           </button>
         </div>
         <div className="col-sm">
