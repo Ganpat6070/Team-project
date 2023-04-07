@@ -5,14 +5,22 @@ import NavbarHead from "../../navbar";
 import "./Otp.css";
 import { ToastContainer, toast } from "react-toastify";
 import Cookie from "js-cookie";
+import { useParams } from "react-router-dom";
 
 const Otp = () => {
   const navigate = useNavigate();
-  const [otp, setOtp] = useState<number>();
+  const [otp, setOtp] = useState<number>(0);
   // console.log(otp)
   const verifyOtp = async (e: any) => {
     e.preventDefault();
 
+    if (otp === 0){
+      console.log("otp is null")
+      toast.error("Please enter your OTP", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return
+    }
     // let token = localStorage.getItem("Token");
     let id = localStorage.getItem("id");
     console.log("id:",id);
@@ -118,9 +126,10 @@ const Otp = () => {
                         Enter Your OTP
                       </label>
                       <input
-                        type="number"
+                        type="tel"
                         className="form-control"
                         id="otp"
+                        minLength={4}
                         maxLength={4}
                         onWheel={(e) => e.currentTarget.blur()}
                         onChange={(e) => {

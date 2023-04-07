@@ -9,7 +9,7 @@ a:hover {
   text-decoration: none;
 }
 .myform-area {
-  overflow: hidden;
+  overflow: hidden; 
   padding: 60px 0;
   background: #f4fffe;
   position: relative;

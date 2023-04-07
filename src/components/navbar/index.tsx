@@ -28,6 +28,11 @@ const NavbarHead = () => {
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const getlogin = localStorage.getItem("login");
 
+  // popup state
+  const [popup, setPopup] = useState<boolean>(false);
+  const handlePopupClose = () => setPopup(false);
+ 
+
   const logoutHandler = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("Token");
@@ -47,36 +52,54 @@ const NavbarHead = () => {
       setUser(capitalizedName);
 
       setIsLogedin(true);
-    } else setIsLogedin(false);
+      // setPopup(true);
+    } else {
+      setIsLogedin(false);
+      // setPopup(false);
+    }
   }, [setIsLogedin, getlogin]);
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const deleteProfile = async () => {
     let profileid = localStorage.getItem("Token");
-    
-    let response = await fetch(`http://localhost:8000/profile-delete/${profileid}`, {
-      method: "GET",
-    });
+
+    let response = await fetch(
+      `http://localhost:8000/profile-delete/${profileid}`,
+      {
+        method: "GET",
+      },
+    );
     // if (!response.ok) {
     //   throw new Error("Something went wrong!");
     // }
-    if (response.status === 200){
+    if (response.status === 200) {
       toast.error("Your profile data has been deleted!", {
         position: toast.POSITION.TOP_RIGHT,
       });
       setShow(false);
     }
-    if (response.status === 404){
+    if (response.status === 404) {
       toast.error("Profile data not found!", {
         position: toast.POSITION.TOP_RIGHT,
       });
       setShow(false);
     }
-  
   };
+
   return (
     <>
+      <Modal show={popup} onHide={handlePopupClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Complete Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Please complete your profile!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handlePopupClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       {!islogedin && (
         <Navbar
           className="justify-content-center bg-transparent"

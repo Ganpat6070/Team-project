@@ -197,7 +197,7 @@ function Login() {
           },
         };
       case "VALIDATE_PASSWORD":
-        isValid = action.payLoad.password.length > 9 ? true : false;
+        isValid = action.payLoad.password.length > 6 ? true : false;
         return {
           ...state,
           ...{

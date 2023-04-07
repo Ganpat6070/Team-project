@@ -1,27 +1,28 @@
 import { Carousel } from "react-bootstrap";
 import "./Pass.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 const Pass = () => {
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const [confirmPassword, setConfirmPassword] = useState("");
   const location = useLocation();
-  // const token = new URLSearchParams(location.search).get("token");
-  const verifyOtp = async () => {
-    let token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MmQwYjZhYTIzYTFhNTRiYWFlMzllNCIsImlhdCI6MTY4MDc2OTczNywiZXhwIjoxNjgwODU2MTM3fQ.g_9VXiykXohwm926Fj6bplOyVfEcAKYt6WEcVVFoHXE";
+  const token = useParams();
+  const resetPassword = async () => {
     // let token = localStorage.getItem("Token");
     // let id = localStorage.getItem("id");
     // console.log("id:", id);
 
     let response = await fetch(
-      `http://localhost:8000//forget-password/${token}`,
+      `http://localhost:8000/forget-password/${token.token}`,
       {
+        credentials:"include",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${token}`,
         },
         body: JSON.stringify({
           password: password,
@@ -29,11 +30,35 @@ const Pass = () => {
       },
     );
     const res = await response.json();
-    console.log(response  );
+    console.log(response);
+    console.log(res);
+    if(response.status === 200){
+      toast.success("Password changed successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      navigate('/login')
+    } else {
+      toast.error("Your token has expired", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
-  const handleSubmit = () => {
-    verifyOtp();
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (password === "") {
+      console.log("Please enter password");
+      toast.error("Please enter your password", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else if (!(password === confirmPassword)){
+      toast.error("Password doesn't match!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } 
+    else {
+      resetPassword();
+    }
   };
 
   return (
@@ -110,7 +135,6 @@ const Pass = () => {
                         // aria-describedby="emailHelp"
                         placeholder="*******"
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                         value={password}
                       />
                     </label>
@@ -124,7 +148,6 @@ const Pass = () => {
                         placeholder="*******"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         value={confirmPassword}
-                        required
                       />{" "}
                     </label>
                     <small id="password" className="form-text text-muted">
@@ -134,6 +157,7 @@ const Pass = () => {
                   <div className="myform-button">
                     <button className="myform-btn">Set Password</button>
                   </div>
+                  <ToastContainer />
                   <p className="securitytext">
                     <img
                       className="securitylogo"

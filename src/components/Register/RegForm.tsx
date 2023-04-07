@@ -8,11 +8,13 @@ import { Carousel } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NavbarHead from "../navbar";
+import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import { FaSmileWink } from "react-icons/fa";
 
 const RegForm2 = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
   const [fullName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setNumber] = useState<number>();
@@ -84,7 +86,10 @@ const RegForm2 = () => {
     }
   };
 
-  const formValidityReducer = (state: any, action: FormValidityAction): FormValidityState => {
+  const formValidityReducer = (
+    state: any,
+    action: FormValidityAction,
+  ): FormValidityState => {
     let isValid: boolean = false;
     let regex = /^[a-zA-Z]*$/;
     switch (action.type) {
@@ -92,8 +97,8 @@ const RegForm2 = () => {
         // isValid = action.payLoad.fullName.length > 0 ? true : false;
         isValid = action.payLoad.fullName.length > 4 ? true : false;
         // isValid = action.payLoad.fullName = regex ? true : false;
-        if (!regex.test(fullName)){
-          isValid = true 
+        if (!regex.test(fullName)) {
+          isValid = true;
         }
         return {
           ...state,
@@ -102,13 +107,13 @@ const RegForm2 = () => {
             isFormValid:
               isValid &&
               !state.lastNameError &&
-            
               !state.emailError &&
               !state.passwordError,
           },
         };
       case "VALIDATE_PHONE_NUMBER":
-        isValid = action.payLoad.phoneNumber.toString().length === 10 ? true : false;
+        isValid =
+          action.payLoad.phoneNumber.toString().length === 10 ? true : false;
         return {
           ...state,
           ...{
@@ -169,7 +174,7 @@ const RegForm2 = () => {
   const [formData, setFormData] = useReducer(formReducer, initialState);
   const [formValidityData, setFormValidityData] = useReducer(
     formValidityReducer,
-    initialValidityState
+    initialValidityState,
   );
 
   //
@@ -240,11 +245,11 @@ const RegForm2 = () => {
       <NavbarHead />
       <div className="register-photo">
         <div className="form-container imgdiv">
-          <div className="image-hold" >
-            <Carousel className="imgset" >
-              <Carousel.Item >
+          <div className="image-hold">
+            <Carousel className="imgset">
+              <Carousel.Item>
                 <img
-                  style={{height:"800px"}}
+                  style={{ height: "800px" }}
                   className="d-block w-0  "
                   src="../../image/quick-reg.slideA.jpg"
                   alt="First slide"
@@ -260,7 +265,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
-                 style={{height:"800px"}}
+                  style={{ height: "800px" }}
                   className="d-block w-0  "
                   src="../../image/quick-reg.slideC.jpg"
                   alt="First slide"
@@ -276,7 +281,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
-                 style={{height:"800px"}}
+                  style={{ height: "800px" }}
                   className="d-block w-0"
                   src="../../image/quick-reg.slideA.jpg"
                   alt="Second slide"
@@ -292,7 +297,7 @@ const RegForm2 = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
-                 style={{height:"800px"}}
+                  style={{ height: "800px" }}
                   className="d-block w-0"
                   src="../../image/regimage.jpg"
                   alt="Third slide"
@@ -334,12 +339,22 @@ const RegForm2 = () => {
                     payLoad: e.target.value,
                   })
                 }
-                onBlur={(e) => setFormValidityData({type: "VALIDATE_FULL_NAME", payLoad: formData})}
-
+                onBlur={(e) =>
+                  setFormValidityData({
+                    type: "VALIDATE_FULL_NAME",
+                    payLoad: formData,
+                  })
+                }
               />
 
               {/* <span className="text-danger size-small">{firstError}</span> */}
-              {formValidityData.fullNameError ? <span className="text-danger size-small">Name Should be only alphabets & not shorter then 4 latter</span> : ""}
+              {formValidityData.fullNameError ? (
+                <span className="text-danger size-small">
+                  Name Should be only alphabets & not shorter then 4 latter
+                </span>
+              ) : (
+                ""
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="email">Your Email</label>
@@ -357,15 +372,25 @@ const RegForm2 = () => {
                 style={{
                   backgroundColor: formValidityData.emailError ? "pink" : "",
                 }}
-
                 onChange={(e) =>
                   setFormData({ type: "UPDATE_EMAIL", payLoad: e.target.value })
                 }
-                onBlur={(e) => setFormValidityData({type: "VALIDATE_EMAIL", payLoad: formData})}
+                onBlur={(e) =>
+                  setFormValidityData({
+                    type: "VALIDATE_EMAIL",
+                    payLoad: formData,
+                  })
+                }
 
                 // value={email}
               />
-              {formValidityData.emailError ? <span className="text-danger size-small">Email Should Contain "@" and should be valid</span> : ""}
+              {formValidityData.emailError ? (
+                <span className="text-danger size-small">
+                  Email Should Contain "@" and should be valid
+                </span>
+              ) : (
+                ""
+              )}
 
               {/* <span className="text-danger size-small">{emailError}</span> */}
             </div>
@@ -389,7 +414,14 @@ const RegForm2 = () => {
                 </select>
                 <input
                   // required
-                  style={{ margin: "0", background: "0", border: "0" , backgroundColor: formValidityData.phoneNumberError ? "pink" : "",}}
+                  style={{
+                    margin: "0",
+                    background: "0",
+                    border: "0",
+                    backgroundColor: formValidityData.phoneNumberError
+                      ? "pink"
+                      : "",
+                  }}
                   className="form-control"
                   // type="tel"
                   type="tel"
@@ -397,20 +429,29 @@ const RegForm2 = () => {
                   placeholder="1234567890"
                   minLength={10}
                   maxLength={10}
-    
                   onChange={(e) =>
                     setFormData({
                       type: "UPDATE_PHONE_NUMBER",
                       payLoad: parseInt(e.target.value),
                     })
                   }
-                onBlur={(e) => setFormValidityData({type: "VALIDATE_PHONE_NUMBER", payLoad: formData})}
-
+                  onBlur={(e) =>
+                    setFormValidityData({
+                      type: "VALIDATE_PHONE_NUMBER",
+                      payLoad: formData,
+                    })
+                  }
                 />
               </div>
-
             </div>
-            {formValidityData.phoneNumberError ? <span className="text-danger size-small">Phone Number Should only Contains Digit & only 10 digits are allowed</span> : ""}
+            {formValidityData.phoneNumberError ? (
+              <span className="text-danger size-small">
+                Phone Number Should only Contains Digit & only 10 digits are
+                allowed
+              </span>
+            ) : (
+              ""
+            )}
 
             <div className="form-group">
               <label htmlFor="email">Password</label>
@@ -422,28 +463,39 @@ const RegForm2 = () => {
                 style={{
                   backgroundColor: formValidityData.passwordError ? "pink" : "",
                 }}
-
                 onChange={(e) =>
                   setFormData({
                     type: "UPDATE_PASSWORD",
                     payLoad: e.target.value,
                   })
                 }
-                onBlur={(e) => setFormValidityData({type: "VALIDATE_PASSWORD", payLoad: formData})}
-
+                onBlur={(e) =>
+                  setFormValidityData({
+                    type: "VALIDATE_PASSWORD",
+                    payLoad: formData,
+                  })
+                }
               />
             </div>
-            {formValidityData.passwordError ? <span className="text-danger size-small">Password Should Contain alphabets, Numbers & Symbols not be shorter then 6 latter</span> : ""}
+            {formValidityData.passwordError ? (
+              <span className="text-danger size-small">
+                Password Should Contain alphabets, Numbers & Symbols not be
+                shorter then 6 latter
+              </span>
+            ) : (
+              ""
+            )}
 
             {/* '''''''''''''''''' */}
             <div className="form-group">
               <div className="form-check">
                 <label className="form-check-label">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                  />
-                  I agree to the terms & conditions.
+                  <input className="form-check-input" type="checkbox" />I agree
+                  to the terms & conditions{" "}
+                  <span className="text-primary" onClick={() => setShow(true)}>
+                    view
+                  </span>
+                  .
                 </label>
               </div>
             </div>
@@ -452,16 +504,18 @@ const RegForm2 = () => {
                 className="btn btn-primary btn-block"
                 type="submit"
                 disabled={!formValidityData.isFormValid}
-
-                value={""+formValidityData.isFormValid}
+                value={"" + formValidityData.isFormValid}
               >
                 {/* {isLoading ? (
                 ) : (
                   <p className="mb-0">Register</p>
                 )} */}
                 {/* Registration */}
-                {isLoading ? <p className="mb-0"> In Process </p> : <p className="mb-0">Register</p>}
-
+                {isLoading ? (
+                  <p className="mb-0"> In Process </p>
+                ) : (
+                  <p className="mb-0">Register</p>
+                )}
               </button>
               {error && (
                 <span className="text-center text-danger">{error}</span>
@@ -469,6 +523,71 @@ const RegForm2 = () => {
               <ToastContainer />
             </div>
             {/* <hr />  */}
+            <Modal
+              size="lg"
+              show={show}
+              onHide={() => setShow(false)}
+              dialogClassName="modal-90w"
+              aria-labelledby="example-custom-modal-styling-title"
+            >
+              <Modal.Header closeButton>
+                <Modal.Title id="example-custom-modal-styling-title">
+                  Terms & conditions
+                </Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>
+                  Welcome to our website. By accessing this website, you are
+                  agreeing to comply with and be bound by the following terms
+                  and conditions of use, which together with our privacy policy
+                  govern our relationship with you in relation to this website.
+                  If you disagree with any part of these terms and conditions,
+                  please do not use our website.
+                </p>
+                <p>
+                  Acceptance of Terms: By accessing or using the website, you
+                  agree to the terms and conditions set forth on the site.
+                </p>
+                <p>
+                  Use of Content: All content on the website is protected by
+                  copyright and may not be used without the owner's permission.
+                </p>
+                <p>
+                  User Conduct: You agree to use the website only for lawful
+                  purposes and in a manner that does not infringe on the rights
+                  of others.
+                </p>
+                <p>
+                  Limitation of Liability: The website owner is not liable for
+                  any damages, including but not limited to direct, indirect,
+                  incidental, or consequential damages, arising from the use of
+                  or inability to use the website.
+                </p>
+                <p>
+                  Links to Third-Party Sites: The website may contain links to
+                  third-party websites that are not owned or controlled by the
+                  website owner. The owner is not responsible for the content or
+                  practices of these sites.
+                </p>
+                <p>
+                  Changes to Terms: The website owner reserves the right to
+                  modify these terms and conditions at any time without notice.
+                </p>
+                <p>
+                  Termination: The website owner may terminate your access to
+                  the site at any time without notice
+                </p>
+                <p>
+                  Governing Law: These terms and conditions are governed by and
+                  construed in accordance with the laws of the jurisdiction in
+                  which the website owner is located.
+                </p>
+                <p>
+                  By using the website, you acknowledge that you have read,
+                  understood, and agreed to the above terms and conditions.
+                </p>
+              </Modal.Body>
+            </Modal>
             <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
               <div className="border-bottom w-100 ml-5"></div>
               <span className="px-2 small text-muted font-weight-bold text-muted">
@@ -495,6 +614,5 @@ const RegForm2 = () => {
     </>
   );
 };
-
 
 export default RegForm2;
