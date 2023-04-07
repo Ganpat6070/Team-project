@@ -53,21 +53,22 @@ const AstroDetails = () => {
   };
 
   let profileid: string | null = localStorage.getItem("profileID");
+  // console.log(profileid);
   const saveData = async () => {
     let response = await fetch("http://localhost:8000/astro-info", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        profileid: `${profileid}`,
+        "authorization": `${profileid}`,
       },
       body: JSON.stringify({
-        dateOfBirth: dob,
-        timeOfBirth: atime,
-        birthTimeCorrection: timeCorrection,
-        placeOfBirth: placeofBirth,
-        longitude: logitude,
-        latitude: latitude,
-        timeZone: timeZone,
+        "astroDateOfBirth": dob,
+        "timeOfBirth": atime,
+        "birthTimeCorrection": timeCorrection,
+        "placeOfBirth": placeofBirth,
+        "longitude": logitude,
+        "latitude": latitude,
+        "timeZone": timeZone,
       }),
     });
     const res = await response.json();

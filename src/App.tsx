@@ -21,12 +21,17 @@ import AstroDetails from "./components/Profile/AestroDetails";
 import EditProfile from "./components/pages/EditProfile";
 import Finished from "./components/Profile/congrats";
 
+import { useParams } from 'react-router-dom';
+
 
 function App() {
   const [gender, setGender] = useState<string>("");
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
+  // let { token } = useParams();
+  // let token = props.match.params.id
+  // console.log(useParams());
 
   const pass = (gender:string, lessAge: string, greatAge: string, religion: string) => {
       setGender(gender);
@@ -48,7 +53,7 @@ function App() {
                 <Route path="/faqs" element={<Faqs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/otp" element={<Otp />} />
-                <Route path="/pass" element={<Pass />} />
+                <Route path={`/reset-password/`} element={<Pass/>} />
                 <Route path="/register" element={<RegForm2 />} />
                 <Route path="/membership" element={<Membership />} />
                 <Route path="/profileSearch" element={<ProfileSearch gender={gender} lessAge={lessAge} greatAge={greatAge} religion={religion} />}/>

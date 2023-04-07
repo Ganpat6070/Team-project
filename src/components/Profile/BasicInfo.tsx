@@ -7,7 +7,6 @@ import ProgressBar from "./ProgressBar";
 import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
 
-
 const BasicInfo = () => {
   // Error Statas for Validatoins
   const [errorbi, setErrorbi] = useState<boolean | string>(false);
@@ -65,8 +64,8 @@ const BasicInfo = () => {
   const [age, setAge] = useState("");
 
   // let token = Cookies.get("Token");
-  let token = localStorage.getItem("Token")
-  
+  let token = localStorage.getItem("Token");
+
   // let id = Cookies.get("id");
 
   const basicinfo: any = {
@@ -400,17 +399,17 @@ const BasicInfo = () => {
   const navigate = useNavigate();
 
   const saveData = async () => {
-    let token = localStorage.getItem("Token")
+    let token = localStorage.getItem("Token");
     let response = await fetch("http://localhost:8000/basic-info", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "token": `${token}`
+        "Authorization": `${token}`,
       },
       body: JSON.stringify({
         firstName: fname,
         middleName: mname,
-        lastName: lname,  
+        lastName: lname,
         dateOfBirth: dob,
         height: height,
         weight: weight,
@@ -455,7 +454,7 @@ const BasicInfo = () => {
     console.log(response);
     let res = await response.json();
     let profileid = res.profileId;
-    localStorage.setItem("profileID", profileid)
+    localStorage.setItem("profileID", profileid);
     if (response.status === 201) {
       toast.success("Basic info saved!");
       // navigate("/personal-info");
@@ -463,9 +462,7 @@ const BasicInfo = () => {
         navigate("/personal-info");
       }, 1500);
     }
-    
   };
-
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
@@ -487,11 +484,10 @@ const BasicInfo = () => {
     } else {
       setErrorbi(false);
       console.log(basicinfo);
-     saveData()
-    };
-  }
-  
-  
+      saveData();
+    }
+  };
+
   return (
     <>
       <div
@@ -544,7 +540,6 @@ const BasicInfo = () => {
                 <input
                   type="text"
                   onChange={mnameHandler}
-
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
                 />
               </Col>
@@ -586,7 +581,9 @@ const BasicInfo = () => {
                   onChange={heightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>4</option>
                   <option>4.5</option>
                   <option>5</option>
@@ -606,7 +603,9 @@ const BasicInfo = () => {
                   onChange={weightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>40</option>
                   <option>50</option>
                   <option>60</option>
@@ -626,7 +625,9 @@ const BasicInfo = () => {
                   onChange={mStatushandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>Single</option>
                   <option>In-Relationship</option>
                   <option>Devorced</option>
@@ -642,7 +643,9 @@ const BasicInfo = () => {
                   onChange={mTongueHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>Hindi</option>
                   <option>Gujarati</option>
                   <option>English</option>
@@ -660,7 +663,9 @@ const BasicInfo = () => {
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
                   {" "}
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>Hinduism</option>
                   <option>Islam</option>
                   <option>Christianity</option>
@@ -690,7 +695,9 @@ const BasicInfo = () => {
                   onChange={genderHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
 
                   <option>Male</option>
                   <option>Female</option>
@@ -717,7 +724,11 @@ const BasicInfo = () => {
                   type="text"
                   className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
                 /> */}
-                <textarea onChange={aboutmeHandler} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
+                <textarea
+                  onChange={aboutmeHandler}
+                  className="form-control mb-2"
+                  id="exampleFormControlTextarea1"
+                ></textarea>
 
                 <p style={{ color: "#6E6E6E", fontStyle: "italic" }}>
                   (Characters Left : 600)
@@ -727,88 +738,88 @@ const BasicInfo = () => {
                 <label htmlFor="">
                   Spoken Language(s) <span className="compalsory">*</span>
                   <br />
-                  <span style={{width: "100%"}} className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
+                  <span
+                    style={{ width: "100%" }}
+                    className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1"
+                  >
                     <Row>
-                      <Col className="" style={{marginRight:"30px"}}>
-                      <label htmlFor="english" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="english"
-                        name="language"
-                        value="english"
-                        className=""
-                        checked={spokenLanguage.includes("english")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; English
-                    </label>
-                    <br />
-                    <label htmlFor="gujarati" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="gujarati"
-                        name="language"
-                        value="gujarati"
-                        checked={spokenLanguage.includes("gujarati")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; Gujarati
-                    </label>
-                   
-                    <label htmlFor="hindi" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="hindi"
-                        name="language"
-                        value="hindi"
-                        checked={spokenLanguage.includes("hindi")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; Hindi
-                    </label>
-                    
+                      <Col className="" style={{ marginRight: "30px" }}>
+                        <label htmlFor="english" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="english"
+                            name="language"
+                            value="english"
+                            className=""
+                            checked={spokenLanguage.includes("english")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; English
+                        </label>
+                        <br />
+                        <label htmlFor="gujarati" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="gujarati"
+                            name="language"
+                            value="gujarati"
+                            checked={spokenLanguage.includes("gujarati")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; Gujarati
+                        </label>
+
+                        <label htmlFor="hindi" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="hindi"
+                            name="language"
+                            value="hindi"
+                            checked={spokenLanguage.includes("hindi")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; Hindi
+                        </label>
                       </Col>
-                      <Col style={{marginRight:"30px"}}>
-                      <label htmlFor="Kanada" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="Kanada"
-                        name="language"
-                        value="Kanada"
-                        className=""
-                        checked={spokenLanguage.includes("Kanada")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; Kanada
-                    </label>
-                    <br />
-                    <label htmlFor="Telugu" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="Telugu"
-                        name="language"
-                        value="Telugu"
-                        checked={spokenLanguage.includes("Telugu")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; Telugu
-                    </label>
-                    <br />
-                    <label htmlFor="Tamil" className="py-2">
-                      <input
-                        type="checkbox"
-                        id="Tamil"
-                        name="language"
-                        value="Tamil"
-                        checked={spokenLanguage.includes("Tamil")}
-                        onChange={spokenLanguageHandler}
-                      />
-                      &nbsp; Tamil
-                    </label>
-                    
+                      <Col style={{ marginRight: "30px" }}>
+                        <label htmlFor="Kanada" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="Kanada"
+                            name="language"
+                            value="Kanada"
+                            className=""
+                            checked={spokenLanguage.includes("Kanada")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; Kanada
+                        </label>
+                        <br />
+                        <label htmlFor="Telugu" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="Telugu"
+                            name="language"
+                            value="Telugu"
+                            checked={spokenLanguage.includes("Telugu")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; Telugu
+                        </label>
+                        <br />
+                        <label htmlFor="Tamil" className="py-2">
+                          <input
+                            type="checkbox"
+                            id="Tamil"
+                            name="language"
+                            value="Tamil"
+                            checked={spokenLanguage.includes("Tamil")}
+                            onChange={spokenLanguageHandler}
+                          />
+                          &nbsp; Tamil
+                        </label>
                       </Col>
                     </Row>
-                    
                   </span>
                 </label>
               </Col>
@@ -820,7 +831,8 @@ const BasicInfo = () => {
                   <br />
                 </label>
 
-                <span className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
+                <span className="border  w-5 p-2  h-1 d-inline-block spolang border rounded mt-1"
+                style={{borderColor: "#d9d9d9"}}>
                   <Row>
                     <Col>
                       <label htmlFor="M.E" className="py-2">
@@ -978,7 +990,9 @@ const BasicInfo = () => {
                   onChange={syosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select twothree"
                 >
-                  <option  value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option value="2012">2012</option>
                   <option value="2011">2011</option>
                   <option value="2000">2000</option>
@@ -1021,7 +1035,9 @@ const BasicInfo = () => {
                   onChange={cyosHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
                   <option>2012</option>
                   <option>2011</option>
                   <option>2000</option>
@@ -1067,7 +1083,9 @@ const BasicInfo = () => {
                   onChange={lcodeHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
-                  <option hidden value="">select</option>
+                  <option hidden value="">
+                    select
+                  </option>
 
                   <option value="123">123</option>
                   <option value="456">456</option>
@@ -1287,7 +1305,9 @@ const BasicInfo = () => {
                   id=""
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select mobiledrop"
                 >
-                  <option value="" hidden>select</option>
+                  <option value="" hidden>
+                    select
+                  </option>
 
                   <option value="91">+91</option>
                   <option value="1">+1</option>

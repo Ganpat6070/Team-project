@@ -1,5 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
@@ -14,11 +16,14 @@ import {
   ArrowCounterclockwise,
   Lock,
   Person,
+  BorderBottom,
 } from "react-bootstrap-icons";
+import { error } from "console";
 
 const NavbarHead = () => {
   const [islogedin, setIsLogedin] = useState(false);
   const [user, setUser] = useState<string | null>(null);
+  const [show, setShow] = useState<boolean>(false);
   // eslint-disable-next-line
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const getlogin = localStorage.getItem("login");
@@ -27,6 +32,7 @@ const NavbarHead = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("Token");
     localStorage.removeItem("uname");
+    localStorage.removeItem("id");
     toast.error("You have logged out", {
       position: toast.POSITION.TOP_RIGHT,
     });
@@ -36,12 +42,39 @@ const NavbarHead = () => {
     if (getlogin === "true") {
       let username: any = localStorage.getItem("uname");
       const name = username.substring(1, username.indexOf("@"));
-      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
+      const capitalizedName =
+        name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
       setUser(capitalizedName);
 
       setIsLogedin(true);
     } else setIsLogedin(false);
   }, [setIsLogedin, getlogin]);
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const deleteProfile = async () => {
+    let profileid = localStorage.getItem("Token");
+    
+    let response = await fetch(`http://localhost:8000/profile-delete/${profileid}`, {
+      method: "GET",
+    });
+    // if (!response.ok) {
+    //   throw new Error("Something went wrong!");
+    // }
+    if (response.status === 200){
+      toast.error("Your profile data has been deleted!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setShow(false);
+    }
+    if (response.status === 404){
+      toast.error("Profile data not found!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setShow(false);
+    }
+  
+  };
   return (
     <>
       {!islogedin && (
@@ -183,6 +216,26 @@ const NavbarHead = () => {
                 </Link>
                 <ToastContainer />
 
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title className="text-danger">
+                      Delete Profile
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    Are you sure to delete your profile!
+                    <br /> This will delete your profile data
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                    <Button variant="danger" onClick={deleteProfile}>
+                      Delete
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+
                 <PopupMenu>
                   <button className="btn rounded-circle">
                     <img
@@ -202,12 +255,13 @@ const NavbarHead = () => {
                       marginTop: "70px",
                       marginRight: "10px",
                       marginLeft: "-80px",
+                      boxShadow: "none",
                     }}
                     className="card text-start"
                   >
                     <div
-                      className="card-body px-4 py-4 "
-                      style={{ backgroundColor: "#f6837d" }}
+                      className="card-body px-4 py-4 bg-white"
+                      style={{ border: "1px solid black" }}
                     >
                       <div
                         id="circle-avatar"
@@ -224,14 +278,14 @@ const NavbarHead = () => {
                         style={{ margin: "0 -24px 0" }}
                       >
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
-                          style={{ backgroundColor: "#f6837d" }}
+                          className="list-group-item list-group-item-action px-4  bg-white"
+                          // style={{ backgroundColor: "#f6837d" }}
                         >
-                          <House color="white" size={20} />{" "}
+                          <House color="black" size={20} />{" "}
                           <small>
                             <Link
                               to="/basic-info"
-                              className="text-white"
+                              className="text-dark"
                               style={{ textDecoration: "none" }}
                             >
                               My Account
@@ -239,14 +293,14 @@ const NavbarHead = () => {
                           </small>
                         </button>
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
-                          style={{ backgroundColor: "#f6837d" }}
+                          className="list-group-item list-group-item-action px-4  bg-white"
+                          // style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Person color="white" size={20} />{" "}
+                          <Person color="black" size={20} />{" "}
                           <small>
                             <Link
                               to="/edit-profile"
-                              className="text-white"
+                              className="text-dark"
                               style={{ textDecoration: "none" }}
                             >
                               Edit My Profile
@@ -254,36 +308,35 @@ const NavbarHead = () => {
                           </small>
                         </button>
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
-                          style={{ backgroundColor: "#f6837d" }}
+                          className="list-group-item list-group-item-action px-4  bg-white"
+                          // style={{ backgroundColor: "#f6837d" }}
                         >
-                          <ArrowCounterclockwise color="white" size={20} />{" "}
+                          <ArrowCounterclockwise color="black" size={20} />{" "}
                           <small>My Activity Log</small>
                         </button>
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
+                          onClick={handleShow}
+                          className="list-group-item list-group-item-action px-4  bg-white"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Trash color="white" size={20} />{" "}
+                          <Trash color="black" size={20} />{" "}
                           <small>Delete My Profile</small>
                         </button>
+
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
+                          className="list-group-item list-group-item-action px-4  bg-white"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Lock color="white" size={20} />{" "}
+                          <Lock color="black" size={20} />{" "}
                           <small>Change My Password</small>
                         </button>
                         <button
-                          className="list-group-item list-group-item-action px-4 text-light"
+                          className="list-group-item list-group-item-action px-4  bg-white"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <BoxArrowInRight color="white" size={20} />{" "}
+                          <BoxArrowInRight color="black" size={20} />{" "}
                           <Link to="/" style={{ textDecoration: "none" }}>
-                            <span
-                              onClick={logoutHandler}
-                              className="text-white"
-                            >
+                            <span onClick={logoutHandler} className="text-dark">
                               Logout
                             </span>
                           </Link>

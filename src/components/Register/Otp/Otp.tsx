@@ -22,7 +22,7 @@ const Otp = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "id": `${id}`,
+        "Authorization": `${id}`,
       },
       body: JSON.stringify({
         otp: otp,

@@ -8,7 +8,6 @@ import "./PrePart.css";
 import PhotoCard from "./PhotoCard";
 import { toast } from "react-toastify";
 
-
 const PrePart = () => {
   const navigate = useNavigate();
 
@@ -85,7 +84,6 @@ const PrePart = () => {
     setError(false);
   };
   const ppeducationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  
     const value = e.target.value;
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -137,35 +135,53 @@ const PrePart = () => {
   // };
 
   const postObject = async () => {
+    const profileId = localStorage.getItem("profileID");
 
-    const profileId = localStorage.getItem('profileID');
-
-    const response = await fetch("http://localhost:8000/preffered-partner", {
+    const response = await fetch("http://localhost:8000/preferred-partner", {
       credentials: "include",
       method: "POST",
-      headers: { "content-type": "application/json",
-      profileid: `${profileId}`
-    },
+      headers: {
+        "content-type": "application/json",
+        "Authorization": `${profileId}`,
+      },
       body: JSON.stringify({
-        age: ppAge1,
-        height: ppHeight1,
-        physicalStatus: ppPhyStatus,
-        familyStatus: ppFamStatus,
-        currency: ppCurrency,
-        annualIncome: ppAnnual,
-        motherTongue: ppMotherT,
-        religion: ppreligion,
-        castDenomination: ppCaste,
-        diet: ppdiet,
-        partnerEducation: ppEdu,
-        occupation: ppOcc,
-        location: ppLoc,
-        maritalStatus: ppmStatus,
-        nativePlace: ppNative,
-        aboutMyPartner: ppAboutPartner,
+        // age: ppAge1,
+        // height: ppHeight1,
+        // physicalStatus: ppPhyStatus,
+        // familyStatus: ppFamStatus,
+        // currency: ppCurrency,
+        // annualIncome: ppAnnual,
+        // motherTongue: ppMotherT,
+        // religion: ppreligion,
+        // castDenomination: ppCaste,
+        // diet: ppdiet,
+        // partnerEducation: ppEdu,
+        // occupation: ppOcc,
+        // location: ppLoc,
+        // maritalStatus: ppmStatus,
+        // nativePlace: ppNative,
+        // aboutMyPartner: ppAboutPartner,
+
+        "preferredAge": ppAge1,
+    "preferredHeight": ppHeight1,
+    "preferredPhysicalStatus": ppPhyStatus,
+    "preferredFamilyStatus": ppFamStatus,
+    "preferredCurrency": ppCurrency,
+    "preferredAnnualIncome": ppAnnual,
+    "preferredMotherTongue": ppMotherT,
+    "preferredReligion": ppreligion,
+    "preferredCastDenomination": ppCaste,
+    "preferredDiet": ppdiet,
+    "preferredEducation":ppEdu,
+    "preferredOccupation": ppOcc,
+    "preferredLocation": ppLoc,
+    "preferredMaritalStatus": ppmStatus,
+    "preferredNativePlace": ppNative,
+    "preferredAboutMyPartner": ppAboutPartner
+
       }),
     });
-    console.log(response)
+    console.log(response);
     if (response.status === 201) {
       toast.success("Personal Information is saved!");
       // navigate("/prefpart");
@@ -173,7 +189,6 @@ const PrePart = () => {
         navigate("/mypersonality");
       }, 1500);
     }
-
   };
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -194,7 +209,6 @@ const PrePart = () => {
     } else if ((ppAge1 && ppAge2) === 0) {
       setError(true);
     } else {
-
       postObject();
     }
   };
@@ -503,38 +517,122 @@ const PrePart = () => {
                 <br />
               </label>
               <div
-                className="px-3 form-control  mt-1 rounded-2 "
+                className="px-3 form-control rounded-2"
                 style={{ borderColor: "#d9d9d9" }}
               >
-                <input
-                  type="checkbox"
-                  value="M.E"
-                  id="M.E"
-                  name="education"
-                  checked={ppEdu.includes("M.E")}
-                  onChange={ppeducationHandler}
-                />
-                <label htmlFor="M.E">&nbsp;M.E</label>
-                <br />
-                <input
-                  type="checkbox"
-                  value="B.E"
-                  id="B.E"
-                  name="education"
-                  checked={ppEdu.includes("B.E")}
-                  onChange={ppeducationHandler}
-                />
-                <label htmlFor="B.E">&nbsp;B.E</label>
-                <br />
-                <input
-                  type="checkbox"
-                  id="MCA"
-                  value="MCA"
-                  name="education"
-                  checked={ppEdu.includes("MCA")}
-                  onChange={ppeducationHandler}
-                />
-                <label htmlFor="MCA">&nbsp;MCA</label>
+                <Row>
+                  <Col>
+                    <label htmlFor="M.E">
+                      <input
+                        type="checkbox"
+                        value="M.E"
+                        id="M.E"
+                        name="education"
+                        checked={ppEdu.includes("M.E")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;M.E
+                    </label>
+                    <br />
+                    <label htmlFor="B.E">
+                      <input
+                        type="checkbox"
+                        value="B.E"
+                        id="B.E"
+                        name="education"
+                        checked={ppEdu.includes("B.E")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;B.E
+                    </label>
+                    <br />
+                    <label htmlFor="MCA">
+                      <input
+                        type="checkbox"
+                        id="MCA"
+                        value="MCA"
+                        name="education"
+                        checked={ppEdu.includes("MCA")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;MCA
+                    </label>
+                  </Col>
+                  <Col>
+                    <label htmlFor="M.Tech">
+                      <input
+                        type="checkbox"
+                        value="M.Tech"
+                        id="M.Tech"
+                        name="education"
+                        checked={ppEdu.includes("M.Tech")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;M.Tech
+                    </label>
+                    <br />
+                    <label htmlFor="B.Tech">
+                      <input
+                        type="checkbox"
+                        value="B.Tech"
+                        id="B.Tech"
+                        name="education"
+                        checked={ppEdu.includes("B.Tech")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;B.Tech
+                    </label>
+                    <br />
+                    <label htmlFor="BCA">
+                      <input
+                        type="checkbox"
+                        id="BCA"
+                        value="BCA"
+                        name="education"
+                        checked={ppEdu.includes("BCA")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;BCA
+                    </label>
+                  </Col>
+                  <Col>
+                    <label htmlFor="MBA">
+                      <input
+                        type="checkbox"
+                        value="MBA"
+                        id="MBA"
+                        name="education"
+                        checked={ppEdu.includes("MBA")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;MBA
+                    </label>
+                    <br />
+                    <label htmlFor="MCOM">
+                      <input
+                        type="checkbox"
+                        value="MCOM"
+                        id="MCOM"
+                        name="education"
+                        checked={ppEdu.includes("MCOM")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;MCOM
+                    </label>
+                    <br />
+                    <label htmlFor="BCOM">
+                      <input
+                        type="checkbox"
+                        id="BCOM"
+                        value="BCOM"
+                        name="education"
+                        checked={ppEdu.includes("BCOM")}
+                        onChange={ppeducationHandler}
+                      />
+                      &nbsp;BCOM
+                    </label>
+                  </Col>
+                </Row>
               </div>
             </Col>
           </Row>

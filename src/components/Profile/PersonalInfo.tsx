@@ -335,7 +335,7 @@ const PersonalInfo = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        profileid: `${profileid}`,
+        "Authorization": `${profileid}`,
       },
       body: JSON.stringify({
         complexion: complexions,
