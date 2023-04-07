@@ -245,3 +245,7 @@ select.form-control {
   border-radius: 5px;
 
 }
+
+.form-control:focus {
+  box-shadow:none !important;
+}

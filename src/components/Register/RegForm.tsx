@@ -13,10 +13,10 @@ import { FaSmileWink } from "react-icons/fa";
 
 const RegForm2 = () => {
   const navigate = useNavigate();
-  const [fullName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setNumber] = useState<number>();
-  const [password, setPassword] = useState("");
+  // const [fullName, setFirstName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNumber, setNumber] = useState<number>();
+  // const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
@@ -89,11 +89,13 @@ const RegForm2 = () => {
     let regex = /^[a-zA-Z]*$/;
     switch (action.type) {
       case "VALIDATE_FULL_NAME":
-        // isValid = action.payLoad.fullName.length > 0 ? true : false;
+
         isValid = action.payLoad.fullName.length > 4 ? true : false;
-        // isValid = action.payLoad.fullName = regex ? true : false;
-        if (!regex.test(fullName)){
+        if (!regex.test(formData.fullName)){
           isValid = true 
+        }
+        else {
+          isValid = false
         }
         return {
           ...state,
@@ -139,7 +141,7 @@ const RegForm2 = () => {
           },
         };
       case "VALIDATE_PASSWORD":
-        isValid = action.payLoad.password.length > 9 ? true : false;
+        isValid = action.payLoad.password.length > 6 ? true : false;
         return {
           ...state,
           ...{
@@ -374,12 +376,23 @@ const RegForm2 = () => {
               <div className="form-number">
                 <br />
                 <select
+                
+
                   className="form-control"
                   style={{
                     width: "90px",
                     background: "0",
                     border: "0",
                     marginBottom: "30px",
+                    borderLeft:"0px",
+                    margin: "0", 
+                    height:"48px",
+                    borderBottomLeftRadius: "2px",
+                    borderBottomRightRadius: "0px",
+                    borderTopLeftRadius: "2px",
+                    borderTopRightRadius: "0px" , 
+                    
+                    backgroundColor: formValidityData.phoneNumberError ? "pink" : ""
                   }}
                 >
                   <option value="1">+91</option>
@@ -389,14 +402,17 @@ const RegForm2 = () => {
                 </select>
                 <input
                   // required
-                  style={{ margin: "0", background: "0", border: "0" , backgroundColor: formValidityData.phoneNumberError ? "pink" : "",}}
+                  style={{ margin: "0", background: "0", border: "0" ,borderBottomLeftRadius: "0px",
+                  borderBottomRightRadius: "0px",
+                  borderTopLeftRadius: "0px",
+                  borderTopRightRadius: "0px" , backgroundColor: formValidityData.phoneNumberError ? "pink" : "",}}
                   className="form-control"
                   // type="tel"
-                  type="number"
+                  type="tel"
                   name="number"
                   placeholder="1234567890"
-                  // minLength={10}
-                  // maxLength={10}
+                  minLength={10}
+                  maxLength={10}
     
                   onChange={(e) =>
                     setFormData({
@@ -433,7 +449,7 @@ const RegForm2 = () => {
 
               />
             </div>
-            {formValidityData.passwordError ? <span className="text-danger size-small">Password Should Contain alphabets, Numbers & Symbols not be shorter then 6 latter</span> : ""}
+            {formValidityData.passwordError ? <span className="text-danger size-small">Password Should Contain alphabets, Numbers & Symbols and not be Shorter then 7 Letters</span> : ""}
 
             {/* '''''''''''''''''' */}
             <div className="form-group">
@@ -496,16 +512,5 @@ const RegForm2 = () => {
   );
 };
 
-const STYLE = {
-  container: {
-      borderRadius: "5px",
-      backgroundColor: "#f2f2f2",
-      padding: "20px",
-      maxWidth:"240px"
-  },
-  formElement: {
-      padding: "6px 24px"
-  }
-}
 
 export default RegForm2;

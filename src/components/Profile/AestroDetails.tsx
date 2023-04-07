@@ -10,13 +10,21 @@ import ProgressBar from "./ProgressBar";
 import NavbarHead from "../navbar";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useReducer } from "react";
+import AstroDetailValidation ,{ astroformreducer,astroinitialState , astroFormValidityReducer , astroInitialValidityState} from "../../Validations/AstroDetailValidation";
 
 const AstroDetails = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
-
+  // User Reducer State for Storing data
+  const [astroDetailFormData, setAstroDetailFormData] = useReducer(astroformreducer, astroinitialState);
+  const [formValidityData, setFormValidityData] = useReducer(
+    astroFormValidityReducer,
+    astroInitialValidityState
+  );
+  
   const [dob, setDob] = useState("");
   const [aHours, setaHours] = useState("");
   const [aMinutes, setaMinutes] = useState("");
@@ -146,7 +154,12 @@ const AstroDetails = () => {
               <input
                 type="date"
                 style={{ height: "50%" }}
-                onChange={dobHandler}
+                // onChange={dobHandler}
+                onChange={(e) =>
+                  setAstroDetailFormData({ type: "UPDATE_DATE_OF_BIRTH", payLoad: e.target.value })
+                }
+                // onBlur={(e) => setFormValidityData({type: "VALIDATE_DATE_OF_BIRTH", payLoad: formData})}
+
                 value={dob}
                 className="form-control mt-1 py-0"
               />

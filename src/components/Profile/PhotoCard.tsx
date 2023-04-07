@@ -1,6 +1,27 @@
 import "./PhotoCard.css";
 import { Facebook } from "react-bootstrap-icons";
+import { useState } from "react";
 const PhotoCard = () => {
+
+  const [imageUrl, setImageUrl] = useState<any>('');
+  const [fileErr, setFileErr] = useState("");
+
+  const fileHandler = (e: any) => {
+    if(e.target.files === ""){
+      return(
+
+        setFileErr("Please select a file")
+      )
+    }else{
+      setFileErr("")
+      const file1 = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file1);
+      reader.onloadend = () => {
+        setImageUrl(reader.result);
+      };
+    }
+  }
   return (
     <div
       className="container p-2 border border-secondary rounded "
@@ -57,6 +78,7 @@ const PhotoCard = () => {
           <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcInstagram">
             <input type="file" name="file" />
           </button>
+          <span className="text-danger">{fileErr}</span>
         </div>
         <div className="col-sm">
           <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcFacebook">
@@ -64,6 +86,7 @@ const PhotoCard = () => {
               type="file"
               name="file"
               accept="image/png, image/jpeg, image/gif"
+              onChange={fileHandler}
             />
           </button>
         </div>

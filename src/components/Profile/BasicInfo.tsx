@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useReducer} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./BasicInfo.css";
@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProgressBar from "./ProgressBar";
 import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
-
+import {formreducer, initialState} from "../../Validations/BasicInfoValidation"; 
 
 const BasicInfo = () => {
   // Error Statas for Validatoins
@@ -15,10 +15,16 @@ const BasicInfo = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
 
+  // User Reducer State for Storing data
+  const [basicFormData, setBasicFormData] = useReducer(formreducer, initialState);
+  // const [formValidityData, setFormValidityData] = useReducer(
+  //   formValidityReducer,
+  //   initialValidityState
+  // );
   // States for storing enterd information
-  const [fname, setFname] = useState("");
-  const [mname, setMname] = useState("");
-  const [lname, setLname] = useState("");
+  const [fullName, setfullName] = useState("");
+  const [middleName, setmiddleName] = useState("");
+  const [lname, setlastName] = useState("");
   const [dob, setdob] = useState("");
   const [height, setheight] = useState<number>();
   const [weight, setweight] = useState<number>();
@@ -51,7 +57,7 @@ const BasicInfo = () => {
   const [countery, setCountery] = useState("");
   const [pin, setpin] = useState("");
   const [city, setcity] = useState("");
-  const [refname, setrefname] = useState("");
+  const [refullName, setrefullName] = useState("");
   const [refaddress, setrefaddress] = useState("");
   const [refcontact, setRefcontact] = useState("");
   const [refmobile, setRefmobile] = useState("");
@@ -72,8 +78,8 @@ const BasicInfo = () => {
   // let id = Cookies.get("id");
 
   const basicinfo: any = {
-    fname,
-    mname,
+    fullName,
+    middleName,
     lname,
     dob,
     height,
@@ -106,7 +112,7 @@ const BasicInfo = () => {
     countery,
     pin,
     city,
-    refname,
+    refullName,
     refaddress,
     refcontact,
     refmobile,
@@ -119,89 +125,89 @@ const BasicInfo = () => {
   };
   // console.log(basicinfo);
 
-  const fnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!(e.target.value === "")) setFname(e.target.value);
-    // console.log(fname)
+  const fullNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setfullName(e.target.value);
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
-  const mnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!(e.target.value === "")) setMname(e.target.value);
-    // console.log(fname)
+  const middleNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setmiddleName(e.target.value);
+    // console.log(fullastName)
 
     setErrorbi(false);
   };
-  const lnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!(e.target.value === "")) setLname(e.target.value);
-    // console.log(fname)
+  const lastNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setlastName(e.target.value);
+    // console.log(fullName)
     // console.log(e);
     setErrorbi(false);
   };
 
   const dobHandler = (e: React.ChangeEvent<HTMLDataElement>) => {
     if (!(e.target.value === "")) setdob(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const heightHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setheight(parseInt(e.target.value));
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const weightHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setweight(parseInt(e.target.value));
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const mStatusHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setmStatus(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const mTongueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setmTongue(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const religionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setreligion(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
 
   const castHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!(e.target.value === "")) setcast(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
   const genderHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (!(e.target.value === "")) setGender(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
   const phyStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!(e.target.value === "")) setphyStatus(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
 
     setErrorbi(false);
   };
   const aboutmeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (!(e.target.value === "")) setAboutme(e.target.value);
-    // console.log(fname)
+    // console.log(fullName)
   };
   const educationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -216,7 +222,7 @@ const BasicInfo = () => {
   };
   const spokenLanguageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     // if (!(e.target.value === ""));
-    // console.log(fname)
+    // console.log(fullName)
     const value = e.target.value;
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -330,8 +336,8 @@ const BasicInfo = () => {
     setErrorbi(false);
   };
 
-  const refnameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!(e.target.value === "")) setrefname(e.target.value);
+  const refullNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!(e.target.value === "")) setrefullName(e.target.value);
 
     setErrorbi(false);
   };
@@ -410,8 +416,8 @@ const BasicInfo = () => {
         "token": `${token}`
       },
       body: JSON.stringify({
-        firstName: fname,
-        middleName: mname,
+        firstName: fullName,
+        middleName: middleName,
         lastName: lname,  
         dateOfBirth: dob,
         height: height,
@@ -448,7 +454,7 @@ const BasicInfo = () => {
         country: countery,
         pinCode: pin,
         cityState: city,
-        referenceName: refname,
+        referenceName: refullName,
         address: refaddress,
         contactNumber: refcontact,
       }),
@@ -474,8 +480,8 @@ const BasicInfo = () => {
   const submitHandler = async (e: any) => {
     e.preventDefault();
     if (
-      (fname &&
-        mname &&
+      (fullName &&
+        middleName &&
         lname &&
         dob &&
         height &&
@@ -532,9 +538,10 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <input
+                required
                   // ref={Cast}
 
-                  onChange={fnameHandler}
+                  onChange={fullNameHandler}
                   type="text"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
                 />
@@ -547,7 +554,7 @@ const BasicInfo = () => {
 
                 <input
                   type="text"
-                  onChange={mnameHandler}
+                  onChange={middleNameHandler}
 
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
                 />
@@ -556,8 +563,9 @@ const BasicInfo = () => {
                 <label htmlFor="">Last Name</label>
                 <span className="compalsory"> *</span> <br />
                 <input
+                required
                   type="text"
-                  onChange={lnameHandler}
+                  onChange={lastNameHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
                 />
               </Col>
@@ -570,6 +578,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <input
+                required
                   // ref={DOB}
                   onChange={dobHandler}
                   value={dob}
@@ -586,6 +595,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <select
+                required
                   // ref={heightHandler}
                   onChange={heightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
@@ -606,6 +616,7 @@ const BasicInfo = () => {
                 </label>
                 {/* <input type="number" className="form-control mt-1 rounded-2 border-secondary" /> */}
                 <select
+                required
                   // ref={weightHandler}
                   onChange={weightHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select "
@@ -626,6 +637,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <select
+                required
                   // ref={MStatus}
                   onChange={mStatushandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
@@ -642,6 +654,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <select
+                required
                   // ref={MTongue}
                   onChange={mTongueHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
@@ -659,6 +672,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <select
+                required
                   // ref={Religion}
                   onChange={religionHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
@@ -679,6 +693,7 @@ const BasicInfo = () => {
                   <br />
                 </label>
                 <input
+                required
                   // ref={Cast}
                   onChange={castHandler}
                   type="text"
@@ -691,6 +706,7 @@ const BasicInfo = () => {
                 </label>
 
                 <select
+                required
                   onChange={genderHandler}
                   className="form-control text-dark mt-1 rounded-2 border-secondary form-select"
                 >
@@ -721,7 +737,7 @@ const BasicInfo = () => {
                   type="text"
                   className="w-100 p-5 form-control text-dark mt-1 rounded-2 border-secondary"
                 /> */}
-                <textarea onChange={aboutmeHandler} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
+                <textarea required onChange={aboutmeHandler} className="form-control mb-2" id="exampleFormControlTextarea1" ></textarea>
 
                 <p style={{ color: "#6E6E6E", fontStyle: "italic" }}>
                   (Characters Left : 600)
@@ -729,7 +745,8 @@ const BasicInfo = () => {
               </Col>
               <Col className="mt-3">
                 <label htmlFor="">
-                  Spoken Language(s) <span className="compalsory">*</span>
+                  Spoken Language(s) 
+                  {/* <span className="compalsory">*</span> */}
                   <br />
                   <span style={{width: "100%"}} className="border border-dark w-5 p-2  h-1 d-inline-block spolang border rounded mt-1">
                     <Row>
@@ -1151,6 +1168,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <input
+                required
                   onChange={connameHandler}
                   type="text"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -1164,6 +1182,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <input
+                required
                   onChange={emailHandler}
                   type="email"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -1175,6 +1194,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <select
+                required
                   onChange={procreHandler}
                   name=""
                   id=""
@@ -1225,6 +1245,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <input
+                required
                   onChange={counteryHandler}
                   type="text"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
@@ -1238,6 +1259,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <input
+                required
                   onChange={pinHandler}
                   minLength={6}
                   maxLength={6}
@@ -1251,6 +1273,7 @@ const BasicInfo = () => {
                 </label>
                 <br />
                 <select
+                required
                   onChange={cityHandler}
                   name=""
                   id=""
@@ -1270,7 +1293,7 @@ const BasicInfo = () => {
                 <br />
                 <input
                   style={{ height: "50%" }}
-                  onChange={refnameHandler}
+                  onChange={refullNameHandler}
                   type="text"
                   className="form-control text-dark mt-1 rounded-2 border-secondary"
                 />

@@ -118,15 +118,18 @@ const Otp = () => {
                         Enter Your OTP
                       </label>
                       <input
-                        type="number"
+                        type="tel"
                         className="form-control"
                         id="otp"
                         maxLength={4}
+
+                        minLength={4}
                         onWheel={(e) => e.currentTarget.blur()}
                         onChange={(e) => {
                           setOtp(parseInt(e.target.value));
                         }}
                         placeholder="0000"
+                        required
                       />
                       <small id="otp" className="form-text text-muted">
                         We'll never share your details with anyone else.

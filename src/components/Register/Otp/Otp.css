@@ -105,7 +105,7 @@ input::-webkit-inner-spin-button {
   position: relative;
 }
 
-.myform-area .form-area .form-input input:focus ~ label,
+.myform-area .form-area .form-input input:placeholder,
 .myform-area .form-area .form-input textarea:focus ~ label,
 .myform-area .form-area .form-input input:valid ~ label,
 .myform-area .form-area .form-input textarea:valid ~ label {
@@ -118,7 +118,7 @@ input::-webkit-inner-spin-button {
   font-weight: bold;
   /* padding-top: 100px; */
 }
-.myform-area .form-area .form-input input:focus,
+/* .myform-area .form-area .form-input input:focus, */
 .myform-area .form-area .form-input textarea:focus,
 .myform-area .form-area .form-input input:valid,
 .myform-area .form-area .form-input textarea:valid {
