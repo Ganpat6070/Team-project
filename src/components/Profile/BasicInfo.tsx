@@ -458,6 +458,7 @@ const BasicInfo = () => {
         referenceName: refname,
         address: refaddress,
         contactNumber: refcontact,
+        image: image
       }),
     });
     // const res = await response.json();

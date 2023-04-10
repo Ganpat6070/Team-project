@@ -64,8 +64,8 @@ const ProfileDetail = (props: Props) => {
           <Card.Img
             // src="../../image/png/girl31.png"
             src={
-              data.images
-                ? data.images
+              data.image
+                ? data.image
                 : "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"
             }
             style={{
