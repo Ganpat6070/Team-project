@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function CardBox(props: string | any) {
 
+
   const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
   const getlogin = localStorage.getItem("login");
@@ -26,12 +27,12 @@ function CardBox(props: string | any) {
     >
       <Card.Img
         variant="top"
-        src={props.image}
+        src={props.image ? props.image: "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"}
         style={{ filter: getlogin ? "none" : "blur(5px)" }}
       />
 
       <Card.Body>
-        <Card.Title>{props.id}</Card.Title>
+        
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>{props.ageAndReligion}</Card.Text>
         <p>
@@ -40,7 +41,11 @@ function CardBox(props: string | any) {
         </p>
         <Card.Text>{props.education}</Card.Text>
 
-        <Card.Text>{props.designation}</Card.Text>
+        <Card.Text>{props.designation}</Card.Text><br/>
+        <p>
+          {" "}
+          <b>Profile_ID : </b>&nbsp;&nbsp;{props.id}
+        </p>
         {/* <Card.Text>{props._id}</Card.Text> */}
 
         {/* {props.education.map((edu: string[]) => <Card.Text>{edu}</Card.Text>)} */}

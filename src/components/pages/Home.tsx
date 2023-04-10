@@ -75,8 +75,8 @@ const Home = ({ onPass }: HomeProps) => {
                     onChange={selectChangeGender}
                   >
                     <option>Select</option>
-                    <option>Bride</option>
-                    <option>Groom</option>
+                    <option value='female'>Bride</option>
+                    <option value='male'>Groom</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -134,9 +134,11 @@ const Home = ({ onPass }: HomeProps) => {
                   onChange={selectChangeReligion}
                 >
                   <option>Select</option>
-                  <option>Any</option>
+                  <option value=''>Any</option>
                   <option>Hindu</option>
-                  <option>Muslim</option>
+                  <option>Jainism</option>
+                  <option>Christianity</option>
+                  <option>Islam</option>
                 </Form.Select>
               </Col>
               <Col>

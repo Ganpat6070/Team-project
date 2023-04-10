@@ -33,16 +33,38 @@ const Interest = (props: any) => {
           </div>
           <div className="text-start">
             <li style={{ listStyle: "none" }}>
-         <ul>{Array.isArray(data.musicRange)? data.musicRange.join("%") : "Not Available"}</ul>
-              <ul>{data.music? data.music.join(", ") : "Not Available"}</ul>
-<ul>{Array.isArray(data.readingRange)? data.readingRange.join("%") : "Not Available"}</ul>
-              <ul>{data.reading? data.reading.join(", "): "Not Available"}</ul>
-<ul>{Array.isArray(data.moviesRange)? data.moviesRange.join("%") : "Not Available"}</ul>
-              <ul>{data.movies? data.movies.join(", ") : "Not Available"}</ul>
-<ul>{Array.isArray(data.dressRange)? data.dressRange.join("%") : "Not Available"}</ul>
-              <ul>{data.dress? data.dress.join(", ") : "Not Available"}</ul>
-<ul>{Array.isArray(data.sportsRange)? data.sportsRange.join("%") : "Not Available"}</ul>
-              <ul>{data.sports? data.sports.join(", ") : "Not Available"}</ul>
+              <ul>
+                {Array.isArray(data.musicRange)
+                  ? data.musicRange.join("%")
+                  : "Not Available"}
+              </ul>
+              <ul>{data.music ? data.music.join(", ") : "Not Available"}</ul>
+              <ul>
+                {Array.isArray(data.readingRange)
+                  ? data.readingRange.join("%")
+                  : "Not Available"}
+              </ul>
+              <ul>
+                {data.reading ? data.reading.join(", ") : "Not Available"}
+              </ul>
+              <ul>
+                {Array.isArray(data.moviesRange)
+                  ? data.moviesRange.join("%")
+                  : "Not Available"}
+              </ul>
+              <ul>{data.movies ? data.movies.join(", ") : "Not Available"}</ul>
+              <ul>
+                {Array.isArray(data.dressRange)
+                  ? data.dressRange.join("%")
+                  : "Not Available"}
+              </ul>
+              <ul>{data.dress ? data.dress.join(", ") : "Not Available"}</ul>
+              <ul>
+                {Array.isArray(data.sportsRange)
+                  ? data.sportsRange.join("%")
+                  : "Not Available"}
+              </ul>
+              <ul>{data.sports ? data.sports.join(", ") : "Not Available"}</ul>
             </li>
           </div>
         </div>

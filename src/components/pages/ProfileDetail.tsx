@@ -43,7 +43,6 @@ const ProfileDetail = (props: Props) => {
   const ageInMilliseconds = Date.now() - dateOfBirth.getTime();
   const ageInYears = new Date(ageInMilliseconds).getUTCFullYear() - 1970;
 
-
   return (
     <>
       <NavbarHead />
@@ -64,7 +63,11 @@ const ProfileDetail = (props: Props) => {
         >
           <Card.Img
             // src="../../image/png/girl31.png"
-            src={data.images}
+            src={
+              data.images
+                ? data.images
+                : "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"
+            }
             style={{
               borderRadius: "20px",
               width: "400px",
@@ -80,15 +83,20 @@ const ProfileDetail = (props: Props) => {
           >
             <Card.Title className="my-4">
               Name : &nbsp;&nbsp;&nbsp;
-              {data.firstName + " " + data.middleName + " " + data.lastName}
+              {data.firstName
+                ? data.firstName
+                : " " + " " + data.middleName
+                ? data.firstName
+                : " " + " " + data.lastName
+                ? data.firstName
+                : " "}
             </Card.Title>
-            <Card.Text>Age : &nbsp;&nbsp;&nbsp;{ageInYears}</Card.Text>
-            <Card.Text>Religion : {data.religion}</Card.Text>
-            <Card.Text>Profession : {data.designation}</Card.Text>
-            <Card.Text>Marital Status : {data.maritalStatus}</Card.Text>
-            <Card.Text>City : {data.cityState}</Card.Text>
-            <Card.Text>Bio Data : {data.aboutMe}</Card.Text>
-
+            <Card.Text>Age : &nbsp;&nbsp;&nbsp;{ageInYears ? ageInYears : "N/A"}</Card.Text>
+            <Card.Text>Religion : {data.religion ? data.religion : "N/A" }</Card.Text>
+            <Card.Text>Profession : {data.designation ? data.designation : "N/A"}</Card.Text>
+            <Card.Text>Marital Status : {data.maritalStatus ? data.maritalStatus : "N/A"}</Card.Text>
+            <Card.Text>City : {data.cityState ? data.cityState : "N/A"}</Card.Text>
+            <Card.Text>Bio Data : {data.aboutMe ? data.aboutMe : "N/A"}</Card.Text>
           </Card.ImgOverlay>
         </Card>
 
@@ -125,12 +133,12 @@ const ProfileDetail = (props: Props) => {
           </li>
         </div>
         <div style={{ width: "80%", marginLeft: "9%", padding: "2%" }}>
-          {dummy === 1 && <BasicInfomation data={data}/>}
+          {dummy === 1 && <BasicInfomation data={data} />}
           {dummy === 2 && <ReligiousInfo data={data} />}
           {dummy === 3 && <Education data={data} />}
-          {dummy === 4 && <MyFamily  data={data} />}
-          {dummy === 5 && <Interest  data={data} />}
-          {dummy === 6 && <Contact data={data}  />}
+          {dummy === 4 && <MyFamily data={data} />}
+          {dummy === 5 && <Interest data={data} />}
+          {dummy === 6 && <Contact data={data} />}
           {dummy === 7 && <Subscribe />}
         </div>
       </div>

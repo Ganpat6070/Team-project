@@ -106,7 +106,7 @@ const AstroDetails = () => {
       {/* <ProgressBar /> */}
       <div className="">
         <ProgressBar />
-        <PhotoCard />
+        {/* <PhotoCard /> */}
       </div>
       <div
         style={{ width: "55%" }}

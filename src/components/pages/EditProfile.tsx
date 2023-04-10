@@ -593,7 +593,7 @@ const EditProfile = () => {
   return (
     <div>
       <NavbarHead />
-      {state && (
+      {state?  (
         <div>
           <div
             style={{ width: "85%" }}
@@ -2527,7 +2527,7 @@ const EditProfile = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : <div className="text-center fs-1 mt-5">You have to LoggedIn Again OR Make Sure you have LoggedIn Properly</div>}
     </div>
   );
 };

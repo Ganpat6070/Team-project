@@ -425,7 +425,7 @@ const PersonalInfo = () => {
       }}
     >
       <ProgressBar />
-      <PhotoCard />
+      {/* <PhotoCard /> */}
       <div
         style={{ width: "55%" }}
         className="container-sm my-5 bg-light rounded-5 border border-dark p-3"

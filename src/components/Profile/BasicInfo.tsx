@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 import PhotoCard from "./PhotoCard";
 
 const BasicInfo = () => {
+  const [image, setImage] = useState("");
+ 
+
   // Error Statas for Validatoins
   const [errorbi, setErrorbi] = useState<boolean | string>(false);
   const [errorbi2, setErrorbi2] = useState<boolean | string>(false);
@@ -113,6 +116,7 @@ const BasicInfo = () => {
     conname,
     time,
     precon,
+    image
   };
   // console.log(basicinfo);
 
@@ -396,6 +400,12 @@ const BasicInfo = () => {
     if (!(e.target.value === "")) setmStatus(e.target.value);
     setErrorbi(false);
   };
+
+  const imageHandler = (image: string) => {
+    setImage(image);
+  }
+
+  // console.log("Mera Image", image);
   const navigate = useNavigate();
 
   const saveData = async () => {
@@ -488,6 +498,8 @@ const BasicInfo = () => {
     }
   };
 
+
+
   return (
     <>
       <div
@@ -499,7 +511,7 @@ const BasicInfo = () => {
         }}
       >
         <ProgressBar />
-        <PhotoCard />
+        <PhotoCard imagePass={imageHandler}/>
         <div
           style={{ width: "55%" }}
           className="container-sm my-5 bg-light rounded-5 border border-dark p-3"
