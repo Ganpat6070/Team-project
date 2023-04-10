@@ -37,10 +37,10 @@ export const astroinitialState: FormState = {
    // form reducer function
 export function astroformreducer  (state: any, action: any): FormState  {
     switch (action.type) {
-      case "DATE_OF_BIRTH_EMAIL":
+      case "UPDATE_DATE_OF_BIRTH":
         return {
           ...state,
-          fullName: action.payLoad,
+          astroDateOfBirth: action.payLoad,
         };
       case "UPDATE_EMAIL":
         return {

@@ -1,9 +1,9 @@
 import "./PhotoCard.css";
 import { Facebook } from "react-bootstrap-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const PhotoCard = () => {
 
-  const [imageUrl, setImageUrl] = useState<any>('');
+  const [imageUrl, setImageUrl] = useState<any>('../../image/photocard.png');
   const [fileErr, setFileErr] = useState("");
 
   const fileHandler = (e: any) => {
@@ -22,6 +22,28 @@ const PhotoCard = () => {
       };
     }
   }
+
+let token = localStorage.getItem("Token")
+  useEffect(()=>{
+    const reg = async () => {
+      let response = await fetch("http://localhost:8000/image", {
+        credentials: "include",
+        method: "POST",
+        headers: { "Content-Type": "application/json" , Authentication:`${token}`},
+        body: JSON.stringify({
+          image: imageUrl
+        }),
+      });
+      const res = await response.json();
+      if (response.status === 200) {
+      }
+      let id = res.id;
+      localStorage.setItem("id", id);
+    };
+  }
+  ,[fileHandler])
+
+  console.log(imageUrl)
   return (
     <div
       className="container p-2 border border-secondary rounded "
@@ -42,7 +64,7 @@ const PhotoCard = () => {
         Photo Upload
       </label>
       <img
-        src="../../image/photocard.png"
+        src={imageUrl}
         alt=""
         style={{
           //   backgroundColor: "grey",
@@ -52,6 +74,9 @@ const PhotoCard = () => {
           alignContent: "center",
           marginLeft: "26px",
           borderRadius: "50%",
+          border:"2px dotted black",
+          padding:"3px",
+          borderColor:"#6E6E6E"
         }}
       />
       <br />
@@ -71,7 +96,10 @@ const PhotoCard = () => {
       <div className="row mt-2 mx-0">
         <div className="col-sm">
           <button className="px-0 py-0 btn btn-sm btn-primary pcSocialMedia pcLocal">
-            <input type="file" name="file" />
+            <input type="file" name="file" 
+            accept="image/png, image/jpeg, image/gif"
+            onChange={fileHandler}
+            />
           </button>
         </div>
         <div className="col-sm">
@@ -85,8 +113,7 @@ const PhotoCard = () => {
             <input
               type="file"
               name="file"
-              accept="image/png, image/jpeg, image/gif"
-              onChange={fileHandler}
+
             />
           </button>
         </div>

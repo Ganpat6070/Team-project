@@ -102,7 +102,7 @@ const EditProfile = () => {
   const [ppAboutPartner, setppAboutPartner] = useState("");
   const [ppeducation, setppEducation] = useState<string[]>([]);
 
-  // My Personality States
+  // My Personality Statesprofile
   const [mpdiet, setmpdiet] = useState("");
   const [mpSmoke, setmpSmoke] = useState("");
   const [mpDrink, setmpDrink] = useState("");
@@ -127,7 +127,7 @@ const editProfileObject = async () => {
 let response = await fetch("http://localhost:8000/profile", {
   credentials: "include",
   method: "GET",
-  headers: { "Content-Type": "application/json" , "token" : `${token}` },
+  headers: { "Content-Type": "application/json" , "Authorization" : `${token}` },
   
 })
 

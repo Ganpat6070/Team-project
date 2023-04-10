@@ -90,9 +90,12 @@ const RegForm2 = () => {
     switch (action.type) {
       case "VALIDATE_FULL_NAME":
 
-        isValid = action.payLoad.fullName.length > 4 ? true : false;
-        if (!regex.test(formData.fullName)){
+        // isValid = action.payLoad.fullName.length > 4 ? true : false;
+        if (regex.test(formData.fullName)){
           isValid = true 
+        }
+        if(formData.fullName.length > 4) {
+          isValid = false;
         }
         else {
           isValid = false

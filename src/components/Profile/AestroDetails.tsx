@@ -24,7 +24,7 @@ const AstroDetails = () => {
     astroFormValidityReducer,
     astroInitialValidityState
   );
-  
+  console.log(astroDetailFormData.astroDateOfBirth)
   const [dob, setDob] = useState("");
   const [aHours, setaHours] = useState("");
   const [aMinutes, setaMinutes] = useState("");
@@ -158,16 +158,17 @@ const AstroDetails = () => {
                 onChange={(e) =>
                   setAstroDetailFormData({ type: "UPDATE_DATE_OF_BIRTH", payLoad: e.target.value })
                 }
-                // onBlur={(e) => setFormValidityData({type: "VALIDATE_DATE_OF_BIRTH", payLoad: formData})}
+                onBlur={(e) => setFormValidityData({type: "VALIDATE_DATE_OF_BIRTH", payLoad: astroDetailFormData})}
 
-                value={dob}
+                value={astroDetailFormData.astroDateOfBirth}
                 className="form-control mt-1 py-0"
               />
+              
               {error ? (
                 <small className="text-danger ">
                   Date of birth is required
                 </small>
-              ) : null}
+              ) : null }
             </Col>
 
             <Col
@@ -212,7 +213,7 @@ const AstroDetails = () => {
                   SS
                 </option>
                 {Array.from(Array(60), (_, i) => (
-                  <option key={i}>{i}</option>
+                  <option key={i}>{i }</option>
                 ))}
               </select>
               <select
@@ -278,13 +279,6 @@ const AstroDetails = () => {
                 style={{ height: "", backgroundColor: "#eeeeee" }}
                 className=" form-control p-2 text-dark mt-1 rounded-2 border-secondary form-input"
               />
-              {/* <Search/> */}
-              {/* <div className="input-group">
-  <span>
-    <Search/>
-  </span>
-  <input type="text" className="form-control" placeholder="Username" />
-</div> */}
             </Col>
             <Col>
               <label htmlFor="">Latitude</label>
