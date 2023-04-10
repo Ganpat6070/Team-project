@@ -18,7 +18,6 @@ const Finished = () => {
         }}
       >
         <ProgressBar />
-        <PhotoCard />
         <div
           style={{ width: "55%" }}
           className="container-sm mt-5 mb-5 m-auto bg-light border border-light p-3"

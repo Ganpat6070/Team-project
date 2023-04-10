@@ -36,7 +36,9 @@ const Pass = () => {
       toast.success("Password changed successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });
-      navigate('/login')
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } else {
       toast.error("Your token has expired", {
         position: toast.POSITION.TOP_RIGHT,

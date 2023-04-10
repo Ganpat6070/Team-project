@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Login from "./components/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
@@ -22,16 +22,19 @@ import EditProfile from "./components/pages/EditProfile";
 import Finished from "./components/Profile/congrats";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
+import ProtectedRoutes from "./ProtectecRoutes/protected";
 
 function App() {
   const [gender, setGender] = useState<string>("");
   const [lessAge, setLessAge] = useState<string>("");
   const [greatAge, setGreatAge] = useState<string>("");
   const [religion, setReligion] = useState<string>("");
-  
+
   // let { token } = useParams();
   // let token = props.match.params.id
   // console.log(useParams());
+
+  const isLoggedIn = localStorage.getItem("isAuthenticated");
 
   const pass = (
     gender: string,
@@ -45,47 +48,44 @@ function App() {
     setReligion(religion);
   };
 
-
   return (
     <>
       <div>
         <BrowserRouter>
-          <div>
-            <div>
-              <Routes>
-                <Route path="/" element={<Home onPass={pass} />} />
-                <Route path="/aboutus" element={<Aboutus />} />
-                <Route path="/contactus" element={<Contactus />} />
-                <Route path="/faqs" element={<Faqs />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/otp" element={<Otp />} />
-                <Route path={`/reset-password/:token`} element={<Pass />} />
-                <Route path="/register" element={<RegForm2 />} />
-                <Route path="/membership" element={<Membership />} />
-                <Route
-                  path="/profileSearch"
-                  element={
-                    <ProfileSearch
-                      gender={gender}
-                      lessAge={lessAge}
-                      greatAge={greatAge}
-                      religion={religion}
-                    />
-                  }
+          <Routes>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/basic-info" element={<BasicInfo />} />
+              <Route path="/profileDetails" element={<ProfileDetail />} />
+              <Route path="/personal-info" element={<PersonalInfo />} />
+              <Route path="/mypersonality" element={<Mypersonality />} />
+              <Route path="/prefpart" element={<PrePart />} />
+              <Route path="/astrodata" element={<AstroDetails />} />
+              <Route path="/finished" element={<Finished />} />
+              <Route path="/data-info" element={<ShowData />} />
+              <Route path="/data-add" element={<AddData />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+            </Route>
+            <Route path="/" element={<Home onPass={pass} />} />
+            <Route path="/aboutus" element={<Aboutus />} />
+            <Route path="/contactus" element={<Contactus />} />
+            <Route path="/faqs" element={<Faqs />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/otp" element={<Otp />} />
+            <Route path={`/reset-password/:token`} element={<Pass />} />
+            <Route path="/register" element={<RegForm2 />} />
+            <Route path="/membership" element={<Membership />} />
+            <Route
+              path="/profileSearch"
+              element={
+                <ProfileSearch
+                  gender={gender}
+                  lessAge={lessAge}
+                  greatAge={greatAge}
+                  religion={religion}
                 />
-                <Route path="/profileDetails" element={<ProfileDetail />} />
-                <Route path="/personal-info" element={<PersonalInfo />} />
-                <Route path="/basic-info" element={<BasicInfo />} />
-                <Route path="/mypersonality" element={<Mypersonality />} />
-                <Route path="/prefpart" element={<PrePart />} />
-                <Route path="/astrodata" element={<AstroDetails />} />
-                <Route path="/finished" element={<Finished />} />
-                <Route path="/data-info" element={<ShowData />} />
-                <Route path="/data-add" element={<AddData />} />
-                <Route path="/edit-profile" element={<EditProfile />} />
-              </Routes>
-            </div>
-          </div>
+              }
+            />
+          </Routes>
         </BrowserRouter>
       </div>
     </>

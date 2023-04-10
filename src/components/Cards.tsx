@@ -1,17 +1,20 @@
 import { useState } from "react";
+import { Table } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 
 function CardBox(props: string | any) {
+
+
   const navigate = useNavigate();
   const filteredData = localStorage.getItem("filteredData");
-  const getlogin = localStorage.getItem("login");
+  const getlogin = localStorage.getItem("isAuthenticated");
   console.log(filteredData);
 
-  const handleDetails = () => {
+  const handleDetails = (id: any): any => {
     if (getlogin === "true") {
-      navigate("/profileDetails");
+      navigate(`/profileDetails/${id}`);
     } else {
       navigate("/login");
     }
@@ -20,19 +23,37 @@ function CardBox(props: string | any) {
   return (
     <Card
       className="d-flex justify-content-between"
-      style={{ width: "18rem", textAlign: "center" }}
+      style={{ width: "25rem", textAlign: "center" }}
     >
       <Card.Img
         variant="top"
-        src={props.image}
+        src={props.image ? props.image: "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"}
         style={{ filter: getlogin ? "none" : "blur(5px)" }}
       />
 
       <Card.Body>
+        
         <Card.Title>{props.name}</Card.Title>
-        <Card.Text>{props.description}</Card.Text>
+        <Card.Text>{props.ageAndReligion}</Card.Text>
+        <p>
+          {" "}
+          <b>Address : </b>&nbsp;&nbsp;{props.address}
+        </p>
+        <Card.Text>{props.education}</Card.Text>
+
+        <Card.Text>{props.designation}</Card.Text><br/>
+        <p>
+          {" "}
+          <b>Profile_ID : </b>&nbsp;&nbsp;{props.id}
+        </p>
+        {/* <Card.Text>{props._id}</Card.Text> */}
+
+        {/* {props.education.map((edu: string[]) => <Card.Text>{edu}</Card.Text>)} */}
+
         <Button
-          onClick={handleDetails}
+          onClick={() => {
+            handleDetails(props.id);
+          }}
           variant="primary"
           style={{
             cursor: "pointer",

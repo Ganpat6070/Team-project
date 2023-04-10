@@ -74,9 +74,9 @@ const Home = ({ onPass }: HomeProps) => {
                     // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
-                    <option>Select</option>
-                    <option>Bride</option>
-                    <option>Groom</option>
+                    <option value="">Select</option>
+                    <option value='female'>Bride</option>
+                    <option value='male'>Groom</option>
                   </Form.Select>
                 </Form.Group>
               </Col>
@@ -133,10 +133,12 @@ const Home = ({ onPass }: HomeProps) => {
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeReligion}
                 >
-                  <option>Select</option>
-                  <option>Any</option>
+                 <option>Select</option>
+                  <option value=''>Any</option>
                   <option>Hindu</option>
-                  <option>Muslim</option>
+                  <option>Jainism</option>
+                  <option>Christianity</option>
+                  <option>Islam</option>
                 </Form.Select>
               </Col>
               <Col>

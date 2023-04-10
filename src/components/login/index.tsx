@@ -1,8 +1,9 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
-import { useReducer, useState } from "react";
+import { SetStateAction, useReducer, useState } from "react";
 // import { auth } from "../firebase";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ import { signInWithGoogle } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [resetEmail, setResetEmail] = useState<string>("");
@@ -35,10 +36,10 @@ function Login() {
       }),
     });
     if (response.ok) {
-      toast.success ("Email Sent!", {
+      toast.success("Email Sent!", {
         position: toast.POSITION.TOP_RIGHT,
       });
-    }else if (response.status === 404) {
+    } else if (response.status === 404) {
       toast.error("User not found!", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -106,7 +107,8 @@ function Login() {
         toast.success(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        localStorage.setItem("login", "true");
+        const isAuthenticated = true;
+        localStorage.setItem("isAuthenticated", String(isAuthenticated));
         setTimeout(() => {
           navigate("/");
         }, 1500);
@@ -485,6 +487,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;

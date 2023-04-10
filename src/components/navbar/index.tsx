@@ -26,7 +26,7 @@ const NavbarHead = () => {
   const [show, setShow] = useState<boolean>(false);
   // eslint-disable-next-line
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
-  const getlogin = localStorage.getItem("login");
+  const getlogin = localStorage.getItem('isAuthenticated');
 
   // popup state
   const [popup, setPopup] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const NavbarHead = () => {
  
 
   const logoutHandler = () => {
-    localStorage.removeItem("login");
+    localStorage.removeItem('isAuthenticated');
     localStorage.removeItem("Token");
     localStorage.removeItem("uname");
     localStorage.removeItem("id");

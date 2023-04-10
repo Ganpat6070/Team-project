@@ -1,5 +1,6 @@
 import React from "react";
 import NavbarHead from "../navbar";
+import Footer from "./footer";
 
 const Faqs = () => {
   return (
@@ -40,6 +41,7 @@ const Faqs = () => {
         </p>
         <p className="text-left">Welcome to PerfectMatch.com</p>
       </div>
+      <Footer/>
     </>
   );
 };

@@ -405,6 +405,17 @@ const RegForm2 = () => {
                     background: "0",
                     border: "0",
                     marginBottom: "30px",
+                    borderLeft: "0px",
+                    margin: "0",
+                    height: "48px",
+                    borderBottomLeftRadius: "2px",
+                    borderBottomRightRadius: "0px",
+                    borderTopLeftRadius: "2px",
+                    borderTopRightRadius: "0px",
+
+                    backgroundColor: formValidityData.phoneNumberError
+                      ? "pink"
+                      : "",
                   }}
                 >
                   <option value="1">+91</option>
@@ -414,15 +425,12 @@ const RegForm2 = () => {
                 </select>
                 <input
                   // required
-                  style={{
-                    margin: "0",
-                    background: "0",
-                    border: "0",
-                    backgroundColor: formValidityData.phoneNumberError
-                      ? "pink"
-                      : "",
-                  }}
+                  style={{ margin: "0", background: "0", border: "0" ,borderBottomLeftRadius: "0px",
+                  borderBottomRightRadius: "0px",
+                  borderTopLeftRadius: "0px",
+                  borderTopRightRadius: "0px" , backgroundColor: formValidityData.phoneNumberError ? "pink" : "",}}
                   className="form-control"
+                  
                   // type="tel"
                   type="tel"
                   name="number"

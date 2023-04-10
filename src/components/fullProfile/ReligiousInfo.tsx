@@ -1,6 +1,7 @@
 import React from "react";
 
-const ReligiousInfo = () => {
+const ReligiousInfo = (props: any) => {
+  const data2 = props.data;
   return (
     <div>
       <div className="text-center fw-bold">Religious Information</div>
@@ -22,8 +23,8 @@ const ReligiousInfo = () => {
         </div>
         <div className="text-start">
           <li style={{ listStyle: "none" }}>
-            <ul>Hindu</ul>
-            <ul>Chettier</ul>
+            <ul>{data2.religion ? data2.religion : "Not Available"}</ul>
+            <ul>{data2.caste ? data2.caste : "Not Available"}</ul>
           </li>
         </div>
       </div>

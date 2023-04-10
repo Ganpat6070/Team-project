@@ -1,6 +1,7 @@
 import React from "react";
 
-const Father = () => {
+const Father = (props : any) => {
+  const data = props.data;
   return (
     <div>
       <div className="text-center fw-bold">Father Information</div>
@@ -19,13 +20,23 @@ const Father = () => {
             <ul>Father Name</ul>
             <ul>Father Designation</ul>
             <ul>Education</ul>
+            <ul>Father Company Name</ul>
+            <ul>Father Employed In</ul>
+            <ul>Father Family Name</ul>
+            <ul>Father Home Place</ul>
+            <ul>Father Work Location</ul>
           </li>
         </div>
         <div className="text-start">
           <li style={{ listStyle: "none" }}>
-            <ul>---</ul>
-            <ul>---</ul>
-            <ul>---</ul>
+            <ul>{data.fatherName? data.fatherName : "Not Available"}</ul>
+            <ul>{data.fatherDesignation? data.fatherDesignation  : "Not Available"}</ul>
+            <ul>{data.fatherEducation? data.fatherEducation : "Not Available"}</ul>
+            <ul>{data.fatherCompanyName? data.fatherCompanyName : "Not Available"}</ul>
+            <ul>{data.fatherEmployedIn? data.fatherEmployedIn : "Not Available"}</ul>
+            <ul>{data.fatherFamilyName? data.fatherFamilyName : "Not Available"}</ul>
+            <ul>{data.fatherHomePlace? data.fatherHomePlace : "Not Available"}</ul>
+            <ul>{data.fatherWorkLocation? data.fatherWorkLocation  : "Not Available"}</ul>
           </li>
         </div>
       </div>

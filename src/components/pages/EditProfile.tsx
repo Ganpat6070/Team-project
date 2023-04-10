@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import NavbarHead from "../navbar";
 import { Col, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const [apiData, setapiData] = useState<any[]>([]);
-
+  const navigate = useNavigate();
   // Basic Info States
   const [firstName, setfirstName] = useState("");
   const [middleName, setmiddleName] = useState("");
@@ -129,13 +131,16 @@ const EditProfile = () => {
   // const [age, setAge] = useState("");
 
   let token = localStorage.getItem("Token");
-
+  console.log(token);
   // use effect calling
   const editProfileObject = async () => {
     let response = await fetch("http://localhost:8000/profile", {
       credentials: "include",
       method: "GET",
-      headers: { "Content-Type": "application/json", authorization: `${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
     });
 
     let res = await response.json();
@@ -375,7 +380,6 @@ const EditProfile = () => {
 
   // });
 
-
   const [userData, setUserData] = useState<any>({
     mTongue1: "",
     religion1: "hindu",
@@ -437,163 +441,170 @@ const EditProfile = () => {
 
   console.log(userData);
 
-  let profileId = localStorage.getItem('profileID');
+  let profileId = localStorage.getItem("profileID");
   // let profileId = '642e62f5916912c9d50278ec';
 
+  const updateHandler = async () => {
+    let updatedResponse = await fetch(
+      `http://localhost:8000/profile-update/${profileId}`,
+      {
+        credentials: "include",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: firstName,
+          middleName: middleName,
+          lastName: lastName,
+          dateOfBirth: dob,
+          height: height,
+          weight: weight,
+          maritalStatus: mStatus,
+          motherTongue: mTongue,
+          religion: religion,
+          caste: cast,
+          gender: gender,
+          subCaste: subcast,
+          physicalStatus: phyStatus,
+          aboutMe: about,
+          spokenLanguages: spokenLanguage,
+          education: education,
+          educationInDetail: eduDetails,
+          schoolName: schoolName,
+          schoolPlace: splace,
+          yearOfStudySchool: syos,
+          collegeName: collegeName,
+          course: course,
+          placeCollege: cplace,
+          yearOfStudyCollege: cyos,
+          companyName: compName,
+          designation: designation,
+          workLocation: wLoc,
+          landlineNumber: lnum,
+          mobileNumber: mNumber,
+          // lcode,
+          // larea,
+          preferredContactType: pct,
+          convenientTimeToCall: cttc,
+          contactName: "",
+          email: email,
+          profileCreatedBy: "",
+          apartmentName: "",
+          streetLocality: street,
+          country: "",
+          pinCode: pin,
+          cityState: city,
+          referenceName: refname,
+          address: refaddress,
+          contactNumber: refcontact,
 
-  const updateHandler= async() => {
-    let updatedResponse = await fetch(`http://localhost:8000/profile-update/${profileId}`, {
-      credentials: "include",
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+          // Personal Info
+          complexion: complexionState,
+          bodyType: bodytype,
+          bloodGroup: bloodGroup,
+          occupation: occupation,
+          employedIn: employedin,
+          currency: currency1,
+          annualIncome: religion1,
+          // subcast1,
+          // annualInc,
+          star: astro,
+          aboutMyFamily: aboutfam,
+          // famtype,
+          familyStatus: famstatus,
+          familyValue: "",
+          // fatCurrency,
+          // fatAnnualInc,
+          fatherName: fatname,
+          fatherFamilyName: fatFamilyname,
+          fatherHomePlace: fatHome,
+          fatherEmployedIn: fatEmp,
+          // fatOcc,
+          fatherEducation: fatEdu,
+          fatherCompanyName: fatCompName,
+          fatherDesignation: fatDesig,
+          fatherWorkLocation: fatWorkLoc,
+          motherName: motherName,
+          motherFamilyName: motherFamName,
+          motherHomePlace: motherHome,
+          motherEmployedIn: "",
+          ///////////////
+          /////////////
+          motherOccupation: motherOcc,
+          motherEducation: motherEdu,
+          motherCompanyName: "",
+          motherDesignation: "",
+          motherWorkLocation: "",
+          countryLivingIn: "",
+          currentLocation: currLoc,
+          permanentLocation: "",
 
-        firstName: firstName,
-        middleName: middleName,
-        lastName: lastName,
-        dateOfBirth: dob,
-        height: height,
-        weight: weight,
-        maritalStatus: mStatus,
-        motherTongue: mTongue,
-    religion: religion,
-    caste :cast,
-    gender: gender,
-    subCaste: subcast,
-    physicalStatus: phyStatus,
-    aboutMe: about,
-    spokenLanguages: spokenLanguage,
-    education: education,
-    educationInDetail: eduDetails,
-    schoolName: schoolName,
-    schoolPlace: splace,
-    yearOfStudySchool: syos,
-    collegeName: collegeName,
-    course: course,
-    placeCollege: cplace,
-    yearOfStudyCollege: cyos,
-    companyName: compName,
-    designation: designation,
-    workLocation: wLoc,
-    landlineNumber: lnum,
-    mobileNumber: mNumber,
-    // lcode,
-    // larea,
-    preferredContactType: pct,
-    convenientTimeToCall: cttc,
-    contactName: "",
-    email: email,
-    profileCreatedBy: "",
-    apartmentName: "",
-    streetLocality: street,
-    country: "",
-    pinCode: pin,
-    cityState: city,
-    referenceName: refname,
-    address: refaddress,
-    contactNumber: refcontact,
+          ////////////
+          residentialStatus: resStatus,
+          nativePlace: native,
 
-    // Personal Info
-    complexion: complexionState,
-    bodyType: bodytype,
-    bloodGroup: bloodGroup,
-    occupation: occupation,
-    employedIn: employedin,
-    currency: currency1,
-    annualIncome: religion1,
-    // subcast1,
-    // annualInc,
-    star: astro,
-    aboutMyFamily: aboutfam,
-    // famtype,
-    familyStatus: famstatus,
-    familyValue: "",
-    // fatCurrency,
-    // fatAnnualInc,
-    fatherName: fatname,
-    fatherFamilyName: fatFamilyname,
-    fatherHomePlace: fatHome,
-    fatherEmployedIn: fatEmp,
-    // fatOcc,
-    fatherEducation: fatEdu,
-    fatherCompanyName: fatCompName,
-    fatherDesignation: fatDesig,
-    fatherWorkLocation: fatWorkLoc,
-    motherName: motherName,
-    motherFamilyName: motherFamName,
-    motherHomePlace: motherHome,
-    motherEmployedIn: "",
-    ///////////////
-    /////////////
-    motherOccupation: motherOcc,
-    motherEducation: motherEdu,
-    motherCompanyName: "",
-    motherDesignation: "",
-    motherWorkLocation: "",
-    countryLivingIn: "",
-    currentLocation: currLoc,
-    permanentLocation: "",
+          // Preferred Partner States
+          preferredAge: ppAge,
+          preferredHeight: ppHeight,
+          preferredPhysicalStatus: "",
+          preferredFamilyStatus: ppFamilyStatus,
+          preferredCurrency: ppCurrency,
+          preferredAnnualIncome: ppAnnual,
+          preferredMotherTongue: ppMotherT,
+          preferredReligion: ppReligion,
+          preferredCastDenomination: ppcaste,
+          preferredDiet: ppDiet,
+          preferredEducation: ppeducation,
+          preferredOccupation: ppOcc,
+          preferredLocation: ppLocation,
+          preferredMaritalStatus: ppMStatus,
+          preferredNativePlace: ppNative,
+          preferredAboutMyPartner: ppAboutPartner,
 
-    ////////////
-    residentialStatus: resStatus,
-    nativePlace: native,
+          // My Personality
 
-    // Preferred Partner States
-    preferredAge: ppAge,
-    preferredHeight: ppHeight,
-    preferredPhysicalStatus: "",
-    preferredFamilyStatus: ppFamilyStatus,
-    preferredCurrency: ppCurrency,
-    preferredAnnualIncome: ppAnnual,
-    preferredMotherTongue: ppMotherT,
-    preferredReligion: ppReligion,
-    preferredCastDenomination: ppcaste,
-    preferredDiet: ppDiet,
-    preferredEducation: ppeducation,
-    preferredOccupation: ppOcc,
-    preferredLocation: ppLocation,
-    preferredMaritalStatus: ppMStatus,
-    preferredNativePlace: ppNative,
-    preferredAboutMyPartner: ppAboutPartner,
+          myDiet: mpdiet,
+          smoke: mpSmoke,
+          drink: mpDrink,
+          music: music,
+          musicRange: mpMusicrange,
+          reading: reading,
+          readingRange: mpReadingrange,
+          movies: [""],
+          moviesRange: "",
+          sports: [""],
+          sportsRange: "",
+          foods: [""],
+          foodsRange: "",
+          dress: [""],
+          dressRange: "",
 
-    // My Personality
-
-    myDiet: mpdiet,
-    smoke:  mpSmoke,
-    drink: mpDrink,
-    music: music,
-    musicRange: mpMusicrange,
-    reading: reading,
-    readingRange: mpReadingrange,
-    movies: [""],
-    moviesRange: "",
-    sports: [""],
-    sportsRange: "",
-    foods:  [""],
-    foodsRange: "",
-    dress: [""],
-    dressRange: "",
-
-
-    // Astro Details
-    astroDateOfBirth: aDate,
-    timeOfBirth: aTime,
-    birthTimeCorrection: aBirthTime,
-    placeOfBirth: aPlace,
-    longitude: "",
-    latitude: "",
-    timeZone: "",
-      }),
-    });
+          // Astro Details
+          astroDateOfBirth: aDate,
+          timeOfBirth: aTime,
+          birthTimeCorrection: aBirthTime,
+          placeOfBirth: aPlace,
+          longitude: "",
+          latitude: "",
+          timeZone: "",
+        }),
+      },
+    );
 
     let nayaData = await updatedResponse.json();
+    if (nayaData) {
+      console.log(nayaData.msg);
+      toast.success("Profile has been updated!");
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    }
     console.log("puradata", nayaData);
-  }
+  };
 
   return (
     <div>
       <NavbarHead />
-      {state && (
+      {state ? (
         <div>
           <div
             style={{ width: "85%" }}
@@ -618,7 +629,7 @@ const EditProfile = () => {
                 <tr>
                   <td>First Name</td>
                   <td>
-                  <input
+                    <input
                       type="text"
                       value={firstName}
                       onChange={(e) => setfirstName(e.target.value)}
@@ -626,9 +637,9 @@ const EditProfile = () => {
                   </td>
                 </tr>
                 <tr>
-                <td>Middle Name</td>
+                  <td>Middle Name</td>
                   <td>
-                  <input
+                    <input
                       type="text"
                       value={middleName}
                       onChange={(e) => setmiddleName(e.target.value)}
@@ -636,9 +647,9 @@ const EditProfile = () => {
                   </td>
                 </tr>
                 <tr>
-                <td>Last Name</td>
+                  <td>Last Name</td>
                   <td>
-                  <input
+                    <input
                       type="text"
                       value={lastName}
                       onChange={(e) => setlastName(e.target.value)}
@@ -2501,10 +2512,12 @@ const EditProfile = () => {
                         name="Birth Time Correction"
                         style={{ width: "135px" }}
                         value={aBirthTime}
-                        onChange={(e) => setaBirthTime(parseInt(e.target.value))}
+                        onChange={(e) =>
+                          setaBirthTime(parseInt(e.target.value))
+                        }
                       >
-                        <option value='1'>Yes</option>
-                        <option value='0'>No</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
                       </select>
                     </td>
                   </tr>
@@ -2522,11 +2535,15 @@ const EditProfile = () => {
               </Table>
 
               <div>
-                <button type = "submit" onClick={updateHandler}>Update</button>
+                <button type="submit" onClick={updateHandler}>
+                  Update
+                </button>
               </div>
             </div>
           </div>
         </div>
+      ) : (
+        <span>Loading...</span>
       )}
     </div>
   );

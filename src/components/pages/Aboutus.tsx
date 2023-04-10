@@ -1,5 +1,6 @@
 import React from "react";
 import NavbarHead from "../navbar";
+import Footer from "./footer";
 
 function Aboutus() {
   return (
@@ -40,6 +41,7 @@ function Aboutus() {
         </p>
         <p className="text-left">Welcome to PerfectMatch.com</p>
       </div>
+      <Footer/>
     </>
   );
 }
