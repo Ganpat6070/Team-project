@@ -26,8 +26,8 @@
   font-weight: bolder;
   font-size: 10px;
   position: absolute;
-  top: 70%;
-  left: 50%;
+  top: 73%;
+  left: 40%;
   transform: translate(-50%, -50%);
 }
 
@@ -258,4 +258,11 @@
     .filterinput{
       width: 120px;
     }
+}
+
+.nopadding {
+  padding: 0 !important;
+  /* margin: 0 !important; */
+  /* padding-right: 0 !important; */
+  /* width: 110%; */
 }

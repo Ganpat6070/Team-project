@@ -63,46 +63,48 @@ const Home = ({ onPass }: HomeProps) => {
           </h1>
         </div>
         <div className="selectData col-6">
-          <Form className="float-left">
-            <Row className="inputLabel">
-              <Col>
+          <Form className="container">
+            {/* <Row className="inputLabel nopadding" > */}
+            <Row  >
+              {/* <Col className="nopadding" style={{ width: "initial"}}> */}
+              <div className="col-sm-3">
                 <Form.Group controlId="formGridState">
-                  <Form.Label className="text-white">I'm lookig for</Form.Label>
+                  <Form.Label className="text-white fst-italic">I'm Lookig For a</Form.Label>
                   <Form.Select
                     size="sm"
                     className="filterinput"
                     // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
-                    <option>Select</option>
-                    <option>Bride</option>
-                    <option>Groom</option>
+                    <option hidden>Select</option>
+                    <option value='female'>Bride</option>
+                    <option value='male'>Groom</option>
                   </Form.Select>
                 </Form.Group>
-              </Col>
-              <Col>
-                <Form.Label className="text-white">Born Year </Form.Label>
+              </div>
+              <div className="col-sm-2">
+                <Form.Label className="text-white fst-italic">Born Year </Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeLessAge}
                 >
-                  <option>Select</option>
+                  <option hidden>Select</option>
                   <option>1950</option>
                   <option>1980</option>
                   <option>2000</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-1">
                 <Form.Label>&nbsp;&nbsp;</Form.Label>
                 <Form.Label
-                  className="text-white"
-                  style={{ fontSize: "20px", marginTop: "24px", marginLeft: "34px" }}
+                  className="text-white fst-italic pb-0"
+                  style={{ fontSize: "20px", marginTop: "24px", marginRight:"0px" }}
                 >
                   TO
                 </Form.Label>
-              </Col>
+              </div>
               {/* <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label className="mt-2 text-white" style={{ fontSize: "20px" }}>
@@ -110,7 +112,7 @@ const Home = ({ onPass }: HomeProps) => {
                 </Form.Label>
               </Col> */}
 
-              <Col>
+              <div className="col-sm-2">
                 <Form.Label>&nbsp;</Form.Label>{" "}
                 <Form.Select
                   size="sm"
@@ -118,15 +120,15 @@ const Home = ({ onPass }: HomeProps) => {
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeGreatAge}
                 >
-                  <option>Select</option>
+                  <option hidden>Select</option>
                   <option>1960</option>
                   <option>1990</option>
                   <option>2005</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-3">
                 {" "}
-                <Form.Label className="text-white">Religion</Form.Label>
+                <Form.Label className="text-white fst-italic">Religion</Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
@@ -134,12 +136,14 @@ const Home = ({ onPass }: HomeProps) => {
                   onChange={selectChangeReligion}
                 >
                   <option>Select</option>
-                  <option>Any</option>
+                  <option value=''>Any</option>
                   <option>Hindu</option>
-                  <option>Muslim</option>
+                  <option>Jainism</option>
+                  <option>Christianity</option>
+                  <option>Islam</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-2">
                 <Form.Label>&nbsp;</Form.Label>
                 <Button
                   className="findbtn filterinput border-0"
@@ -149,7 +153,7 @@ const Home = ({ onPass }: HomeProps) => {
                 >
                   Let's Find
                 </Button>
-              </Col>
+              </div>
             </Row>
           </Form>
         </div>

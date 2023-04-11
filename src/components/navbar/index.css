@@ -4,3 +4,44 @@
     background-color: #FA5847;
   }
 }
+/* 
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+Dropdown.Toggle:focus {
+
+  outline:none!important;  
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+} */
+
+#dropdown-basic:hover {
+  /* height: 300px; */
+  outline: none!important;
+  background: transparent!important;
+}
+
+#dropdown-basic:focus {
+  /* height: 300px; */
+  outline: none!important;
+  background: transparent!important;
+}
+
+.dropdown-item:focus {
+  outline: none;
+  background: transparent!important;
+
+}
+
+.dropdown-item:hover {  
+  outline: none;
+  background: transparent!important;
+
+}

@@ -90,16 +90,16 @@ const RegForm2 = () => {
     switch (action.type) {
       case "VALIDATE_FULL_NAME":
 
-        // isValid = action.payLoad.fullName.length > 4 ? true : false;
-        if (regex.test(formData.fullName)){
-          isValid = true 
-        }
-        if(formData.fullName.length > 4) {
-          isValid = false;
-        }
-        else {
-          isValid = false
-        }
+        isValid = action.payLoad.fullName.length > 4 ? true : false;
+        // if (regex.test(formData.fullName)){
+        //   isValid = true 
+        // }
+        // if(formData.fullName.length > 4) {
+        //   isValid = false;
+        // }
+        // else {
+        //   isValid = false
+        // }
         return {
           ...state,
           ...{
@@ -121,7 +121,7 @@ const RegForm2 = () => {
             isFormValid:
               isValid &&
               !state.firstNameError &&
-              !state.ageError &&
+              // !state.phoneNumberError &&
               !state.emailError &&
               !state.passwordError,
           },
@@ -267,7 +267,7 @@ const RegForm2 = () => {
                 <img
                  style={{height:"800px"}}
                   className="d-block w-0  "
-                  src="../../image/quick-reg.slideC.jpg"
+                  src="../../image/quick-reg.slideE.jpg"
                   alt="First slide"
                 />
                 <Carousel.Caption>
@@ -283,7 +283,7 @@ const RegForm2 = () => {
                 <img
                  style={{height:"800px"}}
                   className="d-block w-0"
-                  src="../../image/quick-reg.slideA.jpg"
+                  src="../../image/quick-reg.slideB.jpg"
                   alt="Second slide"
                 />
 

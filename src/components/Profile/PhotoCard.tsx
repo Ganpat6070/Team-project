@@ -22,26 +22,31 @@ const PhotoCard = () => {
       };
     }
   }
+  const uploadImageHandler = () => 
+  {
 
-let token = localStorage.getItem("Token")
-  useEffect(()=>{
-    const reg = async () => {
-      let response = await fetch("http://localhost:8000/image", {
-        credentials: "include",
-        method: "POST",
-        headers: { "Content-Type": "application/json" , Authentication:`${token}`},
-        body: JSON.stringify({
-          image: imageUrl
-        }),
-      });
-      const res = await response.json();
-      if (response.status === 200) {
-      }
-      let id = res.id;
-      localStorage.setItem("id", id);
-    };
+
+console.log("hello")
   }
-  ,[fileHandler])
+// let token = localStorage.getItem("Token")
+//   useEffect(()=>{
+//     const reg = async () => {
+//       let response = await fetch("http://localhost:8000/image", {
+//         credentials: "include",
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" , Authentication:`${token}`},
+//         body: JSON.stringify({
+//           image: imageUrl
+//         }),
+//       });
+//       const res = await response.json();
+//       if (response.status === 200) {
+//       }
+//       let id = res.id;
+//       localStorage.setItem("id", id);
+//     };
+//   }
+//   ,[fileHandler])
 
   console.log(imageUrl)
   return (
@@ -64,6 +69,7 @@ let token = localStorage.getItem("Token")
         Photo Upload
       </label>
       <img
+      onClick={uploadImageHandler}
         src={imageUrl}
         alt=""
         style={{
@@ -113,7 +119,7 @@ let token = localStorage.getItem("Token")
             <input
               type="file"
               name="file"
-
+              
             />
           </button>
         </div>

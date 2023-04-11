@@ -16,6 +16,8 @@ import {
   Person,
 } from "react-bootstrap-icons";
 
+import Dropdown from "react-bootstrap/Dropdown";
+
 const NavbarHead = () => {
   const [islogedin, setIsLogedin] = useState(false);
   const [user, setUser] = useState<string | null>(null);
@@ -36,7 +38,8 @@ const NavbarHead = () => {
     if (getlogin === "true") {
       let username: any = localStorage.getItem("uname");
       const name = username.substring(1, username.indexOf("@"));
-      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
+      const capitalizedName =
+        name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
       setUser(capitalizedName);
 
       setIsLogedin(true);
@@ -182,9 +185,8 @@ const NavbarHead = () => {
                   Contact
                 </Link>
                 <ToastContainer />
-
-                <PopupMenu>
-                  <button className="btn rounded-circle">
+                <Dropdown id="dropdown-basic" >
+                  <Dropdown.Toggle className="bg-transparent border-0 button dropdown-toggle" id="dropdown-basic">
                     <img
                       className="imgpro rounded-circle"
                       style={{ width: "50px" }}
@@ -193,105 +195,83 @@ const NavbarHead = () => {
                       }
                       alt=""
                     ></img>
-                  </button>
+                  </Dropdown.Toggle>
 
-                  <div
-                    style={{
-                      width: "250px",
-                      height: "400px",
-                      marginTop: "70px",
-                      marginRight: "10px",
-                      marginLeft: "-80px",
-                    }}
-                    className="card text-start"
-                  >
-                    <div
-                      className="card-body px-4 py-4 "
-                      style={{ backgroundColor: "#f6837d" }}
-                    >
-                      <div
-                        id="circle-avatar"
-                        className="text-center mx-auto mb-4"
-                      ></div>
-
-                      <h6 className="text-center ">{user}</h6>
+                  <Dropdown.Menu style={{backgroundColor:"#f6837d" , width:"250" }}>
+                  <h6 className="text-center ">{user}</h6>
                       <p className="text-center ">Type:Free</p>
 
                       <hr />
-
-                      <div
-                        className="list-group list-group-flush "
-                        style={{ margin: "0 -24px 0" }}
-                      >
-                        <button
+                       <div className="dropdown-item">  
+                          <button
                           className="list-group-item list-group-item-action px-4 text-light"
                           style={{ backgroundColor: "#f6837d" }}
-                        >
-                          <House color="white" size={20} />{" "}
+                           >
+                          <House color="black" size={20} />{" "}
                           <small>
                             <Link
                               to="/basic-info"
-                              className="text-white"
+                              className="text-black"
                               style={{ textDecoration: "none" }}
                             >
-                              My Account
+                              Complete Profile
                             </Link>
                           </small>
-                        </button>
-                        <button
+                           </button>
+                        </div>
+                    <Dropdown.Item href="/edit-profile">
+                    <button
                           className="list-group-item list-group-item-action px-4 text-light"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Person color="white" size={20} />{" "}
+                          <Person color="black" size={20} />{" "}
                           <small>
                             <Link
                               to="/edit-profile"
-                              className="text-white"
+                              className="text-black"
                               style={{ textDecoration: "none" }}
                             >
                               Edit My Profile
                             </Link>
                           </small>
                         </button>
-                        <button
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                    <button
                           className="list-group-item list-group-item-action px-4 text-light"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <ArrowCounterclockwise color="white" size={20} />{" "}
-                          <small>My Activity Log</small>
+                          <Trash color="black" size={20} />{" "}
+                          <small className="text-black">Delete My Profile</small>
                         </button>
-                        <button
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                    <button
                           className="list-group-item list-group-item-action px-4 text-light"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Trash color="white" size={20} />{" "}
-                          <small>Delete My Profile</small>
+                          <Lock color="black" size={20} />{" "}
+                          <small className="text-black">Change My Password</small>
                         </button>
-                        <button
+                    </Dropdown.Item>
+                    <Dropdown.Item><button
                           className="list-group-item list-group-item-action px-4 text-light"
                           style={{ backgroundColor: "#f6837d" }}
                         >
-                          <Lock color="white" size={20} />{" "}
-                          <small>Change My Password</small>
-                        </button>
-                        <button
-                          className="list-group-item list-group-item-action px-4 text-light"
-                          style={{ backgroundColor: "#f6837d" }}
-                        >
-                          <BoxArrowInRight color="white" size={20} />{" "}
+                          <BoxArrowInRight color="black" size={20} />{" "}
                           <Link to="/" style={{ textDecoration: "none" }}>
                             <span
                               onClick={logoutHandler}
-                              className="text-white"
+                              className="text-black"
                             >
                               Logout
                             </span>
                           </Link>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </PopupMenu>
+                        </button></Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+
+                
               </Nav>
             </Navbar.Collapse>
           </Container>
