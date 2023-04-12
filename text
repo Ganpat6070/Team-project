@@ -1,0 +1,140 @@
+{
+    "firstName": "Nikhil",
+    "lastName": "Nagar",
+    "dateOfBirth": "2000-11-25",
+    "height": 174,
+    "weight": 59,
+    "maritalStatus": "Single",
+    "motherTongue": "English",
+    "religion": "Hindu",
+    "caste": "Brahmin",
+    "gender": "Male",
+    "subCaste": "Nagar",
+    "physicalStatus": "Normal",
+    "aboutMe": "I am a software engineer with a passion for coding.",
+    "spokenLanguages": [
+        "English",
+        "Spanish"
+    ],
+    "education": [
+        "Bachelors Degree",
+        "Master Degree"
+    ],
+    "educationInDetail": "Bachelor of Computer Application",
+    "schoolName": "XYZ High School",
+    "schoolPlace": "New York",
+    "yearOfStudySchool": 2016,
+    "collegeName": "ABC University",
+    "course": "Computer Science",
+    "placeCollege": "New York",
+    "yearOfStudyCollege": 2021,
+    "companyName": "XYZ Corp",
+    "designation": "Software Engineer",
+    "workLocation": "San Francisco",
+    "landlineNumber": "4848646998484",
+    "mobileNumber": "9099965264",
+    "preferredContactType": "Mobile",
+    "convenientTimeToCall": "Eve",
+    "contactName": "Nikhil",
+    "email": "nikhil@gmail.com",
+    "profileCreatedBy": "self",
+    "apartmentName": "jantanagar",
+    "streetLocality": "jantanagar",
+    "country": "jantanagar",
+    "pinCode": "382424",
+    "cityState": "jantanagar",
+    "referenceName": "parth",
+    "address": "jantanagar",
+    "contactNumber": "9876543210"
+},
+{
+    "complexion": "fair",
+    "bodyType": "thin",
+    "bloodGroup": "B+",
+    "occupation": "software engineer",
+    "employedIn": "private sector",
+    "currency": "INR",
+    "annualIncome": 100000,
+    "star": "Scorpio",
+    "aboutMyFamily": "We are a close-knit family with traditional values.",
+    "familyStatus": "middle class",
+    "familyValue": "moderate",
+    "fatherName": "Nagar Saheb",
+    "fatherFamilyName": "",
+    "fatherHomePlace": "Ahmdebad",
+    "fatherEmployedIn": "self employed",
+    "fatherEducation": "college graduate",
+    "fatherCompanyName": "",
+    "fatherDesignation": "",
+    "fatherWorkLocation": "",
+    "motherName": "Nagar",
+    "motherFamilyName": "",
+    "motherHomePlace": "Ahmdebad",
+    "motherEmployedIn": "homemaker",
+    "motherOccupation": "",
+    "motherEducation": "",
+    "motherCompanyName": "",
+    "motherDesignation": "",
+    "motherWorkLocation": "",
+    "countryLivingIn": "India",
+    "currentLocation": "Ahmdebad",
+    "permanentLocation": "Ahmdebad",
+    "residentialStatus": "citizen",
+    "nativePlace": "India"
+},
+{
+    "preferredAge": 23,
+    "preferredHeight": 5.8,
+    "preferredPhysicalStatus": "Normal",
+    "preferredFamilyStatus": "Middle Class",
+    "preferredCurrency": "INR",
+    "preferredAnnualIncome": 400000,
+    "preferredMotherTongue": "Hindi",
+    "preferredReligion": "Hindu",
+    "preferredCastDenomination": "Brahmin",
+    "preferredDiet": "Vegetarian",
+    "preferredEducation": "MCA",
+    "preferredOccupation": "Traniee",
+    "preferredLocation": "Ahmedabad",
+    "preferredMaritalStatus": "Never Married",
+    "preferredNativePlace": "Ahmedabad",
+    "preferredAboutMyPartner": "Looking for a partner who is kind, caring and shares similar interests as me."
+},
+{
+    "myDiet": "Vegetarian",
+    "smoke": "No",
+    "drink": "No",
+    "music": [
+        "Haryanvi", "hindi"
+    ],
+    "musicRange": "8",
+    "reading": [
+        "Fiction", "thriller"
+    ],
+    "readingRange": "8",
+    "movies": [
+        "Comedy", "thriller"
+    ],
+    "moviesRange": "8",
+    "sports": [
+        "Badminton", "26"
+    ],
+    "sportsRange": "8",
+    "foods": [
+        "Indian", "indian"
+    ],
+    "foodsRange": "8",
+    "dress": [
+        "Casual","formal"
+    ],
+    "dressRange": "8"
+},
+{
+    "astroDateOfBirth": "2000-11-25",
+    "timeOfBirth": "13:00:00",
+    "birthTimeCorrection": "Yes",
+    "placeOfBirth": "Ahmdedabad",
+    "longitude": "-74.0059",
+    "latitude": "40.7128",
+    "timeZone": "IndianIST"
+}
