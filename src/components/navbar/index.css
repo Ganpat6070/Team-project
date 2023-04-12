@@ -4,3 +4,31 @@
     background-color: #FA5847;
   }
 }
+
+#dropdown-basic:hover {
+  /* height: 300px; */
+  outline: none!important;
+  background: transparent!important;
+}
+
+#dropdown-basic:focus {
+  /* height: 300px; */
+  outline: none!important;
+  background: transparent!important;
+}
+
+.dropdown-item:focus {
+  outline: none;
+  background: transparent!important;
+
+}
+
+.dropdown-item:hover {  
+  outline: none;
+  background: transparent!important;
+
+}
+
+.dropdown-toggle::after {
+  display: none;
+}

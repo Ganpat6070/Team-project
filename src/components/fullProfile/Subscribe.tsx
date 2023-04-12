@@ -6,9 +6,8 @@ const Subscribe = () => {
   return (
     <>
       <div>
-        <div className="text-center fw-bold">Subscribe Now to contact this member</div>
-        <br />
-        <br />
+        {/* <div className="text-center fw-bold">Subscribe Now to contact this member</div> */}
+       
         <div
           className="d-flex justify-content-lg-evenly"
           style={{

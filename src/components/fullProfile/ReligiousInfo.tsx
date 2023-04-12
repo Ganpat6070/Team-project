@@ -4,9 +4,8 @@ const ReligiousInfo = (props: any) => {
   const data2 = props.data;
   return (
     <div>
-      <div className="text-center fw-bold">Religious Information</div>
-      <br />
-      <br />
+      {/* <div className="text-center fw-bold">Religious Information</div> */}
+      
       <div
         className="d-flex justify-content-lg-evenly"
         style={{

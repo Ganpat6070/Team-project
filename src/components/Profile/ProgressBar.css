@@ -4,3 +4,52 @@
   justify-content: center;
   align-items: center;
 }
+.step-item{
+  z-index: 1;
+}
+.buttonZIndex {
+  z-index: 1;
+}
+.progressLine {
+  content: "";
+  position: absolute;
+  color: white;
+  background-color: #e59f71;
+  top: 15.6%;
+  height: 8px;
+  width: 55%;
+  left: 20%;
+  z-index: 0;
+}
+.buttonBorder {
+  border: 3px solid #e59f71;
+}
+/* 
+.progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ccc;
+  position: relative;
+}
+
+.step.active {
+  color: #000;
+}
+
+.step.completed:after {
+  content: '✔';
+  font-size: 24px;
+  color: #007bff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */

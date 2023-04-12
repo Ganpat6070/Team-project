@@ -4,9 +4,8 @@ const Contact = (props: any) => {
   const data = props.data;
   return (
     <div>
-      <div className="text-center fw-bold">Contact Information</div>
-      <br />
-      <br />
+      {/* <div className="text-center fw-bold">Contact Information</div> */}
+      
       <div
         className="d-flex justify-content-lg-evenly"
         style={{

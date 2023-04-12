@@ -4,12 +4,62 @@ import "./ProgressBar.css";
 // import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import NavbarHead from "../navbar";
+import { useState } from "react";
 // import BasicInfo from "./BasicInfo";
 
 const ProgressBar = () => {
+  // const [activeStep, setActiveStep] = useState(1);
+  // const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+
+  // const steps = [
+  //   { label: "Step 1" },
+  //   { label: "Step 2" },
+  //   { label: "Step 3" },
+  //   { label: "Step 4" },
+  //   { label: "Step 5" },
+  // ];
+  
+  // interface StepProps {
+  //   active: boolean;
+  //   completed: boolean;
+  //   label: string;
+  // }
+
+  // function Step({ active, completed, label }: StepProps) {
+  //   return (
+  //     <div
+  //       className={`step ${active ? "active" : ""} ${
+  //         completed ? "completed" : ""
+  //       }`}
+  //     >
+  //       {label}
+  //     </div>
+  //   );
+  // }
+
+  // const handleStepClick = (step : number) => {
+  //   if (completedSteps.includes(step)) {
+  //     setActiveStep(step + 1);
+  //   }
+  // };
+
   return (
     <>
       <NavbarHead />
+
+      {/* <div className="progress">
+        {steps.map((step, index) => (
+          <Step
+            key={index}
+            label={step.label}
+            active={index + 1 === activeStep}
+            completed={completedSteps.includes(index + 1)}
+            onClick={() => handleStepClick(index + 1)}
+          />
+        ))}
+      </div> */}
+  <div className="progressLine"></div>
+      <div className="buttons"></div>
       <div className="steps mt-4">
         <div className="step-item mx-4">
             <button

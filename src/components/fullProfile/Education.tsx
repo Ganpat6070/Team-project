@@ -4,9 +4,8 @@ const Education = (props: any) => {
   const data2 = props.data;
   return (
     <div>
-      <div className="text-center fw-bold">Education Details</div>
-      <br />
-      <br />
+      {/* <div className="text-center fw-bold">Education Details</div> */}
+      
       <div
         className="d-flex justify-content-lg-evenly"
         style={{

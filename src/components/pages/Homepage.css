@@ -1,3 +1,4 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 .background_img {
   color: red;
   /* background-image: url("../../../public/image/Maskgroup.jpg"); */
@@ -21,13 +22,14 @@
   transform: translate(-50%, -50%);
 }
 
+
 .selectData {
   color: white;
   font-weight: bolder;
   font-size: 10px;
   position: absolute;
-  top: 70%;
-  left: 50%;
+  top: 73%;
+  left: 45%;
   transform: translate(-50%, -50%);
 }
 
@@ -77,7 +79,6 @@
   border-radius: nullpx;
 }
 
-
 .pngImg1::before {
   content: url("../../../public/image/png/1a9dd5ed42f7e1f30b2ff7e10f8678d31.png");
   position: relative;
@@ -126,7 +127,7 @@
 
 .setmargin {
   margin-top: 5%;
-  padding-top: .5%;
+  padding-top: 0.5%;
   background-color: #fa5847;
   color: white;
   padding-bottom: 5%;
@@ -172,11 +173,10 @@
   flex-grow: 0;
 }
 
-.filterinput{
-  width: 90px;
+.filterinput {
   height: 30px;
 }
-.findbtn{
+.findbtn {
   width: 120px;
 }
 
@@ -226,7 +226,7 @@
   }
 
   .gallery {
-    display: flex;
+    display: flex;  
     flex-direction: column;
   }
 
@@ -234,28 +234,57 @@
     width: 80%;
     height: 70%;
   }
-  .perfectimg{
+  .perfectimg {
     width: 70%;
   }
-    .frontText {
-      font-weight: bolder;
-      font-size: 36px;
-      opacity: 1;
-      top: 20%;
-      left: 48%;
-      transform: translate(-50%, -50%);
-    }
-    .inputLabel{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-    .findbtn{
-      width: 120px;
-      margin-right: 40px;
-    }
-    .filterinput{
-      width: 120px;
-    }
+  .frontText {
+    font-weight: bolder;
+    font-size: 36px;
+    opacity: 1;
+    top: 20%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+  }
+  .inputLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .findbtn {
+    width: 120px;
+    margin-right: 40px;
+  }
+  .filterinput {
+    width: 120px;
+  }
+}
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black !important;
+  border-radius: 50%;
+} */
+.carousel-item {
+  transition: transform 0.5s all;
+}
+
+/* Customize arrow buttons */
+.carousel-control-prev-icon:before {
+  content: "\F129" !important;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+  font-family: "bootstrap-icons";
+}
+
+.carousel-control-next-icon:before {
+  content: "\F133" !important;
+  height: 50px !important;
+  width: 50px !important;
+  z-index: 1;
+  font-family: "bootstrap-icons";
+}
+
+.story-icon {
+  font-size: 40px
 }

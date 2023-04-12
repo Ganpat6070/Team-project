@@ -10,12 +10,14 @@ import Subscribe from "../fullProfile/Subscribe";
 import NavbarHead from "../navbar";
 
 import { useParams } from "react-router-dom";
+import { InfinitySpin } from "react-loader-spinner";
 
 type Props = {};
 
 const ProfileDetail = (props: Props) => {
   const [dummy, setDummy] = useState<Number>(1);
   const [data, setData] = useState<any>({});
+  const [loader, setLoader] = useState<boolean>(true);
 
   const params = useParams();
 
@@ -30,6 +32,7 @@ const ProfileDetail = (props: Props) => {
     });
     const res = await response.json();
     setData(res.profile);
+    setLoader(false);
   };
 
   useEffect(() => {
@@ -43,6 +46,22 @@ const ProfileDetail = (props: Props) => {
   const ageInMilliseconds = Date.now() - dateOfBirth.getTime();
   const ageInYears = new Date(ageInMilliseconds).getUTCFullYear() - 1970;
 
+  if (loader) {
+    return (
+      <div
+        style={{
+          width: "120px",
+          height: "120px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <InfinitySpin width="200" color="rgb(255, 85, 59)" />
+      </div>
+    );
+  }
   return (
     <>
       <NavbarHead />
@@ -64,8 +83,8 @@ const ProfileDetail = (props: Props) => {
           <Card.Img
             // src="../../image/png/girl31.png"
             src={
-              data.images
-                ? data.images
+              data.image
+                ? data.image
                 : "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"
             }
             style={{
@@ -83,20 +102,30 @@ const ProfileDetail = (props: Props) => {
           >
             <Card.Title className="my-4">
               Name : &nbsp;&nbsp;&nbsp;
-              {data.firstName
-                ? data.firstName
-                : " " + " " + data.middleName
-                ? data.firstName
-                : " " + " " + data.lastName
-                ? data.firstName
-                : " "}
+              {(data.firstName ? data.firstName : " ") +
+                " " +
+                (data.middleName ? data.middleName : " ") +
+                " " +
+                (data.lastName ? data.lastName : " ")}
             </Card.Title>
-            <Card.Text>Age : &nbsp;&nbsp;&nbsp;{ageInYears ? ageInYears : "N/A"}</Card.Text>
-            <Card.Text>Religion : {data.religion ? data.religion : "N/A" }</Card.Text>
-            <Card.Text>Profession : {data.designation ? data.designation : "N/A"}</Card.Text>
-            <Card.Text>Marital Status : {data.maritalStatus ? data.maritalStatus : "N/A"}</Card.Text>
-            <Card.Text>City : {data.cityState ? data.cityState : "N/A"}</Card.Text>
-            <Card.Text>Bio Data : {data.aboutMe ? data.aboutMe : "N/A"}</Card.Text>
+            <Card.Text>
+              Age : &nbsp;&nbsp;&nbsp;{ageInYears ? ageInYears : "N/A"}
+            </Card.Text>
+            <Card.Text>
+              Religion : {data.religion ? data.religion : "N/A"}
+            </Card.Text>
+            <Card.Text>
+              Profession : {data.designation ? data.designation : "N/A"}
+            </Card.Text>
+            <Card.Text>
+              Marital Status : {data.maritalStatus ? data.maritalStatus : "N/A"}
+            </Card.Text>
+            <Card.Text>
+              City : {data.cityState ? data.cityState : "N/A"}
+            </Card.Text>
+            <Card.Text>
+              Bio Data : {data.aboutMe ? data.aboutMe : "N/A"}
+            </Card.Text>
           </Card.ImgOverlay>
         </Card>
 
@@ -108,29 +137,105 @@ const ProfileDetail = (props: Props) => {
             textAlign: "center",
           }}
         >
-          <li className="d-flex p-1">
-            <ul className="mt-2" onClick={() => setDummy(1)}>
+          <ul className="d-flex p-1 mx-3" style={{ listStyle: "none", justifyContent: 'center' }}>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(1)}
+              style={{
+                backgroundColor: dummy === 1 ? "#fff" : "transparent",
+                borderRadius: "5px",
+                color: dummy === 1 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               Basic Info
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(2)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(2)}
+              style={{
+                backgroundColor: dummy === 2 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 2 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               Religious Info
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(3)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(3)}
+              style={{
+                backgroundColor: dummy === 3 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 3 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               Education and Career
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(4)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(4)}
+              style={{
+                backgroundColor: dummy === 4 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 4 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               My Family
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(5)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(5)}
+              style={{
+                backgroundColor: dummy === 5 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 5 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               My Interest and Hobbies
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(6)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(6)}
+              style={{
+                backgroundColor: dummy === 6 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 6 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               My Contact Info
-            </ul>
-            <ul className="mt-2" onClick={() => setDummy(7)}>
+            </li>
+            <li
+              className="mt-2 mx-2"
+              onClick={() => setDummy(7)}
+              style={{
+                backgroundColor: dummy === 7 ? "#fff" : "transparent",
+                borderRadius: "5px",
+
+                color: dummy === 7 ? "#fb4d56" : "#fff",
+                cursor: "pointer",
+                padding: "10px",
+              }}
+            >
               Subscribe Now
-            </ul>
-          </li>
+            </li>
+          </ul>
         </div>
         <div style={{ width: "80%", marginLeft: "9%", padding: "2%" }}>
           {dummy === 1 && <BasicInfomation data={data} />}

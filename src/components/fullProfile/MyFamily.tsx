@@ -13,9 +13,8 @@ const MyFamily = (props: any) => {
   return (
     <div>
       <div>
-        <div className="text-center fw-bold">About Family</div>
-        <br />
-        <br />
+        {/* <div className="text-center fw-bold">About Family</div> */}
+
         <li
           className="d-flex justify-content-lg-evenly fw-normal"
           style={{

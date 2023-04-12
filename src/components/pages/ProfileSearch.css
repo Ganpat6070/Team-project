@@ -15,12 +15,13 @@
 .card-img-top {
   height: 15rem;
 }
-/* .card {
-  padding: 15px;
+.card {
+  /* padding: 15px;
   margin: 15px;
   transition: 0.7s all;
-  border-radius: 15px;
-} */
+  border-radius: 15px; */
+  transition: box-shadow 700ms linear;
+}
 .card:hover {
-  box-shadow: 0 0 10px 1px black;
+  box-shadow: 1px 1px 35px rgba(0, 0, 0, 0.5);
 }

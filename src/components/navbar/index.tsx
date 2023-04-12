@@ -19,22 +19,24 @@ import {
   BorderBottom,
 } from "react-bootstrap-icons";
 import { error } from "console";
+import { Dropdown } from "react-bootstrap";
 
 const NavbarHead = () => {
   const [islogedin, setIsLogedin] = useState(false);
   const [user, setUser] = useState<string | null>(null);
   const [show, setShow] = useState<boolean>(false);
+  const [image, setImage] = useState("");
   // eslint-disable-next-line
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
-  const getlogin = localStorage.getItem('isAuthenticated');
+  const getlogin = localStorage.getItem("isAuthenticated");
+  const token = localStorage.getItem("Token");
 
   // popup state
   const [popup, setPopup] = useState<boolean>(false);
   const handlePopupClose = () => setPopup(false);
- 
 
   const logoutHandler = () => {
-    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem("isAuthenticated");
     localStorage.removeItem("Token");
     localStorage.removeItem("uname");
     localStorage.removeItem("id");
@@ -50,7 +52,7 @@ const NavbarHead = () => {
       const capitalizedName =
         name.charAt(0).toUpperCase() + name.slice(1).replace(/\./g, " ");
       setUser(capitalizedName);
-
+      getProfile();
       setIsLogedin(true);
       // setPopup(true);
     } else {
@@ -59,6 +61,25 @@ const NavbarHead = () => {
     }
   }, [setIsLogedin, getlogin]);
 
+  const getProfile = async () => {
+    let response = await fetch("http://localhost:8000/profile", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${token}`,
+      },
+    });
+
+    let res = await response.json();
+    console.log(res);
+    let image = res.profile[0].image;
+    if (res.profile[0] === undefined) {
+      return;
+    } else {
+      setImage(image);
+    }
+  };
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const deleteProfile = async () => {
@@ -112,7 +133,7 @@ const NavbarHead = () => {
             top: 0,
             zIndex: 1,
             width: "100%",
-            height: "60px",
+            height: "53px",
           }}
         >
           <Container>
@@ -239,6 +260,98 @@ const NavbarHead = () => {
                 </Link>
                 <ToastContainer />
 
+                <Dropdown id="dropdown-basic" className="custom-dropdown">
+                  <Dropdown.Toggle
+                    className="bg-transparent border-0 button dropdown-toggle"
+                    id="dropdown-basic"
+                  >
+                    <img
+                      className="imgpro rounded-circle"
+                      style={{ width: "50px", height: "50px" }}
+                      src={image ? image : "../../image/photocard.png"}
+                      alt=""
+                    ></img>
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu
+                    style={{
+                      backgroundColor: "white",
+                      width: "250",
+                      left: "-86px",
+                    }}
+                  >
+                    <h6 className="text-center ">{user}</h6>
+                    <p className="text-center ">Type:Free</p>
+
+                    <hr />
+                    <div className="dropdown-item">
+                      <button
+                        className="list-group-item list-group-item-action px-4 text-light"
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <House color="black" size={20} />{" "}
+                        <small>
+                          <Link
+                            to="/basic-info"
+                            className="text-black"
+                            style={{ textDecoration: "none" }}
+                          >
+                            Complete Profile
+                          </Link>
+                        </small>
+                      </button>
+                    </div>
+                    <Dropdown.Item href="/edit-profile">
+                      <button
+                        className="list-group-item list-group-item-action px-4 text-light"
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <Person color="black" size={20} />{" "}
+                        <small>
+                          <Link
+                            to="/edit-profile"
+                            className="text-black"
+                            style={{ textDecoration: "none" }}
+                          >
+                            Edit My Profile
+                          </Link>
+                        </small>
+                      </button>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">
+                      <button
+                        className="list-group-item list-group-item-action px-4 text-light"
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <Trash color="black" size={20} />{" "}
+                        <small className="text-black">Delete My Profile</small>
+                      </button>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <button
+                        className="list-group-item list-group-item-action px-4 text-light"
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <Lock color="black" size={20} />{" "}
+                        <small className="text-black">Change My Password</small>
+                      </button>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <button
+                        className="list-group-item list-group-item-action px-4 text-light"
+                        style={{ backgroundColor: "white" }}
+                      >
+                        <BoxArrowInRight color="black" size={20} />{" "}
+                        <Link to="/" style={{ textDecoration: "none" }}>
+                          <span onClick={logoutHandler} className="text-black">
+                            Logout
+                          </span>
+                        </Link>
+                      </button>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+
                 <Modal show={show} onHide={handleClose}>
                   <Modal.Header closeButton>
                     <Modal.Title className="text-danger">
@@ -259,14 +372,12 @@ const NavbarHead = () => {
                   </Modal.Footer>
                 </Modal>
 
-                <PopupMenu>
+                {/* <PopupMenu>
                   <button className="btn rounded-circle">
                     <img
-                      className="imgpro rounded-circle"
-                      style={{ width: "50px" }}
-                      src={
-                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                      }
+                      className="rounded-circle"
+                      style={{ width: "50px", height: "50px" }}
+                      src={image ? image : "../../image/photocard.png"}
                       alt=""
                     ></img>
                   </button>
@@ -274,7 +385,7 @@ const NavbarHead = () => {
                   <div
                     style={{
                       width: "250px",
-                      height: "400px",
+                      height: "300px",
                       marginTop: "70px",
                       marginRight: "10px",
                       marginLeft: "-80px",
@@ -311,7 +422,7 @@ const NavbarHead = () => {
                               className="text-dark"
                               style={{ textDecoration: "none" }}
                             >
-                              My Account
+                              My Profile
                             </Link>
                           </small>
                         </button>
@@ -329,13 +440,6 @@ const NavbarHead = () => {
                               Edit My Profile
                             </Link>
                           </small>
-                        </button>
-                        <button
-                          className="list-group-item list-group-item-action px-4  bg-white"
-                          // style={{ backgroundColor: "#f6837d" }}
-                        >
-                          <ArrowCounterclockwise color="black" size={20} />{" "}
-                          <small>My Activity Log</small>
                         </button>
                         <button
                           onClick={handleShow}
@@ -367,7 +471,7 @@ const NavbarHead = () => {
                       </div>
                     </div>
                   </div>
-                </PopupMenu>
+                </PopupMenu> */}
               </Nav>
             </Navbar.Collapse>
           </Container>

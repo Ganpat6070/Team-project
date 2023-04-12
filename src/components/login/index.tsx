@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Carousel from "react-bootstrap/Carousel";
 import { Link } from "react-router-dom";
 import { SetStateAction, useReducer, useState } from "react";
+import "./login.css";
 // import { auth } from "../firebase";
 // import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +17,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>("");
   const [resetEmail, setResetEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [show, setShow] = useState(false);
 
@@ -53,6 +54,7 @@ const Login = () => {
   };
 
   const onSubmit = async (e: any) => {
+    setLoading(true);
     e.preventDefault();
 
     let response = await fetch("http://localhost:8000/login", {
@@ -97,6 +99,7 @@ const Login = () => {
         res.msg === "Email id is not registered" ||
         res.msg === "Password is incorrect!"
       ) {
+        setLoading(false);
         toast.error(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
@@ -122,6 +125,7 @@ const Login = () => {
         }, 1500);
       }
     } else {
+      setLoading(false);
       toast.error(res.errorMessage, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -190,12 +194,7 @@ const Login = () => {
           ...state,
           ...{
             emailError: !isValid,
-            isFormValid:
-              isValid &&
-              !state.firstNameError &&
-              !state.lastNameError &&
-              !state.ageError &&
-              !state.passwordError,
+            isFormValid: isValid && !state.passwordError,
           },
         };
       case "VALIDATE_PASSWORD":
@@ -204,12 +203,7 @@ const Login = () => {
           ...state,
           ...{
             passwordError: !isValid,
-            isFormValid:
-              isValid &&
-              !state.firstNameError &&
-              !state.lastNameError &&
-              !state.ageError &&
-              !state.emailError,
+            isFormValid: isValid && !state.emailError,
           },
         };
       default:
@@ -262,7 +256,7 @@ const Login = () => {
       <NavbarHead />
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
-          <div className="card card-registration">
+          <div className="card card-registration" style={{ boxShadow: "none",  height: "100%" }}>
             <div className="row g-0">
               <div className="col-xl-6 d-none d-xl-block">
                 {/* login Carousel */}
@@ -270,6 +264,8 @@ const Login = () => {
                   <Carousel.Item>
                     <img
                       className="d-block w-100"
+                      height="600px%"
+                      width="50%"
                       src="../../image/login.jpg"
                       alt="First slide"
                     />
@@ -282,6 +278,8 @@ const Login = () => {
                   <Carousel.Item>
                     <img
                       className="d-block w-100"
+                      height="600px"
+                      width="50%"
                       src="../../image/login2.jpg"
                       alt="Second slide"
                     />
@@ -297,6 +295,8 @@ const Login = () => {
                   <Carousel.Item>
                     <img
                       className="d-block w-100"
+                      height="600px"
+                      width="50%"
                       src="../../image/login3.jpg"
                       alt="Third slide"
                     />
@@ -320,7 +320,7 @@ const Login = () => {
                   <h3 className="mb-2 text-center text-dark">
                     Let’s get started now!
                   </h3>
-                  <h5 className="mb-5 text-center text-dark">
+                  <h5 className="mb-2 text-center text-dark">
                     Login and find your life partner
                   </h5>
 
@@ -334,6 +334,8 @@ const Login = () => {
                         // ref={emailRef}
                         type="email"
                         placeholder="abc@xyz.com"
+                        size="sm"
+                        aria-label="email"
                         required
                         value={formData.email}
                         onChange={(e) =>
@@ -366,6 +368,7 @@ const Login = () => {
                         // ref={passwordRef}
                         type="password"
                         placeholder="********"
+                        size="sm"
                         required
                         value={formData.password}
                         onChange={(e) =>
@@ -390,7 +393,7 @@ const Login = () => {
                         ""
                       )}
                     </Form.Group>
-                    <Form.Group
+                    {/* <Form.Group
                       className="mb-3 text-white"
                       controlId="formBasicCheckbox"
                     >
@@ -398,11 +401,21 @@ const Login = () => {
                         type="checkbox"
                         label="Remember me on this device"
                       />
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <div className="d-grid gap-2 text-center">
-                      <Button type="submit" variant="primary" size="lg">
-                        Login
+                      <Button
+                        type="submit"
+                        disabled={!formValidityData.isFormValid || loading}
+                        value={"" + formValidityData.isFormValid}
+                        variant="primary"
+                        size="sm"
+                      >
+                        {loading === true ? (
+                          <span>Logging...</span>
+                        ) : (
+                          <span>Login</span>
+                        )}
                       </Button>
                       {error && (
                         <span className="text-center text-danger">{error}</span>
@@ -441,7 +454,7 @@ const Login = () => {
                       </Modal.Footer>
                     </Modal>
                     <p
-                      className="text-center text-primary"
+                      className="text-center text-primary forgot-passwd"
                       onClick={handleShow}
                     >
                       Forgot Password ?
@@ -457,14 +470,14 @@ const Login = () => {
                       </Link>
                     </p>
                   </Form>
-                  <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                  {/* <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                     <div className="border-bottom w-100 ml-5"></div>
                     <span className="px-2 small text-light font-weight-bold text-muted">
                       OR
                     </span>
                     <div className="border-bottom w-100 mr-5"></div>
-                  </div>
-                  <div className="form-group text-center col-lg-12 mx-auto">
+                  </div> */}
+                  {/* <div className="form-group text-center col-lg-12 mx-auto">
                     <a
                       className="btn btn-light btn-lg btn-google btn-block btn-outline"
                       href="/#"
@@ -478,7 +491,7 @@ const Login = () => {
                         Registration Using Google
                       </span>
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

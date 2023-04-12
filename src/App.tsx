@@ -23,6 +23,7 @@ import Finished from "./components/Profile/congrats";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 import ProtectedRoutes from "./ProtectecRoutes/protected";
+import NavbarHead from "./components/navbar";
 
 function App() {
   const [gender, setGender] = useState<string>("");
@@ -51,11 +52,13 @@ function App() {
   return (
     <>
       <div>
+        {/* <NavbarHead/> */}
         <BrowserRouter>
           <Routes>
             <Route element={<ProtectedRoutes />}>
               <Route path="/basic-info" element={<BasicInfo />} />
               <Route path="/profileDetails" element={<ProfileDetail />} />
+              <Route path="/profileDetails/:id" element={<ProfileDetail />} />
               <Route path="/personal-info" element={<PersonalInfo />} />
               <Route path="/mypersonality" element={<Mypersonality />} />
               <Route path="/prefpart" element={<PrePart />} />
@@ -65,7 +68,7 @@ function App() {
               <Route path="/data-add" element={<AddData />} />
               <Route path="/edit-profile" element={<EditProfile />} />
             </Route>
-            <Route path="/" element={<Home onPass={pass} />} />
+            <Route path="/" index element={<Home onPass={pass} />} />
             <Route path="/aboutus" element={<Aboutus />} />
             <Route path="/contactus" element={<Contactus />} />
             <Route path="/faqs" element={<Faqs />} />

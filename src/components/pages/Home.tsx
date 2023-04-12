@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, Button, Row, Col, Container, Card } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Container,
+  Card,
+  Carousel,
+} from "react-bootstrap";
 import "./Homepage.css";
 import Footer from "./footer";
 import NavbarHead from "../navbar";
@@ -58,51 +66,61 @@ const Home = ({ onPass }: HomeProps) => {
       <NavbarHead />
       <div className="background_img">
         <div>
-          <h1 className="text-white frontText">
+          <h1 className="text-white frontText fst-italic">
             Dream it... Believe it... Make it happen!
           </h1>
         </div>
-        <div className="selectData col-6">
-          <Form className="float-left">
-            <Row className="inputLabel">
-              <Col>
+        <div className="selectData">
+          <Form className="container">
+            {/* <Row className="inputLabel nopadding" > */}
+            <Row>
+              {/* <Col className="nopadding" style={{ width: "initial"}}> */}
+              <div className="col-sm-3">
                 <Form.Group controlId="formGridState">
-                  <Form.Label className="text-white">I'm lookig for</Form.Label>
+                  <Form.Label className="text-white fst-italic">
+                    I'm Lookig For a
+                  </Form.Label>
                   <Form.Select
                     size="sm"
                     className="filterinput"
                     // style={{ width: "90px", height: "30px" }}
                     onChange={selectChangeGender}
                   >
-                    <option value="">Select</option>
-                    <option value='female'>Bride</option>
-                    <option value='male'>Groom</option>
+                    <option hidden>Select</option>
+                    <option value="female">Bride</option>
+                    <option value="male">Groom</option>
                   </Form.Select>
                 </Form.Group>
-              </Col>
-              <Col>
-                <Form.Label className="text-white">Born Year </Form.Label>
+              </div>
+              <div className="col-sm-2">
+                <Form.Label className="text-white fst-italic">
+                  Born Year{" "}
+                </Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeLessAge}
                 >
-                  <option>Select</option>
+                  <option hidden>Select</option>
                   <option>1950</option>
                   <option>1980</option>
                   <option>2000</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-1">
                 <Form.Label>&nbsp;&nbsp;</Form.Label>
                 <Form.Label
-                  className="text-white"
-                  style={{ fontSize: "20px", marginTop: "24px", marginLeft: "34px" }}
+                  className="text-white fst-italic pb-0"
+                  style={{
+                    fontSize: "20px",
+                    marginTop: "24px",
+                    marginRight: "0px",
+                  }}
                 >
                   TO
                 </Form.Label>
-              </Col>
+              </div>
               {/* <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Form.Label className="mt-2 text-white" style={{ fontSize: "20px" }}>
@@ -110,7 +128,7 @@ const Home = ({ onPass }: HomeProps) => {
                 </Form.Label>
               </Col> */}
 
-              <Col>
+              <div className="col-sm-2">
                 <Form.Label>&nbsp;</Form.Label>{" "}
                 <Form.Select
                   size="sm"
@@ -118,30 +136,32 @@ const Home = ({ onPass }: HomeProps) => {
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeGreatAge}
                 >
-                  <option>Select</option>
+                  <option hidden>Select</option>
                   <option>1960</option>
                   <option>1990</option>
                   <option>2005</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-3">
                 {" "}
-                <Form.Label className="text-white">Religion</Form.Label>
+                <Form.Label className="text-white fst-italic">
+                  Religion
+                </Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
                   // style={{ width: "90px", height: "30px" }}
                   onChange={selectChangeReligion}
                 >
-                 <option>Select</option>
-                  <option value=''>Any</option>
+                  <option>Select</option>
+                  <option value="">Any</option>
                   <option>Hindu</option>
                   <option>Jainism</option>
                   <option>Christianity</option>
                   <option>Islam</option>
                 </Form.Select>
-              </Col>
-              <Col>
+              </div>
+              <div className="col-sm-1">
                 <Form.Label>&nbsp;</Form.Label>
                 <Button
                   className="findbtn filterinput border-0"
@@ -151,17 +171,25 @@ const Home = ({ onPass }: HomeProps) => {
                 >
                   Let's Find
                 </Button>
-              </Col>
+              </div>
             </Row>
           </Form>
         </div>
       </div>
 
-      <div className="intro">
+      <div
+        className=""
+        style={{
+          // background: "#000",
+          width: "80%",
+          textAlign: "center",
+          margin: "auto",
+        }}
+      >
         <h3 className="fw-bold text-center mt-5">
           PerfectMatch.com - Best Marriage Bureau in Ahmedabad
         </h3>
-        <p className="mt-5 textIntro text-start">
+        <p className="mt-5 text-justify" style={{ textAlign: "justify" }}>
           PerfectMatch.com, No. 1 Trusted Matrimonial Bureau in India, was
           founded by Miss. Purvangi Shukla with a simple objective to help those
           people who are seeking for best matrimonial bureau service, we have
@@ -170,34 +198,40 @@ const Home = ({ onPass }: HomeProps) => {
           provider but the best specialising in matchmaking.
         </p>
       </div>
-
-      <Container fluid>
-        <div className="textandimage">
-          <div className="perfectimg">
+      <div
+        className=""
+        style={{
+          // background: "#000",
+          width: "80%",
+          textAlign: "center",
+          margin: "auto",
+        }}
+      >
+        <div
+          className=""
+          style={{
+            display: "flex",
+          }}
+        >
+          <div className="">
             <img
               src="../../image/joint.png"
               alt="weddingImage"
               style={{
-                width: "480px",
-                height: "446px",
-                top: "1064px",
-                left: "134px",
+                paddingRight: "55px",
               }}
             />
           </div>
-          <div className="combine">
+          <div className="">
             <p
               style={{
-                height: "108px",
-                width: "540px",
-                left: "645px",
-                top: "1063.999755859375px",
+                textAlign: "left",
                 fontSize: "36px",
               }}
             >
               No.1 Trusted Matrimonial Bureau in India
             </p>
-            <p className="text2">
+            <p className="" style={{ textAlign: "justify" }}>
               Being from a privileged class there are many things that get sort
               out easily in life, but when it comes to marriage and finding the
               right soul mate, it is the most difficult task. Numerous Best
@@ -211,7 +245,7 @@ const Home = ({ onPass }: HomeProps) => {
             </p>
           </div>
         </div>
-      </Container>
+      </div>
 
       <Container>
         <div>
@@ -269,8 +303,13 @@ const Home = ({ onPass }: HomeProps) => {
         </Row>
       </Container>
 
-      <div className="text-lg-center fs-3 setmargin">
-        <p className="mt-3">Find Your Prefect Mate Today</p>
+      <div className="text-lg-center setmargin">
+        <p
+          className="fst-italic"
+          style={{ fontSize: "40px", fontFamily: "Poppins" }}
+        >
+          Find Your Prefect Mate Today
+        </p>
         <Link to="/register">
           <Button
             style={{
@@ -296,7 +335,7 @@ const Home = ({ onPass }: HomeProps) => {
           </p>
         </div>
 
-        <div className="d-flex stories justify-content-center">
+        {/* <div className="d-flex stories justify-content-center">
           <Card className="mx-4 cardshadow">
             <Card.Img
               width="30%"
@@ -330,8 +369,151 @@ const Home = ({ onPass }: HomeProps) => {
               <Card.Title className="text-center">Adarsh & Archana</Card.Title>
             </Card.Body>
           </Card>
-        </div>
+        </div> */}
       </div>
+
+      <Carousel
+        interval={2000}
+        slide={true}
+        prevIcon={
+          <i className="story-icon bi bi-arrow-left-circle-fill text-black"></i>
+        }
+        nextIcon={
+          <i className="story-icon bi bi-arrow-right-circle-fill text-black"></i>
+        }
+      >
+        <Carousel.Item>
+          <div
+            className="d-flex card-wrapper justify-content-center"
+            style={{ display: "flex", gap: "50px" }}
+          >
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd1"
+                src="../../image/cd1.png"
+              />
+              <Card.Body>
+                <Card.Title>Deepak & Navya</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd2"
+                src="../../image/cd2.png"
+              />
+
+              <Card.Body>
+                <Card.Title>Neeraj & Vismaya</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd3"
+                src="../../image/cd3.png"
+              />
+              <Card.Body>
+                <Card.Title>Adarsh & Archana</Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div
+            className="d-flex card-wrapper justify-content-center"
+            style={{ display: "flex", gap: "50px" }}
+          >
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd2"
+                src="../../image/cd2.png"
+              />
+              <Card.Body>
+                <Card.Title>Neeraj & Vismaya</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd3"
+                src="../../image/cd3.png"
+              />
+              <Card.Body>
+                <Card.Title>Adarsh & Archana</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd1"
+                src="../../image/cd1.png"
+              />
+              <Card.Body>
+                <Card.Title>Deepak & Navya</Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <div
+            className="d-flex card-wrapper justify-content-center"
+            style={{ display: "flex", gap: "50px" }}
+          >
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd3"
+                src="../../image/cd3.png"
+              />
+              <Card.Body>
+                <Card.Title>Adarsh & Archana</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd1"
+                src="../../image/cd1.png"
+              />
+              <Card.Body>
+                <Card.Title>Deepak & Navya</Card.Title>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Img
+                variant="top"
+                width="30%"
+                height="85%"
+                alt="cd2"
+                src="../../image/cd2.png"
+              />
+              <Card.Body>
+                <Card.Title>Neeraj & Vismaya</Card.Title>
+              </Card.Body>
+            </Card>
+          </div>
+        </Carousel.Item>
+      </Carousel>
 
       <div id="membership" className="box">
         <Link to="/membership">
@@ -348,122 +530,135 @@ const Home = ({ onPass }: HomeProps) => {
           </Button>
         </Link>
       </div>
+
       <div>
         <p id="gallery" className="text-lg-center fs-1 pt-xxl-5 mt-5">
           Connect with people you know but haven’t met yet
         </p>
-        <div className="d-flex gallery justify-content-center">
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="woman_29years"
-              variant="top"
-              src="../../image/png/girl41.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
+        <div
+          className=""
+          style={{
+            // background: "#000",
+            width: "80%",
+            textAlign: "center",
+            margin: "auto",
+          }}
+        >
+          <div className="d-flex gallery justify-content-center">
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="woman_29years"
+                variant="top"
+                src="../../image/png/girl41.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner
+                  Punjabi(Khatri)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
 
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="woman_26years"
-              variant="top"
-              src="../../image/png/girl31.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
-                US)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="woman_26years"
+                variant="top"
+                src="../../image/png/girl31.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working
+                  Punjabi(Now US)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
 
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="woman_27years"
-              variant="top"
-              src="../../image/png/girl21.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
-        </div>
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="woman_27years"
+                variant="top"
+                src="../../image/png/girl21.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
+          </div>
 
-        <div className="d-flex gallery justify-content-center">
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="man_29"
-              variant="top"
-              src="../../image/png/boy31.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner Punjabi(Khatri)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
+          <div className="d-flex gallery justify-content-center">
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="man_29"
+                variant="top"
+                src="../../image/png/boy31.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  29 yrs / 5Ft. 5In. MA(ECONOMICS) Wedding Planner
+                  Punjabi(Khatri)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
 
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="man_26years"
-              variant="top"
-              src="../../image/png/boy21.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working Punjabi(Now
-                US)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="man_26years"
+                variant="top"
+                src="../../image/png/boy21.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  26 yrs / 5Ft. 7In. M.A(INTERIOR DESIGN.) Non-working
+                  Punjabi(Now US)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
 
-          <Card className="clickableCard text-center">
-            <Card.Img
-              alt="man_27years"
-              variant="top"
-              src="../../image/png/boy11.png"
-              width="328.52px"
-              height="390px"
-            />
-            <Card.Body>
-              <Card.Text className="fs-4 text-start">
-                27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
-              </Card.Text>
-              <Button style={{ backgroundColor: "#27C2D3" }}>
-                View full Profile &nbsp; &nbsp; &gt;
-              </Button>
-            </Card.Body>
-          </Card>
+            <Card className="clickableCard text-center">
+              <Card.Img
+                alt="man_27years"
+                variant="top"
+                src="../../image/png/boy11.png"
+                width="328.52px"
+                height="390px"
+              />
+              <Card.Body>
+                <Card.Text className="fs-4 text-start">
+                  27yrs / 6Ft. 1In. MBA , DELHI Business Punjabi(Kukhrain)
+                </Card.Text>
+                <Button style={{ backgroundColor: "#27C2D3" }}>
+                  View full Profile &nbsp; &nbsp; &gt;
+                </Button>
+              </Card.Body>
+            </Card>
+          </div>
         </div>
       </div>
 

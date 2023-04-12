@@ -2,18 +2,17 @@
   background-image: url("../../../public/image/png/Background2.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 550px;
+  height: 570px;
 }
 
 .countryText {
   position: absolute;
   left: 10%;
   padding-top: 5%;
-
+  font-size: initial;
   font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
   line-height: 27px;
 
   /* identical to box height */
@@ -29,17 +28,17 @@
   width: 100%;
   height: 27px;
   left: 10%;
-  top: 210px;
-  font-family: "Poppins";
+  top: 104px;
+  /* font-family: "Poppins"; */
   font-style: italic;
-  font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   display: flex;
+  letter-spacing: 10%;
   align-items: center;
   text-align: justify;
   letter-spacing: 0.05em;
-  color: #000000;
+  /* color: #000000; */
 }
 
 .horline {
@@ -47,7 +46,7 @@
   width: 100%;
   height: 55px;
   left: 0px;
-  top: 250px;
+  top: 142px;
   background: #000000;
   opacity: 0.3;
 }
@@ -71,6 +70,7 @@
   }
   .countryText{
   position: relative;
+
 
   }
   .copyright{

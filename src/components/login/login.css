@@ -1,0 +1,10 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent!important;
+}
+.forgot-passwd{
+  cursor: pointer;
+}
+.right.carousel-control, .left.carousel-control {
+  display: none;
+}
