@@ -20,8 +20,8 @@ const ProgressBar = () => {
             >
               1 
             </button>
+          <div style={{backgroundColor:"blue" , width:"100px" , height:"10px"}}></div>
           </Link>
-          
           <div className="step-title">Basic Information</div>
         </div>
         <div className="step-item mx-4">

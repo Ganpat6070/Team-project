@@ -12,7 +12,7 @@ type HomeProps = {
     gender: string,
     lessAge: string,
     greatAge: string,
-    religion: string,
+    religion: string
   ) => void;
 };
 
@@ -35,14 +35,14 @@ const Home = ({ onPass }: HomeProps) => {
   };
 
   const selectChangeGreatAge = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     event.preventDefault();
     setGreatAge(event.target.value);
   };
 
   const selectChangeReligion = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     event.preventDefault();
     setReligion(event.target.value);
@@ -58,18 +58,20 @@ const Home = ({ onPass }: HomeProps) => {
       <NavbarHead />
       <div className="background_img">
         <div>
-          <h1 className="text-white frontText">
+          <h1 className="text-white frontText fst-italic">
             Dream it... Believe it... Make it happen!
           </h1>
         </div>
-        <div className="selectData col-6">
+        <div className="selectData">
           <Form className="container">
             {/* <Row className="inputLabel nopadding" > */}
-            <Row  >
+            <Row>
               {/* <Col className="nopadding" style={{ width: "initial"}}> */}
               <div className="col-sm-3">
                 <Form.Group controlId="formGridState">
-                  <Form.Label className="text-white fst-italic">I'm Lookig For a</Form.Label>
+                  <Form.Label className="text-white fst-italic">
+                    I'm Lookig For a
+                  </Form.Label>
                   <Form.Select
                     size="sm"
                     className="filterinput"
@@ -77,13 +79,15 @@ const Home = ({ onPass }: HomeProps) => {
                     onChange={selectChangeGender}
                   >
                     <option hidden>Select</option>
-                    <option value='female'>Bride</option>
-                    <option value='male'>Groom</option>
+                    <option value="female">Bride</option>
+                    <option value="male">Groom</option>
                   </Form.Select>
                 </Form.Group>
               </div>
               <div className="col-sm-2">
-                <Form.Label className="text-white fst-italic">Born Year </Form.Label>
+                <Form.Label className="text-white fst-italic">
+                  Born Year{" "}
+                </Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
@@ -100,7 +104,11 @@ const Home = ({ onPass }: HomeProps) => {
                 <Form.Label>&nbsp;&nbsp;</Form.Label>
                 <Form.Label
                   className="text-white fst-italic pb-0"
-                  style={{ fontSize: "20px", marginTop: "24px", marginRight:"0px" }}
+                  style={{
+                    fontSize: "20px",
+                    marginTop: "24px",
+                    marginRight: "0px",
+                  }}
                 >
                   TO
                 </Form.Label>
@@ -128,7 +136,9 @@ const Home = ({ onPass }: HomeProps) => {
               </div>
               <div className="col-sm-3">
                 {" "}
-                <Form.Label className="text-white fst-italic">Religion</Form.Label>
+                <Form.Label className="text-white fst-italic">
+                  Religion
+                </Form.Label>
                 <Form.Select
                   size="sm"
                   className="filterinput"
@@ -136,14 +146,14 @@ const Home = ({ onPass }: HomeProps) => {
                   onChange={selectChangeReligion}
                 >
                   <option>Select</option>
-                  <option value=''>Any</option>
+                  <option value="">Any</option>
                   <option>Hindu</option>
                   <option>Jainism</option>
                   <option>Christianity</option>
                   <option>Islam</option>
                 </Form.Select>
               </div>
-              <div className="col-sm-2">
+              <div className="col-sm-1">
                 <Form.Label>&nbsp;</Form.Label>
                 <Button
                   className="findbtn filterinput border-0"
@@ -158,12 +168,19 @@ const Home = ({ onPass }: HomeProps) => {
           </Form>
         </div>
       </div>
-
-      <div className="intro">
+      <div
+        className=""
+        style={{
+          // background: "#000",
+          width: "80%",
+          textAlign: "center",
+          margin: "auto",
+        }}
+      >
         <h3 className="fw-bold text-center mt-5">
           PerfectMatch.com - Best Marriage Bureau in Ahmedabad
         </h3>
-        <p className="mt-5 textIntro text-start">
+        <p className="mt-5 text-justify" style={{ textAlign: "justify" }}>
           PerfectMatch.com, No. 1 Trusted Matrimonial Bureau in India, was
           founded by Miss. Purvangi Shukla with a simple objective to help those
           people who are seeking for best matrimonial bureau service, we have
@@ -172,8 +189,74 @@ const Home = ({ onPass }: HomeProps) => {
           provider but the best specialising in matchmaking.
         </p>
       </div>
+      <div
+        className=""
+        style={{
+          // background: "#000",
+          width: "80%",
+          textAlign: "center",
+          margin: "auto",
 
-      <Container fluid>
+        }}
+      >
+        <div className="" style={{
+          display:"flex"
+        }}>
+          <div className="">
+            <img
+              src="../../image/joint.png"
+              alt="weddingImage"
+              style={
+                {
+
+                  paddingRight: "55px"
+                }
+              }
+            />
+          </div>
+          <div className="">
+            <p
+              style={{
+                
+                fontSize: "36px",
+              }}
+            >
+              No.1 Trusted Matrimonial Bureau in India
+            </p>
+            <p className="" style={{ textAlign: "justify" }}>
+              Being from a privileged class there are many things that get sort
+              out easily in life, but when it comes to marriage and finding the
+              right soul mate, it is the most difficult task. Numerous Best
+              Matrimonial Bureau in India are working day and night but their
+              approach is the same. The software allows you to tick the checkbox
+              and they present the prospective bride and groom to you. Being
+              from the elite society, having a privileged background, won’t it
+              be a better option than in place of a computer or software acting
+              as an most exclusive matchmaking service, there should be a person
+              listening constantly?
+            </p>
+          </div>
+        </div>
+      </div>
+{/* 
+      <div className="intro">
+        <h3 className="fw-bold text-center mt-5">
+          PerfectMatch.com - Best Marriage Bureau in Ahmedabad
+        </h3>
+        <p
+          className="mt-5 textIntro text-justify"
+          style={{ textAlign: "justify" }}
+        >
+          PerfectMatch.com, No. 1 Trusted Matrimonial Bureau in India, was
+          founded by Miss. Purvangi Shukla with a simple objective to help those
+          people who are seeking for best matrimonial bureau service, we have
+          lot's of verified brides and grooms profile which will helps you to
+          find your real soulmate. we are not just a matrimonial service
+          provider but the best specialising in matchmaking.
+        </p>
+      </div> */}
+{/* 
+      <Container fluid className="textJustify">
         <div className="textandimage">
           <div className="perfectimg">
             <img
@@ -213,7 +296,7 @@ const Home = ({ onPass }: HomeProps) => {
             </p>
           </div>
         </div>
-      </Container>
+      </Container> */}
 
       <Container>
         <div>

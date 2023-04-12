@@ -27,7 +27,7 @@
   font-size: 10px;
   position: absolute;
   top: 73%;
-  left: 40%;
+  left: 45%;
   transform: translate(-50%, -50%);
 }
 
@@ -265,4 +265,9 @@
   /* margin: 0 !important; */
   /* padding-right: 0 !important; */
   /* width: 110%; */
+}
+
+.textJustify{
+margin-left: 10%;
+margin-right: 10%;
 }

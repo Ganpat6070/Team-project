@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import NavbarHead from "../navbar";
 import { Col, Row } from "react-bootstrap";
-
+import "./EditProfile.css"
 const EditProfile = () => {
 
 
