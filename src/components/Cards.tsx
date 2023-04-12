@@ -24,6 +24,9 @@ function CardBox(props: string | any) {
     <Card
       className="d-flex justify-content-between"
       style={{ width: "25rem", textAlign: "center" }}
+      onClick={() => {
+        handleDetails(props.id);
+      }}
     >
       <Card.Img
         variant="top"

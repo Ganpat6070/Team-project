@@ -144,9 +144,9 @@ const Home = ({ onPass }: HomeProps) => {
               <Col>
                 <Form.Label>&nbsp;</Form.Label>
                 <Button
-                  className="findbtn filterinput border-0"
+                  className="filterinput border-0"
                   size="sm"
-                  style={{ backgroundColor: "#FE8A4D", width: "120px" }}
+                  style={{ backgroundColor: "#FE8A4D" }}
                   onClick={profileSearch}
                 >
                   Let's Find

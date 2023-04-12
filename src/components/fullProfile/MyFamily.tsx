@@ -13,7 +13,7 @@ const MyFamily = (props: any) => {
   return (
     <div>
       <div>
-        <div className="text-center fw-bold">About Family</div>
+        {/* <div className="text-center fw-bold">About Family</div> */}
         <br />
         <br />
         <li

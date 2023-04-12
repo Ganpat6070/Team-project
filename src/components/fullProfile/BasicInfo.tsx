@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
 const BasicInfomation = (data: any) => {
-  const data2 = data.data;
+  const [loader, setloader] = useState<boolean>(true);
 
+  const data2 = data.data;
   const dateOfBirth = new Date(data2.dateOfBirth);
   const ageInMilliseconds = Date.now() - dateOfBirth.getTime();
   const ageInYears = new Date(ageInMilliseconds).getUTCFullYear() - 1970;
@@ -10,7 +11,7 @@ const BasicInfomation = (data: any) => {
 
   return (
     <div>
-      <div className="text-center fw-bold">Basic Information</div>
+      {/* <div className="text-center fw-bold">Basic Information</div> */}
       <br />
       <br />
       <div

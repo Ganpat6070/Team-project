@@ -4,7 +4,7 @@ const Education = (props: any) => {
   const data2 = props.data;
   return (
     <div>
-      <div className="text-center fw-bold">Education Details</div>
+      {/* <div className="text-center fw-bold">Education Details</div> */}
       <br />
       <br />
       <div

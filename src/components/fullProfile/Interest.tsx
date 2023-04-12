@@ -6,7 +6,7 @@ const Interest = (props: any) => {
   return (
     <div>
       <div>
-        <div className="text-center fw-bold">Interest & Hobbies</div>
+        {/* <div className="text-center fw-bold">Interest & Hobbies</div> */}
         <br />
         <br />
         <div

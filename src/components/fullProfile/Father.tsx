@@ -4,7 +4,7 @@ const Father = (props : any) => {
   const data = props.data;
   return (
     <div>
-      <div className="text-center fw-bold">Father Information</div>
+      {/* <div className="text-center fw-bold">Father Information</div> */}
       <br />
       <br />
       <div

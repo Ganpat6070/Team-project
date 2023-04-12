@@ -5,7 +5,7 @@ const Mother = (props: any) => {
 
   return (
     <div>
-      <div className="text-center fw-bold">Mother Information</div>
+      {/* <div className="text-center fw-bold">Mother Information</div> */}
       <br />
       <br />
       <div className="d-flex justify-content-lg-evenly" style={{backgroundColor: 'rgb(238, 234, 234)', padding: "2rem", borderRadius: '4%'}}>

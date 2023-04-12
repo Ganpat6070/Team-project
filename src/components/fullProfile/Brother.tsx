@@ -3,7 +3,7 @@ import React from "react";
 const Brother = () => {
   return (
     <div>
-      <div className="text-center fw-bold">Brother Information</div>
+      {/* <div className="text-center fw-bold">Brother Information</div> */}
       <br />
       <br />
       <div

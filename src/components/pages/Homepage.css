@@ -173,12 +173,14 @@
 }
 
 .filterinput{
-  width: 90px;
-  height: 30px;
-}
-.findbtn{
+  /* width: 90px; */
   width: 120px;
+  height: 30px; 
 }
+.filterinput:hover{
+  background-color: 'red' !important
+}
+
 
 .testimonials {
   width: 100%;

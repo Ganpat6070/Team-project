@@ -9,6 +9,8 @@ import db from "../firebase";
 import { useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import Pagination from "react-bootstrap/Pagination";
+// import loadingGif from '../../Pendulum.gif'
+import { InfinitySpin } from "react-loader-spinner";
 
 type ProfileSearchProps = {
   gender: string;
@@ -19,13 +21,19 @@ type ProfileSearchProps = {
 
 const ProfileSearch = (props: ProfileSearchProps) => {
   const [myData, setMyData] = useState<any>([]);
+  const [authorization, setauthorization] = useState("");
+  const [loader, setLoader] = useState<boolean>(true);
 
   useEffect(() => {
     // onSnapshot(collection(db, "userdata"), (snapshot) => {
     //   setMyData(snapshot.docs.map((doc) => doc.data()));
     // });
+
     fetchdata();
   }, []);
+
+  const tokenData = localStorage.getItem("login");
+  // {tokenData ? "" : ""}
 
   let fetchdata = async () => {
     const response = await fetch("http://localhost:8000/get-profile", {
@@ -37,27 +45,10 @@ const ProfileSearch = (props: ProfileSearchProps) => {
     let res = await response.json();
     console.log(res.msg);
     setMyData(res.profile);
+    setLoader(false);
   };
   console.log("mydata", myData);
 
-  // const filteredData = myData.filter(
-  //   (data: any) =>
-  //     // (props.gender === '' || props.religion=== '' || props.lessAge==='' || props.greatAge === '' ? data.gender: '') &&
-  //     (props.religion.toLowerCase() === ""
-  //       ? data.religion.toLowerCase()
-  //       : data.religion.toLowerCase() === props.religion.toLowerCase()) &&
-  //     (props.gender.toLowerCase() === ""
-  //       ? data.gender.toLowerCase()
-  //       : data.gender.toLowerCase() === props.gender.toLowerCase()) &&
-  //     (props.lessAge.toLowerCase() === ""
-  //       ? data.dateOfBirth.substring(0, 4) <= props.greatAge.toLowerCase()
-  //       : data.dateOfBirth.substring(0, 4) >= props.lessAge) &&
-  //     (props.greatAge.toLowerCase() === ""
-  //       ? data.dateOfBirth.substring(0, 4) >= props.lessAge.toLowerCase()
-  //       : data.dateOfBirth.substring(0, 4) <= props.greatAge) // (props.lessAge.toLowerCase() === "" || props.greatAge.toLowerCase() === '' ? data.born_year.toLowerCase(): '')
-  //   // data.born_year >= props.lessAge &&
-  //   // data.born_year <= props.greatAge
-  // );
   const filteredData = myData.filter(
     (data: any) =>
       (props.religion === null ||
@@ -96,6 +87,18 @@ const ProfileSearch = (props: ProfileSearchProps) => {
   }
 
   console.log(props.gender, props.lessAge, props.greatAge, props.religion);
+
+  if (loader) {
+    return (
+      <div style={{ width: "120px", height: "120px",  position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)' }}>
+        <InfinitySpin width="200" color="rgb(255, 85, 59)" />
+      </div>
+    );
+  }
+
   return (
     <div>
       <NavbarHead />
@@ -106,6 +109,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
         * The profiles which appears here are members that match your partner
         preferences
       </div>
+
       {/* console.log(data); */}
       <div className="profileCard">
         {props.gender === "" &&
@@ -140,11 +144,11 @@ const ProfileSearch = (props: ProfileSearchProps) => {
             <CardBox
               id={profile._id}
               name={
-                profile.firstName +
+                (profile.firstName ? profile.firstName : " ") +
                 " " +
-                profile.middleName +
+                (profile.middleName ? profile.middleName : "") +
                 " " +
-                profile.lastName
+                (profile.lastName ? profile.lastName : "")
               }
               ageAndReligion={
                 profile.dateOfBirth.substring(0, 4) + " " + profile.religion
