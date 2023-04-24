@@ -142,31 +142,34 @@ const NavbarHead = () => {
               <Nav className="justify-content-around navbar flex-grow-1 me-auto">
                 <Link
                   to="/"
-                  className="text-white"
+                  className="text-white font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Home
                 </Link>
 
-                <Nav.Link href="#sucessStories" className="text-white">
+                <Nav.Link
+                  href="#sucessStories"
+                  className="text-white font-italic"
+                >
                   Success Stories
                 </Nav.Link>
 
                 <Link
                   to="/membership"
-                  className="text-white"
+                  className="text-white font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Membership
                 </Link>
 
-                <Nav.Link href="#gallery" className="text-white">
+                <Nav.Link href="#gallery" className="text-white font-italic">
                   Gallery
                 </Nav.Link>
 
                 <Link
                   to="/faqs"
-                  className="text-white"
+                  className="text-white font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   FAQS
@@ -174,7 +177,7 @@ const NavbarHead = () => {
 
                 <Link
                   to="/aboutus"
-                  className="text-white"
+                  className="text-white font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Aboutus
@@ -182,7 +185,7 @@ const NavbarHead = () => {
 
                 <Link
                   to="/contactus"
-                  className="text-white"
+                  className="text-white font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Contact
@@ -191,7 +194,7 @@ const NavbarHead = () => {
 
                 <Link
                   to="/login"
-                  className="p-2 rounded bg-white"
+                  className="p-2 rounded bg-white font-italic"
                   style={{ textDecoration: "none", color: "#FA4C55" }}
                 >
                   Login/Register
@@ -223,14 +226,14 @@ const NavbarHead = () => {
               <Nav className="justify-content-around flex-grow-1">
                 <Link
                   to="/"
-                  className="text-white pt-4"
+                  className="text-white pt-4 font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Home
                 </Link>
                 <Link
                   to="/membership"
-                  className="text-white pt-4"
+                  className="text-white pt-4 font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Membership
@@ -238,14 +241,14 @@ const NavbarHead = () => {
 
                 <Link
                   to="/faqs"
-                  className="text-white pt-4"
+                  className="text-white pt-4 font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   FAQS
                 </Link>
                 <Link
                   to="/aboutus"
-                  className="text-white pt-4"
+                  className="text-white pt-4 font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Aboutus
@@ -253,7 +256,7 @@ const NavbarHead = () => {
 
                 <Link
                   to="/contactus"
-                  className="text-white pt-4"
+                  className="text-white pt-4 font-italic"
                   style={{ textDecoration: "none" }}
                 >
                   Contact
@@ -333,7 +336,13 @@ const NavbarHead = () => {
                         style={{ backgroundColor: "white" }}
                       >
                         <Lock color="black" size={20} />{" "}
-                        <small className="text-black">Change My Password</small>
+                        <Link
+                          to="/admin"
+                          className="text-black"
+                          style={{ textDecoration: "none" }}
+                        >
+                          Admin Dashboard
+                        </Link>
                       </button>
                     </Dropdown.Item>
                     <Dropdown.Item>

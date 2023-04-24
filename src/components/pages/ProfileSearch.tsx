@@ -70,11 +70,19 @@ const ProfileSearch = (props: ProfileSearchProps) => {
       props.greatAge === undefined ||
       props.greatAge.toLowerCase() === ""
         ? true
-        : data.dateOfBirth.substring(0, 4) <= props.greatAge)
+        : data.dateOfBirth.substring(0, 4) <= props.greatAge),
   );
 
-  console.log(filteredData);
+  console.log("filter data", filteredData);
   // console.log(filteredData.dateOfBirth.substring(0,4));
+
+  const [currentpage, setCurrentpage] = useState(1);
+  const recordsperpage = 6;
+  const lastIndex = currentpage * recordsperpage;
+  const firstIndex = lastIndex - recordsperpage;
+  const records = filteredData.slice(firstIndex, lastIndex);
+  const npage = Math.ceil(filteredData.length / recordsperpage);
+  const numbers = [...Array(npage + 1).keys()].slice(1);
 
   let active = 2;
   let items = [];
@@ -82,7 +90,7 @@ const ProfileSearch = (props: ProfileSearchProps) => {
     items.push(
       <Pagination.Item key={number} active={number === active}>
         {number}
-      </Pagination.Item>
+      </Pagination.Item>,
     );
   }
 
@@ -90,10 +98,16 @@ const ProfileSearch = (props: ProfileSearchProps) => {
 
   if (loader) {
     return (
-      <div style={{ width: "120px", height: "120px",  position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)' }}>
+      <div
+        style={{
+          width: "120px",
+          height: "120px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <InfinitySpin width="200" color="rgb(255, 85, 59)" />
       </div>
     );
@@ -141,27 +155,43 @@ const ProfileSearch = (props: ProfileSearchProps) => {
           ))
         ) : filteredData.length > 0 ? (
           filteredData.map((profile: any) => (
-            <CardBox
-              id={profile._id}
-              name={
-                (profile.firstName ? profile.firstName : " ") +
-                " " +
-                (profile.middleName ? profile.middleName : "") +
-                " " +
-                (profile.lastName ? profile.lastName : "")
-              }
-              ageAndReligion={
-                profile.dateOfBirth.substring(0, 4) + " " + profile.religion
-              }
-              address={profile.address ? profile.address : ""}
-              education={profile.education ? profile.education.join(", ") : ""}
-              designation={profile.designation ? profile.designation : ""}
-              image={
-                profile.image
-                  ? profile.image
-                  : "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"
-              }
-            />
+            <>
+              <CardBox
+                id={profile._id}
+                name={
+                  (profile.firstName ? profile.firstName : " ") +
+                  " " +
+                  (profile.middleName ? profile.middleName : "") +
+                  " " +
+                  (profile.lastName ? profile.lastName : "")
+                }
+                ageAndReligion={
+                  profile.dateOfBirth.substring(0, 4) + " " + profile.religion
+                }
+                address={profile.address ? profile.address : ""}
+                education={
+                  profile.education ? profile.education.join(", ") : ""
+                }
+                designation={profile.designation ? profile.designation : ""}
+                image={
+                  profile.image
+                    ? profile.image
+                    : "https://static8.depositphotos.com/1009634/988/v/950/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"
+                }
+              />
+              {/* <nav>
+                <ul className="pagination">
+                  <li className="">
+                    <a href="#" className="page-link">Prev</a>
+                  </li>
+                  {
+                    numbers.map((n,i)=>(
+                      <li className="page-item"></li>
+                    ))
+                  }
+                </ul>
+              </nav> */}
+            </>
           ))
         ) : (
           <div className="text-center fs-1 text-danger">

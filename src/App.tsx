@@ -24,6 +24,10 @@ import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
 import ProtectedRoutes from "./ProtectecRoutes/protected";
 import NavbarHead from "./components/navbar";
+import ProgressBar from "./components/Profile/ProgressBar";
+import NotFound from "./components/pages/404";
+import Admin from "./components/dashboard";
+import Denied from "./components/pages/denied";
 
 function App() {
   const [gender, setGender] = useState<string>("");
@@ -53,43 +57,50 @@ function App() {
     <>
       <div>
         {/* <NavbarHead/> */}
-        <BrowserRouter>
-          <Routes>
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/basic-info" element={<BasicInfo />} />
-              <Route path="/profileDetails" element={<ProfileDetail />} />
-              <Route path="/profileDetails/:id" element={<ProfileDetail />} />
-              <Route path="/personal-info" element={<PersonalInfo />} />
-              <Route path="/mypersonality" element={<Mypersonality />} />
-              <Route path="/prefpart" element={<PrePart />} />
-              <Route path="/astrodata" element={<AstroDetails />} />
-              <Route path="/finished" element={<Finished />} />
-              <Route path="/data-info" element={<ShowData />} />
-              <Route path="/data-add" element={<AddData />} />
-              <Route path="/edit-profile" element={<EditProfile />} />
+
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route element={<ProtectedRoutes roleRequired="ADMIN" />}>
+              <Route path="/admin" element={<Admin />} />
             </Route>
-            <Route path="/" index element={<Home onPass={pass} />} />
-            <Route path="/aboutus" element={<Aboutus />} />
-            <Route path="/contactus" element={<Contactus />} />
-            <Route path="/faqs" element={<Faqs />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/otp" element={<Otp />} />
-            <Route path={`/reset-password/:token`} element={<Pass />} />
-            <Route path="/register" element={<RegForm2 />} />
-            <Route path="/membership" element={<Membership />} />
-            <Route
-              path="/profileSearch"
-              element={
-                <ProfileSearch
-                  gender={gender}
-                  lessAge={lessAge}
-                  greatAge={greatAge}
-                  religion={religion}
-                />
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+            <Route element={<ProtectedRoutes roleRequired="USER" />}>
+              <Route path="/basic-info" element={<BasicInfo />} />
+              <Route path="/personal-info" element={<PersonalInfo />} />
+              <Route path="/prefpart" element={<PrePart />} />
+              <Route path="/mypersonality" element={<Mypersonality />} />
+              <Route path="/astrodata" element={<AstroDetails />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
+
+              <Route path="/finished" element={<Finished />} />
+            </Route>
+            <Route path="/profileDetails" element={<ProfileDetail />} />
+            <Route path="/profileDetails/:id" element={<ProfileDetail />} />
+            <Route path="/data-info" element={<ShowData />} />
+            <Route path="/data-add" element={<AddData />} />
+          </Route>
+          <Route path="/" index element={<Home onPass={pass} />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/contactus" element={<Contactus />} />
+          <Route path="/faqs" element={<Faqs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/denied" element={<Denied />} />
+          <Route path="/otp" element={<Otp />} />
+          <Route path={`/reset-password/:token`} element={<Pass />} />
+          <Route path="/register" element={<RegForm2 />} />
+          <Route path="/membership" element={<Membership />} />
+          <Route
+            path="/profileSearch"
+            element={
+              <ProfileSearch
+                gender={gender}
+                lessAge={lessAge}
+                greatAge={greatAge}
+                religion={religion}
+              />
+            }
+          />
+        </Routes>
       </div>
     </>
   );

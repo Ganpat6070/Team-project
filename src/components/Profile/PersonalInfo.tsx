@@ -1120,7 +1120,7 @@ const PersonalInfo = () => {
               onClick={submitHandler}
               style={{ backgroundColor: "#fb9232" }}
             >
-              Save and Continue
+              Save & Continue
             </button>
           </Link>
         </form>

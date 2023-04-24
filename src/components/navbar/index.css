@@ -1,32 +1,33 @@
 @media (max-width: 600px) {
-    .navbar {
+  .navbar {
     margin-top: 12px;
-    background-color: #FA5847;
+    background-color: #fa5847;
   }
+}
+.font-italic {
+  font-style: italic !important;
 }
 
 #dropdown-basic:hover {
   /* height: 300px; */
-  outline: none!important;
-  background: transparent!important;
+  outline: none !important;
+  background: transparent !important;
 }
 
 #dropdown-basic:focus {
   /* height: 300px; */
-  outline: none!important;
-  background: transparent!important;
+  outline: none !important;
+  background: transparent !important;
 }
 
 .dropdown-item:focus {
   outline: none;
-  background: transparent!important;
-
+  background: transparent !important;
 }
 
-.dropdown-item:hover {  
+.dropdown-item:hover {
   outline: none;
-  background: transparent!important;
-
+  background: transparent !important;
 }
 
 .dropdown-toggle::after {

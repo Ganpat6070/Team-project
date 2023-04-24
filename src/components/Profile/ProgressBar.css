@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
 }
-.step-item{
+.step-item {
   z-index: 1;
 }
 .buttonZIndex {
@@ -52,4 +52,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+} */
+
+/* .step-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+}
+.step-item:not(:first-child):before {
+  content: "" ;
+  position: absolute;
+  width: fit-content;
+  top:20%;
+  right: 10%;
+  height: 8px;
+  background: #e59f71;
+}
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  position: relative;
+  background: #ccc;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.active .step {
+  background: wheat;
+}
+.complete .step {
+  background: lightgreen;
+}
+.complete p {
+ color: white;
+}
+.complete:not(:first-child):before,
+.active:not(:first-child):before {
+  background: lightgreen;
 } */

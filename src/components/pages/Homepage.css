@@ -270,19 +270,21 @@
 
 /* Customize arrow buttons */
 .carousel-control-prev-icon:before {
-  content: "\F129" !important;
+  display: none;
+  /* content: "\F129" !important;
   height: 50px;
   width: 50px;
   z-index: 1;
-  font-family: "bootstrap-icons";
+  font-family: "bootstrap-icons"; */
 }
 
 .carousel-control-next-icon:before {
-  content: "\F133" !important;
+  /* content: "\F133" !important;
   height: 50px !important;
   width: 50px !important;
   z-index: 1;
-  font-family: "bootstrap-icons";
+  font-family: "bootstrap-icons"; */
+  display: none;
 }
 
 .story-icon {

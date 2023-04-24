@@ -107,6 +107,7 @@ const Login = () => {
       if (res.msg === "User found successfully!") {
         const uname = formData.email;
         localStorage.setItem("uname", JSON.stringify(uname));
+        localStorage.setItem("user", JSON.stringify({role:'USER'}));
         toast.success(res.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
